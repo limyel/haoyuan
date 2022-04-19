@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>haoyuan-mp-backend</name>
     <description>haoyuan-mp-backend</description>
+    <packaging>pom</packaging>
     <properties>
         <java.version>1.8</java.version>
     </properties>
