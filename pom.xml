@@ -6,7 +6,7 @@
         <module>haoyuan-api</module>
         <module>haoyuan-common</module>
         <module>haoyuan-dao</module>
-        <module>haoyuan-entity</module>
+        <module>haoyuan-model</module>
         <module>haoyuan-service</module>
     </modules>
     <parent>
