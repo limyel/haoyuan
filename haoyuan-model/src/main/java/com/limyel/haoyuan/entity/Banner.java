@@ -7,6 +7,10 @@ import java.util.Date;
 @Table(name = "banner")
 public class Banner extends BaseEntity {
 
+    public enum Type {
+
+    }
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -18,5 +22,11 @@ public class Banner extends BaseEntity {
 
     @Column(name = "img")
     private String img;
+
+    @Column(name = "type")
+    private Type type;
+
+    @Column(name = "keyword")
+    private String keyword;
 
 }
