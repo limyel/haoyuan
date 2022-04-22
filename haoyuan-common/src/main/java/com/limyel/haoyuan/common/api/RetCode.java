@@ -5,8 +5,10 @@ package com.limyel.haoyuan.common.api;
  */
 public enum RetCode {
     SUCCESS(0, "成功", "success"),
-    FAILED(-1001, "失败", "failed"),
-    NOT_FOUND(-1002, "资源不存在", "not found")
+    FAILED(1, "失败", "failed"),
+
+    // 资源相关
+    NOT_FOUND(101, "资源不存在", "not found")
 
     ;
 

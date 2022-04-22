@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.service.impl;
 
+import com.limyel.haoyuan.common.exception.ApiException;
 import com.limyel.haoyuan.dao.BannerRepository;
 import com.limyel.haoyuan.entity.Banner;
 import com.limyel.haoyuan.service.BannerService;
@@ -16,6 +17,10 @@ public class BannerServiceImpl implements BannerService {
 
     @Override
     public List<Banner> listByNames(List<String> names) {
-        return bannerRepository.findBannersByNameIn(names);
+        List<Banner> banners = bannerRepository.findBannersByNameIn(names);
+        if (banners.size() != names.size()) {
+            throw new ApiException(10001);
+        }
+        return banners;
     }
 }
