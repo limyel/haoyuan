@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Api(tags = "Haoyuan Banner")
 @RestController
 @RequestMapping("/banners")
 public class BannerController {
@@ -21,7 +20,6 @@ public class BannerController {
     @Autowired
     private BannerService bannerService;
 
-    @ApiOperation(value = "根据名称获取 Banner", httpMethod = "GET")
     @GetMapping("/by-names")
     public Response<List<Banner>> listByNames(
             @RequestParam List<String> names

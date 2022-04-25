@@ -1,10 +1,13 @@
 package com.limyel.haoyuan.entity;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
 @Table(name = "category")
+@Where(clause = "is_deleted = 0")
 public class Category extends BaseEntity {
 
     @Column(name = "name", nullable = false)
