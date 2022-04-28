@@ -1,52 +1,117 @@
 package com.limyel.haoyuan.entity;
 
-import javax.persistence.*;
-import java.time.Instant;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
-@Table(name = "spu")
-public class Spu extends BaseEntity {
+/**
+ * <p>
+ * spu
+ * </p>
+ *
+ * @author limyel
+ * @since 2022-04-28
+ */
+@Getter
+@Setter
+public class Spu implements Serializable {
 
-    @Column(name = "title", nullable = false, length = 100)
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+    /**
+     * 是否删除
+     */
+    @TableField(value = "is_deleted")
+    private Boolean deleted;
+
+    /**
+     * 标题
+     */
     private String title;
 
-    @Column(name = "subtitle", length = 800)
+    /**
+     * 子标题
+     */
     private String subtitle;
 
-    @Column(name = "category_id", nullable = false)
+    /**
+     * 分类id
+     */
     private Long categoryId;
 
-    @Column(name = "root_category_id")
+    /**
+     * 根分类id
+     */
     private Long rootCategoryId;
 
-    @Column(name = "is_online", nullable = false)
-    private Integer online;
+    /**
+     * 是否上线
+     */
+    @TableField(value = "is_online")
+    private Boolean online;
 
-    @Column(name = "price", nullable = false, length = 20)
+    /**
+     * 价格
+     */
     private String price;
 
-    @Column(name = "sketch_spec_id")
+    /**
+     * 某种规格可以直接附加单品图片
+     */
     private Long sketchSpecId;
 
-    @Column(name = "default_sku_id")
+    /**
+     * 默认选择的sku
+     */
     private Long defaultSkuId;
 
-    @Column(name = "img")
+    /**
+     * 图片
+     */
     private String img;
 
-    @Column(name = "discount_price", length = 20)
+    /**
+     * 折扣价格
+     */
     private String discountPrice;
 
-    @Column(name = "description")
+    /**
+     * 描述
+     */
     private String description;
 
-    @Column(name = "tags", length = 30)
+    /**
+     * 标签
+     */
     private String tags;
 
-    @Column(name = "is_test", nullable = false)
+    /**
+     * 是否是测试
+     */
+    @TableField(value = "is_test")
     private Boolean test;
 
-    @Column(name = "for_theme_img")
     private String forThemeImg;
+
 
 }

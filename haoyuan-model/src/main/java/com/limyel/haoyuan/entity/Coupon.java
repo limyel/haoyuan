@@ -1,45 +1,102 @@
 package com.limyel.haoyuan.entity;
 
-import javax.persistence.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
-@Table(name = "coupon")
-public class Coupon extends BaseEntity {
+/**
+ * <p>
+ * 优惠券
+ * </p>
+ *
+ * @author limyel
+ * @since 2022-04-28
+ */
+@Getter
+@Setter
+public class Coupon implements Serializable {
 
-    @Column(name = "title")
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+    /**
+     * 是否删除
+     */
+    @TableField(value = "is_deleted")
+    private Boolean deleted;
+
+    /**
+     * 标题
+     */
     private String title;
 
-    @Column(name = "start_time")
-    private Date startTime;
+    /**
+     * 开始时间
+     */
+    private LocalDateTime startTime;
 
-    @Column(name = "end_time")
-    private Date endTime;
+    /**
+     * 结束时间
+     */
+    private LocalDateTime endTime;
 
-    @Column(name = "description")
+    /**
+     * 描述
+     */
     private String description;
 
-    @Column(name = "full_money", precision = 10, scale = 2)
+    /**
+     * 满减门槛
+     */
     private BigDecimal fullMoney;
 
-    @Column(name = "minus", precision = 10, scale = 2)
+    /**
+     * 扣减金额
+     */
     private BigDecimal minus;
 
-    @Column(name = "rate", precision = 10, scale = 2)
+    /**
+     * 折扣
+     */
     private BigDecimal rate;
 
-    @Column(name = "type", nullable = false)
+    /**
+     * 类型
+     */
     private Integer type;
 
-    @Column(name = "activity_id")
+    /**
+     * 活动id
+     */
     private Long activityId;
 
-    @Column(name = "remark")
     private String remark;
 
-    @Column(name = "is_whole", nullable = false)
+    /**
+     * 是否全场券
+     */
+    @TableField(value = "is_whole")
     private Integer whole;
+
 
 }

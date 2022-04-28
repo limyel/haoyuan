@@ -1,37 +1,90 @@
 package com.limyel.haoyuan.entity;
 
-import javax.persistence.*;
-import java.util.Date;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
-@Table(name = "activity")
-public class Activity extends BaseEntity {
+/**
+ * <p>
+ * 活动
+ * </p>
+ *
+ * @author limyel
+ * @since 2022-04-28
+ */
+@Getter
+@Setter
+public class Activity implements Serializable {
 
-    @Column(name = "title", length = 60)
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+    /**
+     * 是否删除
+     */
+    @TableField(value = "is_deleted")
+    private Boolean deleted;
+
+    /**
+     * 标题
+     */
     private String title;
 
-    @Column(name = "description")
+    /**
+     * 描述
+     */
     private String description;
 
-    @Column(name = "start_time", nullable = false)
-    private Date startTime;
+    /**
+     * 开始时间
+     */
+    private LocalDateTime startTime;
 
-    @Column(name = "end_time", nullable = false)
-    private Date endTime;
+    /**
+     * 结束时间
+     */
+    private LocalDateTime endTime;
 
-    @Column(name = "remark", length = 60)
     private String remark;
 
-    @Column(name = "is_online", nullable = false)
-    private Boolean online = false;
+    /**
+     * 是否上线
+     */
+    @TableField(value = "is_online")
+    private Boolean online;
 
-    @Column(name = "entrance_img")
+    /**
+     * 入口图片
+     */
     private String entranceImg;
 
-    @Column(name = "internal_top_img")
+    /**
+     * 内容顶部图片
+     */
     private String internalTopImg;
 
-    @Column(name = "name", nullable = false, length = 20)
+    /**
+     * 名称
+     */
     private String name;
 
 }

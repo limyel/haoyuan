@@ -1,31 +1,79 @@
 package com.limyel.haoyuan.entity;
 
-import org.hibernate.annotations.Where;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
-import java.time.Instant;
+/**
+ * <p>
+ * 分类
+ * </p>
+ *
+ * @author limyel
+ * @since 2022-04-28
+ */
+@Getter
+@Setter
+public class Category implements Serializable {
 
-@Entity
-@Table(name = "category")
-@Where(clause = "is_deleted = 0")
-public class Category extends BaseEntity {
+    private static final long serialVersionUID = 1L;
 
-    @Column(name = "name", nullable = false)
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+    /**
+     * 是否删除
+     */
+    @TableField(value = "is_deleted")
+    private Boolean deleted;
+
+    /**
+     * 名称
+     */
     private String name;
 
-    @Column(name = "description")
+    /**
+     * 描述
+     */
     private String description;
 
-    @Column(name = "is_root", nullable = false)
+    /**
+     * 是否是根分类
+     */
+    @TableField(value = "is_root")
     private Boolean root;
 
-    @Column(name = "parent_id")
+    /**
+     * 父分类id
+     */
     private Long parentId;
 
-    @Column(name = "img")
+    /**
+     * 图片
+     */
     private String img;
 
-    @Column(name = "sequence")
+    /**
+     * 排序位置
+     */
     private Integer sequence;
+
 
 }

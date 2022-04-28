@@ -1,32 +1,78 @@
 package com.limyel.haoyuan.entity;
 
-import javax.persistence.*;
-import java.util.Date;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
-@Table(name = "banner")
-public class Banner extends BaseEntity {
+/**
+ * <p>
+ * banner
+ * </p>
+ *
+ * @author limyel
+ * @since 2022-04-28
+ */
+@Getter
+@Setter
+public class Banner implements Serializable {
 
-    public enum Type {
+    private static final long serialVersionUID = 1L;
 
-    }
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
-    @Column(name = "name", nullable = false)
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+    /**
+     * 是否删除
+     */
+    @TableField(value = "is_deleted")
+    private Boolean deleted;
+
+    /**
+     * 名称
+     */
     private String name;
 
-    @Column(name = "description")
+    /**
+     * 描述
+     */
     private String description;
 
-    @Column(name = "title")
+    /**
+     * 标题
+     */
     private String title;
 
-    @Column(name = "img")
+    /**
+     * 部分 banner 可能有标题图片
+     */
     private String img;
 
-    @Column(name = "type")
-    private Type type;
+    /**
+     * 类型
+     */
+    private Integer type;
 
-    @Column(name = "keyword")
+    /**
+     * 跳转关键字
+     */
     private String keyword;
+
 
 }

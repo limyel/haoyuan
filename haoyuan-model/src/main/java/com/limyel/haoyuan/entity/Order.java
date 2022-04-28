@@ -1,52 +1,114 @@
 package com.limyel.haoyuan.entity;
 
-import javax.persistence.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
-@Table(name = "`order`")
-public class Order extends BaseEntity {
+/**
+ * <p>
+ * 订单
+ * </p>
+ *
+ * @author limyel
+ * @since 2022-04-28
+ */
+@Getter
+@Setter
+public class Order implements Serializable {
 
-    @Column(name = "order_no", length = 20)
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+    /**
+     * 是否删除
+     */
+    @TableField(value = "is_deleted")
+    private Boolean deleted;
+
+    /**
+     * 订单编号
+     */
     private String orderNo;
 
-    @Column(name = "user_id")
+    /**
+     * 用户id
+     */
     private Long userId;
 
-    @Column(name = "total_price", precision = 10, scale = 2)
+    /**
+     * 总价
+     */
     private BigDecimal totalPrice;
 
-    @Column(name = "total_count")
+    /**
+     * 总量
+     */
     private Integer totalCount;
 
-    @Column(name = "expired_time")
-    private Date expiredTime;
+    /**
+     * 过期时间
+     */
+    private LocalDateTime expiredTime;
 
-    @Column(name = "placed_time")
-    private Date placedTime;
+    /**
+     * 下单时间
+     */
+    private LocalDateTime placedTime;
 
-    @Column(name = "snap_img")
+    /**
+     * 快照图片
+     */
     private String snapImg;
 
-    @Column(name = "snap_title")
+    /**
+     * 快照标题
+     */
     private String snapTitle;
 
-    @Lob
-    @Column(name = "snap_items")
+    /**
+     * 快照items
+     */
     private String snapItems;
 
-    @Lob
-    @Column(name = "snap_address")
+    /**
+     * 快照地址
+     */
     private String snapAddress;
 
-    @Column(name = "prepay_id")
+    /**
+     * 预支付id
+     */
     private String prepayId;
 
-    @Column(name = "final_total_price", precision = 10, scale = 2)
+    /**
+     * 最终总价
+     */
     private BigDecimal finalTotalPrice;
 
-    @Column(name = "status")
+    /**
+     * 状态
+     */
     private Integer status;
+
 
 }

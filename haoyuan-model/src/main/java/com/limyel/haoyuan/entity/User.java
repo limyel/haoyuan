@@ -1,32 +1,83 @@
 package com.limyel.haoyuan.entity;
 
-import javax.persistence.*;
-import java.time.Instant;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
-@Table(name = "user")
-public class User extends BaseEntity {
+/**
+ * <p>
+ * 用户
+ * </p>
+ *
+ * @author limyel
+ * @since 2022-04-28
+ */
+@Getter
+@Setter
+public class User implements Serializable {
 
-    @Column(name = "openid", length = 50)
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+    /**
+     * 是否删除
+     */
+    @TableField(value = "is_deleted")
+    private Boolean deleted;
+
+    /**
+     * openid
+     */
     private String openid;
 
-    @Column(name = "nickname", length = 60)
+    /**
+     * 昵称
+     */
     private String nickname;
 
-    @Column(name = "unify_uid")
-    private Long unifyUid;
+    /**
+     * unify uid
+     */
+    private Integer unifyUid;
 
-    @Column(name = "email")
+    /**
+     * 邮箱
+     */
     private String email;
 
-    @Column(name = "password")
+    /**
+     * 密码
+     */
     private String password;
 
-    @Column(name = "mobile", length = 30)
+    /**
+     * 手机号
+     */
     private String mobile;
 
-    @Lob
-    @Column(name = "wx_profile")
+    /**
+     * 微信信息
+     */
     private String wxProfile;
+
 
 }

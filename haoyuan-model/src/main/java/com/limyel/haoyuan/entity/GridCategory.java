@@ -1,28 +1,75 @@
 package com.limyel.haoyuan.entity;
 
-import org.hibernate.annotations.Where;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
-import java.time.Instant;
+/**
+ * <p>
+ * 首页分类
+ * </p>
+ *
+ * @author limyel
+ * @since 2022-04-28
+ */
+@Getter
+@Setter
+@TableName("grid_category")
+public class GridCategory implements Serializable {
 
-@Entity
-@Table(name = "grid_category")
-@Where(clause = "is_deleted = 0")
-public class GridCategory extends BaseEntity {
+    private static final long serialVersionUID = 1L;
 
-    @Column(name = "title")
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+    /**
+     * 是否删除
+     */
+    @TableField(value = "is_deleted")
+    private Boolean deleted;
+
+    /**
+     * 标题
+     */
     private String title;
 
-    @Column(name = "img")
+    /**
+     * 图片
+     */
     private String img;
 
-    @Column(name = "name")
+    /**
+     * 名称
+     */
     private String name;
 
-    @Column(name = "category_id")
+    /**
+     * 分类id
+     */
     private Long categoryId;
 
-    @Column(name = "root_category_id")
+    /**
+     * 根分类id
+     */
     private Long rootCategoryId;
+
 
 }
