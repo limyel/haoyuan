@@ -2,7 +2,7 @@ package com.limyel.haoyuan.service.impl;
 
 import com.limyel.haoyuan.dao.SpecValueMapper;
 import com.limyel.haoyuan.entity.SpecValue;
-import com.limyel.haoyuan.service.ISpecValueService;
+import com.limyel.haoyuan.service.SpecValueService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-28
  */
 @Service
-public class SpecValueServiceImpl extends ServiceImpl<SpecValueMapper, SpecValue> implements ISpecValueService {
+public class SpecValueServiceImpl extends ServiceImpl<SpecValueMapper, SpecValue> implements SpecValueService {
 
 }

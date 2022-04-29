@@ -3,7 +3,7 @@ package com.limyel.haoyuan.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.limyel.haoyuan.dao.CategoryMapper;
 import com.limyel.haoyuan.entity.Category;
-import com.limyel.haoyuan.service.ICategoryService;
+import com.limyel.haoyuan.service.CategoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.limyel.haoyuan.vo.CategoryAllVO;
 import com.limyel.haoyuan.vo.CategoryPureVO;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * @since 2022-04-28
  */
 @Service
-public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements ICategoryService {
+public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService {
 
     @Autowired
     private CategoryMapper categoryMapper;

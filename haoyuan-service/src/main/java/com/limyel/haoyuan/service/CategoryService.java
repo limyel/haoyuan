@@ -12,7 +12,7 @@ import com.limyel.haoyuan.vo.CategoryAllVO;
  * @author limyel
  * @since 2022-04-28
  */
-public interface ICategoryService extends IService<Category> {
+public interface CategoryService extends IService<Category> {
 
     CategoryAllVO all();
 

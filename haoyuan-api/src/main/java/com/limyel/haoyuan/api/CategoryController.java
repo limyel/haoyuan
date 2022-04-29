@@ -3,8 +3,8 @@ package com.limyel.haoyuan.api;
 
 import com.limyel.haoyuan.common.api.Response;
 import com.limyel.haoyuan.entity.GridCategory;
-import com.limyel.haoyuan.service.ICategoryService;
-import com.limyel.haoyuan.service.IGridCategoryService;
+import com.limyel.haoyuan.service.CategoryService;
+import com.limyel.haoyuan.service.GridCategoryService;
 import com.limyel.haoyuan.vo.CategoryAllVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,10 +27,10 @@ import java.util.List;
 public class CategoryController {
     
     @Autowired
-    private ICategoryService categoryService;
+    private CategoryService categoryService;
 
     @Autowired
-    private IGridCategoryService gridCategoryService;
+    private GridCategoryService gridCategoryService;
 
     @GetMapping
     public Response<CategoryAllVO> all() {

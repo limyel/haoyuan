@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.limyel.haoyuan.common.exception.ApiException;
 import com.limyel.haoyuan.dao.BannerMapper;
 import com.limyel.haoyuan.entity.Banner;
-import com.limyel.haoyuan.service.IBannerService;
+import com.limyel.haoyuan.service.BannerService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ import java.util.List;
  * @since 2022-04-28
  */
 @Service
-public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> implements IBannerService {
+public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> implements BannerService {
 
     @Autowired
     private BannerMapper bannerMapper;

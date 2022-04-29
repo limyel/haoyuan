@@ -2,7 +2,7 @@ package com.limyel.haoyuan.service.impl;
 
 import com.limyel.haoyuan.dao.OrderMapper;
 import com.limyel.haoyuan.entity.Order;
-import com.limyel.haoyuan.service.IOrderService;
+import com.limyel.haoyuan.service.OrderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-28
  */
 @Service
-public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements IOrderService {
+public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
 
 }

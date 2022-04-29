@@ -2,7 +2,7 @@ package com.limyel.haoyuan.service.impl;
 
 import com.limyel.haoyuan.dao.ThemeSpuMapper;
 import com.limyel.haoyuan.entity.ThemeSpu;
-import com.limyel.haoyuan.service.IThemeSpuService;
+import com.limyel.haoyuan.service.ThemeSpuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-28
  */
 @Service
-public class ThemeSpuServiceImpl extends ServiceImpl<ThemeSpuMapper, ThemeSpu> implements IThemeSpuService {
+public class ThemeSpuServiceImpl extends ServiceImpl<ThemeSpuMapper, ThemeSpu> implements ThemeSpuService {
 
 }

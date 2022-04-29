@@ -2,7 +2,7 @@ package com.limyel.haoyuan.service.impl;
 
 import com.limyel.haoyuan.dao.SaleExplainMapper;
 import com.limyel.haoyuan.entity.SaleExplain;
-import com.limyel.haoyuan.service.ISaleExplainService;
+import com.limyel.haoyuan.service.SaleExplainService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-28
  */
 @Service
-public class SaleExplainServiceImpl extends ServiceImpl<SaleExplainMapper, SaleExplain> implements ISaleExplainService {
+public class SaleExplainServiceImpl extends ServiceImpl<SaleExplainMapper, SaleExplain> implements SaleExplainService {
 
 }

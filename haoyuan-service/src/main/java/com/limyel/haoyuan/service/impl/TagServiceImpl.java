@@ -2,7 +2,7 @@ package com.limyel.haoyuan.service.impl;
 
 import com.limyel.haoyuan.dao.TagMapper;
 import com.limyel.haoyuan.entity.Tag;
-import com.limyel.haoyuan.service.ITagService;
+import com.limyel.haoyuan.service.TagService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-28
  */
 @Service
-public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements ITagService {
+public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagService {
 
 }

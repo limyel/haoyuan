@@ -1,16 +1,16 @@
 package com.limyel.haoyuan.service;
 
-import com.limyel.haoyuan.entity.SpecValue;
+import com.limyel.haoyuan.entity.CouponType;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 规格值 服务类
+ * 优惠券类型 服务类
  * </p>
  *
  * @author limyel
  * @since 2022-04-28
  */
-public interface ISpecValueService extends IService<SpecValue> {
+public interface CouponTypeService extends IService<CouponType> {
 
 }

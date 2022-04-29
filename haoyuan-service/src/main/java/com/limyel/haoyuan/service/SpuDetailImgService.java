@@ -1,16 +1,16 @@
 package com.limyel.haoyuan.service;
 
-import com.limyel.haoyuan.entity.UserCoupon;
+import com.limyel.haoyuan.entity.SpuDetailImg;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 用户优惠券关联表 服务类
+ * spu详情图片 服务类
  * </p>
  *
  * @author limyel
  * @since 2022-04-28
  */
-public interface IUserCouponService extends IService<UserCoupon> {
+public interface SpuDetailImgService extends IService<SpuDetailImg> {
 
 }

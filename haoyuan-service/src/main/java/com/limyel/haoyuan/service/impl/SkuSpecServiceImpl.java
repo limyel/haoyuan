@@ -2,7 +2,7 @@ package com.limyel.haoyuan.service.impl;
 
 import com.limyel.haoyuan.dao.SkuSpecMapper;
 import com.limyel.haoyuan.entity.SkuSpec;
-import com.limyel.haoyuan.service.ISkuSpecService;
+import com.limyel.haoyuan.service.SkuSpecService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-28
  */
 @Service
-public class SkuSpecServiceImpl extends ServiceImpl<SkuSpecMapper, SkuSpec> implements ISkuSpecService {
+public class SkuSpecServiceImpl extends ServiceImpl<SkuSpecMapper, SkuSpec> implements SkuSpecService {
 
 }

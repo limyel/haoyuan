@@ -2,7 +2,7 @@ package com.limyel.haoyuan.service.impl;
 
 import com.limyel.haoyuan.dao.SpuDetailImgMapper;
 import com.limyel.haoyuan.entity.SpuDetailImg;
-import com.limyel.haoyuan.service.ISpuDetailImgService;
+import com.limyel.haoyuan.service.SpuDetailImgService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-28
  */
 @Service
-public class SpuDetailImgServiceImpl extends ServiceImpl<SpuDetailImgMapper, SpuDetailImg> implements ISpuDetailImgService {
+public class SpuDetailmgServiceImpl extends ServiceImpl<SpuDetailImgMapper, SpuDetailImg> implements SpuDetailImgService {
 
 }

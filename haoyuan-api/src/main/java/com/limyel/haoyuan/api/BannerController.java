@@ -2,7 +2,7 @@ package com.limyel.haoyuan.api;
 
 import com.limyel.haoyuan.common.api.Response;
 import com.limyel.haoyuan.entity.Banner;
-import com.limyel.haoyuan.service.IBannerService;
+import com.limyel.haoyuan.service.BannerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +25,7 @@ import java.util.List;
 public class BannerController {
 
     @Autowired
-    private IBannerService bannerService;
+    private BannerService bannerService;
 
     @GetMapping("/by-name")
     public Response<List<Banner>> listByNames(

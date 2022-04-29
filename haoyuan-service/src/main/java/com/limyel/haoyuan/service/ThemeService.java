@@ -1,16 +1,16 @@
 package com.limyel.haoyuan.service;
 
-import com.limyel.haoyuan.entity.Order;
+import com.limyel.haoyuan.entity.Theme;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 订单 服务类
+ * 主题 服务类
  * </p>
  *
  * @author limyel
  * @since 2022-04-28
  */
-public interface IOrderService extends IService<Order> {
+public interface ThemeService extends IService<Theme> {
 
 }
