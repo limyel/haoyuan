@@ -3,6 +3,8 @@ package com.limyel.haoyuan.api;
 import com.limyel.haoyuan.common.api.Response;
 import com.limyel.haoyuan.entity.Banner;
 import com.limyel.haoyuan.service.BannerService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import java.util.List;
  * @author limyel
  * @since 2022-04-28
  */
+@Tag(name = "Haoyuan BannerController", description = "banner接口")
 @RestController
 @RequestMapping("/banner")
 public class BannerController {
@@ -27,6 +30,7 @@ public class BannerController {
     @Autowired
     private BannerService bannerService;
 
+    @Operation(summary = "根据名称获取banner", method = "GET")
     @GetMapping("/by-name")
     public Response<List<Banner>> listByNames(
             @RequestParam List<String> nameList
