@@ -64,6 +64,9 @@ public class Activity implements Serializable {
      */
     private LocalDateTime endTime;
 
+    /**
+     * 备注
+     */
     private String remark;
 
     /**
