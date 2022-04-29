@@ -12,6 +12,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * mybatis plus 生成代码
+ */
 public class FastAutoGeneratorTest {
 
     public static void before() throws SQLException {
