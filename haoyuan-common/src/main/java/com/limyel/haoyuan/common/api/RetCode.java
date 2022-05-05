@@ -1,11 +1,11 @@
 package com.limyel.haoyuan.common.api;
 
 /**
- * 响应状态码
+ * 系统响应状态码
  */
 public enum RetCode {
     SUCCESS(0, "成功", "success"),
-    FAILED(1, "失败", "failed"),
+    ERROR(1, "未知错误", "error"),
 
     // 资源相关
     NOT_FOUND(101, "资源不存在", "not found")
