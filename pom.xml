@@ -3,12 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <modules>
-        <module>haoyuan-portal</module>
         <module>haoyuan-common</module>
-        <module>haoyuan-admin</module>
         <module>haoyuan-security</module>
         <module>haoyuan-search</module>
-        <module>assembly</module>
+        <module>haoyuan-api</module>
+        <module>haoyuan-model</module>
+        <module>haoyuan-dao</module>
+        <module>haoyuan-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -33,6 +34,7 @@
         <mysql.version>8.0.28</mysql.version>
         <lombok.version>1.18.24</lombok.version>
         <velocity.version>2.3</velocity.version>
+        <mybatis-plus.version>3.5.1</mybatis-plus.version>
         <springdoc.version>1.6.8</springdoc.version>
         <commons.io.version>2.11.0</commons.io.version>
         <commons.lang.version>3.12.0</commons.lang.version>
@@ -99,6 +101,28 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${springdoc.version}</version>
+        </dependency>
+        <!-- mybatis plus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-extension</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <!-- velocity -->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>${velocity.version}</version>
         </dependency>
 
     </dependencies>
