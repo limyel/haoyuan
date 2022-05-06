@@ -1,9 +1,7 @@
 package com.limyel.haoyuan.portal.config;
 
-import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringDocConfig {
     @Bean
-    public OpenAPI mallTinyOpenAPI() {
+    public OpenAPI haoyuanPortalOpenApi() {
         return new OpenAPI()
                 .info(new Info().title("HaoYuan API")
                         .description("浩元小程序接口")
@@ -19,9 +17,9 @@ public class SpringDocConfig {
     }
 
     @Bean
-    public GroupedOpenApi publicApi() {
+    public GroupedOpenApi portalApi() {
         return GroupedOpenApi.builder()
-                .group("mp")
+                .group("portal")
                 .packagesToScan("com.limyel.haoyuan.portal.controller")
                 .build();
     }
