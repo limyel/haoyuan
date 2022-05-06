@@ -22,7 +22,7 @@ import java.util.List;
  * @author limyel
  * @since 2022-04-28
  */
-@Tag(name = "Haoyuan BannerController", description = "banner接口")
+@Tag(name = "Banner", description = "banner接口")
 @RestController
 @RequestMapping("/banner")
 public class BannerController {
