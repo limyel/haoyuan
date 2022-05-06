@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.common.exception;
 
 import com.limyel.haoyuan.common.api.R;
-import com.limyel.haoyuan.config.ExceptionCodeConfig;
+import com.limyel.haoyuan.common.config.ExceptionCodeConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
