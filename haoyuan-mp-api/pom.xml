@@ -9,24 +9,24 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>haoyuan-api</artifactId>
+    <artifactId>haoyuan-mp-api</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-service</artifactId>
+            <artifactId>haoyuan-mp-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-common</artifactId>
+            <artifactId>haoyuan-mp-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-model</artifactId>
+            <artifactId>haoyuan-mp-model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

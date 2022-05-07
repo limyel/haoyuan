@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>haoyuan-dao</artifactId>
+    <artifactId>haoyuan-mp-dao</artifactId>
     <packaging>jar</packaging>
 
     <properties>
@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-model</artifactId>
+            <artifactId>haoyuan-mp-model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
