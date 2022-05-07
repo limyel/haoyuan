@@ -20,7 +20,7 @@ public class SpringDocConfig {
     public GroupedOpenApi portalApi() {
         return GroupedOpenApi.builder()
                 .group("portal")
-                .packagesToScan("com.limyel.haoyuan.portal.controller")
+                .packagesToScan("com.limyel.haoyuan.api.controller")
                 .build();
     }
 
