@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringDocConfig {
     @Bean
-    public OpenAPI haoyuanPortalOpenApi() {
+    public OpenAPI haoyuanMpOpenApi() {
         return new OpenAPI()
                 .info(new Info().title("HaoYuan API")
                         .description("浩元小程序接口")
@@ -17,7 +17,7 @@ public class SpringDocConfig {
     }
 
     @Bean
-    public GroupedOpenApi portalApi() {
+    public GroupedOpenApi mpApi() {
         return GroupedOpenApi.builder()
                 .group("portal")
                 .packagesToScan("com.limyel.haoyuan.api.controller")
