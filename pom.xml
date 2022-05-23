@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <modules>
-        <module>haoyuan-mp-common</module>
-        <module>haoyuan-mp-security</module>
-        <module>haoyuan-mp-search</module>
-        <module>haoyuan-mp-api</module>
-        <module>haoyuan-mp-model</module>
-        <module>haoyuan-mp-dao</module>
-        <module>haoyuan-mp-service</module>
+        <module>haoyuan-common</module>
+        <module>haoyuan-security</module>
+        <module>haoyuan-search</module>
+        <module>haoyuan-api</module>
+        <module>haoyuan-model</module>
+        <module>haoyuan-dao</module>
+        <module>haoyuan-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
