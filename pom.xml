@@ -9,11 +9,14 @@
     <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
+        <module>haoyuan-dependency</module>
         <module>haoyuan-generate</module>
         <module>haoyuan-admin</module>
         <module>haoyuan-common</module>
         <module>haoyuan-framework</module>
-        <module>haoyuan-dependency</module>
+        <module>haoyuan-module-infra</module>
+        <module>haoyuan-module-system</module>
+        <module>haoyuan-module-lottery</module>
     </modules>
 
     <properties>
@@ -21,5 +24,18 @@
         <java.version>8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-dependency</artifactId>
+                <version>${revision}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
 </project>
