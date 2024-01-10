@@ -19,6 +19,7 @@
         <module>haoyuan-starter-mq</module>
         <module>haoyuan-starter-job</module>
         <module>haoyuan-starter-kafka</module>
+        <module>haoyuan-starter-es</module>
     </modules>
 
     <properties>
