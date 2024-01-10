@@ -17,6 +17,7 @@
         <module>haoyuan-module-system</module>
         <module>haoyuan-module-lottery</module>
         <module>haoyuan-module-gateway</module>
+        <module>haoyuan-module-datacenter</module>
     </modules>
 
     <properties>
