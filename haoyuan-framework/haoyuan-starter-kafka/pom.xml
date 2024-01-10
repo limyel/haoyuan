@@ -5,16 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan</artifactId>
+        <artifactId>haoyuan-framework</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>haoyuan-module-system</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>haoyuan-module-system-api</module>
-        <module>haoyuan-module-system-biz</module>
-    </modules>
+    <artifactId>haoyuan-starter-kafka</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

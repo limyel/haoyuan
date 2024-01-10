@@ -14,6 +14,11 @@
     <modules>
         <module>haoyuan-starter-web</module>
         <module>haoyuan-starter-mybatis</module>
+        <module>haoyuan-starter-security</module>
+        <module>haoyuan-starter-redis</module>
+        <module>haoyuan-starter-mq</module>
+        <module>haoyuan-starter-job</module>
+        <module>haoyuan-starter-kafka</module>
     </modules>
 
     <properties>
