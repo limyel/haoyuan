@@ -19,8 +19,14 @@ public abstract class BaseEntity {
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
+    @TableField(fill = FieldFill.INSERT)
+    private Long creatorId;
+
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Long updaterId;
 
     @TableLogic
     private LocalDateTime deleteTime;

@@ -11,12 +11,12 @@
     <modules>
         <module>haoyuan-dependency</module>
         <module>haoyuan-generate</module>
-        <module>haoyuan-admin</module>
         <module>haoyuan-common</module>
         <module>haoyuan-framework</module>
         <module>haoyuan-module-infra</module>
         <module>haoyuan-module-system</module>
         <module>haoyuan-module-lottery</module>
+        <module>haoyuan-module-gateway</module>
     </modules>
 
     <properties>
