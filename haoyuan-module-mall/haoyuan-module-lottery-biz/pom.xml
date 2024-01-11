@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan</artifactId>
+        <artifactId>haoyuan-module-mall</artifactId>
         <version>0.0.0</version>
     </parent>
 
-    <artifactId>haoyuan-module-lottery</artifactId>
+    <artifactId>haoyuan-module-lottery-biz</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

@@ -32,6 +32,11 @@
             <groupId>com.limyel</groupId>
             <artifactId>haoyuan-starter-mybatis</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

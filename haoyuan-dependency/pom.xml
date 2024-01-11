@@ -21,6 +21,7 @@
         <spring-boot.version>2.7.18</spring-boot.version>
         <mysql.version>8.0.33</mysql.version>
         <mybatis-plus.version>3.5.4</mybatis-plus.version>
+        <flyway.version>9.19.4</flyway.version>
         <lombok.version>1.18.30</lombok.version>
     </properties>
 
@@ -62,6 +63,11 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-mysql</artifactId>
+                <version>${flyway.version}</version>
             </dependency>
 
             <!-- 工具类 -->
