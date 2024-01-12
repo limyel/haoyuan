@@ -5,24 +5,22 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan</artifactId>
+        <artifactId>haoyuan-module-mall</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>haoyuan-module-mall</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>haoyuan-module-lottery-biz</module>
-        <module>haoyuan-module-member-biz</module>
-        <module>haoyuan-module-trade-biz</module>
-        <module>haoyuan-module-product-biz</module>
-    </modules>
+    <artifactId>haoyuan-module-member-biz</artifactId>
 
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-common</artifactId>
+            <artifactId>haoyuan-starter-rpc</artifactId>
         </dependency>
     </dependencies>
 

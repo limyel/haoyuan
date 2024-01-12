@@ -4,7 +4,7 @@ server:
     threads:
       max: 1000
       min-spare: 30
-  port: 8000
+  port: 8030
   servlet:
     session:
       cookie:
@@ -12,7 +12,7 @@ server:
 
 spring:
   profiles:
-    active: pro
+    active: local
   messages:
     encoding: UTF-8
     basename: i18n/message
