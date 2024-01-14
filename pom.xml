@@ -18,6 +18,7 @@
         <module>haoyuan-module-gateway</module>
         <module>haoyuan-module-datacenter</module>
         <module>haoyuan-module-mall</module>
+        <module>haoyuan-module-member</module>
     </modules>
 
     <properties>
@@ -45,15 +46,15 @@
     <profiles>
         <profile>
             <id>local</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <env>local</env>
             </properties>
         </profile>
         <profile>
             <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <env>dev</env>
             </properties>

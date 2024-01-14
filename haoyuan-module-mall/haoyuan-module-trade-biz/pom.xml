@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-starter-rpc</artifactId>
+            <artifactId>haoyuan-starter-nacos</artifactId>
         </dependency>
     </dependencies>
 

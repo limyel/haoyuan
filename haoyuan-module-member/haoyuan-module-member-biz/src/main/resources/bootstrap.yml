@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+        group: mall
+        file-extension: yaml
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+        ephemeral: false
+        group: mall

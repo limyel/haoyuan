@@ -11,6 +11,8 @@ server:
         http-only: true
 
 spring:
+  application:
+    name: mall-product
   profiles:
     active: local
   messages:

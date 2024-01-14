@@ -13,9 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>haoyuan-module-lottery-biz</module>
-        <module>haoyuan-module-member-biz</module>
         <module>haoyuan-module-trade-biz</module>
         <module>haoyuan-module-product-biz</module>
+        <module>haoyuan-module-product-api</module>
     </modules>
 
 
@@ -23,6 +23,11 @@
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>haoyuan-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>haoyuan-starter-web</artifactId>
         </dependency>
     </dependencies>
 

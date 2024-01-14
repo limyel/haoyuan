@@ -25,6 +25,7 @@
         <mybatis-plus.version>3.5.4</mybatis-plus.version>
         <flyway.version>9.19.4</flyway.version>
         <lombok.version>1.18.30</lombok.version>
+        <feign-hc5.version>13.1</feign-hc5.version>
     </properties>
 
     <dependencyManagement>
@@ -72,7 +73,14 @@
             <!-- 封装的框架组件 -->
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>haoyuan-starter-rpc</artifactId>
+                <artifactId>haoyuan-starter-nacos</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- mall -->
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-module-product-api</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -98,6 +106,11 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-hc5</artifactId>
+                <version>${feign-hc5.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

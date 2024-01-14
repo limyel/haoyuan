@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -16,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 public class HaoyuanWebProperties {
 
     private Api appApi = new Api("/app-api", "**.controller.app.**");
-    private Api adminApi = new Api("/admin-api", "**.controller.admin.**");
+    private Api sysApi = new Api("/sys-api", "**.controller.sys.**");
 
     @Getter
     @Setter

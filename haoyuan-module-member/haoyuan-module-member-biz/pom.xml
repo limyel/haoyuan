@@ -5,27 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-module-mall</artifactId>
+        <artifactId>haoyuan-module-member</artifactId>
         <version>0.0.0</version>
     </parent>
 
-    <artifactId>haoyuan-module-product-biz</artifactId>
-
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <artifactId>haoyuan-module-member-biz</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>haoyuan-module-product-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-starter-nacos</artifactId>
         </dependency>
     </dependencies>
 
