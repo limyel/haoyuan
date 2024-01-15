@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 172.28.51.136:8848
+        username: nacos
+        password: nacos
+        group: sys
+        file-extension: yaml
+      discovery:
+        server-addr: 172.28.51.136:8848
+        username: nacos
+        password: nacos
+        ephemeral: false
+        group: sys

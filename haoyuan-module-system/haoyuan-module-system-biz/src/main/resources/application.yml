@@ -11,8 +11,10 @@ server:
         http-only: true
 
 spring:
+  application:
+    name: sys
   profiles:
-    active: pro
+    active: dev
   messages:
     encoding: UTF-8
     basename: i18n/message
@@ -24,6 +26,13 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
       enabled: true
+
+feign:
+  httpclient:
+    hc5:
+      enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*.xml

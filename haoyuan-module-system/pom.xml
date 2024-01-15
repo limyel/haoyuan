@@ -34,6 +34,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>haoyuan-starter-nacos</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
         </dependency>

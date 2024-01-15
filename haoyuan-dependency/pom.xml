@@ -23,7 +23,7 @@
         <spring-cloud-alibaba.version>2021.0.4.0</spring-cloud-alibaba.version>
         <mysql.version>8.0.33</mysql.version>
         <mybatis-plus.version>3.5.4</mybatis-plus.version>
-        <flyway.version>9.19.4</flyway.version>
+        <flyway-mysql.version>9.19.4</flyway-mysql.version>
         <lombok.version>1.18.30</lombok.version>
         <feign-hc5.version>13.1</feign-hc5.version>
     </properties>
@@ -98,7 +98,13 @@
             <dependency>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-mysql</artifactId>
-                <version>${flyway.version}</version>
+                <version>${flyway-mysql.version}</version>
+            </dependency>
+            <!-- 覆盖 spring-boot-dependencies 中定义的旧版本 -->
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${flyway-mysql.version}</version>
             </dependency>
 
             <!-- 工具类 -->
