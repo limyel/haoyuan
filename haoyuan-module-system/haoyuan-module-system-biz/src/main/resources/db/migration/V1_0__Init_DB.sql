@@ -8,6 +8,7 @@ CREATE TABLE `sys_user` (
     `mobile` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '手机号',
     `gender` tinyint NOT NULL DEFAULT 0 COMMENT '性别',
     `avatar` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像',
+    `super_admin` bit(1) NOT NULL DEFAULT b'0' COMMENT '超级管理员，0：否，1：是',
     `status` tinyint NOT NULL DEFAULT 0 COMMENT '账号状态',
     `remark` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
     `creator_id` bigint NULL DEFAULT NULL COMMENT '创建者',
