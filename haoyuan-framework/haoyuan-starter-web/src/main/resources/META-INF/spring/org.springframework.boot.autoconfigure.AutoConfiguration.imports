@@ -1,1 +1,2 @@
 com.limyel.haoyuan.framework.web.config.HaoyuanWebConfig
+com.limyel.haoyuan.framework.web.config.LocalDateTimeSerializerConfig
