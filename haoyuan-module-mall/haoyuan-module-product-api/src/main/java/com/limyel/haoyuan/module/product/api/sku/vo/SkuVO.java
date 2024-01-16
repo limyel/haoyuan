@@ -1,10 +1,8 @@
 package com.limyel.haoyuan.module.product.api.sku.vo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class SkuVO {
 
     private Long id;

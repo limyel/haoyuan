@@ -1,15 +1,13 @@
 package com.limyel.haoyuan.framework.mybatis.pojo;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class PageData<T> implements Serializable {
 

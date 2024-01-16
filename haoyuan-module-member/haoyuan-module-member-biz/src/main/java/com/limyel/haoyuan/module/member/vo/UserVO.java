@@ -1,11 +1,9 @@
 package com.limyel.haoyuan.module.member.vo;
 
 import com.limyel.haoyuan.module.product.api.sku.vo.SkuVO;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class UserVO {
 
     private String username;

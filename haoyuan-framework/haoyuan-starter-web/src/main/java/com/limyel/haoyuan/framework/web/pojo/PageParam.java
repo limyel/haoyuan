@@ -1,14 +1,12 @@
 package com.limyel.haoyuan.framework.web.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-@Getter
-@Setter
+@Data
 public class PageParam {
 
     /**

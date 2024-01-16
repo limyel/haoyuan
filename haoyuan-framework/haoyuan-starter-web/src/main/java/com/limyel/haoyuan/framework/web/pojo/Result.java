@@ -1,12 +1,10 @@
 package com.limyel.haoyuan.framework.web.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.io.Serializable;
 
-@Getter
-@Setter
+@Data
 public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;

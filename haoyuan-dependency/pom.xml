@@ -76,6 +76,11 @@
                 <artifactId>haoyuan-starter-nacos</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-starter-security</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
             <!-- mall -->
             <dependency>
