@@ -92,4 +92,16 @@ public class LambdaQueryWrapperPlus<T> extends LambdaQueryWrapper<T> {
         return betweenIfPresent(field, value1, value2);
     }
 
+    @Override
+    public LambdaQueryWrapperPlus<T> orderByAsc(SFunction<T, ?> column) {
+        super.orderByAsc(column);
+        return this;
+    }
+
+    @Override
+    public LambdaQueryWrapperPlus<T> orderByDesc(SFunction<T, ?> column) {
+        super.orderByDesc(column);
+        return this;
+    }
+
 }
