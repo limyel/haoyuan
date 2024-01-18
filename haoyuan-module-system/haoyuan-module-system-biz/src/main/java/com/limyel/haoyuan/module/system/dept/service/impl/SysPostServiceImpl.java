@@ -1,8 +1,10 @@
 package com.limyel.haoyuan.module.system.dept.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.limyel.haoyuan.common.exception.ServiceException;
 import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
+import com.limyel.haoyuan.module.system.constant.SysErrorCodeConstant;
 import com.limyel.haoyuan.module.system.dept.convert.SysPostConvert;
 import com.limyel.haoyuan.module.system.dept.dao.SysPostDao;
 import com.limyel.haoyuan.module.system.dept.dto.SysPostDTO;
@@ -78,7 +80,7 @@ public class SysPostServiceImpl implements SysPostService {
             return;
         }
         if (!Objects.equals(id, sysPost.getId())) {
-
+            throw new ServiceException(SysErrorCodeConstant.POST_NAME_DUPLICATE);
         }
     }
 
@@ -91,7 +93,7 @@ public class SysPostServiceImpl implements SysPostService {
             return;
         }
         if (!Objects.equals(id, sysPost.getId())) {
-
+            throw new ServiceException(SysErrorCodeConstant.POST_CODE_DUPLICATE);
         }
     }
 
@@ -101,7 +103,7 @@ public class SysPostServiceImpl implements SysPostService {
         }
         SysPostEntity sysPost = sysPostDao.selectById(id);
         if (sysPost == null) {
-
+            throw new ServiceException(SysErrorCodeConstant.POST_NOT_FOUND);
         }
     }
 

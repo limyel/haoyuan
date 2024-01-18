@@ -22,7 +22,6 @@
         <module>haoyuan-starter-es</module>
         <module>haoyuan-starter-rpc</module>
         <module>haoyuan-starter-nacos</module>
-        <module>haoyuan-starter-biz-error-code</module>
     </modules>
 
 </project>
