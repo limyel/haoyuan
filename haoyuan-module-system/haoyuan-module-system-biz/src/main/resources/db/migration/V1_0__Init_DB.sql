@@ -205,7 +205,7 @@ CREATE TABLE `sys_dict_type` (
 ) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '字典类型表';
 
 
-CREATE TABLE `system_dict_data`  (
+CREATE TABLE `sys_dict_data`  (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `sort` int NOT NULL DEFAULT 0 COMMENT '字典排序',
     `label` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '字典标签',
@@ -224,13 +224,14 @@ CREATE TABLE `system_dict_data`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '字典数据表';
 
 
-CREATE TABLE `system_dept`  (
+CREATE TABLE `sys_dept`  (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '部门名称',
-    `pid` bigint NOT NULL DEFAULT 0 COMMENT '父部门id',
+    `pid` bigint NOT NULL DEFAULT 0 COMMENT '上级部门ID',
     `sort` int NOT NULL DEFAULT 0 COMMENT '显示顺序',
-    `leader_user_id` bigint NULL DEFAULT NULL COMMENT '负责人',
+    `leader_id` bigint NULL DEFAULT NULL COMMENT '负责人ID',
     `mobile` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '联系电话',
+    `email` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '邮箱',
     `status` tinyint NOT NULL COMMENT '部门状态',
     `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -242,7 +243,7 @@ CREATE TABLE `system_dept`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '部门表';
 
 
-CREATE TABLE `system_oauth2_access_token`  (
+CREATE TABLE `sys_oauth2_access_token`  (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `user_id` bigint NOT NULL COMMENT '用户ID',
     `user_type` tinyint NOT NULL COMMENT '用户类型',

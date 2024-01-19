@@ -1,24 +1,21 @@
 package com.limyel.haoyuan.framework.web.config;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
-@Getter
-@Setter
+@Data
 @ConfigurationProperties(prefix = "haoyuan.web")
 public class HaoyuanWebProperties {
 
     private Api appApi = new Api("/app-api", "**.controller.app.**");
     private Api sysApi = new Api("/sys-api", "**.controller.sys.**");
 
-    @Getter
-    @Setter
+    @Data
     @AllArgsConstructor
     @NoArgsConstructor
     @Valid

@@ -26,6 +26,7 @@
         <flyway-mysql.version>9.19.4</flyway-mysql.version>
         <lombok.version>1.18.30</lombok.version>
         <feign-hc5.version>13.1</feign-hc5.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
     </properties>
 
     <dependencyManagement>
@@ -76,6 +77,11 @@
                 <artifactId>haoyuan-starter-nacos</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-starter-security</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
             <!-- mall -->
             <dependency>
@@ -117,6 +123,11 @@
                 <groupId>io.github.openfeign</groupId>
                 <artifactId>feign-hc5</artifactId>
                 <version>${feign-hc5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
