@@ -2,8 +2,10 @@ package com.limyel.haoyuan.module.system.dept.entity;
 
 import com.limyel.haoyuan.framework.mybatis.pojo.TenantBaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class SysPostEntity extends TenantBaseEntity {
 
     /**

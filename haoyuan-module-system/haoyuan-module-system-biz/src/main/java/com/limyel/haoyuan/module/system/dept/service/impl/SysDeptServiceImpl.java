@@ -8,7 +8,7 @@ import com.limyel.haoyuan.module.system.constant.SysErrorCodeConstant;
 import com.limyel.haoyuan.module.system.dept.convert.SysDeptConvert;
 import com.limyel.haoyuan.module.system.dept.dao.SysDeptDao;
 import com.limyel.haoyuan.module.system.dept.dto.SysDeptDTO;
-import com.limyel.haoyuan.module.system.dept.dto.req.SysDeptFilterReq;
+import com.limyel.haoyuan.module.system.dept.dto.SysDeptFilterDTO;
 import com.limyel.haoyuan.module.system.dept.entity.SysDeptEntity;
 import com.limyel.haoyuan.module.system.dept.service.SysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,19 +69,19 @@ public class SysDeptServiceImpl implements SysDeptService {
     }
 
     @Override
-    public PageData<SysDeptEntity> getPage(SysDeptFilterReq req) {
-        Page<SysDeptEntity> page = new Page<>(req.getPageNum(), req.getPageSize());
+    public PageData<SysDeptEntity> getPage(SysDeptFilterDTO dto) {
+        Page<SysDeptEntity> page = new Page<>(dto.getPageNum(), dto.getPageSize());
         LambdaQueryWrapperPlus<SysDeptEntity> wrapperPlus = new LambdaQueryWrapperPlus<SysDeptEntity>()
-                .likeIfPresent(SysDeptEntity::getName, req.getName())
-                .eqIfPresent(SysDeptEntity::getStatus, req.getStatus())
+                .likeIfPresent(SysDeptEntity::getName, dto.getName())
+                .eqIfPresent(SysDeptEntity::getStatus, dto.getStatus())
                 .orderByAsc(SysDeptEntity::getSort);
         sysDeptDao.selectPage(page, wrapperPlus);
         return new PageData<>(page);
     }
 
     @Override
-    public List<SysDeptEntity> getList(SysDeptFilterReq req) {
-        return sysDeptDao.selectList(req);
+    public List<SysDeptEntity> getList(SysDeptFilterDTO dto) {
+        return sysDeptDao.selectList(dto);
     }
 
     /**

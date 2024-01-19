@@ -4,7 +4,7 @@ import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.framework.web.pojo.Result;
 import com.limyel.haoyuan.module.system.dept.convert.SysPostConvert;
 import com.limyel.haoyuan.module.system.dept.dto.SysPostDTO;
-import com.limyel.haoyuan.module.system.dept.dto.req.SysPostFilterReq;
+import com.limyel.haoyuan.module.system.dept.dto.SysPostFilterDTO;
 import com.limyel.haoyuan.module.system.dept.entity.SysPostEntity;
 import com.limyel.haoyuan.module.system.dept.service.SysPostService;
 import com.limyel.haoyuan.module.system.dept.vo.SysPostVO;
@@ -46,8 +46,8 @@ public class SysPostController {
     }
 
     @GetMapping
-    public Result<PageData<SysPostVO>> getPage(SysPostFilterReq req) {
-        PageData<SysPostEntity> page = sysPostService.getPage(req);
+    public Result<PageData<SysPostVO>> getPage(SysPostFilterDTO dto) {
+        PageData<SysPostEntity> page = sysPostService.getPage(dto);
         return Result.ok(new PageData<>(page, SysPostConvert.INSTANCE.toListVO(page.getList())));
     }
 

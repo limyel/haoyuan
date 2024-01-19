@@ -8,7 +8,7 @@ import com.limyel.haoyuan.module.system.constant.SysErrorCodeConstant;
 import com.limyel.haoyuan.module.system.dept.convert.SysPostConvert;
 import com.limyel.haoyuan.module.system.dept.dao.SysPostDao;
 import com.limyel.haoyuan.module.system.dept.dto.SysPostDTO;
-import com.limyel.haoyuan.module.system.dept.dto.req.SysPostFilterReq;
+import com.limyel.haoyuan.module.system.dept.dto.SysPostFilterDTO;
 import com.limyel.haoyuan.module.system.dept.entity.SysPostEntity;
 import com.limyel.haoyuan.module.system.dept.service.SysPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,16 +56,16 @@ public class SysPostServiceImpl implements SysPostService {
     }
 
     @Override
-    public List<SysPostEntity> getList(SysPostFilterReq req) {
-        return sysPostDao.selectList(req);
+    public List<SysPostEntity> getList(SysPostFilterDTO dto) {
+        return sysPostDao.selectList(dto);
     }
 
     @Override
-    public PageData<SysPostEntity> getPage(SysPostFilterReq req) {
-        Page<SysPostEntity> page = new Page<>(req.getPageNum(), req.getPageSize());
+    public PageData<SysPostEntity> getPage(SysPostFilterDTO dto) {
+        Page<SysPostEntity> page = new Page<>(dto.getPageNum(), dto.getPageSize());
         LambdaQueryWrapperPlus<SysPostEntity> wrapperPlus = new LambdaQueryWrapperPlus<SysPostEntity>()
-                .likeIfPresent(SysPostEntity::getName, req.getName())
-                .eqIfPresent(SysPostEntity::getStatus, req.getStatus())
+                .likeIfPresent(SysPostEntity::getName, dto.getName())
+                .eqIfPresent(SysPostEntity::getStatus, dto.getStatus())
                 .orderByAsc(SysPostEntity::getSort);
         sysPostDao.selectPage(page, wrapperPlus);
         return new PageData<>(page);

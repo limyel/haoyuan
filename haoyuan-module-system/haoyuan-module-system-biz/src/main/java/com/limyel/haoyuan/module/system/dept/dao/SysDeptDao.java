@@ -2,8 +2,7 @@ package com.limyel.haoyuan.module.system.dept.dao;
 
 import com.limyel.haoyuan.framework.mybatis.dao.BaseDao;
 import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.module.system.dept.dto.SysDeptDTO;
-import com.limyel.haoyuan.module.system.dept.dto.req.SysDeptFilterReq;
+import com.limyel.haoyuan.module.system.dept.dto.SysDeptFilterDTO;
 import com.limyel.haoyuan.module.system.dept.entity.SysDeptEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface SysDeptDao extends BaseDao<SysDeptEntity> {
 
-    default List<SysDeptEntity> selectList(SysDeptFilterReq req) {
+    default List<SysDeptEntity> selectList(SysDeptFilterDTO req) {
         return selectList(new LambdaQueryWrapperPlus<SysDeptEntity>()
                 .likeIfPresent(SysDeptEntity::getName, req.getName())
                 .eqIfPresent(SysDeptEntity::getStatus, req.getStatus())

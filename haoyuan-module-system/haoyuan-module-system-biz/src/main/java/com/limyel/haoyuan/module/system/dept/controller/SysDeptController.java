@@ -4,12 +4,11 @@ import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.framework.web.pojo.Result;
 import com.limyel.haoyuan.module.system.dept.convert.SysDeptConvert;
 import com.limyel.haoyuan.module.system.dept.dto.SysDeptDTO;
-import com.limyel.haoyuan.module.system.dept.dto.req.SysDeptFilterReq;
+import com.limyel.haoyuan.module.system.dept.dto.SysDeptFilterDTO;
 import com.limyel.haoyuan.module.system.dept.entity.SysDeptEntity;
 import com.limyel.haoyuan.module.system.dept.service.SysDeptService;
 import com.limyel.haoyuan.module.system.dept.vo.SysDeptVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -45,8 +44,8 @@ public class SysDeptController {
     }
 
     @GetMapping
-    public Result<PageData<SysDeptVO>> getPage(SysDeptFilterReq req) {
-        PageData<SysDeptEntity> page = sysDeptService.getPage(req);
+    public Result<PageData<SysDeptVO>> getPage(SysDeptFilterDTO dto) {
+        PageData<SysDeptEntity> page = sysDeptService.getPage(dto);
         return Result.ok(new PageData<>(page, SysDeptConvert.INSTANCE.toListVO(page.getList())));
     }
 
