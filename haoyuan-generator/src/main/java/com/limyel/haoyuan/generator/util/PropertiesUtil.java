@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.generate.util;
+package com.limyel.haoyuan.generator.util;
 
 import java.io.InputStream;
 import java.util.HashMap;

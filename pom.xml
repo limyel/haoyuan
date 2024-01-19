@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>haoyuan-dependency</module>
-        <module>haoyuan-generate</module>
+        <module>haoyuan-generator</module>
         <module>haoyuan-common</module>
         <module>haoyuan-framework</module>
         <module>haoyuan-module-infra</module>

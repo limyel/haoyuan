@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.generate.bean;
+package com.limyel.haoyuan.generator.bean;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -39,11 +39,9 @@ public class Table {
     /**
      * 是否含有
      */
-    private Boolean haveDate;
+    private Boolean haveLocalDateTime = false;
 
-    private Boolean haveDateTime;
-
-    private Boolean haveBigDecimal;
+    private Boolean haveBigDecimal = false;
 
     public String getTableName() {
         return tableName;
@@ -93,20 +91,12 @@ public class Table {
         this.keyIndexMap = keyIndexMap;
     }
 
-    public Boolean getHaveDate() {
-        return haveDate;
+    public Boolean getHaveLocalDateTime() {
+        return haveLocalDateTime;
     }
 
-    public void setHaveDate(Boolean haveDate) {
-        this.haveDate = haveDate;
-    }
-
-    public Boolean getHaveDateTime() {
-        return haveDateTime;
-    }
-
-    public void setHaveDateTime(Boolean haveDateTime) {
-        this.haveDateTime = haveDateTime;
+    public void setHasLocalDateTime(Boolean haveDateTime) {
+        this.haveLocalDateTime = haveDateTime;
     }
 
     public Boolean getHaveBigDecimal() {
@@ -117,4 +107,17 @@ public class Table {
         this.haveBigDecimal = haveBigDecimal;
     }
 
+    @Override
+    public String toString() {
+        return "Table{" +
+                "tableName='" + tableName + '\'' +
+                ", beanName='" + beanName + '\'' +
+                ", beanParamName='" + beanParamName + '\'' +
+                ", comment='" + comment + '\'' +
+                ", fieldList=" + fieldList +
+                ", keyIndexMap=" + keyIndexMap +
+                ", haveLocalDateTime=" + haveLocalDateTime +
+                ", haveBigDecimal=" + haveBigDecimal +
+                '}';
+    }
 }

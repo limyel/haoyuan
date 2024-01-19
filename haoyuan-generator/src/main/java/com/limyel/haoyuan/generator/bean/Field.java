@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.generate.bean;
+package com.limyel.haoyuan.generator.bean;
 
 public class Field {
 
@@ -79,4 +79,17 @@ public class Field {
     public void setAutoIncrement(Boolean autoIncrement) {
         isAutoIncrement = autoIncrement;
     }
+
+    @Override
+    public String toString() {
+        return "Field{" +
+                "fieldName='" + fieldName + '\'' +
+                ", propertyName='" + propertyName + '\'' +
+                ", sqlType='" + sqlType + '\'' +
+                ", javaType='" + javaType + '\'' +
+                ", comment='" + comment + '\'' +
+                ", isAutoIncrement=" + isAutoIncrement +
+                '}';
+    }
+
 }
