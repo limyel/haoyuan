@@ -19,7 +19,7 @@ public class Table {
     /**
      * 参数名称
      */
-    private String beanParamName;
+    private String beanNameSuffix;
 
     /**
      * 注释
@@ -59,12 +59,12 @@ public class Table {
         this.beanName = beanName;
     }
 
-    public String getBeanParamName() {
-        return beanParamName;
+    public String getBeanNameSuffix() {
+        return beanNameSuffix;
     }
 
-    public void setBeanParamName(String beanParamName) {
-        this.beanParamName = beanParamName;
+    public void setBeanNameSuffix(String beanNameSuffix) {
+        this.beanNameSuffix = beanNameSuffix;
     }
 
     public String getComment() {
@@ -112,7 +112,7 @@ public class Table {
         return "Table{" +
                 "tableName='" + tableName + '\'' +
                 ", beanName='" + beanName + '\'' +
-                ", beanParamName='" + beanParamName + '\'' +
+                ", beanParamName='" + beanNameSuffix + '\'' +
                 ", comment='" + comment + '\'' +
                 ", fieldList=" + fieldList +
                 ", keyIndexMap=" + keyIndexMap +

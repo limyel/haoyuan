@@ -62,7 +62,7 @@ public class TableBuilder {
                 table.setTableName(tableName);
                 table.setBeanName(beanName);
                 table.setComment(comment);
-                table.setBeanParamName(beanName + Config.SUFFIX_BEAN_PARAM);
+                table.setBeanNameSuffix(beanName + Config.SUFFIX_BEAN_PARAM);
 
                 setFields(table);
                 setKeyIndex(table);

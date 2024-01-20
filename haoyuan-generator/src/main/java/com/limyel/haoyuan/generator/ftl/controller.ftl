@@ -27,7 +27,6 @@ public class SysPostController {
     @Autowired
     private SysPostService sysPostService;
 
-    // todo validated
     @PostMapping
     public Result<Long> create(@RequestBody SysPostDTO dto) {
         Long id = sysPostService.create(dto);
@@ -36,14 +35,14 @@ public class SysPostController {
 
     @PutMapping
     public Result<?> update(@RequestBody SysPostDTO dto) {
-        sysPostService.update(dto);
-        return new Result<>();
+    sysPostService.update(dto);
+    return new Result<>();
     }
 
     @DeleteMapping("/{id}")
     public Result<?> delete(@PathVariable("id") Long id) {
-        sysPostService.delete(id);
-        return new Result<>();
+    sysPostService.delete(id);
+    return new Result<>();
     }
 
     @GetMapping("/{id}")
@@ -57,5 +56,4 @@ public class SysPostController {
         PageData<SysPostEntity> page = sysPostService.getPage(dto);
         return Result.ok(new PageData<>(page, SysPostConvert.INSTANCE.toListVO(page.getList())));
     }
-
 }
