@@ -1,13 +1,13 @@
-package com.limyel.haoyuan.module.system.dept.controller;
+package ${project}.module.${module}.${package}.controller;
 
-import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
-import com.limyel.haoyuan.framework.web.pojo.Result;
-import com.limyel.haoyuan.module.system.dept.convert.SysPostConvert;
-import com.limyel.haoyuan.module.system.dept.dto.SysPostDTO;
-import com.limyel.haoyuan.module.system.dept.dto.SysPostFilterDTO;
-import com.limyel.haoyuan.module.system.dept.entity.SysPostEntity;
-import com.limyel.haoyuan.module.system.dept.service.SysPostService;
-import com.limyel.haoyuan.module.system.dept.vo.SysPostVO;
+import ${project}.framework.mybatis.pojo.PageData;
+import ${project}.framework.web.pojo.Result;
+import ${project}.module.${module}.${package}.convert.${beanName}Convert;
+import ${project}.module.${module}.${package}.dto.${beanName}DTO;
+import ${project}.module.${module}.${package}.dto.${beanName}FilterDTO;
+import ${project}.module.${module}.${package}.entity.${beanName}Entity;
+import ${project}.module.${module}.${package}.service.${beanName}Service;
+import ${project}.module.${module}.${package}.vo.${beanName}VO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,40 +20,40 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@RequestMapping("/sys/post")
+@RequestMapping("${route}")
 @Validated
-public class SysPostController {
+public class ${beanName}Controller {
 
     @Autowired
-    private SysPostService sysPostService;
+    private ${beanName}Service ${beanInstanceName}Service;
 
     @PostMapping
-    public Result<Long> create(@RequestBody SysPostDTO dto) {
-        Long id = sysPostService.create(dto);
+    public Result<Long> create(@RequestBody ${beanName}DTO dto) {
+        Long id = ${beanInstanceName}Service.create(dto);
         return Result.ok(id);
     }
 
     @PutMapping
-    public Result<?> update(@RequestBody SysPostDTO dto) {
-    sysPostService.update(dto);
-    return new Result<>();
+    public Result<?> update(@RequestBody ${beanName}DTO dto) {
+        ${beanInstanceName}Service.update(dto);
+        return new Result<>();
     }
 
     @DeleteMapping("/{id}")
     public Result<?> delete(@PathVariable("id") Long id) {
-    sysPostService.delete(id);
-    return new Result<>();
+        ${beanInstanceName}Service.delete(id);
+        return new Result<>();
     }
 
     @GetMapping("/{id}")
-    public Result<SysPostVO> get(@PathVariable("id") Long id) {
-        SysPostEntity sysPost = sysPostService.get(id);
-        return Result.ok(SysPostConvert.INSTANCE.toVO(sysPost));
+    public Result<${beanName}VO> get(@PathVariable("id") Long id) {
+        ${beanName}Entity ${beanInstanceName} = ${beanInstanceName}Service.get(id);
+        return Result.ok(${beanName}Convert.INSTANCE.toVO(${beanInstanceName}));
     }
 
     @GetMapping
-    public Result<PageData<SysPostVO>> getPage(SysPostFilterDTO dto) {
-        PageData<SysPostEntity> page = sysPostService.getPage(dto);
-        return Result.ok(new PageData<>(page, SysPostConvert.INSTANCE.toListVO(page.getList())));
+    public Result<PageData<${beanName}VO>> getPage(${beanName}FilterDTO dto) {
+        PageData<${beanName}Entity> page = ${beanInstanceName}Service.getPage(dto);
+        return Result.ok(new PageData<>(page, ${beanName}Convert.INSTANCE.toListVO(page.getList())));
     }
 }
