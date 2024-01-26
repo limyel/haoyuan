@@ -46,12 +46,12 @@ public class TableBuilder {
             while (resultSet.next()) {
                 String tableName = resultSet.getString("name");
 
-                if (Config.EXCLUDE_TABLE_LIST.contains(tableName)) {
+                if (Config.TABLE_EXCLUDE_LIST.contains(tableName)) {
                     continue;
                 }
 
                 String beanName = tableName;
-                if (Config.IGNORE_TABLE_PREFIX) {
+                if (Config.TABLE_IGNORE_PREFIX) {
                     beanName = tableName.substring(beanName.indexOf("_") + 1);
                 }
                 beanName = StringUtil.underlineToCamel(beanName, true);
