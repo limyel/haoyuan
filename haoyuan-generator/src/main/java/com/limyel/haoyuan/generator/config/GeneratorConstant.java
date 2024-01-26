@@ -15,4 +15,6 @@ public interface GeneratorConstant {
     String[] SQL_LONG_TYPE = new String[]{"bigint"};
     String[] SQL_BOOLEAN_TYPE = new String[]{"bit"};
 
+
+
 }

@@ -62,7 +62,7 @@ public class TableBuilder {
                 table.setTableName(tableName);
                 table.setBeanName(beanName);
                 table.setComment(comment);
-                table.setBeanNameSuffix(beanName + Config.SUFFIX_BEAN_PARAM);
+//                table.setBeanNameSuffix(beanName + Config.SUFFIX_BEAN_PARAM);
 
                 setFields(table);
                 setKeyIndex(table);
@@ -122,11 +122,11 @@ public class TableBuilder {
                 field.setJavaType(javaType);
                 field.setComment(comment);
                 field.setAutoIncrement(autoIncrement);
-                if (!table.getHaveLocalDateTime() && TypeUtil.isLocalDateTime(javaType)) {
+                if (!table.getHasLocalDateTime() && TypeUtil.isLocalDateTime(javaType)) {
                     table.setHasLocalDateTime(true);
                 }
-                if (!table.getHaveBigDecimal() && TypeUtil.isBigDecimal(javaType)) {
-                    table.setHaveBigDecimal(true);
+                if (!table.getHasBigDecimal() && TypeUtil.isBigDecimal(javaType)) {
+                    table.setHasBigDecimal(true);
                 }
 
                 result.add(field);

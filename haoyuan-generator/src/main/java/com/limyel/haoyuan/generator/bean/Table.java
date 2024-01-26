@@ -1,8 +1,6 @@
 package com.limyel.haoyuan.generator.bean;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Table {
 
@@ -17,9 +15,29 @@ public class Table {
     private String beanName;
 
     /**
-     * 参数名称
+     * bean 实例名称
      */
-    private String beanNameSuffix;
+    private String beanInstanceName;
+
+    /**
+     * 模块名称
+     */
+    private String moduleName;
+
+    /**
+     * 包名
+     */
+    private String packageName;
+
+    /**
+     * 路由
+     */
+    private String route;
+
+    /**
+     * 文件名后缀
+     */
+    private String fileSuffix;
 
     /**
      * 注释
@@ -31,6 +49,8 @@ public class Table {
      */
     private List<Field> fieldList;
 
+    private Boolean tenant;
+
     /**
      * 唯一索引集合
      */
@@ -39,9 +59,9 @@ public class Table {
     /**
      * 是否含有
      */
-    private Boolean haveLocalDateTime = false;
+    private Boolean hasLocalDateTime = false;
 
-    private Boolean haveBigDecimal = false;
+    private Boolean hasBigDecimal = false;
 
     public String getTableName() {
         return tableName;
@@ -59,12 +79,44 @@ public class Table {
         this.beanName = beanName;
     }
 
-    public String getBeanNameSuffix() {
-        return beanNameSuffix;
+    public String getBeanInstanceName() {
+        return beanInstanceName;
     }
 
-    public void setBeanNameSuffix(String beanNameSuffix) {
-        this.beanNameSuffix = beanNameSuffix;
+    public void setBeanInstanceName(String beanInstanceName) {
+        this.beanInstanceName = beanInstanceName;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
+
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
+    }
+
+    public String getFileSuffix() {
+        return fileSuffix;
+    }
+
+    public void setFileSuffix(String fileSuffix) {
+        this.fileSuffix = fileSuffix;
     }
 
     public String getComment() {
@@ -83,6 +135,14 @@ public class Table {
         this.fieldList = fieldList;
     }
 
+    public Boolean getTenant() {
+        return tenant;
+    }
+
+    public void setTenant(Boolean tenant) {
+        this.tenant = tenant;
+    }
+
     public Map<String, List<Field>> getKeyIndexMap() {
         return keyIndexMap;
     }
@@ -91,33 +151,19 @@ public class Table {
         this.keyIndexMap = keyIndexMap;
     }
 
-    public Boolean getHaveLocalDateTime() {
-        return haveLocalDateTime;
+    public Boolean getHasLocalDateTime() {
+        return hasLocalDateTime;
     }
 
-    public void setHasLocalDateTime(Boolean haveDateTime) {
-        this.haveLocalDateTime = haveDateTime;
+    public void setHasLocalDateTime(Boolean hasLocalDateTime) {
+        this.hasLocalDateTime = hasLocalDateTime;
     }
 
-    public Boolean getHaveBigDecimal() {
-        return haveBigDecimal;
+    public Boolean getHasBigDecimal() {
+        return hasBigDecimal;
     }
 
-    public void setHaveBigDecimal(Boolean haveBigDecimal) {
-        this.haveBigDecimal = haveBigDecimal;
-    }
-
-    @Override
-    public String toString() {
-        return "Table{" +
-                "tableName='" + tableName + '\'' +
-                ", beanName='" + beanName + '\'' +
-                ", beanParamName='" + beanNameSuffix + '\'' +
-                ", comment='" + comment + '\'' +
-                ", fieldList=" + fieldList +
-                ", keyIndexMap=" + keyIndexMap +
-                ", haveLocalDateTime=" + haveLocalDateTime +
-                ", haveBigDecimal=" + haveBigDecimal +
-                '}';
+    public void setHasBigDecimal(Boolean hasBigDecimal) {
+        this.hasBigDecimal = hasBigDecimal;
     }
 }
