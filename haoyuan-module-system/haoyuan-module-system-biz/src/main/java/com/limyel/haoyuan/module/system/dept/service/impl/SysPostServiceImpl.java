@@ -71,6 +71,16 @@ public class SysPostServiceImpl implements SysPostService {
         return new PageData<>(page);
     }
 
+    private void validateExist(Long id) {
+        if (id == null) {
+            return;
+        }
+        SysPostEntity sysPost = sysPostDao.selectById(id);
+        if (sysPost == null) {
+            throw new ServiceException(SysErrorCodeConstant.POST_NOT_FOUND);
+        }
+    }
+
     private void validateNameUnique(Long id, String name) {
         SysPostEntity sysPost = sysPostDao.selectByNameAndCode(name, null);
         if (sysPost == null) {
@@ -96,16 +106,5 @@ public class SysPostServiceImpl implements SysPostService {
             throw new ServiceException(SysErrorCodeConstant.POST_CODE_DUPLICATE);
         }
     }
-
-    private void validateExist(Long id) {
-        if (id == null) {
-            return;
-        }
-        SysPostEntity sysPost = sysPostDao.selectById(id);
-        if (sysPost == null) {
-            throw new ServiceException(SysErrorCodeConstant.POST_NOT_FOUND);
-        }
-    }
-
 
 }

@@ -46,4 +46,20 @@ public class SysUserServiceImpl implements SysUserService {
     public PageData<SysUserEntity> getPage(SysUserFilterDTO dto) {
         return null;
     }
+
+    private void validateExist(Long id) {
+
+    }
+
+    private void validateUsernameUnique(Long id, String username) {
+
+    }
+
+    private void validateMobileUnique(Long id, String mobile) {
+
+    }
+
+    private void validateEmailUnique(Long id, String email) {
+
+    }
 }
