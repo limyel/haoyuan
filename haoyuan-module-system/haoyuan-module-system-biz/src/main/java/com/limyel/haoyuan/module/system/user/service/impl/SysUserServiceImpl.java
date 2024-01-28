@@ -4,9 +4,9 @@ import com.limyel.haoyuan.common.exception.ServiceException;
 import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.module.system.constant.SysErrorCodeConstant;
 import com.limyel.haoyuan.module.system.user.dao.SysUserDao;
+import com.limyel.haoyuan.module.system.user.dataobject.SysUserDO;
 import com.limyel.haoyuan.module.system.user.dto.SysUserDTO;
 import com.limyel.haoyuan.module.system.user.dto.SysUserFilterDTO;
-import com.limyel.haoyuan.module.system.user.dd.SysUserEntity;
 import com.limyel.haoyuan.module.system.user.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,17 +43,17 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public SysUserEntity get(Long id) {
+    public SysUserDO get(Long id) {
         return null;
     }
 
     @Override
-    public List<SysUserEntity> getList(SysUserFilterDTO dto) {
+    public List<SysUserDO> getList(SysUserFilterDTO dto) {
         return null;
     }
 
     @Override
-    public PageData<SysUserEntity> getPage(SysUserFilterDTO dto) {
+    public PageData<SysUserDO> getPage(SysUserFilterDTO dto) {
         return null;
     }
 
@@ -61,14 +61,14 @@ public class SysUserServiceImpl implements SysUserService {
         if (id == null) {
             return;
         }
-        SysUserEntity sysUser = sysUserDao.selectById(id);
+        SysUserDO sysUser = sysUserDao.selectById(id);
         if (sysUser == null) {
             throw new ServiceException(SysErrorCodeConstant.USER_NOT_FOUND);
         }
     }
 
     private void validateUsernameUnique(Long id, String username) {
-        SysUserEntity sysUser = sysUserDao.selectByUsername(username);
+        SysUserDO sysUser = sysUserDao.selectByUsername(username);
         if (sysUser == null) {
             return;
         }
@@ -81,7 +81,7 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     private void validateMobileUnique(Long id, String mobile) {
-        SysUserEntity sysUser = sysUserDao.selectByMobile(mobile);
+        SysUserDO sysUser = sysUserDao.selectByMobile(mobile);
         if (sysUser == null) {
             return;
         }
@@ -94,7 +94,7 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     private void validateEmailUnique(Long id, String email) {
-        SysUserEntity sysUser = sysUserDao.selectByEmail(email);
+        SysUserDO sysUser = sysUserDao.selectByEmail(email);
         if (sysUser == null) {
             return;
         }

@@ -2,24 +2,24 @@ package com.limyel.haoyuan.module.system.user.dao;
 
 import com.limyel.haoyuan.framework.mybatis.dao.BaseDao;
 import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.module.system.user.dd.SysUserEntity;
+import com.limyel.haoyuan.module.system.user.dataobject.SysUserDO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface SysUserDao extends BaseDao<SysUserEntity> {
+public interface SysUserDao extends BaseDao<SysUserDO> {
 
-    default SysUserEntity selectByUsername(String username) {
-        return selectOne(new LambdaQueryWrapperPlus<SysUserEntity>()
-                .eqIfPresent(SysUserEntity::getUsername, username));
+    default SysUserDO selectByUsername(String username) {
+        return selectOne(new LambdaQueryWrapperPlus<SysUserDO>()
+                .eqIfPresent(SysUserDO::getUsername, username));
     }
 
-    default SysUserEntity selectByMobile(String mobile) {
-        return selectOne(new LambdaQueryWrapperPlus<SysUserEntity>()
-                .eqIfPresent(SysUserEntity::getMobile, mobile));
+    default SysUserDO selectByMobile(String mobile) {
+        return selectOne(new LambdaQueryWrapperPlus<SysUserDO>()
+                .eqIfPresent(SysUserDO::getMobile, mobile));
     }
 
-    default SysUserEntity selectByEmail(String email) {
-        return selectOne(new LambdaQueryWrapperPlus<SysUserEntity>()
-                .eqIfPresent(SysUserEntity::getEmail, email));
+    default SysUserDO selectByEmail(String email) {
+        return selectOne(new LambdaQueryWrapperPlus<SysUserDO>()
+                .eqIfPresent(SysUserDO::getEmail, email));
     }
 }

@@ -1,9 +1,9 @@
 package com.limyel.haoyuan.module.system.user.service;
 
 import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
+import com.limyel.haoyuan.module.system.user.dataobject.SysUserDO;
 import com.limyel.haoyuan.module.system.user.dto.SysUserDTO;
 import com.limyel.haoyuan.module.system.user.dto.SysUserFilterDTO;
-import com.limyel.haoyuan.module.system.user.dd.SysUserEntity;
 
 import java.util.List;
 
@@ -15,10 +15,10 @@ public interface SysUserService {
 
     void delete(Long id);
 
-    SysUserEntity get(Long id);
+    SysUserDO get(Long id);
 
-    List<SysUserEntity> getList(SysUserFilterDTO dto);
+    List<SysUserDO> getList(SysUserFilterDTO dto);
 
-    PageData<SysUserEntity> getPage(SysUserFilterDTO dto);
+    PageData<SysUserDO> getPage(SysUserFilterDTO dto);
 
 }
