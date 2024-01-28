@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.module.system.dept.convert;
 
 import com.limyel.haoyuan.module.system.dept.dto.SysPostDTO;
-import com.limyel.haoyuan.module.system.dept.entity.SysPostEntity;
+import com.limyel.haoyuan.module.system.dept.dataobject.SysPostDO;
 import com.limyel.haoyuan.module.system.dept.vo.SysPostVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -13,10 +13,10 @@ public interface SysPostConvert {
 
     SysPostConvert INSTANCE = Mappers.getMapper(SysPostConvert.class);
 
-    SysPostEntity toEntity(SysPostDTO dto);
+    SysPostDO toEntity(SysPostDTO dto);
 
-    SysPostVO toVO(SysPostEntity entity);
+    SysPostVO toVO(SysPostDO entity);
 
-    List<SysPostVO> toListVO(List<SysPostEntity> list);
+    List<SysPostVO> toListVO(List<SysPostDO> list);
 
 }

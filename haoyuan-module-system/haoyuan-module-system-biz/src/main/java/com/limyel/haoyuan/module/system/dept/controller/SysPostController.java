@@ -5,7 +5,7 @@ import com.limyel.haoyuan.framework.web.pojo.Result;
 import com.limyel.haoyuan.module.system.dept.convert.SysPostConvert;
 import com.limyel.haoyuan.module.system.dept.dto.SysPostDTO;
 import com.limyel.haoyuan.module.system.dept.dto.SysPostFilterDTO;
-import com.limyel.haoyuan.module.system.dept.entity.SysPostEntity;
+import com.limyel.haoyuan.module.system.dept.dataobject.SysPostDO;
 import com.limyel.haoyuan.module.system.dept.service.SysPostService;
 import com.limyel.haoyuan.module.system.dept.vo.SysPostVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,13 +48,13 @@ public class SysPostController {
 
     @GetMapping("/{id}")
     public Result<SysPostVO> get(@PathVariable("id") Long id) {
-        SysPostEntity sysPost = sysPostService.get(id);
+        SysPostDO sysPost = sysPostService.get(id);
         return Result.ok(SysPostConvert.INSTANCE.toVO(sysPost));
     }
 
     @GetMapping
     public Result<PageData<SysPostVO>> getPage(SysPostFilterDTO dto) {
-        PageData<SysPostEntity> page = sysPostService.getPage(dto);
+        PageData<SysPostDO> page = sysPostService.getPage(dto);
         return Result.ok(new PageData<>(page, SysPostConvert.INSTANCE.toListVO(page.getList())));
     }
 

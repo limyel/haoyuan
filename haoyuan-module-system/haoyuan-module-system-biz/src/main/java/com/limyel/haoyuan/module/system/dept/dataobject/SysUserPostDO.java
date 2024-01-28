@@ -1,14 +1,14 @@
-package com.limyel.haoyuan.module.system.dept.entity;
+package com.limyel.haoyuan.module.system.dept.dataobject;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.limyel.haoyuan.framework.mybatis.pojo.TenantBaseEntity;
+import com.limyel.haoyuan.framework.mybatis.pojo.TenantBaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("sys_user")
-public class SysUserPostEntity extends TenantBaseEntity {
+public class SysUserPostDO extends TenantBaseDO {
 
     /**
      * 用户ID

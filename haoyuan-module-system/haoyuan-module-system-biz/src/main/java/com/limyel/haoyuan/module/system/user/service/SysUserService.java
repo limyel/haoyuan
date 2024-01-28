@@ -3,7 +3,7 @@ package com.limyel.haoyuan.module.system.user.service;
 import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.module.system.user.dto.SysUserDTO;
 import com.limyel.haoyuan.module.system.user.dto.SysUserFilterDTO;
-import com.limyel.haoyuan.module.system.user.entity.SysUserEntity;
+import com.limyel.haoyuan.module.system.user.dd.SysUserEntity;
 
 import java.util.List;
 

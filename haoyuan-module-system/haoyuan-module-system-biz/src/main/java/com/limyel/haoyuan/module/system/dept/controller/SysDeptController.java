@@ -5,7 +5,7 @@ import com.limyel.haoyuan.framework.web.pojo.Result;
 import com.limyel.haoyuan.module.system.dept.convert.SysDeptConvert;
 import com.limyel.haoyuan.module.system.dept.dto.SysDeptDTO;
 import com.limyel.haoyuan.module.system.dept.dto.SysDeptFilterDTO;
-import com.limyel.haoyuan.module.system.dept.entity.SysDeptEntity;
+import com.limyel.haoyuan.module.system.dept.dataobject.SysDeptDO;
 import com.limyel.haoyuan.module.system.dept.service.SysDeptService;
 import com.limyel.haoyuan.module.system.dept.vo.SysDeptVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +39,13 @@ public class SysDeptController {
 
     @GetMapping("/{id}")
     public Result<SysDeptVO> get(@PathVariable("id") Long id) {
-        SysDeptEntity sysDept = sysDeptService.get(id);
+        SysDeptDO sysDept = sysDeptService.get(id);
         return Result.ok(SysDeptConvert.INSTANCE.toVO(sysDept));
     }
 
     @GetMapping
     public Result<PageData<SysDeptVO>> getPage(SysDeptFilterDTO dto) {
-        PageData<SysDeptEntity> page = sysDeptService.getPage(dto);
+        PageData<SysDeptDO> page = sysDeptService.getPage(dto);
         return Result.ok(new PageData<>(page, SysDeptConvert.INSTANCE.toListVO(page.getList())));
     }
 

@@ -20,6 +20,7 @@
         <module>haoyuan-module-mall</module>
         <module>haoyuan-module-member</module>
         <module>haoyuan-gateway</module>
+        <module>haoyuan-module-im</module>
     </modules>
 
     <properties>

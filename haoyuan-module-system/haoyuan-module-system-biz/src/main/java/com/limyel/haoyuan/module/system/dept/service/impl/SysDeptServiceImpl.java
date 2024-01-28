@@ -7,9 +7,9 @@ import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.module.system.constant.SysErrorCodeConstant;
 import com.limyel.haoyuan.module.system.dept.convert.SysDeptConvert;
 import com.limyel.haoyuan.module.system.dept.dao.SysDeptDao;
+import com.limyel.haoyuan.module.system.dept.dataobject.SysDeptDO;
 import com.limyel.haoyuan.module.system.dept.dto.SysDeptDTO;
 import com.limyel.haoyuan.module.system.dept.dto.SysDeptFilterDTO;
-import com.limyel.haoyuan.module.system.dept.entity.SysDeptEntity;
 import com.limyel.haoyuan.module.system.dept.service.SysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,13 +26,13 @@ public class SysDeptServiceImpl implements SysDeptService {
     @Override
     public Long create(SysDeptDTO dto) {
         if (dto.getPid() == null) {
-            dto.setPid(SysDeptEntity.PID_ROOT);
+            dto.setPid(SysDeptDO.PID_ROOT);
         }
 
         validatePid(null, dto.getPid());
         validateNameUnique(null, dto.getPid(), dto.getName());
 
-        SysDeptEntity sysDept = SysDeptConvert.INSTANCE.toEntity(dto);
+        SysDeptDO sysDept = SysDeptConvert.INSTANCE.toEntity(dto);
         sysDeptDao.insert(sysDept);
 
         return sysDept.getId();
@@ -41,14 +41,14 @@ public class SysDeptServiceImpl implements SysDeptService {
     @Override
     public void update(SysDeptDTO dto) {
         if (dto.getPid() == null) {
-            dto.setPid(SysDeptEntity.PID_ROOT);
+            dto.setPid(SysDeptDO.PID_ROOT);
         }
 
         validateExist(dto.getId());
         validatePid(dto.getId(), dto.getPid());
         validateNameUnique(dto.getId(), dto.getPid(), dto.getName());
 
-        SysDeptEntity sysDept = SysDeptConvert.INSTANCE.toEntity(dto);
+        SysDeptDO sysDept = SysDeptConvert.INSTANCE.toEntity(dto);
         sysDeptDao.updateById(sysDept);
     }
 
@@ -64,23 +64,23 @@ public class SysDeptServiceImpl implements SysDeptService {
     }
 
     @Override
-    public SysDeptEntity get(Long id) {
+    public SysDeptDO get(Long id) {
         return sysDeptDao.selectById(id);
     }
 
     @Override
-    public PageData<SysDeptEntity> getPage(SysDeptFilterDTO dto) {
-        Page<SysDeptEntity> page = new Page<>(dto.getPageNum(), dto.getPageSize());
-        LambdaQueryWrapperPlus<SysDeptEntity> wrapperPlus = new LambdaQueryWrapperPlus<SysDeptEntity>()
-                .likeIfPresent(SysDeptEntity::getName, dto.getName())
-                .eqIfPresent(SysDeptEntity::getStatus, dto.getStatus())
-                .orderByAsc(SysDeptEntity::getSort);
+    public PageData<SysDeptDO> getPage(SysDeptFilterDTO dto) {
+        Page<SysDeptDO> page = new Page<>(dto.getPageNum(), dto.getPageSize());
+        LambdaQueryWrapperPlus<SysDeptDO> wrapperPlus = new LambdaQueryWrapperPlus<SysDeptDO>()
+                .likeIfPresent(SysDeptDO::getName, dto.getName())
+                .eqIfPresent(SysDeptDO::getStatus, dto.getStatus())
+                .orderByAsc(SysDeptDO::getSort);
         sysDeptDao.selectPage(page, wrapperPlus);
         return new PageData<>(page);
     }
 
     @Override
-    public List<SysDeptEntity> getList(SysDeptFilterDTO dto) {
+    public List<SysDeptDO> getList(SysDeptFilterDTO dto) {
         return sysDeptDao.selectList(dto);
     }
 
@@ -90,7 +90,7 @@ public class SysDeptServiceImpl implements SysDeptService {
      * @param pid 上级部门ID
      */
     private void validatePid(Long id, Long pid) {
-        if (pid == null || SysDeptEntity.PID_ROOT.equals(pid)) {
+        if (pid == null || SysDeptDO.PID_ROOT.equals(pid)) {
             return;
         }
         // 1. 上级部门不能是本身
@@ -98,7 +98,7 @@ public class SysDeptServiceImpl implements SysDeptService {
             throw new ServiceException(SysErrorCodeConstant.DEPT_PARENT_ERROR);
         }
         // 2. 上级部门不存在
-        SysDeptEntity parent = sysDeptDao.selectById(pid);
+        SysDeptDO parent = sysDeptDao.selectById(pid);
         if (parent == null) {
             throw new ServiceException(SysErrorCodeConstant.DEPT_PARENT_NOT_FOUND);
         }
@@ -108,7 +108,7 @@ public class SysDeptServiceImpl implements SysDeptService {
             return;
         }
         pid = parent.getPid();
-        while (!SysDeptEntity.PID_ROOT.equals(pid) && pid != null) {
+        while (!SysDeptDO.PID_ROOT.equals(pid) && pid != null) {
             if (Objects.equals(id, pid)) {
                 throw new ServiceException(SysErrorCodeConstant.DEPT_PARENT_IS_CHILD);
             }
@@ -127,7 +127,7 @@ public class SysDeptServiceImpl implements SysDeptService {
      * @param name 部门名称
      */
     private void validateNameUnique(Long id, Long pid, String name) {
-        SysDeptEntity sysDept = sysDeptDao.selectByPidAndName(pid, name);
+        SysDeptDO sysDept = sysDeptDao.selectByPidAndName(pid, name);
         if (sysDept == null) {
             return;
         }
@@ -149,7 +149,7 @@ public class SysDeptServiceImpl implements SysDeptService {
         if (id == null) {
             return;
         }
-        SysDeptEntity sysDept = sysDeptDao.selectById(id);
+        SysDeptDO sysDept = sysDeptDao.selectById(id);
         if (sysDept == null) {
             throw new ServiceException(SysErrorCodeConstant.DEPT_NOT_FOUND);
         }

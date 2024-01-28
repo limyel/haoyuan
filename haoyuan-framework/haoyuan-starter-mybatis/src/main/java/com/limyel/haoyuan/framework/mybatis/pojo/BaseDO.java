@@ -9,7 +9,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public abstract class BaseEntity {
+public abstract class BaseDO {
 
     @TableId
     private Long id;

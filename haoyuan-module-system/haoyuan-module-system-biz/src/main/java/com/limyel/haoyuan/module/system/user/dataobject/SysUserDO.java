@@ -1,7 +1,7 @@
-package com.limyel.haoyuan.module.system.user.entity;
+package com.limyel.haoyuan.module.system.user.dataobject;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.limyel.haoyuan.framework.mybatis.pojo.TenantBaseEntity;
+import com.limyel.haoyuan.framework.mybatis.pojo.TenantBaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,7 +10,7 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("sys_user")
-public class SysUserEntity extends TenantBaseEntity {
+public class SysUserDO extends TenantBaseDO {
 
     private String username;
 
