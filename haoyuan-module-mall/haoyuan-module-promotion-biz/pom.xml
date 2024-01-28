@@ -9,21 +9,14 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>haoyuan-module-trade-biz</artifactId>
+    <artifactId>haoyuan-module-promotion-biz</artifactId>
     <packaging>jar</packaging>
-    <description>交易服务</description>
+    <description>营销服务</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-starter-nacos</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>

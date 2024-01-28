@@ -13,9 +13,13 @@
     <packaging>pom</packaging>
     <modules>
         <module>haoyuan-module-lottery-biz</module>
+        <module>haoyuan-module-lottery-api</module>
         <module>haoyuan-module-trade-biz</module>
+        <module>haoyuan-module-trade-api</module>
         <module>haoyuan-module-product-biz</module>
         <module>haoyuan-module-product-api</module>
+        <module>haoyuan-module-promotion-biz</module>
+        <module>haoyuan-module-promotion-api</module>
     </modules>
 
 

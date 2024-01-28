@@ -6,24 +6,15 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>haoyuan-module-mall</artifactId>
-        <version>${revision}</version>
+        <version>0.0.0</version>
     </parent>
 
-    <artifactId>haoyuan-module-trade-biz</artifactId>
-    <packaging>jar</packaging>
-    <description>交易服务</description>
+    <artifactId>haoyuan-module-lottery-api</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-starter-nacos</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>
