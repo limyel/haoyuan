@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
+import com.baomidou.mybatisplus.extension.toolkit.Db;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -56,5 +57,9 @@ public interface BaseDao<T> extends BaseMapper<T> {
             return new ArrayList<>();
         }
         return selectList(new LambdaQueryWrapper<T>().in(field, values));
+    }
+
+    default Boolean insertBatch(Collection<T> list) {
+        return Db.saveBatch(list);
     }
 }

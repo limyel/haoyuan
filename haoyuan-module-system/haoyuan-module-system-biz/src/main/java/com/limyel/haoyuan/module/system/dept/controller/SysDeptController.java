@@ -8,9 +8,11 @@ import com.limyel.haoyuan.module.system.dept.dto.SysDeptFilterDTO;
 import com.limyel.haoyuan.module.system.dept.dataobject.SysDeptDO;
 import com.limyel.haoyuan.module.system.dept.service.SysDeptService;
 import com.limyel.haoyuan.module.system.dept.vo.SysDeptVO;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@Api(tags = "部门")
 @RestController
 @RequestMapping("/sys/dept")
 public class SysDeptController {

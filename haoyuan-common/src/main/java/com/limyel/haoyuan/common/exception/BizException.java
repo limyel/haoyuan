@@ -2,11 +2,10 @@ package com.limyel.haoyuan.common.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ServiceException extends RuntimeException {
+public class BizException extends RuntimeException {
 
     private Integer code;
 
@@ -15,15 +14,15 @@ public class ServiceException extends RuntimeException {
     /**
      * 空构造方法，避免反序列化问题
      */
-    public ServiceException() {
+    public BizException() {
     }
 
-    public ServiceException(ErrorCode errorCode) {
+    public BizException(ErrorCode errorCode) {
         this.code = errorCode.getCode();
         this.message = errorCode.getMsg();
     }
 
-    public ServiceException(Integer code, String message) {
+    public BizException(Integer code, String message) {
         this.code = code;
         this.message = message;
     }

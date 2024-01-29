@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.module.system.dept.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.limyel.haoyuan.common.exception.ServiceException;
+import com.limyel.haoyuan.common.exception.BizException;
 import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.module.system.constant.SysErrorCodeConstant;
@@ -57,7 +57,7 @@ public class SysDeptServiceImpl implements SysDeptService {
         validateExist(id);
 
         if (sysDeptDao.selectCountByPid(id) > 0) {
-            throw new ServiceException(SysErrorCodeConstant.DEPT_HAS_CHILDREN);
+            throw new BizException(SysErrorCodeConstant.DEPT_HAS_CHILDREN);
         }
 
         sysDeptDao.deleteById(id);
@@ -95,12 +95,12 @@ public class SysDeptServiceImpl implements SysDeptService {
         }
         // 1. 上级部门不能是本身
         if (Objects.equals(id, pid)) {
-            throw new ServiceException(SysErrorCodeConstant.DEPT_PARENT_ERROR);
+            throw new BizException(SysErrorCodeConstant.DEPT_PARENT_ERROR);
         }
         // 2. 上级部门不存在
         SysDeptDO parent = sysDeptDao.selectById(pid);
         if (parent == null) {
-            throw new ServiceException(SysErrorCodeConstant.DEPT_PARENT_NOT_FOUND);
+            throw new BizException(SysErrorCodeConstant.DEPT_PARENT_NOT_FOUND);
         }
         // 3. 检查上级部门是不是子部门
         // 新增部门
@@ -110,7 +110,7 @@ public class SysDeptServiceImpl implements SysDeptService {
         pid = parent.getPid();
         while (!SysDeptDO.PID_ROOT.equals(pid) && pid != null) {
             if (Objects.equals(id, pid)) {
-                throw new ServiceException(SysErrorCodeConstant.DEPT_PARENT_IS_CHILD);
+                throw new BizException(SysErrorCodeConstant.DEPT_PARENT_IS_CHILD);
             }
             parent = sysDeptDao.selectById(pid);
             if (parent == null) {
@@ -133,11 +133,11 @@ public class SysDeptServiceImpl implements SysDeptService {
         }
         // 新增时重复
         if (id == null) {
-            throw new ServiceException(SysErrorCodeConstant.DEPT_NAME_DUPLICATE);
+            throw new BizException(SysErrorCodeConstant.DEPT_NAME_DUPLICATE);
         }
         // 更新时重复
         if (!Objects.equals(id, sysDept.getId())) {
-            throw new ServiceException(SysErrorCodeConstant.DEPT_NAME_DUPLICATE);
+            throw new BizException(SysErrorCodeConstant.DEPT_NAME_DUPLICATE);
         }
     }
 
@@ -151,7 +151,7 @@ public class SysDeptServiceImpl implements SysDeptService {
         }
         SysDeptDO sysDept = sysDeptDao.selectById(id);
         if (sysDept == null) {
-            throw new ServiceException(SysErrorCodeConstant.DEPT_NOT_FOUND);
+            throw new BizException(SysErrorCodeConstant.DEPT_NOT_FOUND);
         }
     }
 

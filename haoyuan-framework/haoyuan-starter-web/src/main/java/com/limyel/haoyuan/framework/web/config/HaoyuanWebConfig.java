@@ -35,4 +35,9 @@ public class HaoyuanWebConfig implements WebMvcConfigurer {
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
     }
+
+    @Bean
+    public HaoyuanSwaggerConfig haoyuanSwaggerConfig() {
+        return new HaoyuanSwaggerConfig();
+    }
 }
