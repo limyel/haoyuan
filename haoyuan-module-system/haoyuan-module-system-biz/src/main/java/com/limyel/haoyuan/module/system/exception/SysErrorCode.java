@@ -21,9 +21,11 @@ public interface SysErrorCode {
     ErrorCode USER_EMAIL_DUPLICATE = new ErrorCode(1_02_03003, "用户邮箱重复");
 
     ErrorCode DICT_DATA_NOT_FOUND = new ErrorCode(1_02_04000, "字典数据不存在");
+    ErrorCode DICT_DATA_VALUE_DUPLICATE = new ErrorCode(1_02_05002, "字典值重复");
 
     ErrorCode DICT_TYPE_NOT_FOUND = new ErrorCode(1_02_05000, "字典类型不存在");
     ErrorCode DICT_TYPE_NOT_ENABLE = new ErrorCode(1_02_05001, "字典类型未开启");
-    ErrorCode DICT_TYPE_VALUE_DUPLICATE = new ErrorCode(1_02_05002, "字典值重复");
+    ErrorCode DICT_TYPE_TYPE_DUPLICATE = new ErrorCode(1_02_05001, "字典类型重复");
+    ErrorCode DICT_TYPE_NAME_DUPLICATE = new ErrorCode(1_02_05001, "字典类型名称重复");
 
 }
