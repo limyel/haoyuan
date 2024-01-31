@@ -6,7 +6,7 @@ import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.module.system.constant.SysErrorCodeConstant;
 import com.limyel.haoyuan.module.system.convert.dept.PostConvert;
-import com.limyel.haoyuan.module.system.dao.dept.SysPostDao;
+import com.limyel.haoyuan.module.system.dao.dept.PostDao;
 import com.limyel.haoyuan.module.system.dataobject.dept.PostDO;
 import com.limyel.haoyuan.module.system.dto.dept.PostDTO;
 import com.limyel.haoyuan.module.system.dto.dept.PostPageDTO;
@@ -18,10 +18,10 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class SysPostServiceImpl implements PostService {
+public class PostServiceImpl implements PostService {
 
     @Autowired
-    private SysPostDao sysPostDao;
+    private PostDao postDao;
 
     @Override
     public Long create(PostDTO dto) {
@@ -29,7 +29,7 @@ public class SysPostServiceImpl implements PostService {
         validateCodeUnique(null, dto.getCode());
 
         PostDO sysPost = PostConvert.INSTANCE.toEntity(dto);
-        sysPostDao.insert(sysPost);
+        postDao.insert(sysPost);
 
         return sysPost.getId();
     }
@@ -40,24 +40,24 @@ public class SysPostServiceImpl implements PostService {
         validateNameUnique(dto.getId(), dto.getName());
         validateCodeUnique(dto.getId(), dto.getCode());
 
-        PostDO sysPost = PostConvert.INSTANCE.toEntity(dto);
-        sysPostDao.updateById(sysPost);
+        PostDO post = PostConvert.INSTANCE.toEntity(dto);
+        postDao.updateById(post);
     }
 
     @Override
     public void delete(Long id) {
         validateExist(id);
-        sysPostDao.deleteById(id);
+        postDao.deleteById(id);
     }
 
     @Override
     public PostDO get(Long id) {
-        return sysPostDao.selectById(id);
+        return postDao.selectById(id);
     }
 
     @Override
     public List<PostDO> getList(PostPageDTO dto) {
-        return sysPostDao.selectList(dto);
+        return postDao.selectList(dto);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class SysPostServiceImpl implements PostService {
                 .likeIfPresent(PostDO::getName, dto.getName())
                 .eqIfPresent(PostDO::getStatus, dto.getStatus())
                 .orderByAsc(PostDO::getSort);
-        sysPostDao.selectPage(page, wrapperPlus);
+        postDao.selectPage(page, wrapperPlus);
         return new PageData<>(page);
     }
 
@@ -75,34 +75,34 @@ public class SysPostServiceImpl implements PostService {
         if (id == null) {
             return;
         }
-        PostDO sysPost = sysPostDao.selectById(id);
-        if (sysPost == null) {
+        PostDO post = postDao.selectById(id);
+        if (post == null) {
             throw new BizException(SysErrorCodeConstant.POST_NOT_FOUND);
         }
     }
 
     private void validateNameUnique(Long id, String name) {
-        PostDO sysPost = sysPostDao.selectByNameAndCode(name, null);
-        if (sysPost == null) {
+        PostDO post = postDao.selectByNameAndCode(name, null);
+        if (post == null) {
             return;
         }
         if (id == null) {
             return;
         }
-        if (!Objects.equals(id, sysPost.getId())) {
+        if (!Objects.equals(id, post.getId())) {
             throw new BizException(SysErrorCodeConstant.POST_NAME_DUPLICATE);
         }
     }
 
     private void validateCodeUnique(Long id, String code) {
-        PostDO sysPost = sysPostDao.selectByNameAndCode(null, code);
-        if (sysPost == null) {
+        PostDO post = postDao.selectByNameAndCode(null, code);
+        if (post == null) {
             return;
         }
         if (id == null) {
             return;
         }
-        if (!Objects.equals(id, sysPost.getId())) {
+        if (!Objects.equals(id, post.getId())) {
             throw new BizException(SysErrorCodeConstant.POST_CODE_DUPLICATE);
         }
     }

@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface SysDeptDao extends BaseDao<DeptDO> {
+public interface DeptDao extends BaseDao<DeptDO> {
 
     default List<DeptDO> selectList(DeptPageDTO req) {
         return selectList(new LambdaQueryWrapperPlus<DeptDO>()

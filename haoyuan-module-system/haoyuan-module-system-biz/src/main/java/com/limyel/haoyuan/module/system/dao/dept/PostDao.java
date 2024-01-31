@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface SysPostDao extends BaseDao<PostDO> {
+public interface PostDao extends BaseDao<PostDO> {
 
     default List<PostDO> selectList(PostPageDTO req) {
         return selectList(new LambdaQueryWrapperPlus<PostDO>()

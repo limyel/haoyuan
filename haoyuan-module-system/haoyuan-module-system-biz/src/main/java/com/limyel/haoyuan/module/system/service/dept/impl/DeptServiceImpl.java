@@ -6,7 +6,7 @@ import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.module.system.constant.SysErrorCodeConstant;
 import com.limyel.haoyuan.module.system.convert.dept.DeptConvert;
-import com.limyel.haoyuan.module.system.dao.dept.SysDeptDao;
+import com.limyel.haoyuan.module.system.dao.dept.DeptDao;
 import com.limyel.haoyuan.module.system.dataobject.dept.DeptDO;
 import com.limyel.haoyuan.module.system.dto.dept.DeptDTO;
 import com.limyel.haoyuan.module.system.dto.dept.DeptPageDTO;
@@ -18,10 +18,10 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class SysDeptServiceImpl implements DeptService {
+public class DeptServiceImpl implements DeptService {
 
     @Autowired
-    private SysDeptDao sysDeptDao;
+    private DeptDao deptDao;
 
     @Override
     public Long create(DeptDTO dto) {
@@ -32,10 +32,10 @@ public class SysDeptServiceImpl implements DeptService {
         validatePid(null, dto.getPid());
         validateNameUnique(null, dto.getPid(), dto.getName());
 
-        DeptDO sysDept = DeptConvert.INSTANCE.toEntity(dto);
-        sysDeptDao.insert(sysDept);
+        DeptDO dept = DeptConvert.INSTANCE.toEntity(dto);
+        deptDao.insert(dept);
 
-        return sysDept.getId();
+        return dept.getId();
     }
 
     @Override
@@ -48,24 +48,24 @@ public class SysDeptServiceImpl implements DeptService {
         validatePid(dto.getId(), dto.getPid());
         validateNameUnique(dto.getId(), dto.getPid(), dto.getName());
 
-        DeptDO sysDept = DeptConvert.INSTANCE.toEntity(dto);
-        sysDeptDao.updateById(sysDept);
+        DeptDO dept = DeptConvert.INSTANCE.toEntity(dto);
+        deptDao.updateById(dept);
     }
 
     @Override
     public void delete(Long id) {
         validateExist(id);
 
-        if (sysDeptDao.selectCountByPid(id) > 0) {
+        if (deptDao.selectCountByPid(id) > 0) {
             throw new BizException(SysErrorCodeConstant.DEPT_HAS_CHILDREN);
         }
 
-        sysDeptDao.deleteById(id);
+        deptDao.deleteById(id);
     }
 
     @Override
     public DeptDO get(Long id) {
-        return sysDeptDao.selectById(id);
+        return deptDao.selectById(id);
     }
 
     @Override
@@ -75,13 +75,13 @@ public class SysDeptServiceImpl implements DeptService {
                 .likeIfPresent(DeptDO::getName, dto.getName())
                 .eqIfPresent(DeptDO::getStatus, dto.getStatus())
                 .orderByAsc(DeptDO::getSort);
-        sysDeptDao.selectPage(page, wrapperPlus);
+        deptDao.selectPage(page, wrapperPlus);
         return new PageData<>(page);
     }
 
     @Override
     public List<DeptDO> getList(DeptPageDTO dto) {
-        return sysDeptDao.selectList(dto);
+        return deptDao.selectList(dto);
     }
 
     /**
@@ -98,7 +98,7 @@ public class SysDeptServiceImpl implements DeptService {
             throw new BizException(SysErrorCodeConstant.DEPT_PARENT_ERROR);
         }
         // 2. 上级部门不存在
-        DeptDO parent = sysDeptDao.selectById(pid);
+        DeptDO parent = deptDao.selectById(pid);
         if (parent == null) {
             throw new BizException(SysErrorCodeConstant.DEPT_PARENT_NOT_FOUND);
         }
@@ -112,7 +112,7 @@ public class SysDeptServiceImpl implements DeptService {
             if (Objects.equals(id, pid)) {
                 throw new BizException(SysErrorCodeConstant.DEPT_PARENT_IS_CHILD);
             }
-            parent = sysDeptDao.selectById(pid);
+            parent = deptDao.selectById(pid);
             if (parent == null) {
                 break;
             }
@@ -127,8 +127,8 @@ public class SysDeptServiceImpl implements DeptService {
      * @param name 部门名称
      */
     private void validateNameUnique(Long id, Long pid, String name) {
-        DeptDO sysDept = sysDeptDao.selectByPidAndName(pid, name);
-        if (sysDept == null) {
+        DeptDO dept = deptDao.selectByPidAndName(pid, name);
+        if (dept == null) {
             return;
         }
         // 新增时重复
@@ -136,7 +136,7 @@ public class SysDeptServiceImpl implements DeptService {
             throw new BizException(SysErrorCodeConstant.DEPT_NAME_DUPLICATE);
         }
         // 更新时重复
-        if (!Objects.equals(id, sysDept.getId())) {
+        if (!Objects.equals(id, dept.getId())) {
             throw new BizException(SysErrorCodeConstant.DEPT_NAME_DUPLICATE);
         }
     }
@@ -149,8 +149,8 @@ public class SysDeptServiceImpl implements DeptService {
         if (id == null) {
             return;
         }
-        DeptDO sysDept = sysDeptDao.selectById(id);
-        if (sysDept == null) {
+        DeptDO dept = deptDao.selectById(id);
+        if (dept == null) {
             throw new BizException(SysErrorCodeConstant.DEPT_NOT_FOUND);
         }
     }
