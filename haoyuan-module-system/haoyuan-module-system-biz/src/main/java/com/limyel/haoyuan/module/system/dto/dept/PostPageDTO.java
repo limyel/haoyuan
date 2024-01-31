@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysDeptFilterDTO extends PageParam {
+public class PostPageDTO extends PageParam {
 
     private String name;
 

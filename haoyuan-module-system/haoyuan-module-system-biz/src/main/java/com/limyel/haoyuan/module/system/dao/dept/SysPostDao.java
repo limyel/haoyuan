@@ -2,26 +2,26 @@ package com.limyel.haoyuan.module.system.dao.dept;
 
 import com.limyel.haoyuan.framework.mybatis.dao.BaseDao;
 import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.module.system.dataobject.dept.SysPostDO;
-import com.limyel.haoyuan.module.system.dto.dept.SysPostFilterDTO;
+import com.limyel.haoyuan.module.system.dataobject.dept.PostDO;
+import com.limyel.haoyuan.module.system.dto.dept.PostPageDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
-public interface SysPostDao extends BaseDao<SysPostDO> {
+public interface SysPostDao extends BaseDao<PostDO> {
 
-    default List<SysPostDO> selectList(SysPostFilterDTO req) {
-        return selectList(new LambdaQueryWrapperPlus<SysPostDO>()
-                .likeIfPresent(SysPostDO::getName, req.getName())
-                .eqIfPresent(SysPostDO::getStatus, req.getStatus())
-                .orderByAsc(SysPostDO::getSort));
+    default List<PostDO> selectList(PostPageDTO req) {
+        return selectList(new LambdaQueryWrapperPlus<PostDO>()
+                .likeIfPresent(PostDO::getName, req.getName())
+                .eqIfPresent(PostDO::getStatus, req.getStatus())
+                .orderByAsc(PostDO::getSort));
     }
 
-    default SysPostDO selectByNameAndCode(String name, String code) {
-        return selectOne(new LambdaQueryWrapperPlus<SysPostDO>()
-                .eqIfPresent(SysPostDO::getName, name)
-                .eqIfPresent(SysPostDO::getCode, code));
+    default PostDO selectByNameAndCode(String name, String code) {
+        return selectOne(new LambdaQueryWrapperPlus<PostDO>()
+                .eqIfPresent(PostDO::getName, name)
+                .eqIfPresent(PostDO::getCode, code));
     }
 
 }

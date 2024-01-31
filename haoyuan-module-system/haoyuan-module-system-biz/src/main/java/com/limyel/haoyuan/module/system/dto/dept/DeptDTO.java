@@ -3,7 +3,7 @@ package com.limyel.haoyuan.module.system.dto.dept;
 import lombok.Data;
 
 @Data
-public class SysDeptDTO {
+public class DeptDTO {
 
     private Long id;
 

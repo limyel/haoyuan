@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("sys_dict_type")
-public class SysDictType extends BaseDO {
+public class SysDictTypeDO extends BaseDO {
 
     /**
      * 字典名称

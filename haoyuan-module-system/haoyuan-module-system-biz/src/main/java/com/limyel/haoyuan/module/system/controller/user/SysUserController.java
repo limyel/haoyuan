@@ -2,8 +2,8 @@ package com.limyel.haoyuan.module.system.controller.user;
 
 import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.framework.web.pojo.Result;
-import com.limyel.haoyuan.module.system.dto.dept.SysPostFilterDTO;
-import com.limyel.haoyuan.module.system.vo.dept.SysPostVO;
+import com.limyel.haoyuan.module.system.dto.dept.PostPageDTO;
+import com.limyel.haoyuan.module.system.vo.dept.PostVO;
 import com.limyel.haoyuan.module.system.dto.user.SysUserDTO;
 import com.limyel.haoyuan.module.system.service.user.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +37,14 @@ public class SysUserController {
     }
 
     @GetMapping("/{id}")
-    public Result<SysPostVO> get(@PathVariable("id") Long id) {
+    public Result<PostVO> get(@PathVariable("id") Long id) {
 //        SysPostDO sysPost = sysUserService.get(id);
 //        return Result.ok(SysPostConvert.INSTANCE.toVO(sysPost));
         return null;
     }
 
     @GetMapping
-    public Result<PageData<SysPostVO>> getPage(SysPostFilterDTO dto) {
+    public Result<PageData<PostVO>> getPage(PostPageDTO dto) {
 //        PageData<SysPostDO> page = sysUserService.getPage(dto);
 //        return Result.ok(new PageData<>(page, SysPostConvert.INSTANCE.toListVO(page.getList())));
         return null;

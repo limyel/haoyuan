@@ -1,14 +1,11 @@
-package com.limyel.haoyuan.module.system.dataobject.dept;
+package com.limyel.haoyuan.module.system.dto.dept;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.limyel.haoyuan.framework.mybatis.pojo.TenantBaseDO;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-@TableName("sys_post")
-public class SysPostDO extends TenantBaseDO {
+public class PostDTO {
+
+    private Long id;
 
     /**
      * 岗位编码

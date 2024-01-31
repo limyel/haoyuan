@@ -5,7 +5,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class SysDeptVO {
+public class DeptVO {
 
     private Long id;
 
