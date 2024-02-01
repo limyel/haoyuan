@@ -1,0 +1,55 @@
+package com.limyel.haoyuan.module.system.sys.dataobject;
+
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.limyel.haoyuan.framework.mybatis.pojo.TenantBaseDO;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.util.Set;
+
+@Data
+@EqualsAndHashCode(callSuper = true)
+@TableName
+public class RoleDO extends TenantBaseDO {
+
+    /**
+     * 角色名
+     */
+    private String name;
+
+    /**
+     * 角色权限字符串
+     */
+    private String code;
+
+    /**
+     * 显示顺序
+     */
+    private Integer sort;
+
+    /**
+     * 数据范围
+     */
+    private Integer dataScope;
+
+    /**
+     * 数据范围（指定部门）
+     */
+    private Set<Long> dataScopeDeptIds;
+
+    /**
+     * 状态
+     */
+    private Integer status;
+
+    /**
+     * 类型
+     */
+    private Integer type;
+
+    /**
+     * 备注
+     */
+    private String remark;
+
+}

@@ -34,4 +34,7 @@ public interface SysErrorCode {
     ErrorCode MENU_PID_NOT_DIR_OR_MENU = new ErrorCode(1_02_06003, "父菜单的类型必须是目录或菜单");
     ErrorCode MENU_NAME_DUPLICATE = new ErrorCode(1_02_06004, "菜单名称重复");
 
+    ErrorCode ROLE_NOT_FOUND = new ErrorCode(1_02_07000, "角色不存在");
+
+
 }
