@@ -252,7 +252,7 @@ CREATE TABLE `sys_param`  (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '编码',
     `value` varchar(2048) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '参数值',
-    `type` tinyint NOT NULL DEFAULT 2 COMMENT '类型，1：系统参数，2：自定义参数',
+    `type` tinyint NOT NULL DEFAULT 2 COMMENT '类型，1：内置参数，2：自定义参数',
     `remark` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
     `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',

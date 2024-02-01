@@ -36,5 +36,7 @@ public interface SysErrorCode {
 
     ErrorCode ROLE_NOT_FOUND = new ErrorCode(1_02_07000, "角色不存在");
 
+    ErrorCode PARAM_NOT_FOUND = new ErrorCode(1_02_08000, "参数不存在");
+
 
 }
