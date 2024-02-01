@@ -7,8 +7,8 @@ import lombok.EqualsAndHashCode;
 
 import java.util.Set;
 
-@Data
 @EqualsAndHashCode(callSuper = true)
+@Data
 @TableName
 public class RoleDO extends TenantBaseDO {
 

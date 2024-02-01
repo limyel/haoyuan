@@ -7,8 +7,8 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Data
 @EqualsAndHashCode(callSuper = true)
+@Data
 public class SysUserFilterDTO extends PageParam {
 
     private String username;

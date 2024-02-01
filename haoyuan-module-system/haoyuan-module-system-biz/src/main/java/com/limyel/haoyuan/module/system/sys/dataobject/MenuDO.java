@@ -5,9 +5,8 @@ import com.limyel.haoyuan.framework.mybatis.pojo.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-
-@Data
 @EqualsAndHashCode(callSuper = true)
+@Data
 @TableName("sys_menu")
 public class MenuDO extends BaseDO {
 

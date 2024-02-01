@@ -5,8 +5,8 @@ import com.limyel.haoyuan.framework.mybatis.pojo.TenantBaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data
 @EqualsAndHashCode(callSuper = true)
+@Data
 @TableName("sys_dept")
 public class DeptDO extends TenantBaseDO {
 
