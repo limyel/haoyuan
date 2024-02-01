@@ -7,8 +7,8 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("sys_user")
-public class SysUserPostDO extends TenantBaseDO {
+@TableName("sys_user_post")
+public class UserPostDO extends TenantBaseDO {
 
     /**
      * 用户ID

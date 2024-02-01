@@ -28,4 +28,10 @@ public interface SysErrorCode {
     ErrorCode DICT_TYPE_TYPE_DUPLICATE = new ErrorCode(1_02_05001, "字典类型重复");
     ErrorCode DICT_TYPE_NAME_DUPLICATE = new ErrorCode(1_02_05001, "字典类型名称重复");
 
+    ErrorCode MENU_NOT_FOUND = new ErrorCode(1_02_06000, "菜单不存在");
+    ErrorCode MENU_PID_ERROR = new ErrorCode(1_02_06001, "不能设置自己为父菜单");
+    ErrorCode MENU_PID_NOT_FOUND = new ErrorCode(1_02_06002, "父菜单不存在");
+    ErrorCode MENU_PID_NOT_DIR_OR_MENU = new ErrorCode(1_02_06003, "父菜单的类型必须是目录或菜单");
+    ErrorCode MENU_NAME_DUPLICATE = new ErrorCode(1_02_06004, "菜单名称重复");
+
 }

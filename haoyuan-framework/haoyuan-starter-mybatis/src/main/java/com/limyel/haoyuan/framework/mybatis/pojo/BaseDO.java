@@ -18,13 +18,13 @@ public abstract class BaseDO {
     private LocalDateTime createTime;
 
     @TableField(fill = FieldFill.INSERT)
-    private Long creatorId;
+    private Long createBy;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Long updaterId;
+    private Long updateBy;
 
     @TableLogic
     private LocalDateTime deleteTime;
