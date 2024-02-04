@@ -1,8 +1,8 @@
-package com.limyel.haoyuan.common.exception.constant;
+package com.limyel.haoyuan.common.exception;
 
 import com.limyel.haoyuan.common.exception.ErrorCode;
 
-public interface GlobalErrorCodeConstant {
+public interface GlobalErrorCode {
 
     // ========== 客户端错误段 ==========
 

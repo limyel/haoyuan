@@ -27,4 +27,10 @@ public class BizException extends RuntimeException {
         this.message = message;
     }
 
+    public BizException(String message, Throwable e) {
+        super(message, e);
+        this.code = GlobalErrorCode.INTERNAL_SERVER_ERROR.getCode();
+        this.message = message;
+    }
+
 }
