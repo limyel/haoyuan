@@ -1,0 +1,57 @@
+package com.limyel.haoyuan.module.system.auth.service.impl;
+
+import com.limyel.haoyuan.common.util.TokenUtil;
+import com.limyel.haoyuan.module.system.auth.dao.UserTokenDao;
+import com.limyel.haoyuan.module.system.auth.dataobject.UserTokenDO;
+import com.limyel.haoyuan.module.system.auth.service.UserTokenService;
+import com.limyel.haoyuan.module.system.auth.vo.TokenVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+
+@Service
+public class UserTokenServiceImpl implements UserTokenService {
+
+    @Autowired
+    private UserTokenDao userTokenDao;
+
+
+    @Override
+    public TokenVO generateToken(Long userId) {
+        String token;
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime expireTime = now.plusSeconds(3600 * 12);
+
+        UserTokenDO userToken = userTokenDao.selectByUserId(userId);
+        if (userToken == null) {
+            token = TokenUtil.generateValue();
+
+            userToken = new UserTokenDO();
+            userToken.setUserId(userId);
+            userToken.setToken(token);
+            userToken.setUpdateTime(now);
+            userToken.setExpireTime(expireTime);
+
+            userTokenDao.insert(userToken);
+        } else {
+            if (now.isAfter(userToken.getExpireTime())) {
+                // token 过期
+                token = TokenUtil.generateValue();
+            } else {
+                token = userToken.getToken();
+            }
+
+            // 更新 token
+            userToken.setToken(token);
+            userToken.setUpdateTime(now);
+            userToken.setExpireTime(expireTime);
+            userTokenDao.updateById(userToken);
+        }
+
+        TokenVO result = new TokenVO();
+        result.setToken(token);
+        return result;
+    }
+}
