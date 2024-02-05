@@ -12,13 +12,13 @@
         <module>haoyuan-dependency</module>
         <module>haoyuan-common</module>
         <module>haoyuan-framework</module>
-        <module>haoyuan-module-infra</module>
         <module>haoyuan-module-system</module>
         <module>haoyuan-module-gateway</module>
         <module>haoyuan-module-datacenter</module>
         <module>haoyuan-module-mall</module>
         <module>haoyuan-module-member</module>
         <module>haoyuan-gateway</module>
+        <module>haoyuan-module-shortlink</module>
     </modules>
 
     <properties>
