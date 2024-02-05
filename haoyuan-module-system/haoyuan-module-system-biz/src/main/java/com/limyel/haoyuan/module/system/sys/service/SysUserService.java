@@ -21,4 +21,6 @@ public interface SysUserService {
 
     PageData<SysUserDO> getPage(SysUserFilterDTO dto);
 
+    SysUserDO getByUsername(String username);
+
 }

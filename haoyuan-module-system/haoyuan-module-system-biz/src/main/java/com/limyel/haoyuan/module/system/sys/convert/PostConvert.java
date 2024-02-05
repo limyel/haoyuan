@@ -15,7 +15,7 @@ public interface PostConvert {
 
     PostDO toEntity(PostDTO dto);
 
-    PostVO toVO(PostDO entity);
+    PostVO toVO(PostDO post);
 
     List<PostVO> toListVO(List<PostDO> list);
 

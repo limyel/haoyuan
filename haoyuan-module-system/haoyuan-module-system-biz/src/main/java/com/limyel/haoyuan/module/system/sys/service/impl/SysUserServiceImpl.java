@@ -83,6 +83,11 @@ public class SysUserServiceImpl implements SysUserService {
         return null;
     }
 
+    @Override
+    public SysUserDO getByUsername(String username) {
+        return sysUserDao.selectByUsername(username);
+    }
+
     private void validateExist(Long id) {
         if (id == null) {
             return;
