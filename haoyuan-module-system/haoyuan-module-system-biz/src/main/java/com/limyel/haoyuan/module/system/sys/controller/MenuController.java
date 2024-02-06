@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "字典")
 @RestController
-@RequestMapping("/sys/dict-data")
+@RequestMapping("/sys/menu")
 public class MenuController {
 
     @Autowired

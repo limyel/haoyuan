@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "字典")
 @RestController
-@RequestMapping("/sys/dict-data")
+@RequestMapping("/sys/param")
 public class ParamController {
 
     @Autowired
