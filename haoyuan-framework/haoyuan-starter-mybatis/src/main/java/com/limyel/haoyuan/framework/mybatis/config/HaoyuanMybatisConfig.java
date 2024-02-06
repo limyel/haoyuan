@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 @AutoConfiguration
-@MapperScan(value = "${haoyuan.mybatis.base-package:com.limyel.haoyuan.*.dao}", annotationClass = Mapper.class)
 public class HaoyuanMybatisConfig {
 
     @Bean

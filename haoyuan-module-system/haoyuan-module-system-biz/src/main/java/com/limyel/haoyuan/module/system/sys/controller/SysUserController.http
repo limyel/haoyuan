@@ -1,0 +1,30 @@
+###
+POST http://localhost:8000/sys/user
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "123456",
+  "email": "email",
+  "mobile": "13000000000",
+  "gender": 1,
+  "superAdmin": true
+}
+
+
+###
+GET http://localhost:8000/sys/user/2
+
+
+###
+PUT http://localhost:8000/sys/user
+Content-Type: application/json
+
+{
+  "id": 2,
+  "username": "test",
+  "email": "email22222",
+  "mobile": "13000000000",
+  "gender": 1,
+  "superAdmin": true
+}

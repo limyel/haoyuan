@@ -1,9 +1,9 @@
 package com.limyel.haoyuan.module.system.auth.service;
 
-import com.limyel.haoyuan.module.system.auth.vo.TokenVO;
+import com.limyel.haoyuan.module.system.auth.vo.LoginVO;
 
 public interface UserTokenService {
 
-    TokenVO generateToken(Long userId);
+    LoginVO generateToken(Long userId);
 
 }

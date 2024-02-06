@@ -37,7 +37,7 @@ feign:
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*.xml
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.limyel.haoyuan.*.entity
+  typeAliasesPackage: com.limyel.haoyuan.*.dataobject
   global-config:
     #数据库相关配置
     db-config:
@@ -51,7 +51,7 @@ mybatis-plus:
     cache-enabled: false
     call-setters-on-nulls: true
     jdbc-type-for-null: 'NULL'
-  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   configuration-properties:
     prefix:
     blobType: BLOB

@@ -2,6 +2,7 @@ package com.limyel.haoyuan.module.system.sys.controller;
 
 import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.framework.web.pojo.Result;
+import com.limyel.haoyuan.module.system.sys.dataobject.SysUserDO;
 import com.limyel.haoyuan.module.system.sys.dto.post.PostPageDTO;
 import com.limyel.haoyuan.module.system.sys.vo.post.PostVO;
 import com.limyel.haoyuan.module.system.sys.dto.user.SysUserDTO;
@@ -37,10 +38,9 @@ public class SysUserController {
     }
 
     @GetMapping("/{id}")
-    public Result<PostVO> get(@PathVariable("id") Long id) {
-//        SysPostDO sysPost = sysUserService.get(id);
-//        return Result.ok(SysPostConvert.INSTANCE.toVO(sysPost));
-        return null;
+    public Result<SysUserDO> get(@PathVariable("id") Long id) {
+        SysUserDO sysUser = sysUserService.get(id);
+        return Result.ok(sysUser);
     }
 
     @GetMapping

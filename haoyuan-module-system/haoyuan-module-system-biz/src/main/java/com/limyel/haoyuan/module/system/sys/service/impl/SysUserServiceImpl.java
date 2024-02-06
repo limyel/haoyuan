@@ -1,5 +1,7 @@
 package com.limyel.haoyuan.module.system.sys.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.limyel.haoyuan.common.exception.BizException;
 import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.module.system.exception.SysErrorCode;
@@ -11,7 +13,9 @@ import com.limyel.haoyuan.module.system.sys.dto.user.SysUserDTO;
 import com.limyel.haoyuan.module.system.sys.dto.user.SysUserFilterDTO;
 import com.limyel.haoyuan.module.system.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +29,9 @@ public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private SysUserPostService sysUserPostService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public Long create(SysUserDTO dto) {
         // todo 租户
@@ -34,11 +41,13 @@ public class SysUserServiceImpl implements SysUserService {
 
         SysUserDO sysUser = SysUserConvert.INSTANCE.toDO(dto);
         // todo 密码加密
-        sysUser.setPassword(dto.getPassword());
+        sysUser.setPassword(passwordEncoder.encode(dto.getPassword()));
         sysUserDao.insert(sysUser);
 
         // 插入关联岗位
-        sysUserPostService.createUserPosts(sysUser.getId(), dto.getPostIds());
+        if (!CollectionUtils.isEmpty(dto.getPostIds())) {
+            sysUserPostService.createUserPosts(sysUser.getId(), dto.getPostIds());
+        }
 
         return sysUser.getId();
     }
@@ -70,7 +79,7 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public SysUserDO get(Long id) {
-        return null;
+        return sysUserDao.selectById(id);
     }
 
     @Override

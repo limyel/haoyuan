@@ -40,4 +40,5 @@ public class HaoyuanWebConfig implements WebMvcConfigurer {
     public HaoyuanSwaggerConfig haoyuanSwaggerConfig() {
         return new HaoyuanSwaggerConfig();
     }
+
 }

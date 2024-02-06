@@ -1,5 +1,7 @@
 package com.limyel.haoyuan.module.system.sys.dao;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.limyel.haoyuan.framework.mybatis.dao.BaseDao;
 import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.module.system.sys.dataobject.SysUserDO;

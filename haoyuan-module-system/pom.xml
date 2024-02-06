@@ -38,9 +38,10 @@
             <artifactId>haoyuan-starter-nacos</artifactId>
         </dependency>
 
+        <!-- security -->
         <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-starter-security</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
         <dependency>

@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>haoyuan-module-mall</artifactId>
-        <version>0.0.0</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>haoyuan-module-lottery-api</artifactId>

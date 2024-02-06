@@ -74,6 +74,12 @@
                 <artifactId>haoyuan-starter-web</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-module-gateway</artifactId>
+                <version>0.0.0</version>
+            </dependency>
+
 
             <!-- 封装的框架组件 -->
             <dependency>
@@ -83,8 +89,13 @@
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>haoyuan-starter-security</artifactId>
-                <version>${revision}</version>
+                <artifactId>haoyuan-starter-es</artifactId>
+                <version>0.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-starter-rpc</artifactId>
+                <version>0.0.0</version>
             </dependency>
 
             <!-- mall -->
@@ -92,6 +103,33 @@
                 <groupId>com.limyel</groupId>
                 <artifactId>haoyuan-module-product-api</artifactId>
                 <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-module-lottery-api</artifactId>
+                <version>0.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-module-trade-api</artifactId>
+                <version>0.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-module-product-api</artifactId>
+                <version>0.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-module-promotion-api</artifactId>
+                <version>0.0.0</version>
+            </dependency>
+
+            <!-- member -->
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-module-member</artifactId>
+                <version>0.0.0</version>
             </dependency>
 
             <!-- DB -->

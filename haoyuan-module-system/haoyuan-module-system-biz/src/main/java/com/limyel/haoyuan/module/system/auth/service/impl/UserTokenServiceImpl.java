@@ -4,7 +4,7 @@ import com.limyel.haoyuan.common.util.TokenUtil;
 import com.limyel.haoyuan.module.system.auth.dao.UserTokenDao;
 import com.limyel.haoyuan.module.system.auth.dataobject.UserTokenDO;
 import com.limyel.haoyuan.module.system.auth.service.UserTokenService;
-import com.limyel.haoyuan.module.system.auth.vo.TokenVO;
+import com.limyel.haoyuan.module.system.auth.vo.LoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +16,8 @@ public class UserTokenServiceImpl implements UserTokenService {
     @Autowired
     private UserTokenDao userTokenDao;
 
-
     @Override
-    public TokenVO generateToken(Long userId) {
+    public LoginVO generateToken(Long userId) {
         String token;
 
         LocalDateTime now = LocalDateTime.now();
@@ -50,7 +49,7 @@ public class UserTokenServiceImpl implements UserTokenService {
             userTokenDao.updateById(userToken);
         }
 
-        TokenVO result = new TokenVO();
+        LoginVO result = new LoginVO();
         result.setToken(token);
         return result;
     }
