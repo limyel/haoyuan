@@ -9,6 +9,7 @@ import com.limyel.haoyuan.module.system.sys.dto.post.PostPageDTO;
 import com.limyel.haoyuan.module.system.sys.service.PostService;
 import com.limyel.haoyuan.module.system.sys.vo.post.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,24 +30,28 @@ public class PostController {
 
     // todo validated
     @PostMapping
+    @PreAuthorize("hasPermission('sys:post:create')")
     public Result<Long> create(@RequestBody PostDTO dto) {
         Long id = postService.create(dto);
         return Result.ok(id);
     }
 
     @PutMapping
+    @PreAuthorize("hasPermission('sys:post:update')")
     public Result<?> update(@RequestBody PostDTO dto) {
         postService.update(dto);
         return new Result<>();
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasPermission('sys:post:delete')")
     public Result<?> delete(@PathVariable("id") Long id) {
         postService.delete(id);
         return new Result<>();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasPermission('sys:post:get')")
     public Result<PostVO> get(@PathVariable("id") Long id) {
         PostDO post = postService.get(id);
         return Result.ok(PostConvert.INSTANCE.toVO(post));

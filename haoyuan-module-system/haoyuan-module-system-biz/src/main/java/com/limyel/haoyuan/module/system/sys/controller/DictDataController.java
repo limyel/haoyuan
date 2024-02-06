@@ -12,6 +12,7 @@ import com.limyel.haoyuan.module.system.sys.vo.dict.data.DictDataVO;
 import com.limyel.haoyuan.module.system.sys.vo.post.PostVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "字典")
@@ -23,24 +24,28 @@ public class DictDataController {
     private DictDataService dictDataService;
 
     @PostMapping
+    @PreAuthorize("hasPermission('sys:dict-data:create')")
     public Result<Long> create(@RequestBody DictDataDTO dto) {
         Long id = dictDataService.create(dto);
         return Result.ok(id);
     }
 
     @PutMapping
+    @PreAuthorize("hasPermission('sys:dict-data:update')")
     public Result<?> update(@RequestBody DictDataDTO dto) {
         dictDataService.update(dto);
         return new Result<>();
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasPermission('sys:dict-data:delete')")
     public Result<?> delete(@PathVariable("id") Long id) {
         dictDataService.delete(id);
         return new Result<>();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasPermission('sys:dict-data:get')")
     public Result<DictDataVO> get(@PathVariable("id") Long id) {
         DictDataDO dictData = dictDataService.get(id);
         return Result.ok(DictDataConvert.INSTANCE.toVO(dictData));

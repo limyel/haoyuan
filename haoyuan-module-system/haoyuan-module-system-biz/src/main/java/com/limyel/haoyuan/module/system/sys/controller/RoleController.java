@@ -11,6 +11,7 @@ import com.limyel.haoyuan.module.system.sys.vo.dict.data.DictDataVO;
 import com.limyel.haoyuan.module.system.sys.vo.role.RoleVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "字典")
@@ -22,24 +23,28 @@ public class RoleController {
     private RoleService roleService;
 
     @PostMapping
+    @PreAuthorize("hasPermission('sys:role:create')")
     public Result<Long> create(@RequestBody RoleDTO dto) {
         Long id = roleService.create(dto);
         return Result.ok(id);
     }
 
     @PutMapping
+    @PreAuthorize("hasPermission('sys:role:update')")
     public Result<?> update(@RequestBody RoleDTO dto) {
         roleService.update(dto);
         return new Result<>();
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasPermission('sys:role:delete')")
     public Result<?> delete(@PathVariable("id") Long id) {
         roleService.delete(id);
         return new Result<>();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasPermission('sys:role:get')")
     public Result<RoleVO> get(@PathVariable("id") Long id) {
         RoleDO role = roleService.get(id);
         return Result.ok(RoleConvert.INSTANCE.toVO(role));
