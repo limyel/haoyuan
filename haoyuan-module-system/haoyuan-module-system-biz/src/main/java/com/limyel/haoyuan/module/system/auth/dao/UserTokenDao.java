@@ -13,4 +13,9 @@ public interface UserTokenDao extends BaseDao<UserTokenDO> {
                 .eqIfPresent(UserTokenDO::getUserId, userId));
     }
 
+    default UserTokenDO selectByToken(String token) {
+        return selectOne(new LambdaQueryWrapperPlus<UserTokenDO>()
+                .eqIfPresent(UserTokenDO::getToken, token));
+    }
+
 }

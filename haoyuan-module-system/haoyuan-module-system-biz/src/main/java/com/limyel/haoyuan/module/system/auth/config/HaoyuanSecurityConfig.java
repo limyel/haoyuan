@@ -1,5 +1,7 @@
 package com.limyel.haoyuan.module.system.auth.config;
 
+import com.limyel.haoyuan.module.system.auth.filter.TokenAuthenticationFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +15,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
 public class HaoyuanSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private TokenAuthenticationFilter tokenAuthenticationFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -30,11 +36,8 @@ public class HaoyuanSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 允许匿名访问
                 .antMatchers("/sys/auth/login", "/sys/user").anonymous()
                 .anyRequest().authenticated();
-    }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        http.addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
