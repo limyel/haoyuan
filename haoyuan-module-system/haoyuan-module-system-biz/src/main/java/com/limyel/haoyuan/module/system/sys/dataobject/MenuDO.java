@@ -18,7 +18,7 @@ public class MenuDO extends BaseDO {
     /**
      * 权限标识
      */
-    private String permission;
+    private String permissions;
 
     /**
      * 菜单类型

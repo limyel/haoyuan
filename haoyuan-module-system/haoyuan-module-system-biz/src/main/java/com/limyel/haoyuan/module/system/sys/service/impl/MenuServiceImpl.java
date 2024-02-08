@@ -3,24 +3,27 @@ package com.limyel.haoyuan.module.system.sys.service.impl;
 import com.limyel.haoyuan.common.exception.BizException;
 import com.limyel.haoyuan.module.system.constant.MenuTypeEnum;
 import com.limyel.haoyuan.module.system.exception.SysErrorCode;
-import com.limyel.haoyuan.module.system.sys.convert.DictTypeConvert;
 import com.limyel.haoyuan.module.system.sys.convert.MenuConvert;
 import com.limyel.haoyuan.module.system.sys.dao.MenuDao;
-import com.limyel.haoyuan.module.system.sys.dataobject.DictTypeDO;
 import com.limyel.haoyuan.module.system.sys.dataobject.MenuDO;
-import com.limyel.haoyuan.module.system.sys.dto.dict.type.DictTypeDTO;
 import com.limyel.haoyuan.module.system.sys.dto.menu.MenuDTO;
 import com.limyel.haoyuan.module.system.sys.service.MenuService;
+import com.limyel.haoyuan.module.system.sys.service.RoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class MenuServiceImpl implements MenuService {
 
     @Autowired
     private MenuDao menuDao;
+
+    @Autowired
+    private RoleMenuService roleMenuService;
 
     @Override
     public Long create(MenuDTO dto) {
@@ -51,6 +54,21 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public MenuDO get(Long id) {
         return menuDao.selectById(id);
+    }
+
+    @Override
+    public Set<String> listPermissionsByRoleIds(List<Long> roleIds) {
+        Set<Long> menuIds = roleMenuService.listMenuIdsByRoleIds(roleIds);
+        List<MenuDO> list = menuDao.selectByIds(menuIds);
+        List<String[]> permissionsList = list.stream().map(menu -> {
+            String permissions = menu.getPermissions();
+            return permissions.split(",");
+        }).collect(Collectors.toList());
+        Set<String> result = new HashSet<>();
+        for (String[] permissions : permissionsList) {
+            result.addAll(Arrays.asList(permissions));
+        }
+        return result;
     }
 
     private void validateExist(Long id) {

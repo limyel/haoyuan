@@ -134,7 +134,7 @@ CREATE TABLE `sys_operate_log` (
 CREATE TABLE `sys_menu` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '菜单名称',
-    `permission` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '权限标识',
+    `permissions` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '权限标识',
     `type` tinyint NOT NULL COMMENT '菜单类型',
     `sort` int NOT NULL DEFAULT 0 COMMENT '显示顺序',
     `pid` bigint NOT NULL DEFAULT 0 COMMENT '父菜单ID',

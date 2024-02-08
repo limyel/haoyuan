@@ -3,6 +3,9 @@ package com.limyel.haoyuan.module.system.sys.service;
 import com.limyel.haoyuan.module.system.sys.dataobject.MenuDO;
 import com.limyel.haoyuan.module.system.sys.dto.menu.MenuDTO;
 
+import java.util.List;
+import java.util.Set;
+
 public interface MenuService {
 
     Long create(MenuDTO dto);
@@ -12,5 +15,7 @@ public interface MenuService {
     void delete(Long id);
 
     MenuDO get(Long id);
+
+    Set<String> listPermissionsByRoleIds(List<Long> roleIds);
 
 }
