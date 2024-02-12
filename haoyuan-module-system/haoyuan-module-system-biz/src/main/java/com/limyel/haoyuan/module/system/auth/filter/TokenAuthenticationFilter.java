@@ -3,7 +3,9 @@ package com.limyel.haoyuan.module.system.auth.filter;
 import com.limyel.haoyuan.module.system.auth.dataobject.LoginUser;
 import com.limyel.haoyuan.module.system.auth.service.UserTokenService;
 import com.limyel.haoyuan.module.system.sys.dataobject.SysUserDO;
+import com.limyel.haoyuan.module.system.sys.service.MenuService;
 import com.limyel.haoyuan.module.system.sys.service.SysUserService;
+import com.limyel.haoyuan.module.system.sys.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,12 +18,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+import java.util.Set;
 
 @Component
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
     private UserTokenService userTokenService;
+
+    @Autowired
+    private MenuService menuService;
+
+    @Autowired
+    private UserRoleService userRoleService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -36,7 +46,9 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         // 解析 token
         // todo 缓存
         SysUserDO sysUser = userTokenService.getUserByToken(token);
-        LoginUser loginUser = new LoginUser(sysUser);
+        List<Long> roleIds = userRoleService.listRoleIdByUserId(sysUser.getId());
+        Set<String> permissions = menuService.listPermissionsByRoleIds(roleIds);
+        LoginUser loginUser = new LoginUser(sysUser, permissions);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser, null, null);
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 

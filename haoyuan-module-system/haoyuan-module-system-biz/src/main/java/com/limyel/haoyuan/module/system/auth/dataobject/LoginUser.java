@@ -10,19 +10,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class LoginUser implements UserDetails {
 
     private SysUserDO sysUser;
 
-    private List<String> permissions;
+    private Set<String> permissions;
 
     // todo 禁止序列化
     private List<SimpleGrantedAuthority> authorities;
+
+    public LoginUser(SysUserDO sysUser, Set<String> permissions) {
+        this.sysUser = sysUser;
+        this.permissions = permissions;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

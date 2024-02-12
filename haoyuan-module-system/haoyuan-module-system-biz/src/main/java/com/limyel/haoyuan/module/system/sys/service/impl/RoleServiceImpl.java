@@ -17,6 +17,7 @@ import com.limyel.haoyuan.module.system.sys.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -54,6 +55,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public RoleDO get(Long id) {
         return roleDao.selectById(id);
+    }
+
+    @Override
+    public List<Long> listIdsByUserId(Long userId) {
+        return null;
     }
 
     private void validateExist(Long id) {
