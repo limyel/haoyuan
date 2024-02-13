@@ -70,8 +70,8 @@ CREATE TABLE `sys_role` (
     `sort` int NOT NULL DEFAULT 0 COMMENT '显示顺序',
     `data_scope` tinyint NOT NULL DEFAULT 1 COMMENT '数据范围',
     `data_scope_dept_ids` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '数据范围(指定部门数组)',
-    `status` tinyint NOT NULL DEFAULT 0 COMMENT '状态',
-    `type` tinyint NOT NULL DEFAULT 1 COMMENT '类型',
+    `status` tinyint NOT NULL DEFAULT 1 COMMENT '状态',
+    `type` tinyint NOT NULL DEFAULT 2 COMMENT '类型',
     `remark` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
     `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -81,6 +81,8 @@ CREATE TABLE `sys_role` (
     `tenant_id` bigint NOT NULL DEFAULT 0 COMMENT '租户编号',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '角色表';
+
+INSERT INTO `sys_role` (`id`, `name`, `code`, `sort`, `data_scope`, `data_scope_dept_ids`, `type`) VALUES (1, '管理员', 'admin', 1, '', '', 1);
 
 
 CREATE TABLE `sys_post` (
@@ -135,14 +137,14 @@ CREATE TABLE `sys_menu` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '菜单名称',
     `permissions` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '权限标识',
-    `type` tinyint NOT NULL COMMENT '菜单类型',
+    `type` tinyint NOT NULL DEFAULT 1 COMMENT '菜单类型',
     `sort` int NOT NULL DEFAULT 0 COMMENT '显示顺序',
     `pid` bigint NOT NULL DEFAULT 0 COMMENT '父菜单ID',
     `path` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '路由地址',
     `icon` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '#' COMMENT '菜单图标',
     `component` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '组件路径',
     `component_name` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '组件名',
-    `status` tinyint NOT NULL DEFAULT 0 COMMENT '菜单状态',
+    `status` tinyint NOT NULL DEFAULT 1 COMMENT '菜单状态',
     `visible` bit(1) NOT NULL DEFAULT b'1' COMMENT '是否可见',
     `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -151,6 +153,21 @@ CREATE TABLE `sys_menu` (
     `delete_time` datetime NULL COMMENT '删除时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '菜单权限表';
+
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (1, '系统管理', '', 1, 1, 0, '/system', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (2, '用户管理', '', 2, 1, 1, '/system/user', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (3, '角色管理', '', 2, 1, 2, '/system/role', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (4, '菜单管理', '', 2, 1, 3, '/system/menu', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (5, '部门管理', '', 2, 1, 4, '/system/dept', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (6, '岗位管理', '', 2, 1, 5, '/system/post', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (7, '字典管理', '', 2, 1, 6, '/system/dict', '', '', '');
 
 
 CREATE TABLE `sys_login_log` (
