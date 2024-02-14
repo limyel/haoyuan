@@ -155,19 +155,79 @@ CREATE TABLE `sys_menu` (
 ) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '菜单权限表';
 
 INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
-    VALUES (1, '系统管理', '', 1, 1, 0, '/system', '', '', '');
+    VALUES (10, '系统管理', '', 1, 1, 0, '/system', '', '', '');
 INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
-    VALUES (2, '用户管理', '', 2, 1, 1, '/system/user', '', '', '');
+    VALUES (1001, '用户管理', '', 2, 1, 10, '/system/user', '', '', '');
 INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
-    VALUES (3, '角色管理', '', 2, 1, 2, '/system/role', '', '', '');
+    VALUES (100101, '用户查询', 'sys:user:list', 3, 1, 1001, '/system/user', '', '', '');
 INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
-    VALUES (4, '菜单管理', '', 2, 1, 3, '/system/menu', '', '', '');
+    VALUES (100102, '用户详情', 'sys:user:get', 3, 2, 1001, '/system/user', '', '', '');
 INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
-    VALUES (5, '部门管理', '', 2, 1, 4, '/system/dept', '', '', '');
+    VALUES (100103, '用户新增', 'sys:user:create', 3, 3, 1001, '/system/user', '', '', '');
 INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
-    VALUES (6, '岗位管理', '', 2, 1, 5, '/system/post', '', '', '');
+    VALUES (100104, '用户修改', 'sys:user:update', 3, 4, 1001, '/system/user', '', '', '');
 INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
-    VALUES (7, '字典管理', '', 2, 1, 6, '/system/dict', '', '', '');
+    VALUES (100105, '用户删除', 'sys:user:delete', 3, 5, 1001, '/system/user', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (1002, '角色管理', '', 2, 2, 10, '/system/role', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100201, '角色查询', 'sys:menu:list', 3, 1, 1002, '/system/role', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100202, '角色详情', 'sys:menu:get', 3, 2, 1002, '/system/role', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100203, '角色新增', 'sys:user:create', 3, 3, 1002, '/system/role', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100204, '角色修改', 'sys:user:update', 3, 4, 1002, '/system/role', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100205, '角色删除', 'sys:user:delete', 3, 5, 1002, '/system/role', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (1003, '菜单管理', '', 2, 3, 10, '/system/menu', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100301, '菜单查询', 'sys:menu:list', 3, 1, 1003, '/system/menu', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100302, '菜单详情', 'sys:menu:get', 3, 2, 1003, '/system/menu', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100303, '菜单新增', 'sys:menu:create', 3, 3, 1003, '/system/menu', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100304, '菜单修改', 'sys:menu:update', 3, 4, 1003, '/system/menu', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100305, '菜单删除', 'sys:menu:delete', 3, 5, 1003, '/system/menu', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (1004, '部门管理', '', 2, 4, 10, '/system/dept', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100401, '部门查询', 'sys:dept:list', 3, 1, 1004, '/system/dept', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100402, '部门详情', 'sys:dept:get', 3, 2, 1004, '/system/dept', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100403, '部门新增', 'sys:dept:create', 3, 3, 1004, '/system/dept', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100404, '部门修改', 'sys:dept:update', 3, 4, 1004, '/system/dept', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100405, '部门删除', 'sys:dept:delete', 3, 5, 1004, '/system/dept', '', '', '');
+INSERT INTO `sys_post` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (1005, '岗位管理', '', 2, 5, 10, '/system/post', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100501, '岗位查询', 'sys:post:list', 3, 1, 1005, '/system/post', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100502, '岗位详情', 'sys:post:get', 3, 2, 1005, '/system/post', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100503, '岗位新增', 'sys:post:create', 3, 3, 1005, '/system/post', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100504, '岗位修改', 'sys:post:update', 3, 4, 1005, '/system/post', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100505, '岗位删除', 'sys:post:delete', 3, 5, 1005, '/system/post', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (1006, '字典管理', '', 2, 6, 10, '/system/dict', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100601, '字典查询', 'sys:dict:list', 3, 1, 1006, '/system/dict', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100602, '字典详情', 'sys:dict:get', 3, 2, 1006, '/system/dict', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100603, '字典新增', 'sys:dict:create', 3, 3, 1006, '/system/dict', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100604, '字典修改', 'sys:dict:update', 3, 4, 1006, '/system/dict', '', '', '');
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+    VALUES (100605, '字典删除', 'sys:dict:delete', 3, 5, 1006, '/system/dict', '', '', '');
 
 
 CREATE TABLE `sys_login_log` (
