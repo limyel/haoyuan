@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -17,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -50,7 +52,10 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             userId = null;
         }
         List<Long> roleIds = userRoleService.listRoleIdByUserId(userId);
-        Set<String> permissions = menuService.listPermissionsByRoleIds(roleIds);
+        Set<String> permissions = new HashSet<>();
+        if (!CollectionUtils.isEmpty(roleIds)) {
+            permissions = menuService.listPermissionsByRoleIds(roleIds);
+        }
         LoginUser loginUser = new LoginUser(sysUser, permissions);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser, null, loginUser.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
