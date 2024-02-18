@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.module.system.auth.config;
+package com.limyel.haoyuan.module.system.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

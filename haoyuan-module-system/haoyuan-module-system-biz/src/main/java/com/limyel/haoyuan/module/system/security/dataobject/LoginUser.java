@@ -1,7 +1,6 @@
-package com.limyel.haoyuan.module.system.auth.dataobject;
+package com.limyel.haoyuan.module.system.security.dataobject;
 
 import com.limyel.haoyuan.module.system.sys.dataobject.SysUserDO;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

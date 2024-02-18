@@ -1,10 +1,9 @@
-package com.limyel.haoyuan.module.system.auth.filter;
+package com.limyel.haoyuan.module.system.security.filter;
 
-import com.limyel.haoyuan.module.system.auth.dataobject.LoginUser;
-import com.limyel.haoyuan.module.system.auth.service.UserTokenService;
+import com.limyel.haoyuan.module.system.security.dataobject.LoginUser;
+import com.limyel.haoyuan.module.system.security.service.UserTokenService;
 import com.limyel.haoyuan.module.system.sys.dataobject.SysUserDO;
 import com.limyel.haoyuan.module.system.sys.service.MenuService;
-import com.limyel.haoyuan.module.system.sys.service.SysUserService;
 import com.limyel.haoyuan.module.system.sys.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

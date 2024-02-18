@@ -1,12 +1,10 @@
-package com.limyel.haoyuan.module.system.auth.config;
+package com.limyel.haoyuan.module.system.security.config;
 
-import com.limyel.haoyuan.module.system.auth.filter.TokenAuthenticationFilter;
+import com.limyel.haoyuan.module.system.security.filter.TokenAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

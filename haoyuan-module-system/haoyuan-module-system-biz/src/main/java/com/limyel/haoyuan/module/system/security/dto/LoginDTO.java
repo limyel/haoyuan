@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.module.system.auth.dto;
+package com.limyel.haoyuan.module.system.security.dto;
 
 import lombok.Data;
 

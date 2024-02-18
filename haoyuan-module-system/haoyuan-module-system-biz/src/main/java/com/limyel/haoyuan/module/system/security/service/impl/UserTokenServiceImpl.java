@@ -1,13 +1,13 @@
-package com.limyel.haoyuan.module.system.auth.service.impl;
+package com.limyel.haoyuan.module.system.security.service.impl;
 
 import com.limyel.haoyuan.common.exception.BizException;
 import com.limyel.haoyuan.common.util.TokenUtil;
-import com.limyel.haoyuan.module.system.auth.dao.UserTokenDao;
-import com.limyel.haoyuan.module.system.auth.dataobject.LoginUser;
-import com.limyel.haoyuan.module.system.auth.dataobject.UserTokenDO;
-import com.limyel.haoyuan.module.system.auth.dto.LoginDTO;
-import com.limyel.haoyuan.module.system.auth.service.UserTokenService;
-import com.limyel.haoyuan.module.system.auth.vo.LoginVO;
+import com.limyel.haoyuan.module.system.security.dao.UserTokenDao;
+import com.limyel.haoyuan.module.system.security.dataobject.LoginUser;
+import com.limyel.haoyuan.module.system.security.dataobject.UserTokenDO;
+import com.limyel.haoyuan.module.system.security.dto.LoginDTO;
+import com.limyel.haoyuan.module.system.security.service.UserTokenService;
+import com.limyel.haoyuan.module.system.security.vo.LoginVO;
 import com.limyel.haoyuan.module.system.sys.dataobject.SysUserDO;
 import com.limyel.haoyuan.module.system.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;

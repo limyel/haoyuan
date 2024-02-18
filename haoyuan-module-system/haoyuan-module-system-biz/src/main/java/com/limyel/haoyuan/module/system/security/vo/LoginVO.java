@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.module.system.auth.vo;
+package com.limyel.haoyuan.module.system.security.vo;
 
 import lombok.Data;
 

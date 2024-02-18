@@ -1,7 +1,7 @@
-package com.limyel.haoyuan.module.system.auth.service;
+package com.limyel.haoyuan.module.system.security.service;
 
-import com.limyel.haoyuan.module.system.auth.dto.LoginDTO;
-import com.limyel.haoyuan.module.system.auth.vo.LoginVO;
+import com.limyel.haoyuan.module.system.security.dto.LoginDTO;
+import com.limyel.haoyuan.module.system.security.vo.LoginVO;
 import com.limyel.haoyuan.module.system.sys.dataobject.SysUserDO;
 
 public interface UserTokenService {

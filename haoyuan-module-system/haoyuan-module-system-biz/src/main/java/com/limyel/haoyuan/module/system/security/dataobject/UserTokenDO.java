@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.module.system.auth.dataobject;
+package com.limyel.haoyuan.module.system.security.dataobject;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.limyel.haoyuan.framework.mybatis.pojo.BaseDO;
