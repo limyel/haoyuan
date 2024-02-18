@@ -1,6 +1,8 @@
 package com.limyel.haoyuan.module.system.security.config;
 
 import com.limyel.haoyuan.module.system.security.filter.TokenAuthenticationFilter;
+import com.limyel.haoyuan.module.system.security.handler.AccessDeniedHandlerImpl;
+import com.limyel.haoyuan.module.system.security.handler.AuthenticationEntryPointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +22,12 @@ public class HaoyuanSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private TokenAuthenticationFilter tokenAuthenticationFilter;
 
+    @Autowired
+    private AuthenticationEntryPointImpl authenticationEntryPoint;
+
+    @Autowired
+    private AccessDeniedHandlerImpl accessDeniedHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -33,7 +41,16 @@ public class HaoyuanSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/sys/auth/login").anonymous()
                 .anyRequest().authenticated();
 
+        // 添加过滤器
         http.addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        // 异常处理器
+        http.exceptionHandling()
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler);
+
+        // 允许跨域
+        http.cors();
     }
 
     @Bean

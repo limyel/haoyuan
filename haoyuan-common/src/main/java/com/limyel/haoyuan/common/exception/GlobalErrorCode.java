@@ -1,14 +1,12 @@
 package com.limyel.haoyuan.common.exception;
 
-import com.limyel.haoyuan.common.exception.ErrorCode;
-
 public interface GlobalErrorCode {
 
     // ========== 客户端错误段 ==========
 
     ErrorCode SUCCESS = new ErrorCode(0, "成功");
 
-    ErrorCode UNAUTHORIZED = new ErrorCode(401, "账号未登录");
+    ErrorCode UNAUTHORIZED = new ErrorCode(401, "用户未登录");
 
     ErrorCode FORBIDDEN = new ErrorCode(403, "没有该操作权限");
 

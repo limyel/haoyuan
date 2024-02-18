@@ -4,10 +4,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EmbeddedValueResolverAware;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringValueResolver;
 
-@Component
 public class SpringContextUtil implements ApplicationContextAware, EmbeddedValueResolverAware {
 
     public static ApplicationContext applicationContext;

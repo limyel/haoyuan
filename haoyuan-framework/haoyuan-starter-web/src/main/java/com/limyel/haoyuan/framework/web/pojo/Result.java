@@ -1,10 +1,13 @@
 package com.limyel.haoyuan.framework.web.pojo;
 
+import com.limyel.haoyuan.common.exception.ErrorCode;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@NoArgsConstructor
 public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,8 +21,13 @@ public class Result<T> implements Serializable {
 
     private T data;
 
+    public Result(ErrorCode errorCode) {
+        this.code = errorCode.getCode();
+        this.msg = errorCode.getMsg();
+    }
+
     public static <T> Result<T> ok(T data) {
-        Result<T> result = new Result<T>();
+        Result<T> result = new Result<>();
         result.setData(data);
         return result;
     }
