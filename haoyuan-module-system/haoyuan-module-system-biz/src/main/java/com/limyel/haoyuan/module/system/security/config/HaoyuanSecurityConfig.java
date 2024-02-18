@@ -30,7 +30,7 @@ public class HaoyuanSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 // 允许匿名访问
-                .antMatchers("/sys/auth/login", "/sys/user").anonymous()
+                .antMatchers("/sys/auth/login").anonymous()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

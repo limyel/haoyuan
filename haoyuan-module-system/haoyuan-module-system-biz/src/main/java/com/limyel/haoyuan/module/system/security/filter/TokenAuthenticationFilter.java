@@ -45,10 +45,14 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         // 解析 token
         // todo 缓存
         SysUserDO sysUser = userTokenService.getUserByToken(token);
-        List<Long> roleIds = userRoleService.listRoleIdByUserId(sysUser.getId());
+        Long userId = sysUser.getId();
+        if (sysUser.getSuperAdmin()) {
+            userId = null;
+        }
+        List<Long> roleIds = userRoleService.listRoleIdByUserId(userId);
         Set<String> permissions = menuService.listPermissionsByRoleIds(roleIds);
         LoginUser loginUser = new LoginUser(sysUser, permissions);
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser, null, null);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser, null, loginUser.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
         filterChain.doFilter(request, response);

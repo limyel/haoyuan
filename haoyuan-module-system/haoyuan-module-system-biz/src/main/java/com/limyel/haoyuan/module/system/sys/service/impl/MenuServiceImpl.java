@@ -10,8 +10,8 @@ import com.limyel.haoyuan.module.system.sys.dto.menu.MenuDTO;
 import com.limyel.haoyuan.module.system.sys.service.MenuService;
 import com.limyel.haoyuan.module.system.sys.service.RoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -59,6 +59,9 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public Set<String> listPermissionsByRoleIds(List<Long> roleIds) {
         Set<Long> menuIds = roleMenuService.listMenuIdsByRoleIds(roleIds);
+        if (CollectionUtils.isEmpty(menuIds)) {
+            return new HashSet<>();
+        }
         List<MenuDO> list = menuDao.selectByIds(menuIds);
         List<String[]> permissionsList = list.stream().map(menu -> {
             String permissions = menu.getPermissions();
@@ -68,6 +71,8 @@ public class MenuServiceImpl implements MenuService {
         for (String[] permissions : permissionsList) {
             result.addAll(Arrays.asList(permissions));
         }
+        // 移除空的权限
+        result.remove("");
         return result;
     }
 

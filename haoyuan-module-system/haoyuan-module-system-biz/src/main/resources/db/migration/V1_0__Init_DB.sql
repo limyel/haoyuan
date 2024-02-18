@@ -62,6 +62,37 @@ CREATE TABLE `sys_role_menu` (
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '角色和菜单关联表';
 
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100101);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100102);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100103);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100104);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100105);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100201);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100202);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100203);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100204);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100205);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100301);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100302);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100303);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100304);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100305);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100401);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100402);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100403);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100404);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100405);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100501);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100502);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100503);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100504);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100505);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100601);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100602);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100603);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100604);
+INSERT INTO `sys_role_menu` (role_id, menu_id) VALUES (1, 100605);
+
 
 CREATE TABLE `sys_role` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
@@ -82,7 +113,7 @@ CREATE TABLE `sys_role` (
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '角色表';
 
-INSERT INTO `sys_role` (`id`, `name`, `code`, `sort`, `data_scope`, `data_scope_dept_ids`, `type`) VALUES (1, '管理员', 'admin', 1, '', '', 1);
+INSERT INTO `sys_role` (`id`, `name`, `code`, `sort`, `data_scope`, `data_scope_dept_ids`, `type`) VALUES (1, '管理员', 'admin', 1, 1, '', 1);
 
 
 CREATE TABLE `sys_post` (
@@ -204,7 +235,7 @@ INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `pat
     VALUES (100404, '部门修改', 'sys:dept:update', 3, 4, 1004, '/system/dept', '', '', '');
 INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
     VALUES (100405, '部门删除', 'sys:dept:delete', 3, 5, 1004, '/system/dept', '', '', '');
-INSERT INTO `sys_post` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
+INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
     VALUES (1005, '岗位管理', '', 2, 5, 10, '/system/post', '', '', '');
 INSERT INTO `sys_menu` (`id`, `name`, `permissions`, `type`, `sort`, `pid`, `path`, `icon`, `component`, `component_name`)
     VALUES (100501, '岗位查询', 'sys:post:list', 3, 1, 1005, '/system/post', '', '', '');
@@ -290,10 +321,10 @@ CREATE TABLE `sys_dept`  (
     `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '部门名称',
     `pid` bigint NOT NULL DEFAULT 0 COMMENT '上级部门ID',
     `sort` int NOT NULL DEFAULT 0 COMMENT '显示顺序',
-    `leader_id` bigint NULL DEFAULT NULL COMMENT '负责人ID',
+    `leader_id` bigint NOT NULL DEFAULT 0 COMMENT '负责人ID',
     `mobile` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '联系电话',
     `email` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '邮箱',
-    `status` tinyint NOT NULL COMMENT '部门状态',
+    `status` tinyint NOT NULL DEFAULT 1 COMMENT '部门状态',
     `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',

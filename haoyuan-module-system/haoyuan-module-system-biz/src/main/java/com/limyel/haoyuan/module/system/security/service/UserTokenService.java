@@ -1,14 +1,12 @@
 package com.limyel.haoyuan.module.system.security.service;
 
-import com.limyel.haoyuan.module.system.security.dto.LoginDTO;
+import com.limyel.haoyuan.module.system.security.dataobject.UserTokenDO;
 import com.limyel.haoyuan.module.system.security.vo.LoginVO;
 import com.limyel.haoyuan.module.system.sys.dataobject.SysUserDO;
 
 public interface UserTokenService {
 
-    LoginVO login(LoginDTO dto);
-
-    void logout(Long userId);
+    UserTokenDO getByUserId(Long userId);
 
     LoginVO generateToken(Long userId);
 

@@ -23,28 +23,28 @@ public class DeptController {
 
     // todo validated
     @PostMapping
-    @PreAuthorize("hasPermission('sys:dept:create')")
+    @PreAuthorize("hasAuthority('sys:dept:create')")
     public Result<Long> create(@RequestBody DeptDTO dto) {
         Long id = deptService.create(dto);
         return Result.ok(id);
     }
 
     @PutMapping
-    @PreAuthorize("hasPermission('sys:dept:update')")
+    @PreAuthorize("hasAuthority('sys:dept:update')")
     public Result<?> update(@RequestBody DeptDTO dto) {
         deptService.update(dto);
         return new Result<>();
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasPermission('sys:dept:delete')")
+    @PreAuthorize("hasAuthority('sys:dept:delete')")
     public Result<?> delete(@PathVariable("id") Long id) {
         deptService.delete(id);
         return new Result<>();
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasPermission('sys:dept:get')")
+    @PreAuthorize("hasAuthority('sys:dept:get')")
     public Result<DeptVO> get(@PathVariable("id") Long id) {
         DeptDO dept = deptService.get(id);
         return Result.ok(DeptConvert.INSTANCE.toVO(dept));
