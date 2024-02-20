@@ -2,7 +2,7 @@ package com.limyel.haoyuan.module.system.security.dao;
 
 import com.limyel.haoyuan.framework.mybatis.dao.BaseDao;
 import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.module.system.security.dataobject.UserTokenDO;
+import com.limyel.haoyuan.module.system.security.entity.UserTokenDO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

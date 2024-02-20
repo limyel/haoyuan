@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.module.system.sys.convert;
 
-import com.limyel.haoyuan.module.system.sys.dataobject.DictTypeDO;
+import com.limyel.haoyuan.module.system.sys.entity.DictTypeDO;
 import com.limyel.haoyuan.module.system.sys.dto.dict.type.DictTypeDTO;
 import com.limyel.haoyuan.module.system.sys.vo.dict.type.DictTypeVO;
 import org.mapstruct.Mapper;

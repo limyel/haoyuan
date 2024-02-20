@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.module.system.sys.service;
 
-import com.limyel.haoyuan.module.system.sys.dataobject.ParamDO;
+import com.limyel.haoyuan.module.system.sys.entity.ParamDO;
 import com.limyel.haoyuan.module.system.sys.dto.param.ParamDTO;
 
 public interface ParamService {

@@ -3,7 +3,7 @@ POST http://localhost:8000/sys/user
 Content-Type: application/json
 
 {
-  "username": "test",
+  "username": "test1",
   "password": "123456",
   "email": "email",
   "mobile": "13000000000",

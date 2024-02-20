@@ -5,7 +5,7 @@ import com.limyel.haoyuan.module.system.constant.ParamTypeEnum;
 import com.limyel.haoyuan.module.system.exception.SysErrorCode;
 import com.limyel.haoyuan.module.system.sys.convert.ParamConvert;
 import com.limyel.haoyuan.module.system.sys.dao.ParamDao;
-import com.limyel.haoyuan.module.system.sys.dataobject.ParamDO;
+import com.limyel.haoyuan.module.system.sys.entity.ParamDO;
 import com.limyel.haoyuan.module.system.sys.dto.param.ParamDTO;
 import com.limyel.haoyuan.module.system.sys.service.ParamService;
 import org.springframework.beans.factory.annotation.Autowired;

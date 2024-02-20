@@ -2,7 +2,7 @@ package com.limyel.haoyuan.module.system.sys.dao;
 
 import com.limyel.haoyuan.framework.mybatis.dao.BaseDao;
 import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.module.system.sys.dataobject.DictTypeDO;
+import com.limyel.haoyuan.module.system.sys.entity.DictTypeDO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

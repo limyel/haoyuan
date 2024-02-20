@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.module.system.sys.convert;
 
-import com.limyel.haoyuan.module.system.sys.dataobject.DeptDO;
+import com.limyel.haoyuan.module.system.sys.entity.DeptDO;
 import com.limyel.haoyuan.module.system.sys.dto.dept.DeptDTO;
 import com.limyel.haoyuan.module.system.sys.vo.dept.DeptVO;
 import org.mapstruct.Mapper;

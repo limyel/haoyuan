@@ -2,7 +2,7 @@ package com.limyel.haoyuan.module.system.sys.controller;
 
 import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.framework.web.pojo.Result;
-import com.limyel.haoyuan.module.system.sys.dataobject.SysUserDO;
+import com.limyel.haoyuan.module.system.sys.entity.SysUserDO;
 import com.limyel.haoyuan.module.system.sys.dto.post.PostPageDTO;
 import com.limyel.haoyuan.module.system.sys.vo.post.PostVO;
 import com.limyel.haoyuan.module.system.sys.dto.user.SysUserDTO;

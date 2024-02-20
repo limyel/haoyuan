@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.module.system.sys.convert;
 
-import com.limyel.haoyuan.module.system.sys.dataobject.SysUserDO;
+import com.limyel.haoyuan.module.system.sys.entity.SysUserDO;
 import com.limyel.haoyuan.module.system.sys.dto.user.SysUserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

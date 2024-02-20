@@ -2,14 +2,10 @@ package com.limyel.haoyuan.module.system.sys.controller;
 
 import com.limyel.haoyuan.framework.web.pojo.Result;
 import com.limyel.haoyuan.module.system.sys.convert.DictDataConvert;
-import com.limyel.haoyuan.module.system.sys.convert.PostConvert;
-import com.limyel.haoyuan.module.system.sys.dataobject.DictDataDO;
-import com.limyel.haoyuan.module.system.sys.dataobject.PostDO;
+import com.limyel.haoyuan.module.system.sys.entity.DictDataDO;
 import com.limyel.haoyuan.module.system.sys.dto.dict.data.DictDataDTO;
-import com.limyel.haoyuan.module.system.sys.dto.post.PostDTO;
 import com.limyel.haoyuan.module.system.sys.service.DictDataService;
 import com.limyel.haoyuan.module.system.sys.vo.dict.data.DictDataVO;
-import com.limyel.haoyuan.module.system.sys.vo.post.PostVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

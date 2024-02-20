@@ -17,7 +17,6 @@
         <module>haoyuan-module-datacenter</module>
         <module>haoyuan-module-mall</module>
         <module>haoyuan-module-member</module>
-        <module>haoyuan-gateway</module>
         <module>haoyuan-module-shortlink</module>
     </modules>
 

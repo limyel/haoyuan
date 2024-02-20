@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.module.system.security.controller;
 
 import com.limyel.haoyuan.framework.web.pojo.Result;
-import com.limyel.haoyuan.module.system.security.dataobject.LoginUser;
+import com.limyel.haoyuan.module.system.security.entity.LoginUser;
 import com.limyel.haoyuan.module.system.security.dto.LoginDTO;
 import com.limyel.haoyuan.module.system.security.service.AuthService;
 import com.limyel.haoyuan.module.system.security.vo.LoginVO;

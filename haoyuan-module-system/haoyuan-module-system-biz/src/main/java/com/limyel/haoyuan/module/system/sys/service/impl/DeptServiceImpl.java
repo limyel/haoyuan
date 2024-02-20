@@ -7,7 +7,7 @@ import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.module.system.exception.SysErrorCode;
 import com.limyel.haoyuan.module.system.sys.convert.DeptConvert;
 import com.limyel.haoyuan.module.system.sys.dao.DeptDao;
-import com.limyel.haoyuan.module.system.sys.dataobject.DeptDO;
+import com.limyel.haoyuan.module.system.sys.entity.DeptDO;
 import com.limyel.haoyuan.module.system.sys.dto.dept.DeptDTO;
 import com.limyel.haoyuan.module.system.sys.dto.dept.DeptPageDTO;
 import com.limyel.haoyuan.module.system.sys.service.DeptService;

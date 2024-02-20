@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.module.system.sys.service.impl;
 
 import com.limyel.haoyuan.module.system.sys.dao.RoleMenuDao;
-import com.limyel.haoyuan.module.system.sys.dataobject.RoleMenuDO;
+import com.limyel.haoyuan.module.system.sys.entity.RoleMenuDO;
 import com.limyel.haoyuan.module.system.sys.service.RoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

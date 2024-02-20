@@ -5,7 +5,7 @@ import com.limyel.haoyuan.framework.web.pojo.Result;
 import com.limyel.haoyuan.module.system.sys.convert.DeptConvert;
 import com.limyel.haoyuan.module.system.sys.dto.dept.DeptDTO;
 import com.limyel.haoyuan.module.system.sys.dto.dept.DeptPageDTO;
-import com.limyel.haoyuan.module.system.sys.dataobject.DeptDO;
+import com.limyel.haoyuan.module.system.sys.entity.DeptDO;
 import com.limyel.haoyuan.module.system.sys.service.DeptService;
 import com.limyel.haoyuan.module.system.sys.vo.dept.DeptVO;
 import io.swagger.annotations.Api;

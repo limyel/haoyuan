@@ -2,7 +2,7 @@ package com.limyel.haoyuan.module.system.sys.dao;
 
 import com.limyel.haoyuan.framework.mybatis.dao.BaseDao;
 import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.module.system.sys.dataobject.PostDO;
+import com.limyel.haoyuan.module.system.sys.entity.PostDO;
 import com.limyel.haoyuan.module.system.sys.dto.post.PostPageDTO;
 import org.apache.ibatis.annotations.Mapper;
 

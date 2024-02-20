@@ -2,8 +2,8 @@ package com.limyel.haoyuan.module.system.security.service.impl;
 
 import com.limyel.haoyuan.common.exception.BizException;
 import com.limyel.haoyuan.common.util.TokenUtil;
-import com.limyel.haoyuan.module.system.security.dataobject.LoginUser;
-import com.limyel.haoyuan.module.system.security.dataobject.UserTokenDO;
+import com.limyel.haoyuan.module.system.security.entity.LoginUser;
+import com.limyel.haoyuan.module.system.security.entity.UserTokenDO;
 import com.limyel.haoyuan.module.system.security.dto.LoginDTO;
 import com.limyel.haoyuan.module.system.security.service.AuthService;
 import com.limyel.haoyuan.module.system.security.service.UserTokenService;

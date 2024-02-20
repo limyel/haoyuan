@@ -8,10 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-public class HaoyuanSystemApplication {
+public class SystemApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(HaoyuanSystemApplication.class, args);
+        SpringApplication.run(SystemApplication.class, args);
     }
 
 }

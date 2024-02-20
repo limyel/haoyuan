@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.module.system.sys.dataobject;
+package com.limyel.haoyuan.module.system.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.limyel.haoyuan.framework.mybatis.pojo.TenantBaseDO;
@@ -7,11 +7,11 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("sys_user_role")
-public class UserRoleDO extends TenantBaseDO {
-
-    private Long userId;
+@TableName("sys_role_menu")
+public class RoleMenuDO extends TenantBaseDO {
 
     private Long roleId;
+
+    private Long menuId;
 
 }

@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.module.system.sys.service;
 
 import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
-import com.limyel.haoyuan.module.system.sys.dataobject.PostDO;
+import com.limyel.haoyuan.module.system.sys.entity.PostDO;
 import com.limyel.haoyuan.module.system.sys.dto.post.PostDTO;
 import com.limyel.haoyuan.module.system.sys.dto.post.PostPageDTO;
 

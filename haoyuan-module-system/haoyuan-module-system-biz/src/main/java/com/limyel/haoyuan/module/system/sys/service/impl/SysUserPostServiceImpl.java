@@ -2,7 +2,7 @@ package com.limyel.haoyuan.module.system.sys.service.impl;
 
 import com.limyel.haoyuan.framework.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.module.system.sys.dao.UserPostDao;
-import com.limyel.haoyuan.module.system.sys.dataobject.UserPostDO;
+import com.limyel.haoyuan.module.system.sys.entity.UserPostDO;
 import com.limyel.haoyuan.module.system.sys.service.SysUserPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

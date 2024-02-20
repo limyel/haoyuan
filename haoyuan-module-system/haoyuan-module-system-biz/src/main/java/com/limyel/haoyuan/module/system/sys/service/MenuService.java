@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.module.system.sys.service;
 
-import com.limyel.haoyuan.module.system.sys.dataobject.MenuDO;
+import com.limyel.haoyuan.module.system.sys.entity.MenuDO;
 import com.limyel.haoyuan.module.system.sys.dto.menu.MenuDTO;
 
 import java.util.List;

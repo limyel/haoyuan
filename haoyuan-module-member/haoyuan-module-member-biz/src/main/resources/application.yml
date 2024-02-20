@@ -14,7 +14,7 @@ spring:
   application:
     name: mall-member
   profiles:
-    active: dev
+    active: local
   messages:
     encoding: UTF-8
     basename: i18n/message

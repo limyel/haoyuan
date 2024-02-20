@@ -1,16 +1,14 @@
 package com.limyel.haoyuan.module.system.sys.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.limyel.haoyuan.common.exception.BizException;
 import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.module.system.exception.SysErrorCode;
 import com.limyel.haoyuan.module.system.sys.service.SysUserPostService;
 import com.limyel.haoyuan.module.system.sys.convert.SysUserConvert;
 import com.limyel.haoyuan.module.system.sys.dao.SysUserDao;
-import com.limyel.haoyuan.module.system.sys.dataobject.SysUserDO;
+import com.limyel.haoyuan.module.system.sys.entity.SysUserDO;
 import com.limyel.haoyuan.module.system.sys.dto.user.SysUserDTO;
-import com.limyel.haoyuan.module.system.sys.dto.user.SysUserFilterDTO;
+import com.limyel.haoyuan.module.system.sys.dto.user.SysUserPageDTO;
 import com.limyel.haoyuan.module.system.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -83,12 +81,12 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public List<SysUserDO> getList(SysUserFilterDTO dto) {
+    public List<SysUserDO> getList(SysUserPageDTO dto) {
         return null;
     }
 
     @Override
-    public PageData<SysUserDO> getPage(SysUserFilterDTO dto) {
+    public PageData<SysUserDO> getPage(SysUserPageDTO dto) {
         return null;
     }
 

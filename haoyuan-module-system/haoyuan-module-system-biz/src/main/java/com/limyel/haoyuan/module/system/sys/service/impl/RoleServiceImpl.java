@@ -1,17 +1,12 @@
 package com.limyel.haoyuan.module.system.sys.service.impl;
 
 import com.limyel.haoyuan.common.exception.BizException;
-import com.limyel.haoyuan.module.system.constant.MenuTypeEnum;
 import com.limyel.haoyuan.module.system.constant.RoleCodeEnum;
 import com.limyel.haoyuan.module.system.constant.RoleTypeEnum;
 import com.limyel.haoyuan.module.system.exception.SysErrorCode;
-import com.limyel.haoyuan.module.system.sys.convert.MenuConvert;
 import com.limyel.haoyuan.module.system.sys.convert.RoleConvert;
-import com.limyel.haoyuan.module.system.sys.dao.MenuDao;
 import com.limyel.haoyuan.module.system.sys.dao.RoleDao;
-import com.limyel.haoyuan.module.system.sys.dataobject.MenuDO;
-import com.limyel.haoyuan.module.system.sys.dataobject.RoleDO;
-import com.limyel.haoyuan.module.system.sys.dto.menu.MenuDTO;
+import com.limyel.haoyuan.module.system.sys.entity.RoleDO;
 import com.limyel.haoyuan.module.system.sys.dto.role.RoleDTO;
 import com.limyel.haoyuan.module.system.sys.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;

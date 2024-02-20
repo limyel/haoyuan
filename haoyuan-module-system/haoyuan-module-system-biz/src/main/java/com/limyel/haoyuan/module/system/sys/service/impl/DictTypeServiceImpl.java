@@ -4,7 +4,7 @@ import com.limyel.haoyuan.common.exception.BizException;
 import com.limyel.haoyuan.module.system.exception.SysErrorCode;
 import com.limyel.haoyuan.module.system.sys.convert.DictTypeConvert;
 import com.limyel.haoyuan.module.system.sys.dao.DictTypeDao;
-import com.limyel.haoyuan.module.system.sys.dataobject.DictTypeDO;
+import com.limyel.haoyuan.module.system.sys.entity.DictTypeDO;
 import com.limyel.haoyuan.module.system.sys.dto.dict.type.DictTypeDTO;
 import com.limyel.haoyuan.module.system.sys.service.DictTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

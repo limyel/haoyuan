@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.module.system.sys.service;
 
-import com.limyel.haoyuan.module.system.sys.dataobject.RoleDO;
+import com.limyel.haoyuan.module.system.sys.entity.RoleDO;
 import com.limyel.haoyuan.module.system.sys.dto.role.RoleDTO;
 
 import java.util.List;

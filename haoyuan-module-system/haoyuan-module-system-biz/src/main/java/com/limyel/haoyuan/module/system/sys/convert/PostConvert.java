@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.module.system.sys.convert;
 
 import com.limyel.haoyuan.module.system.sys.dto.post.PostDTO;
-import com.limyel.haoyuan.module.system.sys.dataobject.PostDO;
+import com.limyel.haoyuan.module.system.sys.entity.PostDO;
 import com.limyel.haoyuan.module.system.sys.vo.post.PostVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

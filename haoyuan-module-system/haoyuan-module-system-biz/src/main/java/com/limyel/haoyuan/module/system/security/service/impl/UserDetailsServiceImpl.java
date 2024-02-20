@@ -1,8 +1,8 @@
 package com.limyel.haoyuan.module.system.security.service.impl;
 
 import com.limyel.haoyuan.common.exception.BizException;
-import com.limyel.haoyuan.module.system.security.dataobject.LoginUser;
-import com.limyel.haoyuan.module.system.sys.dataobject.SysUserDO;
+import com.limyel.haoyuan.module.system.security.entity.LoginUser;
+import com.limyel.haoyuan.module.system.sys.entity.SysUserDO;
 import com.limyel.haoyuan.module.system.sys.service.MenuService;
 import com.limyel.haoyuan.module.system.sys.service.SysUserService;
 import com.limyel.haoyuan.module.system.sys.service.UserRoleService;

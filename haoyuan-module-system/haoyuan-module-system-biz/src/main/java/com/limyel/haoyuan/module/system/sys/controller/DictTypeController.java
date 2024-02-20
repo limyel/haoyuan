@@ -2,7 +2,7 @@ package com.limyel.haoyuan.module.system.sys.controller;
 
 import com.limyel.haoyuan.framework.web.pojo.Result;
 import com.limyel.haoyuan.module.system.sys.convert.DictTypeConvert;
-import com.limyel.haoyuan.module.system.sys.dataobject.DictTypeDO;
+import com.limyel.haoyuan.module.system.sys.entity.DictTypeDO;
 import com.limyel.haoyuan.module.system.sys.dto.dict.type.DictTypeDTO;
 import com.limyel.haoyuan.module.system.sys.service.DictTypeService;
 import com.limyel.haoyuan.module.system.sys.vo.dict.type.DictTypeVO;

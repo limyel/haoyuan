@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.module.system.sys.service;
 
-import com.limyel.haoyuan.module.system.sys.dataobject.DictDataDO;
+import com.limyel.haoyuan.module.system.sys.entity.DictDataDO;
 import com.limyel.haoyuan.module.system.sys.dto.dict.data.DictDataDTO;
 
 public interface DictDataService {

@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.module.system.sys.service.impl;
 
 import com.limyel.haoyuan.module.system.sys.dao.UserRoleDao;
-import com.limyel.haoyuan.module.system.sys.dataobject.UserRoleDO;
+import com.limyel.haoyuan.module.system.sys.entity.UserRoleDO;
 import com.limyel.haoyuan.module.system.sys.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

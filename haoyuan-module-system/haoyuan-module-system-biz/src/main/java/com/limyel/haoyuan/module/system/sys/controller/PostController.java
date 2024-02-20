@@ -3,7 +3,7 @@ package com.limyel.haoyuan.module.system.sys.controller;
 import com.limyel.haoyuan.framework.mybatis.pojo.PageData;
 import com.limyel.haoyuan.framework.web.pojo.Result;
 import com.limyel.haoyuan.module.system.sys.convert.PostConvert;
-import com.limyel.haoyuan.module.system.sys.dataobject.PostDO;
+import com.limyel.haoyuan.module.system.sys.entity.PostDO;
 import com.limyel.haoyuan.module.system.sys.dto.post.PostDTO;
 import com.limyel.haoyuan.module.system.sys.dto.post.PostPageDTO;
 import com.limyel.haoyuan.module.system.sys.service.PostService;

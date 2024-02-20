@@ -5,11 +5,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class SysUserFilterDTO extends PageParam {
+public class SysUserPageDTO extends PageParam {
 
     private String username;
 

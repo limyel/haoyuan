@@ -5,7 +5,7 @@ import com.limyel.haoyuan.module.system.constant.MenuTypeEnum;
 import com.limyel.haoyuan.module.system.exception.SysErrorCode;
 import com.limyel.haoyuan.module.system.sys.convert.MenuConvert;
 import com.limyel.haoyuan.module.system.sys.dao.MenuDao;
-import com.limyel.haoyuan.module.system.sys.dataobject.MenuDO;
+import com.limyel.haoyuan.module.system.sys.entity.MenuDO;
 import com.limyel.haoyuan.module.system.sys.dto.menu.MenuDTO;
 import com.limyel.haoyuan.module.system.sys.service.MenuService;
 import com.limyel.haoyuan.module.system.sys.service.RoleMenuService;

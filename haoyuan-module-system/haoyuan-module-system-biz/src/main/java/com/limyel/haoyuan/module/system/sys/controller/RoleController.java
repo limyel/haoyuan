@@ -1,13 +1,10 @@
 package com.limyel.haoyuan.module.system.sys.controller;
 
 import com.limyel.haoyuan.framework.web.pojo.Result;
-import com.limyel.haoyuan.module.system.sys.convert.DictDataConvert;
 import com.limyel.haoyuan.module.system.sys.convert.RoleConvert;
-import com.limyel.haoyuan.module.system.sys.dataobject.DictDataDO;
-import com.limyel.haoyuan.module.system.sys.dataobject.RoleDO;
+import com.limyel.haoyuan.module.system.sys.entity.RoleDO;
 import com.limyel.haoyuan.module.system.sys.dto.role.RoleDTO;
 import com.limyel.haoyuan.module.system.sys.service.RoleService;
-import com.limyel.haoyuan.module.system.sys.vo.dict.data.DictDataVO;
 import com.limyel.haoyuan.module.system.sys.vo.role.RoleVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;

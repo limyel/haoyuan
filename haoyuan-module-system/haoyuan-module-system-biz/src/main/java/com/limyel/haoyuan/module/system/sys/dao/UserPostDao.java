@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.module.system.sys.dao;
 
 import com.limyel.haoyuan.framework.mybatis.dao.BaseDao;
-import com.limyel.haoyuan.module.system.sys.dataobject.UserPostDO;
+import com.limyel.haoyuan.module.system.sys.entity.UserPostDO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
