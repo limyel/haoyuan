@@ -13,7 +13,8 @@
         <module>haoyuan-dependency</module>
         <module>haoyuan-startup</module>
         <module>haoyuan-auth</module>
-        <module>haoyuan-sys</module>
+        <module>haoyuan-system</module>
+        <module>haoyuan-common</module>
     </modules>
 
     <properties>
@@ -35,5 +36,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
