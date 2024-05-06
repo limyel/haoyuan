@@ -1,0 +1,3 @@
+com.limyel.blog.common.web.config.WebConfig
+com.limyel.blog.common.web.config.LocalDateTimeSerializerConfig
+com.limyel.blog.common.web.config.AutoPrefixConfig
