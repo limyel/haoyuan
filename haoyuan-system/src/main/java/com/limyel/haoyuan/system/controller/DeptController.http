@@ -1,0 +1,53 @@
+###
+POST http://localhost:9000/system/dept/create
+Content-Type: application/json
+
+{
+  "name": "test-dept1"
+}
+
+###
+GET http://localhost:9000/system/dept/page
+Content-Type: application/json
+satoken: Bearer 96571c7ecbd64c0fbfd7a14ef67f8b49
+
+###
+GET http://localhost:8080/haoyuan-sys/sys/dept/page
+Content-Type: application/json
+
+###
+POST http://localhost:8001/auth/sys/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "123"
+}
+
+
+###
+POST http://localhost:8080/haoyuan/auth/auth/sys/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "123456"
+}
+
+
+###
+POST http://localhost:8080/haoyuan/sys/sys/dept
+Content-Type: application/json
+satoken: ce81fdf5-cad2-49ca-8448-fea2d3c5ea8f
+
+{
+  "name": "test-dept2"
+}
+
+
+
+###
+POST http://localhost:8000/haoyuan-auth/auth/oauth/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=client&client_secret=123456&username=test&password=123456

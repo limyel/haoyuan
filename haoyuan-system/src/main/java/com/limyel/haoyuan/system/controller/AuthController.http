@@ -1,0 +1,8 @@
+###
+POST http://localhost:9000/system/auth/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "123456"
+}

@@ -19,7 +19,11 @@
         <flyway.version>9.19.4</flyway.version>
         <mybatis-plus.version>3.5.4</mybatis-plus.version>
         <mysql.version>8.0.33</mysql.version>
-        <hivernate-validator.version>8.0.1.Final</hivernate-validator.version>
+        <hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <lombok.version>1.18.30</lombok.version>
+        <jjwt.version>0.11.5</jjwt.version>
+        <satoken.version>1.38.0</satoken.version>
     </properties>
 
     <dependencyManagement>
@@ -49,13 +53,18 @@
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>common-security</artifactId>
+                <artifactId>haoyuan-system</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>haoyuan-system</artifactId>
-                <version>${project.version}</version>
+                <artifactId>common-satoken</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>common-redis</artifactId>
+                <version>${revision}</version>
             </dependency>
 
             <!-- db -->
@@ -83,7 +92,41 @@
             <dependency>
                 <groupId>org.hibernate.validator</groupId>
                 <artifactId>hibernate-validator</artifactId>
-                <version>${hivernate-validator.version}</version>
+                <version>${hibernate-validator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <!-- jwt -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-spring-boot-starter</artifactId>
+                <version>${satoken.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-redis-jackson</artifactId>
+                <version>${satoken.version}</version>
             </dependency>
 
         </dependencies>

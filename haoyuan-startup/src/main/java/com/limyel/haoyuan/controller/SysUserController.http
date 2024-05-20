@@ -1,8 +1,0 @@
-###
-POST http://localhost:9000/sys/user
-Content-Type: application/json
-
-{
-  "username": "test1",
-  "password": "test_password1"
-}

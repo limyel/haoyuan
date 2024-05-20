@@ -7,6 +7,8 @@ public interface GlobalErrorCode {
     ErrorCode SUCCESS = new ErrorCode(0, "成功");
 
     ErrorCode UNAUTHORIZED = new ErrorCode(401, "用户未登录");
+    ErrorCode UNAUTHORIZED_LOGIN_FAILED = new ErrorCode(401, "用户登录失败");
+    ErrorCode UNAUTHORIZED_STATUS_ERROR = new ErrorCode(401, "用户状态异常");
 
     ErrorCode FORBIDDEN = new ErrorCode(403, "没有该操作权限");
 

@@ -1,8 +1,8 @@
 package com.limyel.haoyuan.common.core.exception;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class ErrorCode {
 
     private final Integer code;
