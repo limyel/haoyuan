@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <revision>0.0.0</revision>
 
@@ -53,13 +53,8 @@
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>haoyuan-system</artifactId>
+                <artifactId>haoyuan-sys</artifactId>
                 <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.limyel</groupId>
-                <artifactId>common-satoken</artifactId>
-                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>

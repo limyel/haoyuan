@@ -9,11 +9,11 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>haoyuan-system</artifactId>
+    <artifactId>haoyuan-sys</artifactId>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -31,11 +31,6 @@
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>common-mybatis</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>common-satoken</artifactId>
         </dependency>
 
         <dependency>
