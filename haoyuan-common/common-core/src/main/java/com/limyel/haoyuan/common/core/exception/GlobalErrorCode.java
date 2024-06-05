@@ -1,27 +1,16 @@
 package com.limyel.haoyuan.common.core.exception;
 
+import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
+
 public interface GlobalErrorCode {
 
     // ========== 客户端错误段 ==========
 
-    ErrorCode SUCCESS = new ErrorCode(0, "成功");
-
-    ErrorCode UNAUTHORIZED = new ErrorCode(401, "用户未登录");
-    ErrorCode UNAUTHORIZED_LOGIN_FAILED = new ErrorCode(401, "用户登录失败");
-    ErrorCode UNAUTHORIZED_STATUS_ERROR = new ErrorCode(401, "用户状态异常");
-
-    ErrorCode FORBIDDEN = new ErrorCode(403, "没有该操作权限");
-
-    ErrorCode NOT_FOUND = new ErrorCode(404, "资源不存在");
-
-    ErrorCode TOO_MANY_REQUESTS = new ErrorCode(429, "请求过于频繁，请稍后重试");
-
-    // ========== 服务端错误段 ==========
-
-    ErrorCode INTERNAL_SERVER_ERROR = new ErrorCode(500, "系统异常");
-
-    // ========== 自定义错误段 ==========
-
-    ErrorCode UNKNOWN = new ErrorCode(999, "未知错误");
+    ErrorCode SUCCESS = new ErrorCode("Success", "成功");
+    ErrorCode INTERNAL_ERROR = new ErrorCode("InternalError", "内部错误");
+    ErrorCode INVALID_PARAMETER = new ErrorCode("InvalidParameter", "参数错误");
+    ErrorCode AUTH_FAILURE = new ErrorCode("AuthFailure", "认证/授权错误");
+    ErrorCode RESOURCE_NOT_FOUND = new ErrorCode("ResourceNotFound", "资源不存在");
+    ErrorCode FAILED_OPERATION = new ErrorCode("FailedOperation", "操作失败");
 
 }

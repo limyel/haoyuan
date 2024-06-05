@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -12,6 +13,9 @@ import java.util.Collection;
 import java.util.List;
 
 public interface BaseDao<T> extends BaseMapper<T> {
+
+    // 批量插入
+    int insertBatchSomeColumn(@Param("list") List<T> batchList);
 
     default T selectOne(String field, Object value) {
         return selectOne(new QueryWrapper<T>().eq(field, value));
@@ -59,7 +63,4 @@ public interface BaseDao<T> extends BaseMapper<T> {
         return selectList(new LambdaQueryWrapper<T>().in(field, values));
     }
 
-    default Boolean insertBatch(Collection<T> list) {
-        return Db.saveBatch(list);
-    }
 }

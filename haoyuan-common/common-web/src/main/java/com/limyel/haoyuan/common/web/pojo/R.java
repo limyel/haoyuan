@@ -2,7 +2,7 @@ package com.limyel.haoyuan.common.web.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.limyel.haoyuan.common.core.exception.BizException;
-import com.limyel.haoyuan.common.core.exception.ErrorCode;
+import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
 import com.limyel.haoyuan.common.core.exception.GlobalErrorCode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,9 +18,9 @@ public class R<T> implements Serializable {
     /**
      * 编码，0表示成功，非0表示失败
      */
-    private Integer code = 0;
+    private String code = GlobalErrorCode.SUCCESS.getCode();
 
-    private String msg = "success";
+    private String msg = GlobalErrorCode.SUCCESS.getMsg();
 
     private T data;
 
@@ -29,7 +29,11 @@ public class R<T> implements Serializable {
         this.msg = errorCode.getMsg();
     }
 
-    public R(Integer code, String msg) {
+    public static R<?> ok() {
+        return new R<>();
+    }
+
+    public R(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }
@@ -41,7 +45,7 @@ public class R<T> implements Serializable {
     }
 
     public boolean success() {
-        return code == 0;
+        return code.equals(GlobalErrorCode.SUCCESS.getCode());
     }
 
     public static <T> R<T> error(int code) {

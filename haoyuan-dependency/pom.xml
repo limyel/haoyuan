@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <revision>0.0.0</revision>
 
@@ -19,11 +19,12 @@
         <flyway.version>9.19.4</flyway.version>
         <mybatis-plus.version>3.5.4</mybatis-plus.version>
         <mysql.version>8.0.33</mysql.version>
-        <hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
+        <hibernate-validator.version>6.2.5.Final</hibernate-validator.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <lombok.version>1.18.30</lombok.version>
         <jjwt.version>0.11.5</jjwt.version>
         <satoken.version>1.38.0</satoken.version>
+        <knife4j.version>4.3.0</knife4j.version>
     </properties>
 
     <dependencyManagement>
@@ -59,6 +60,16 @@
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>common-redis</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>common-jpa</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>common-knife4j</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -124,6 +135,11 @@
                 <version>${satoken.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

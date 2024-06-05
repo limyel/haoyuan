@@ -4,9 +4,12 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.limyel.haoyuan.common.core.exception.BizException;
+import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Data
 public abstract class BaseEntity {
@@ -28,5 +31,14 @@ public abstract class BaseEntity {
 
     @TableLogic
     private LocalDateTime deleteTime;
+
+    public void validateUnique(Long id, ErrorCode errorCode) {
+        if (id == null) {
+            throw new BizException(errorCode);
+        }
+        if (!Objects.equals(this.id, id)) {
+            throw new BizException(errorCode);
+        }
+    }
 
 }

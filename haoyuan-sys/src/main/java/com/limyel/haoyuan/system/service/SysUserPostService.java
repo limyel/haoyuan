@@ -4,7 +4,7 @@ import java.util.Set;
 
 public interface SysUserPostService {
 
-    Boolean createUserPosts(Long userId, Set<Long> postIds);
+    Integer createUserPosts(Long userId, Set<Long> postIds);
 
     void updateUserPosts(Long userId, Set<Long> newPostIds);
 

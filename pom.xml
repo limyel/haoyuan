@@ -15,15 +15,16 @@
         <module>haoyuan-common</module>
         <module>haoyuan-blog</module>
         <module>haoyuan-wiki</module>
+        <module>haoyuan-admin</module>
     </modules>
 
     <properties>
         <revision>0.0.0</revision>
-        <java.version>17</java.version>
+        <java.version>1.8</java.version>
         <encoding>UTF-8</encoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
 
         <spring-boot.version>2.7.18</spring-boot.version>
         <lombok.version>1.18.28</lombok.version>
@@ -58,11 +59,28 @@
     </dependencies>
 
     <build>
+        <!-- 统一插件管理 -->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <excludes>
+                            <exclude>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                            </exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>

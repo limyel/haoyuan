@@ -1,6 +1,7 @@
 package com.limyel.haoyuan.common.web.handler;
 
 
+import com.limyel.haoyuan.common.web.pojo.R;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
@@ -18,7 +19,8 @@ public class AutoPrefixUrlMapping extends RequestMappingHandlerMapping {
     @Override
     protected RequestMappingInfo getMappingForMethod(Method method, Class<?> handlerType) {
         RequestMappingInfo mappingInfo = super.getMappingForMethod(method, handlerType);
-        if (mappingInfo != null) {
+        // 响应类型为 R 的方法才会更改路由
+        if (mappingInfo != null && method.getReturnType().equals(R.class)) {
             String prefix = this.getPrefix(handlerType);
             return RequestMappingInfo.paths(prefix).build().combine(mappingInfo);
         }

@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.common.core.exception;
 
+import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -7,7 +8,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class BizException extends RuntimeException {
 
-    private Integer code;
+    private String code;
 
     private String message;
 
@@ -23,14 +24,14 @@ public class BizException extends RuntimeException {
         this.message = errorCode.getMsg();
     }
 
-    public BizException(Integer code, String message) {
+    public BizException(String code, String message) {
         this.code = code;
         this.message = message;
     }
 
     public BizException(String message, Throwable e) {
         super(message, e);
-        this.code = GlobalErrorCode.INTERNAL_SERVER_ERROR.getCode();
+        this.code = GlobalErrorCode.INTERNAL_ERROR.getCode();
         this.message = message;
     }
 

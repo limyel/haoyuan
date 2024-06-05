@@ -18,8 +18,8 @@ public class SysUserPostServiceImpl implements SysUserPostService {
     private SysUserPostDao sysUserPostDao;
 
     @Override
-    public Boolean createUserPosts(Long userId, Set<Long> postIds) {
-        return sysUserPostDao.insertBatch(postIds.stream().map(postId -> {
+    public Integer createUserPosts(Long userId, Set<Long> postIds) {
+        return sysUserPostDao.insertBatchSomeColumn(postIds.stream().map(postId -> {
             SysUserPostEntity sysUserPost = new SysUserPostEntity();
             sysUserPost.setPostId(postId);
             sysUserPost.setUserId(userId);
