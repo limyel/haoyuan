@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.system.convert;
 
-import com.limyel.haoyuan.system.entity.DeptEntity;
+import com.limyel.haoyuan.system.domain.DeptDO;
 import com.limyel.haoyuan.system.dto.dept.DeptDTO;
 import com.limyel.haoyuan.system.vo.dept.DeptVO;
 import org.mapstruct.Mapper;
@@ -13,10 +13,10 @@ public interface DeptConvert {
 
     DeptConvert INSTANCE = Mappers.getMapper(DeptConvert.class);
 
-    DeptEntity toEntity(DeptDTO dto);
+    DeptDO toEntity(DeptDTO dto);
 
-    DeptVO toVO(DeptEntity entity);
+    DeptVO toVO(DeptDO entity);
 
-    List<DeptVO> toListVO(List<DeptEntity> list);
+    List<DeptVO> toListVO(List<DeptDO> list);
 
 }

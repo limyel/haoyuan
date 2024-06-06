@@ -1,14 +1,14 @@
-package com.limyel.haoyuan.system.entity;
+package com.limyel.haoyuan.system.domain;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
+import com.limyel.haoyuan.common.mybatis.pojo.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("sys_dict_data")
-public class DictDataEntity extends BaseEntity {
+public class DictDataDO extends BaseDO {
 
     /**
      * 字典排序

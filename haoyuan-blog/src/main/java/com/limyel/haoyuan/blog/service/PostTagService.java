@@ -1,8 +1,7 @@
 package com.limyel.haoyuan.blog.service;
 
-import com.limyel.haoyuan.blog.dao.PostDao;
 import com.limyel.haoyuan.blog.dao.PostTagDao;
-import com.limyel.haoyuan.blog.entity.PostTagEntity;
+import com.limyel.haoyuan.blog.entity.PostTagDO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,8 @@ public class PostTagService {
     public void create(Long postId, List<Long> tagIds) {
         postTagDao.deleteByPostId(postId);
 
-        List<PostTagEntity> list = tagIds.stream().map(tagId -> {
-            PostTagEntity entity = new PostTagEntity();
+        List<PostTagDO> list = tagIds.stream().map(tagId -> {
+            PostTagDO entity = new PostTagDO();
             entity.setPostId(postId);
             entity.setTagId(tagId);
             return entity;

@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.system.service;
 
-import com.limyel.haoyuan.system.entity.RoleEntity;
+import com.limyel.haoyuan.system.domain.RoleDO;
 import com.limyel.haoyuan.system.dto.role.RoleDTO;
 
 import java.util.Collection;
@@ -14,8 +14,8 @@ public interface RoleService {
 
     void delete(Long id);
 
-    RoleEntity get(Long id);
+    RoleDO get(Long id);
 
-    List<RoleEntity> list(Collection<Long> ids);
+    List<RoleDO> list(Collection<Long> ids);
 
 }

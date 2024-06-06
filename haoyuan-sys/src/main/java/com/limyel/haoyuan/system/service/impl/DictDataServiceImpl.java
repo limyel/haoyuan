@@ -5,8 +5,8 @@ import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.system.constant.SysErrorCode;
 import com.limyel.haoyuan.system.convert.DictDataConvert;
 import com.limyel.haoyuan.system.dao.DictDataDao;
-import com.limyel.haoyuan.system.entity.DictDataEntity;
-import com.limyel.haoyuan.system.entity.DictTypeEntity;
+import com.limyel.haoyuan.system.domain.DictDataDO;
+import com.limyel.haoyuan.system.domain.DictTypeDO;
 import com.limyel.haoyuan.system.dto.dict.data.DictDataDTO;
 import com.limyel.haoyuan.system.service.DictDataService;
 import com.limyel.haoyuan.system.service.DictTypeService;
@@ -29,7 +29,7 @@ public class DictDataServiceImpl implements DictDataService {
         validateDictTypeExist(dto.getType());
         validateValueUnique(dto.getId(), dto.getType(), dto.getValue());
 
-        DictDataEntity dictData = DictDataConvert.INSTANCE.toDO(dto);
+        DictDataDO dictData = DictDataConvert.INSTANCE.toDO(dto);
         dictDataDao.insert(dictData);
         return dictData.getId();
     }
@@ -40,7 +40,7 @@ public class DictDataServiceImpl implements DictDataService {
         validateDictTypeExist(dto.getType());
         validateValueUnique(dto.getId(), dto.getType(), dto.getValue());
 
-        DictDataEntity dictData = DictDataConvert.INSTANCE.toDO(dto);
+        DictDataDO dictData = DictDataConvert.INSTANCE.toDO(dto);
         dictDataDao.updateById(dictData);
     }
 
@@ -51,7 +51,7 @@ public class DictDataServiceImpl implements DictDataService {
     }
 
     @Override
-    public DictDataEntity get(Long id) {
+    public DictDataDO get(Long id) {
         return dictDataDao.selectById(id);
     }
 
@@ -59,7 +59,7 @@ public class DictDataServiceImpl implements DictDataService {
         if (id == null) {
             return;
         }
-        DictDataEntity dictData = dictDataDao.selectById(id);
+        DictDataDO dictData = dictDataDao.selectById(id);
         if (dictData == null) {
             throw new BizException(SysErrorCode.DICT_DATA_NOT_FOUND);
         }
@@ -70,7 +70,7 @@ public class DictDataServiceImpl implements DictDataService {
      * @param type
      */
     private void validateDictTypeExist(String type) {
-        DictTypeEntity dictType = dictTypeService.getByType(type);
+        DictTypeDO dictType = dictTypeService.getByType(type);
         if (dictType == null) {
             throw new BizException(SysErrorCode.DICT_TYPE_NOT_FOUND);
         }
@@ -86,7 +86,7 @@ public class DictDataServiceImpl implements DictDataService {
      * @param value
      */
     private void validateValueUnique(Long id, String type, String value) {
-        DictDataEntity dictData = dictDataDao.selectByTypeAndValue(type, value);
+        DictDataDO dictData = dictDataDao.selectByTypeAndValue(type, value);
         if (dictData == null) {
             return;
         }

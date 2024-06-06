@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.system.service.impl;
 
 import com.limyel.haoyuan.system.dao.RoleMenuDao;
-import com.limyel.haoyuan.system.entity.RoleMenuEntity;
+import com.limyel.haoyuan.system.domain.RoleMenuDO;
 import com.limyel.haoyuan.system.service.RoleMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,9 +22,9 @@ public class RoleMenuServiceImpl implements RoleMenuService {
 
     @Override
     public List<Long> listMenuIdsByRoleIds(List<Long> roleIds) {
-        List<RoleMenuEntity> list = roleMenuDao.selectByRoleIds(roleIds);
+        List<RoleMenuDO> list = roleMenuDao.selectByRoleIds(roleIds);
         return list.stream()
-                .map(RoleMenuEntity::getMenuId)
+                .map(RoleMenuDO::getMenuId)
                 .collect(Collectors.toList());
     }
 

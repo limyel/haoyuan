@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Data
-public abstract class BaseEntity {
+public abstract class BaseDO {
 
     @TableId
     private Long id;

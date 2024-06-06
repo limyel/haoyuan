@@ -5,7 +5,7 @@ import com.limyel.haoyuan.system.constant.ParamTypeEnum;
 import com.limyel.haoyuan.system.constant.SysErrorCode;
 import com.limyel.haoyuan.system.convert.ParamConvert;
 import com.limyel.haoyuan.system.dao.ParamDao;
-import com.limyel.haoyuan.system.entity.ParamEntity;
+import com.limyel.haoyuan.system.domain.ParamDO;
 import com.limyel.haoyuan.system.dto.param.ParamDTO;
 import com.limyel.haoyuan.system.service.ParamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class ParamServiceImpl implements ParamService {
     public Long create(ParamDTO dto) {
         validateCodeUnique(null, dto.getCode());
 
-        ParamEntity param = ParamConvert.INSTANCE.toDO(dto);
+        ParamDO param = ParamConvert.INSTANCE.toDO(dto);
         paramDao.insert(param);
         return param.getId();
     }
@@ -33,7 +33,7 @@ public class ParamServiceImpl implements ParamService {
         validateType(dto.getId());
         validateCodeUnique(dto.getId(), dto.getCode());
 
-        ParamEntity param = ParamConvert.INSTANCE.toDO(dto);
+        ParamDO param = ParamConvert.INSTANCE.toDO(dto);
         paramDao.updateById(param);
     }
 
@@ -45,7 +45,7 @@ public class ParamServiceImpl implements ParamService {
     }
 
     @Override
-    public ParamEntity get(Long id) {
+    public ParamDO get(Long id) {
         return paramDao.selectById(id);
     }
 
@@ -53,14 +53,14 @@ public class ParamServiceImpl implements ParamService {
         if (id == null) {
             return;
         }
-        ParamEntity param = paramDao.selectById(id);
+        ParamDO param = paramDao.selectById(id);
         if (param == null) {
             throw new BizException(SysErrorCode.PARAM_NOT_FOUND);
         }
     }
 
     private void validateCodeUnique(Long id, String code) {
-        ParamEntity param = paramDao.selectByCode(code);
+        ParamDO param = paramDao.selectByCode(code);
         if (param == null) {
             return;
         }
@@ -74,7 +74,7 @@ public class ParamServiceImpl implements ParamService {
 
     private void validateType(Long id) {
         validateExist(id);
-        ParamEntity param = paramDao.selectById(id);
+        ParamDO param = paramDao.selectById(id);
         if (ParamTypeEnum.SYSTEM.getType().equals(param.getType())) {
             throw new BizException();
         }

@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.system.service;
 
-import com.limyel.haoyuan.system.entity.MenuEntity;
+import com.limyel.haoyuan.system.domain.MenuDO;
 import com.limyel.haoyuan.system.dto.menu.MenuDTO;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public interface MenuService {
 
     void delete(Long id);
 
-    MenuEntity get(Long id);
+    MenuDO get(Long id);
 
     List<String> listPermissionsByRoleIds(List<Long> roleIds);
 

@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.system.convert;
 
-import com.limyel.haoyuan.system.entity.PostEntity;
+import com.limyel.haoyuan.system.domain.PostDO;
 import com.limyel.haoyuan.system.dto.post.PostDTO;
 import com.limyel.haoyuan.system.vo.post.PostVO;
 import org.mapstruct.Mapper;
@@ -13,10 +13,10 @@ public interface PostConvert {
 
     PostConvert INSTANCE = Mappers.getMapper(PostConvert.class);
 
-    PostEntity toEntity(PostDTO dto);
+    PostDO toEntity(PostDTO dto);
 
-    PostVO toVO(PostEntity post);
+    PostVO toVO(PostDO post);
 
-    List<PostVO> toListVO(List<PostEntity> list);
+    List<PostVO> toListVO(List<PostDO> list);
 
 }

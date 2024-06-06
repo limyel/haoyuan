@@ -2,7 +2,7 @@ package com.limyel.haoyuan.system.controller;
 
 import com.limyel.haoyuan.common.web.pojo.R;
 import com.limyel.haoyuan.system.convert.ParamConvert;
-import com.limyel.haoyuan.system.entity.ParamEntity;
+import com.limyel.haoyuan.system.domain.ParamDO;
 import com.limyel.haoyuan.system.dto.param.ParamDTO;
 import com.limyel.haoyuan.system.service.ParamService;
 import com.limyel.haoyuan.system.vo.param.ParamVO;
@@ -43,7 +43,7 @@ public class ParamController {
 
     @GetMapping("/{id}")
     public R<ParamVO> get(@PathVariable("id") Long id) {
-        ParamEntity param = paramService.get(id);
+        ParamDO param = paramService.get(id);
         return R.ok(ParamConvert.INSTANCE.toVO(param));
     }
 

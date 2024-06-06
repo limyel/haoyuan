@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.system.service;
 
-import com.limyel.haoyuan.system.entity.DictTypeEntity;
+import com.limyel.haoyuan.system.domain.DictTypeDO;
 import com.limyel.haoyuan.system.dto.dict.type.DictTypeDTO;
 
 public interface DictTypeService {
@@ -11,8 +11,8 @@ public interface DictTypeService {
 
     void delete(Long id);
 
-    DictTypeEntity get(Long id);
+    DictTypeDO get(Long id);
 
-    DictTypeEntity getByType(String type);
+    DictTypeDO getByType(String type);
 
 }

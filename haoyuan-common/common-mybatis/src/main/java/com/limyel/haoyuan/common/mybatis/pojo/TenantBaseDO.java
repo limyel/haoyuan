@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class TenantBaseEntity extends BaseEntity {
+public class TenantBaseDO extends BaseDO {
 
     private Long tenantId;
 

@@ -1,32 +1,27 @@
-package com.limyel.haoyuan.system.entity;
+package com.limyel.haoyuan.system.domain;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
+import com.limyel.haoyuan.common.mybatis.pojo.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("sys_post")
-public class PostEntity extends BaseEntity {
+@TableName("sys_dict_type")
+public class DictTypeDO extends BaseDO {
 
     /**
-     * 岗位编码
-     */
-    private String code;
-
-    /**
-     * 岗位名称
+     * 字典名称
      */
     private String name;
 
     /**
-     * 显示顺序
+     * 字典类型
      */
-    private Integer sort;
+    private String type;
 
     /**
-     * 岗位状态
+     * 状态
      */
     private Integer status;
 

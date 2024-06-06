@@ -1,7 +1,7 @@
-package com.limyel.haoyuan.system.entity;
+package com.limyel.haoyuan.system.domain;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
+import com.limyel.haoyuan.common.mybatis.pojo.BaseDO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,7 +10,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName
-public class RoleEntity extends BaseEntity {
+public class RoleDO extends BaseDO {
 
     /**
      * 角色名

@@ -2,7 +2,7 @@ package com.limyel.haoyuan.system.controller;
 
 import com.limyel.haoyuan.common.web.pojo.R;
 import com.limyel.haoyuan.system.convert.MenuConvert;
-import com.limyel.haoyuan.system.entity.MenuEntity;
+import com.limyel.haoyuan.system.domain.MenuDO;
 import com.limyel.haoyuan.system.dto.menu.MenuDTO;
 import com.limyel.haoyuan.system.service.MenuService;
 import com.limyel.haoyuan.system.vo.menu.MenuVO;
@@ -43,7 +43,7 @@ public class MenuController {
 
     @GetMapping("/{id}")
     public R<MenuVO> get(@PathVariable("id") Long id) {
-        MenuEntity menu = menuService.get(id);
+        MenuDO menu = menuService.get(id);
         return R.ok(MenuConvert.INSTANCE.toVO(menu));
     }
 

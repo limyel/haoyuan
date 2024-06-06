@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.system.service;
 
-import com.limyel.haoyuan.system.entity.ParamEntity;
+import com.limyel.haoyuan.system.domain.ParamDO;
 import com.limyel.haoyuan.system.dto.param.ParamDTO;
 
 public interface ParamService {
@@ -11,6 +11,6 @@ public interface ParamService {
 
     void delete(Long id);
 
-    ParamEntity get(Long id);
+    ParamDO get(Long id);
 
 }

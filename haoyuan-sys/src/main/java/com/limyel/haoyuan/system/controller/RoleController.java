@@ -2,7 +2,7 @@ package com.limyel.haoyuan.system.controller;
 
 import com.limyel.haoyuan.common.web.pojo.R;
 import com.limyel.haoyuan.system.convert.RoleConvert;
-import com.limyel.haoyuan.system.entity.RoleEntity;
+import com.limyel.haoyuan.system.domain.RoleDO;
 import com.limyel.haoyuan.system.dto.role.RoleDTO;
 import com.limyel.haoyuan.system.service.RoleService;
 import com.limyel.haoyuan.system.vo.role.RoleVO;
@@ -43,7 +43,7 @@ public class RoleController {
 
     @GetMapping("/{id}")
     public R<RoleVO> get(@PathVariable("id") Long id) {
-        RoleEntity role = roleService.get(id);
+        RoleDO role = roleService.get(id);
         return R.ok(RoleConvert.INSTANCE.toVO(role));
     }
 

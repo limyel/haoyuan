@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.system.convert;
 
-import com.limyel.haoyuan.system.entity.DictTypeEntity;
+import com.limyel.haoyuan.system.domain.DictTypeDO;
 import com.limyel.haoyuan.system.dto.dict.type.DictTypeDTO;
 import com.limyel.haoyuan.system.vo.dict.type.DictTypeVO;
 import org.mapstruct.Mapper;
@@ -11,8 +11,8 @@ public interface DictTypeConvert {
 
     DictTypeConvert INSTANCE = Mappers.getMapper(DictTypeConvert.class);
 
-    DictTypeEntity toDO(DictTypeDTO dto);
+    DictTypeDO toDO(DictTypeDTO dto);
 
-    DictTypeVO toVO(DictTypeEntity dictType);
+    DictTypeVO toVO(DictTypeDO dictType);
 
 }

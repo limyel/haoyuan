@@ -3,7 +3,7 @@ package com.limyel.haoyuan.system.controller;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.web.pojo.R;
 import com.limyel.haoyuan.system.convert.PostConvert;
-import com.limyel.haoyuan.system.entity.PostEntity;
+import com.limyel.haoyuan.system.domain.PostDO;
 import com.limyel.haoyuan.system.dto.post.PostDTO;
 import com.limyel.haoyuan.system.dto.post.PostPageDTO;
 import com.limyel.haoyuan.system.service.PostService;
@@ -48,13 +48,13 @@ public class PostController {
 
     @GetMapping("/{id}")
     public R<PostVO> get(@PathVariable("id") Long id) {
-        PostEntity post = postService.get(id);
+        PostDO post = postService.get(id);
         return R.ok(PostConvert.INSTANCE.toVO(post));
     }
 
     @GetMapping
     public R<PageData<PostVO>> getPage(PostPageDTO dto) {
-        PageData<PostEntity> page = postService.getPage(dto);
+        PageData<PostDO> page = postService.getPage(dto);
         return R.ok(new PageData<>(page, PostConvert.INSTANCE.toListVO(page.getList())));
     }
 
