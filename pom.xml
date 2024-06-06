@@ -21,11 +21,11 @@
 
     <properties>
         <revision>0.0.0</revision>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <encoding>UTF-8</encoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
 
         <spring-boot.version>2.7.18</spring-boot.version>
         <lombok.version>1.18.28</lombok.version>
