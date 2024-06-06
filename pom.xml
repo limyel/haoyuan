@@ -16,6 +16,7 @@
         <module>haoyuan-blog</module>
         <module>haoyuan-wiki</module>
         <module>haoyuan-admin</module>
+        <module>haoyuan-framework</module>
     </modules>
 
     <properties>
