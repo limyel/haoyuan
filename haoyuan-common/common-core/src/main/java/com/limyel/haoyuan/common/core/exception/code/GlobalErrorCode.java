@@ -1,10 +1,8 @@
-package com.limyel.haoyuan.common.core.exception;
+package com.limyel.haoyuan.common.core.exception.code;
 
 import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
 
 public interface GlobalErrorCode {
-
-    // ========== 客户端错误段 ==========
 
     ErrorCode SUCCESS = new ErrorCode("Success", "成功");
     ErrorCode INTERNAL_ERROR = new ErrorCode("InternalError", "内部错误");

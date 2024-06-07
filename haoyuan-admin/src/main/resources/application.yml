@@ -4,16 +4,16 @@ server:
     threads:
       max: 1000
       min-spare: 30
-  port: 8010
+  port: 8000
   servlet:
     session:
       cookie:
         http-only: true
-    context-path: /blog
+    context-path: /admin
 
 spring:
   application:
-    name: haoyuan-blog
+    name: haoyuan-admin
   profiles:
     active: dev
   messages:

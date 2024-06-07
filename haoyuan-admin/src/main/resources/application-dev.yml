@@ -2,7 +2,7 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:p6spy:mysql://localhost:3306/haoyuan-blog?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:p6spy:mysql://localhost:3306/haoyuan-admin?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     hikari:
       maximum-pool-size: 10
@@ -47,3 +47,7 @@ haoyuan:
     groupName: "blog"
     basePackage: "com.limyel.haoyuan.blog.controller"
 
+  jwt:
+    issuer: limyel
+    secret: mhf6b3wbVxmmUWFgeqGMTBoSR9s9rUl4QeyYwZTTBRvybd+ZDmqB8/mYy0yOO201acd7Sia4b7JNSP174DtUoQ==
+    header: token

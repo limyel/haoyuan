@@ -1,6 +1,7 @@
 package com.limyel.haoyuan.common.core.exception;
 
 import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
+import com.limyel.haoyuan.common.core.exception.code.GlobalErrorCode;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

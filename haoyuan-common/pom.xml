@@ -18,6 +18,7 @@
         <module>common-redis</module>
         <module>common-jpa</module>
         <module>common-knife4j</module>
+        <module>common-jwt</module>
     </modules>
 
     <properties>
