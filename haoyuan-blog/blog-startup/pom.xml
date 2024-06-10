@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-common</artifactId>
+        <artifactId>haoyuan-blog</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>common-jwt</artifactId>
+    <artifactId>blog-startup</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -20,21 +20,27 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-core</artifactId>
+            <artifactId>blog-admin</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
+            <groupId>com.limyel</groupId>
+            <artifactId>blog-main</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

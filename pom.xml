@@ -13,10 +13,8 @@
         <module>haoyuan-dependency</module>
         <module>haoyuan-sys</module>
         <module>haoyuan-common</module>
-        <module>haoyuan-blog</module>
-        <module>haoyuan-wiki</module>
-        <module>haoyuan-admin</module>
         <module>haoyuan-framework</module>
+        <module>haoyuan-blog</module>
     </modules>
 
     <properties>

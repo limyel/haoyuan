@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-common</artifactId>
+        <artifactId>haoyuan-blog</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>common-jwt</artifactId>
+    <artifactId>blog-main</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -20,21 +20,19 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-core</artifactId>
+            <artifactId>common-web</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-mybatis</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-impl</artifactId>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-knife4j</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId>
-        </dependency>
+
     </dependencies>
 
 </project>

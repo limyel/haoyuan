@@ -73,6 +73,23 @@
                 <artifactId>common-knife4j</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>common-jwt</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>blog-admin</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>blog-main</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
             <!-- db -->
             <dependency>

@@ -1,0 +1,10 @@
+package com.limyel.haoyuan.blog.main.dao;
+
+import com.limyel.haoyuan.blog.main.entity.TagDO;
+import com.limyel.haoyuan.common.mybatis.dao.BaseDao;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface TagDao extends BaseDao<TagDO> {
+
+}
