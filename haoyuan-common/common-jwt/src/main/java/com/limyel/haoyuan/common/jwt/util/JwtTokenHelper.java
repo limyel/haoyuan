@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.common.jwt.helper;
+package com.limyel.haoyuan.common.jwt.util;
 
 import com.limyel.haoyuan.common.jwt.config.JwtProperties;
 import com.limyel.haoyuan.common.core.exception.auth.BadTokenException;

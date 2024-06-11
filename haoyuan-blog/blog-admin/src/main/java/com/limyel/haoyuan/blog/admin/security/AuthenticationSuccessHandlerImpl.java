@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.blog.admin.security;
 
-import com.limyel.haoyuan.common.jwt.helper.JwtTokenHelper;
+import com.limyel.haoyuan.common.jwt.util.JwtTokenHelper;
 import com.limyel.haoyuan.common.web.pojo.R;
 import com.limyel.haoyuan.common.web.util.RespUtil;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.common.jwt.config;
 
-import com.limyel.haoyuan.common.jwt.helper.JwtTokenHelper;
+import com.limyel.haoyuan.common.jwt.util.JwtTokenHelper;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
