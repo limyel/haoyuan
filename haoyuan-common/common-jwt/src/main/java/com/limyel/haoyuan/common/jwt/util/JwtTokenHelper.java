@@ -82,6 +82,30 @@ public class JwtTokenHelper implements InitializingBean {
     }
 
     /**
+     * 校验 Token 是否可用
+     * @param token
+     */
+    public void validateToken(String token) {
+        jwtParser.parseClaimsJws(token);
+    }
+
+    /**
+     * 解析 Token 获取用户名
+     * @param token
+     * @return
+     */
+    public String getUsernameByToken(String token) {
+        try {
+            Claims claims = jwtParser.parseClaimsJws(token).getBody();
+            return claims.getSubject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    /**
      * 生成 Base64 的安全秘钥
      * @return
      */
