@@ -1,7 +1,8 @@
-package com.limyel.haoyuan.blog.admin.security;
+package com.limyel.haoyuan.common.security.filter;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.limyel.haoyuan.common.core.util.JsonUtil;
+import com.limyel.haoyuan.common.security.exception.UsernameOrPasswordNullException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -14,17 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//@Component
-//@RequiredArgsConstructor
-public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
-
-    // todo 放入 security 配置文件中
+public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     /**
      * 指定登录地址
      */
-    public JwtAuthenticationFilter() {
-        super(new AntPathRequestMatcher("/login", "POST"));
+    public AuthenticationFilter(String loginUrl) {
+        super(new AntPathRequestMatcher(loginUrl, "POST"));
     }
 
     /**

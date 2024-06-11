@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.blog.admin.security;
+package com.limyel.haoyuan.common.security.handler;
 
 import com.limyel.haoyuan.common.core.exception.code.AuthFailureErrorCode;
 import com.limyel.haoyuan.common.web.pojo.R;
@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
+/**
+ *
+ */
 @Slf4j
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
     @Override

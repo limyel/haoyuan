@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.blog.admin.security;
+package com.limyel.haoyuan.common.security.vo;
 
 import lombok.Data;
 

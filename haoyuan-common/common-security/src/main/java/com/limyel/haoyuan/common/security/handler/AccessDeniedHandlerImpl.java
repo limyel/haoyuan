@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.blog.admin.security;
+package com.limyel.haoyuan.common.security.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
+/**
+ *
+ */
 @Slf4j
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
     @Override

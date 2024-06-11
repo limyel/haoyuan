@@ -47,7 +47,13 @@ haoyuan:
     groupName: "blog"
     basePackage: "com.limyel.haoyuan.blog.controller"
 
+  security:
+    loginUrl: "/login"
+    token:
+      header: Authorization
+      prefix: Bearer
+
   jwt:
     issuer: limyel
     secret: mhf6b3wbVxmmUWFgeqGMTBoSR9s9rUl4QeyYwZTTBRvybd+ZDmqB8/mYy0yOO201acd7Sia4b7JNSP174DtUoQ==
-    header: token
+    expireHours: 1

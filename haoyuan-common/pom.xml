@@ -19,6 +19,7 @@
         <module>common-jpa</module>
         <module>common-knife4j</module>
         <module>common-jwt</module>
+        <module>common-security</module>
     </modules>
 
     <properties>

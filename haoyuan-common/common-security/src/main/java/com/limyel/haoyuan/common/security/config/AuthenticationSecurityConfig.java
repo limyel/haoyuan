@@ -1,6 +1,8 @@
-package com.limyel.haoyuan.blog.admin.security;
+package com.limyel.haoyuan.common.security.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.limyel.haoyuan.common.security.filter.AuthenticationFilter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -13,25 +15,23 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration
-public class JwtAuthenticationSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
+@RequiredArgsConstructor
+public class AuthenticationSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
-    @Autowired
-    private AuthenticationSuccessHandler authenticationSuccessHandler;
+    private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
-    @Autowired
-    private AuthenticationFailureHandler authenticationFailureHandler;
+    private final AuthenticationFailureHandler authenticationFailureHandler;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
+
+    private final SecurityProperties properties;
 
     @Override
     public void configure(HttpSecurity builder) throws Exception {
         // 自定义 jwt 认证过滤器
-        JwtAuthenticationFilter filter = new JwtAuthenticationFilter();
+        AuthenticationFilter filter = new AuthenticationFilter(properties.getLoginUrl());
         filter.setAuthenticationManager(builder.getSharedObject(AuthenticationManager.class));
 
         filter.setAuthenticationSuccessHandler(authenticationSuccessHandler);

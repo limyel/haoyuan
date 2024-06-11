@@ -1,10 +1,10 @@
-package com.limyel.haoyuan.blog.admin.security;
+package com.limyel.haoyuan.common.security.filter;
 
-import com.limyel.haoyuan.common.jwt.util.JwtTokenHelper;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.UnsupportedJwtException;
-import io.jsonwebtoken.security.SignatureException;
+import com.limyel.haoyuan.common.core.exception.auth.BadTokenException;
+import com.limyel.haoyuan.common.core.exception.auth.TokenExpiredException;
+import com.limyel.haoyuan.common.security.config.SecurityProperties;
+import com.limyel.haoyuan.common.security.token.TokenHelper;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,36 +24,41 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Slf4j
+@RequiredArgsConstructor
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
-    @Resource
-    private JwtTokenHelper jwtTokenHelper;
+    private final TokenHelper tokenHelper;
 
-    @Resource
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-    @Resource
-    private AuthenticationEntryPoint authenticationEntryPoint;
+    private final AuthenticationEntryPoint authenticationEntryPoint;
+
+    private final SecurityProperties securityProperties;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String header = request.getHeader("Authorization");
+        String header = request.getHeader(securityProperties.getToken().getHeader());
+        // header 为空，放行
+        if (!StringUtils.hasText(header)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
-        if (header.startsWith("Bearer")) {
+        if (header.startsWith(securityProperties.getToken().getPrefix())) {
             String token = header.substring(7);
             if (!StringUtils.hasText(token)) {
                 try {
-                    jwtTokenHelper.validateToken(token);
-                } catch (SignatureException | MalformedJwtException | UnsupportedJwtException | IllegalArgumentException e) {
+                    tokenHelper.validateToken(token);
+                } catch (BadTokenException e) {
                     // 触发异常，由 AuthenticationEntryPoint 统一处理
                     authenticationEntryPoint.commence(request, response, new AuthenticationServiceException("Token 不可用"));
                     return;
-                } catch (ExpiredJwtException e) {
+                } catch (TokenExpiredException e) {
                     authenticationEntryPoint.commence(request, response, new AuthenticationServiceException("Token 已失效"));
                     return;
                 }
 
-                String username = jwtTokenHelper.getUsernameByToken(token);
+                String username = tokenHelper.getUsernameByToken(token);
                 if (!StringUtils.hasText(username)
                         && SecurityContextHolder.getContext().getAuthentication() == null) {
                     UserDetails userDetails = userDetailsService.loadUserByUsername(username);

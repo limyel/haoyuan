@@ -1,8 +1,7 @@
-package com.limyel.haoyuan.blog.admin.security;
+package com.limyel.haoyuan.common.security.exception;
 
 import com.limyel.haoyuan.common.core.exception.code.AuthFailureErrorCode;
 import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
-import com.limyel.haoyuan.common.core.exception.code.FailedOperationErrorCode;
 import org.springframework.security.core.AuthenticationException;
 
 public class UsernameOrPasswordNullException extends AuthenticationException {

@@ -23,7 +23,7 @@ import java.util.Base64;
 import java.util.Date;
 
 @RequiredArgsConstructor
-public class JwtTokenHelper implements InitializingBean {
+public class JwtUtil implements InitializingBean {
 
     private final JwtProperties properties;
 
@@ -56,7 +56,7 @@ public class JwtTokenHelper implements InitializingBean {
     public String generateToken(String username) {
         LocalDateTime now = LocalDateTime.now();
         // token 一小时后失效
-        LocalDateTime expireTime = now.plusHours(1);
+        LocalDateTime expireTime = now.plusHours(properties.getExpireHours());
 
         return Jwts.builder().setSubject(username)
                 .setIssuer(properties.getIssuer())
@@ -72,37 +72,7 @@ public class JwtTokenHelper implements InitializingBean {
      * @return
      */
     public Jws<Claims> parseToken(String token) {
-        try {
-            return jwtParser.parseClaimsJws(token);
-        } catch (SignatureException | MalformedJwtException | UnsupportedJwtException | IllegalArgumentException e) {
-            throw new BadTokenException("Token 不可用", e);
-        } catch (ExpiredJwtException e) {
-            throw new TokenExpiredException("Token 失效", e);
-        }
-    }
-
-    /**
-     * 校验 Token 是否可用
-     * @param token
-     */
-    public void validateToken(String token) {
-        jwtParser.parseClaimsJws(token);
-    }
-
-    /**
-     * 解析 Token 获取用户名
-     * @param token
-     * @return
-     */
-    public String getUsernameByToken(String token) {
-        try {
-            Claims claims = jwtParser.parseClaimsJws(token).getBody();
-            return claims.getSubject();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return jwtParser.parseClaimsJws(token);
     }
 
     /**

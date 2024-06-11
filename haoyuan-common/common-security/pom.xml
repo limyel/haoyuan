@@ -5,12 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-blog</artifactId>
+        <artifactId>haoyuan-common</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>blog-admin</artifactId>
-    <description>单体服务的管理后台服务</description>
+    <artifactId>common-security</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -21,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-mybatis</artifactId>
+            <artifactId>common-core</artifactId>
         </dependency>
 
         <dependency>
@@ -30,14 +29,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>common-jwt</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>common-security</artifactId>
-            <version>0.0.0</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 

@@ -17,6 +17,9 @@ public class JwtProperties {
      */
     private String secret;
 
-    private String header;
+    /**
+     * 有效时长（小时）
+     */
+    private Integer expireHours;
 
 }
