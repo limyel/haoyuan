@@ -23,12 +23,11 @@ public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHa
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         log.warn("AuthenticationException: ", exception);
         if (exception instanceof UsernameOrPasswordNullException) {
-            RespUtil.writeResp(response, R.failed(UsernameOrPasswordNullException.ERROR_CODE));
+            RespUtil.writeResp(response, R.failed(AuthFailureErrorCode.USERNAME_OR_PASSWORD_NULL));
         } else if (exception instanceof BadCredentialsException) {
             RespUtil.writeResp(response, R.failed(BadTokenException.ERROR_CODE));
         } else {
-            // todo
-            RespUtil.writeResp(response, R.failed(new AuthFailureErrorCode("LoginFailed", "登录失败")));
+            RespUtil.writeResp(response, R.failed(AuthFailureErrorCode.AUTH_FAILED));
         }
     }
 

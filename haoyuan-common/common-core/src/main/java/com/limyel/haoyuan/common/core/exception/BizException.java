@@ -2,6 +2,7 @@ package com.limyel.haoyuan.common.core.exception;
 
 import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
 import com.limyel.haoyuan.common.core.exception.code.GlobalErrorCode;
+import com.limyel.haoyuan.common.core.exception.code.InternalErrorCode;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -32,7 +33,7 @@ public class BizException extends RuntimeException {
 
     public BizException(String message, Throwable e) {
         super(message, e);
-        this.code = GlobalErrorCode.INTERNAL_ERROR.getCode();
+        this.code = InternalErrorCode.ERROR_CODE.getCode();
         this.message = message;
     }
 

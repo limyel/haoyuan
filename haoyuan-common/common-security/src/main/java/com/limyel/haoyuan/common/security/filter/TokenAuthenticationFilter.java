@@ -46,7 +46,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
         if (header.startsWith(securityProperties.getToken().getPrefix())) {
             String token = header.substring(7);
-            if (!StringUtils.hasText(token)) {
+            if (StringUtils.hasText(token)) {
                 try {
                     tokenHelper.validateToken(token);
                 } catch (BadTokenException e) {
@@ -59,7 +59,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                 }
 
                 String username = tokenHelper.getUsernameByToken(token);
-                if (!StringUtils.hasText(username)
+                if (StringUtils.hasText(username)
                         && SecurityContextHolder.getContext().getAuthentication() == null) {
                     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,

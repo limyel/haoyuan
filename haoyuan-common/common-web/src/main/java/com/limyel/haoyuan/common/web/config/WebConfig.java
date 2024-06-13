@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -19,20 +22,29 @@ public class WebConfig implements WebMvcConfigurer {
     @Resource
     private WebProperties webProperties;
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry
-                // 允许跨域的路径
-                .addMapping("/**")
-                // 允许跨域请求的域名
-                .allowedOriginPatterns("*")
-                // 允许 cookie
-                .allowCredentials(true)
-                .allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name())
-                // 允许的请求头属性
-                .allowedHeaders("*")
-                // 跨域允许时间
-                .maxAge(3600);
+    /**
+     * 跨域配置
+     * @return
+     */
+    @Bean
+    public CorsFilter corsFilter() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        // 设置访问源地址
+        config.addAllowedOriginPattern("*");
+        // 设置访问源请求头
+        config.addAllowedHeader("*");
+        // 设置访问源请求方法
+        config.addAllowedMethod(HttpMethod.OPTIONS);
+        config.addAllowedMethod(HttpMethod.GET);
+        config.addAllowedMethod(HttpMethod.POST);
+        // 有效期 1800秒
+        config.setMaxAge(1800L);
+        // 添加映射路径，拦截一切请求
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        // 返回新的CorsFilter
+        return new CorsFilter(source);
     }
 
     @Bean
