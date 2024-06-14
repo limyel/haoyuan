@@ -45,7 +45,7 @@ haoyuan:
     email: "limyel@outlook.com"
     version: "0.0.0"
     groupName: "blog"
-    basePackage: "com.limyel.haoyuan.blog.controller"
+    basePackage: "com.limyel.haoyuan.blog"
 
   security:
     loginUrl: "/login"

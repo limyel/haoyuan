@@ -25,7 +25,7 @@ public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHa
         if (exception instanceof UsernameOrPasswordNullException) {
             RespUtil.writeResp(response, R.failed(AuthFailureErrorCode.USERNAME_OR_PASSWORD_NULL));
         } else if (exception instanceof BadCredentialsException) {
-            RespUtil.writeResp(response, R.failed(BadTokenException.ERROR_CODE));
+            RespUtil.writeResp(response, R.failed(AuthFailureErrorCode.AUTH_FAILED));
         } else {
             RespUtil.writeResp(response, R.failed(AuthFailureErrorCode.AUTH_FAILED));
         }

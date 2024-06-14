@@ -13,8 +13,6 @@ import lombok.EqualsAndHashCode;
 @Data
 public class BadTokenException extends RuntimeException {
 
-    public static final ErrorCode ERROR_CODE = new AuthFailureErrorCode("CommonCore", "用户名或密码错误");
-
     private String msg;
 
     public BadTokenException(String msg, Throwable e) {

@@ -1,1 +1,2 @@
 com.limyel.haoyuan.common.security.config.WebSecurityConfig
+com.limyel.haoyuan.common.security.config.PasswordEncoderConfig

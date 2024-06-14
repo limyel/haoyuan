@@ -38,19 +38,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private SecurityProperties securityProperties;
 
+    @Resource
+    private PasswordEncoder passwordEncoder;
+
     @Bean
     public AuthenticationSecurityConfig authenticationSecurityConfig() {
-        return new AuthenticationSecurityConfig(authenticationSuccessHandler(), authenticationFailureHandler(), passwordEncoder(),
+        return new AuthenticationSecurityConfig(authenticationSuccessHandler(), authenticationFailureHandler(), passwordEncoder,
                 userDetailsService, securityProperties);
-    }
-
-    /**
-     * 密码加密
-     * @return
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
     @Bean
