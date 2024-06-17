@@ -5,6 +5,7 @@ import com.limyel.haoyuan.blog.main.domain.TagDO;
 import com.limyel.haoyuan.blog.main.dto.post.PostDTO;
 import com.limyel.haoyuan.blog.main.dto.tag.TagDTO;
 import com.limyel.haoyuan.blog.main.vo.tag.TagPageVO;
+import com.limyel.haoyuan.blog.main.vo.tag.TagSelectVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -18,5 +19,7 @@ public interface TagConvert {
     TagDO toEntity(TagDTO dto);
 
     List<TagPageVO> toPageVO(List<TagDO> tagDOList);
+
+    List<TagSelectVO> toSelectVO(List<TagDO> tagDOList);
 
 }

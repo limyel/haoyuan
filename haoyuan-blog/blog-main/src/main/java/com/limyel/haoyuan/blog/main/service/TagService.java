@@ -8,10 +8,13 @@ import com.limyel.haoyuan.blog.main.dto.tag.TagDTO;
 import com.limyel.haoyuan.blog.main.dto.tag.TagPageDTO;
 import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
 import com.limyel.haoyuan.blog.main.vo.tag.TagPageVO;
+import com.limyel.haoyuan.blog.main.vo.tag.TagSelectVO;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +43,11 @@ public class TagService {
         tagDao.selectPage(page, wrapperPlus);
 
         return new PageData<>(page, TagConvert.INSTANCE.toPageVO(page.getRecords()));
+    }
+
+    public List<TagSelectVO> getSelect() {
+        List<TagDO> tagDOList = tagDao.selectList();
+        return TagConvert.INSTANCE.toSelectVO(tagDOList);
     }
 
     private void validateNameUnique(Long id, String name) {

@@ -5,6 +5,7 @@ import com.limyel.haoyuan.blog.main.dto.tag.TagPageDTO;
 import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
 import com.limyel.haoyuan.blog.main.service.TagService;
 import com.limyel.haoyuan.blog.main.vo.tag.TagPageVO;
+import com.limyel.haoyuan.blog.main.vo.tag.TagSelectVO;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.web.log.ApiOperationLog;
 import com.limyel.haoyuan.common.web.pojo.R;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController("adminTagController")
 @RequestMapping("/tag")
@@ -48,7 +51,7 @@ public class TagController {
         return R.ok();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/get/by/{id}")
     public R<?> get(@PathVariable Long id) {
         return R.ok();
     }
@@ -58,6 +61,14 @@ public class TagController {
     @ApiOperationLog(description = "分类分页")
     public R<PageData<TagPageVO>> page(TagPageDTO dto) {
         PageData<TagPageVO> result = tagService.getPage(dto);
+        return R.ok(result);
+    }
+
+    @GetMapping("/get/select")
+    @ApiOperation("分类下拉列表")
+    @ApiOperationLog(description = "分类下拉列表")
+    public R<?> getSelect() {
+        List<TagSelectVO> result = tagService.getSelect();
         return R.ok(result);
     }
 
