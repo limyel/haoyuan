@@ -63,4 +63,8 @@ public interface BaseDao<T> extends BaseMapper<T> {
         return selectList(new LambdaQueryWrapper<T>().in(field, values));
     }
 
+    default int delete(SFunction<T, ?> field, Object value) {
+        return delete(new LambdaQueryWrapper<T>().eq(field, value));
+    }
+
 }

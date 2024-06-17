@@ -27,6 +27,10 @@ public class TagService {
         return tagDao.insert(tagDO);
     }
 
+    public void delete(String slug) {
+        tagDao.delete(TagDO::getSlug, slug);
+    }
+
     public PageData<TagPageVO> getPage(TagPageDTO dto) {
         Page<TagDO> page = new Page<>(dto.getPageNum(), dto.getPageSize());
         LambdaQueryWrapperPlus<TagDO> wrapperPlus = new LambdaQueryWrapperPlus<TagDO>()
