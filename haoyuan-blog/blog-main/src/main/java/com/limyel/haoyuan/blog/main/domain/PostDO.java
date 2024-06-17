@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.blog.main.entity;
+package com.limyel.haoyuan.blog.main.domain;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.limyel.haoyuan.common.mybatis.pojo.BaseDO;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("blog_post")
+@TableName("main_post")
 public class PostDO extends BaseDO {
 
     private String title;

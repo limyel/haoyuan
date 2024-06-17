@@ -11,7 +11,11 @@ import java.util.Map;
 
 public class JsonUtil {
 
-    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    public static final ObjectMapper OBJECT_MAPPER;
+
+    static {
+        OBJECT_MAPPER = SpringContextUtil.getBean(ObjectMapper.class);
+    }
 
     public static Map<String, Object> parseObject(String json) {
         if (StringUtils.hasText(json)) {

@@ -36,7 +36,7 @@ public abstract class BaseDO {
         if (id == null) {
             throw new BizException(errorCode);
         }
-        if (!Objects.equals(this.id, id)) {
+        if (!this.id.equals(id)) {
             throw new BizException(errorCode);
         }
     }

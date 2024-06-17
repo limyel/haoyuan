@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.blog.main.service;
 
 import com.limyel.haoyuan.blog.main.dao.PostTagDao;
-import com.limyel.haoyuan.blog.main.entity.PostTagDO;
+import com.limyel.haoyuan.blog.main.domain.PostTagDO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.common.web.config;
 
+import com.limyel.haoyuan.common.web.handler.GlobalExceptionHandler;
 import com.limyel.haoyuan.common.web.log.ApiOperationLogAspect;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -45,6 +46,11 @@ public class WebConfig implements WebMvcConfigurer {
         source.registerCorsConfiguration("/**", config);
         // 返回新的CorsFilter
         return new CorsFilter(source);
+    }
+
+    @Bean
+    public GlobalExceptionHandler globalExceptionHandler() {
+        return new GlobalExceptionHandler();
     }
 
     @Bean

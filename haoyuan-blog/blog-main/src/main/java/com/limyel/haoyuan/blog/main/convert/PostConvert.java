@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.blog.main.convert;
 
 import com.limyel.haoyuan.blog.main.dto.post.PostDTO;
-import com.limyel.haoyuan.blog.main.entity.PostDO;
+import com.limyel.haoyuan.blog.main.domain.PostDO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
