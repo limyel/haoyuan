@@ -49,7 +49,7 @@ CREATE TABLE `main_post` (
 
 CREATE TABLE `main_tag` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
-    `name` varchar(64) NOT NULL COMMENT '标签名称',
+    `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '标签名称',
     `slug` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'slug',
     `remark` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
     `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
@@ -75,3 +75,18 @@ CREATE TABLE `main_post_tag` (
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE KEY `uk_post_tag` (`post_id`, `tag_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='文章标签';
+
+
+CREATE TABLE `main_setting` (
+    `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '博客名称',
+    `about` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '关于',
+    `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
+    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',
+    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='博客设置';
+
+INSERT INTO `main_setting` values (1, '小林的博客', '# 关于我', null, NOW(), null, NOW(), null);
