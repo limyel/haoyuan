@@ -52,14 +52,14 @@ public class TagController {
     }
 
     @GetMapping("/get/by/{id}")
-    public R<?> get(@PathVariable Long id) {
+    public R<?> getById(@PathVariable Long id) {
         return R.ok();
     }
 
-    @GetMapping("/page")
+    @GetMapping("/get/page")
     @ApiOperation("分类分页")
     @ApiOperationLog(description = "分类分页")
-    public R<PageData<TagPageVO>> page(TagPageDTO dto) {
+    public R<PageData<TagPageVO>> getPage(TagPageDTO dto) {
         PageData<TagPageVO> result = tagService.getPage(dto);
         return R.ok(result);
     }

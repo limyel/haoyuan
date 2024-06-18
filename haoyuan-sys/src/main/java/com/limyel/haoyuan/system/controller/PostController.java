@@ -46,13 +46,13 @@ public class PostController {
         return new R<>();
     }
 
-    @GetMapping("/{id}")
-    public R<PostVO> get(@PathVariable("id") Long id) {
+    @GetMapping("/get/by/{id}")
+    public R<PostVO> getById(@PathVariable("id") Long id) {
         PostDO post = postService.get(id);
         return R.ok(PostConvert.INSTANCE.toVO(post));
     }
 
-    @GetMapping
+    @GetMapping("/get/page")
     public R<PageData<PostVO>> getPage(PostPageDTO dto) {
         PageData<PostDO> page = postService.getPage(dto);
         return R.ok(new PageData<>(page, PostConvert.INSTANCE.toListVO(page.getList())));

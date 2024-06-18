@@ -42,13 +42,13 @@ public class DeptController {
         return new R<>();
     }
 
-    @GetMapping("/get/{id}")
-    public R<DeptVO> get(@PathVariable("id") Long id) {
+    @GetMapping("/get/by/{id}")
+    public R<DeptVO> getById(@PathVariable("id") Long id) {
         DeptDO dept = deptService.get(id);
         return R.ok(DeptConvert.INSTANCE.toVO(dept));
     }
 
-    @GetMapping("/page")
+    @GetMapping("/get/page")
     public R<PageData<DeptVO>> getPage(DeptPageDTO dto) {
         PageData<DeptDO> page = deptService.getPage(dto);
         return R.ok(new PageData<>(page, DeptConvert.INSTANCE.toListVO(page.getList())));

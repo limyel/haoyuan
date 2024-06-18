@@ -19,15 +19,15 @@ public class PostController {
 
     private final PostService postService;
 
-    @GetMapping("/get/{slug}")
+    @GetMapping("/get/by/{slug}")
     @ApiOperation(value = "文章详情")
     public R<?> getBySlug(@PathVariable String slug) {
         return R.ok();
     }
 
-    @GetMapping("/page")
+    @GetMapping("/get/page")
     @ApiOperation(value = "文章分页")
-    public R<?> page(PageParam pageParam) {
+    public R<?> getPage(PageParam pageParam) {
         return R.ok();
     }
 }

@@ -33,13 +33,13 @@ public class PostController {
         return R.ok();
     }
 
-    @GetMapping("/get/{id}")
-    public R<?> get(@PathVariable Long id) {
+    @GetMapping("/get/by/{id}")
+    public R<?> getById(@PathVariable Long id) {
         return R.ok();
     }
 
-    @GetMapping("/page")
-    public R<?> page(PostPageDTO dto) {
+    @GetMapping("/get/page")
+    public R<?> getPage(PostPageDTO dto) {
         return R.ok();
     }
 

@@ -42,13 +42,13 @@ public class SysUserController {
         return new R<>();
     }
 
-    @GetMapping("/get/{id}")
-    public R<SysUserDO> get(@PathVariable("id") Long id) {
+    @GetMapping("/get/by/{id}")
+    public R<SysUserDO> getById(@PathVariable("id") Long id) {
         SysUserDO sysUser = sysUserService.get(id);
         return R.ok(sysUser);
     }
 
-    @GetMapping("/page")
+    @GetMapping("/get/page")
     public R<PageData<PostVO>> getPage(PostPageDTO dto) {
 //        PageData<SysPostDO> page = sysUserService.getPage(dto);
 //        return Result.ok(new PageData<>(page, SysPostConvert.INSTANCE.toListVO(page.getList())));
