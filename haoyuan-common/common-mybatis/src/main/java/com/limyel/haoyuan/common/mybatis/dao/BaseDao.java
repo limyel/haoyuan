@@ -67,4 +67,8 @@ public interface BaseDao<T> extends BaseMapper<T> {
         return delete(new LambdaQueryWrapper<T>().eq(field, value));
     }
 
+    default boolean insertOrUpdate(T domain) {
+        return Db.saveOrUpdate(domain);
+    }
+
 }
