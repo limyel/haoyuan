@@ -18,8 +18,6 @@ public class PostDO extends BaseDO {
 
     private String summary;
 
-    private String content;
-
     private Boolean top;
 
     private Integer status;
