@@ -30,8 +30,7 @@ CREATE TABLE `main_post` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `title` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '标题',
     `slug` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'slug',
-    `summary` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '描述',
-    `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '内容',
+    `summary` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '摘要',
     `top` bit(1) NOT NULL DEFAULT b'0' COMMENT '置顶',
     `status` tinyint NOT NULL DEFAULT 0 COMMENT '状态，0-草稿 1-发布',
     `view_num` int NOT NULL DEFAULT 0 COMMENT '浏览量',
@@ -45,6 +44,16 @@ CREATE TABLE `main_post` (
     UNIQUE KEY `uk_title` (`title`),
     UNIQUE KEY `uk_slug` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='文章';
+
+
+CREATE TABLE `main_post_content` (
+    `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `post_id` bigint NOT NULL COMMENT '文章 ID',
+    `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '内容',
+    `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`id`) USING BTREE,
+    KEY `idx_post_id` (`post_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='文章内容';
 
 
 CREATE TABLE `main_tag` (
