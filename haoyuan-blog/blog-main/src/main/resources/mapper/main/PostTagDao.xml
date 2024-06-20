@@ -4,7 +4,7 @@
 <mapper namespace="com.limyel.haoyuan.blog.main.dao.PostTagDao">
 
     <delete id="deleteByPostId">
-        DELETE FROM `blog_post_tag` WHERE `post_id` = #{postId}
+        DELETE FROM `main_post_tag` WHERE `post_id` = #{postId}
     </delete>
 
 </mapper>

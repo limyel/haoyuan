@@ -3,7 +3,12 @@ package com.limyel.haoyuan.blog.main.controller.admin;
 import com.limyel.haoyuan.blog.main.dto.post.PostDTO;
 import com.limyel.haoyuan.blog.main.dto.post.PostPageDTO;
 import com.limyel.haoyuan.blog.main.service.PostService;
+import com.limyel.haoyuan.blog.main.vo.post.PostPageVO;
+import com.limyel.haoyuan.common.mybatis.pojo.PageData;
+import com.limyel.haoyuan.common.web.log.ApiOperationLog;
 import com.limyel.haoyuan.common.web.pojo.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,34 +20,50 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController("adminPostController")
 @RequestMapping("/post")
+@Api(tags = "Admin 文章模块")
 @RequiredArgsConstructor
 public class PostController {
 
     private final PostService postService;
 
+    @ApiOperation("添加文章")
+    @ApiOperationLog(description = "添加文章")
     @PostMapping("/create")
     public R<?> create(@Validated @RequestBody PostDTO dto) {
+        postService.create(dto);
         return R.ok();
     }
 
+    @ApiOperation("删除文章")
+    @ApiOperationLog(description = "删除文章")
     @GetMapping("/delete/{id}")
     public R<?> delete(@PathVariable Long id) {
+        postService.delete(id);
         return R.ok();
     }
 
+    @ApiOperation("更新文章")
+    @ApiOperationLog(description = "更新文章")
     @PostMapping("/update")
     public R<?> update(@Validated @RequestBody PostDTO dto) {
+        postService.update(dto);
         return R.ok();
     }
 
+    @ApiOperation("文章详情")
+    @ApiOperationLog(description = "文章详情")
     @GetMapping("/get/by/{id}")
-    public R<?> getById(@PathVariable Long id) {
-        return R.ok();
+    public R<PostDTO> getById(@PathVariable Long id) {
+        PostDTO result = postService.getById(id);
+        return R.ok(result);
     }
 
+    @ApiOperation("文章分页")
+    @ApiOperationLog(description = "文章分页")
     @GetMapping("/get/page")
     public R<?> getPage(PostPageDTO dto) {
-        return R.ok();
+        PageData<PostPageVO> result = postService.getPage(dto);
+        return R.ok(result);
     }
 
 }
