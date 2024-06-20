@@ -56,4 +56,4 @@ haoyuan:
   jwt:
     issuer: limyel
     secret: mhf6b3wbVxmmUWFgeqGMTBoSR9s9rUl4QeyYwZTTBRvybd+ZDmqB8/mYy0yOO201acd7Sia4b7JNSP174DtUoQ==
-    expireHours: 1
+    expireHours: 120
