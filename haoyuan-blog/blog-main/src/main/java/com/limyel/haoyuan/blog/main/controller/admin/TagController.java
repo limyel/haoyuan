@@ -38,9 +38,9 @@ public class TagController {
         return result == 1 ? R.ok() : R.failed(MainErrorCode.TAG_CREATE_FAILED);
     }
 
+    @GetMapping("/delete/{slug}")
     @ApiOperation("删除分类")
     @ApiOperationLog(description = "删除分类")
-    @GetMapping("/delete/{slug}")
     public R<?> delete(@PathVariable String slug) {
         tagService.delete(slug);
         return R.ok();

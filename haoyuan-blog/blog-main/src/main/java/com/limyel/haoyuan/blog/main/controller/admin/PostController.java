@@ -26,41 +26,41 @@ public class PostController {
 
     private final PostService postService;
 
+    @PostMapping("/create")
     @ApiOperation("添加文章")
     @ApiOperationLog(description = "添加文章")
-    @PostMapping("/create")
     public R<?> create(@Validated @RequestBody PostDTO dto) {
         postService.create(dto);
         return R.ok();
     }
 
+    @GetMapping("/delete/{id}")
     @ApiOperation("删除文章")
     @ApiOperationLog(description = "删除文章")
-    @GetMapping("/delete/{id}")
     public R<?> delete(@PathVariable Long id) {
         postService.delete(id);
         return R.ok();
     }
 
+    @PostMapping("/update")
     @ApiOperation("更新文章")
     @ApiOperationLog(description = "更新文章")
-    @PostMapping("/update")
     public R<?> update(@Validated @RequestBody PostDTO dto) {
         postService.update(dto);
         return R.ok();
     }
 
+    @GetMapping("/get/by/{id}")
     @ApiOperation("文章详情")
     @ApiOperationLog(description = "文章详情")
-    @GetMapping("/get/by/{id}")
     public R<PostDTO> getById(@PathVariable Long id) {
         PostDTO result = postService.getById(id);
         return R.ok(result);
     }
 
+    @GetMapping("/get/page")
     @ApiOperation("文章分页")
     @ApiOperationLog(description = "文章分页")
-    @GetMapping("/get/page")
     public R<?> getPage(PostPageDTO dto) {
         PageData<PostPageVO> result = postService.getPage(dto);
         return R.ok(result);
