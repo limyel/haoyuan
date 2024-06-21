@@ -1,17 +1,22 @@
 package com.limyel.haoyuan.blog.main.service;
 
+import com.limyel.haoyuan.blog.main.convert.TagConvert;
 import com.limyel.haoyuan.blog.main.dao.PostTagDao;
 import com.limyel.haoyuan.blog.main.dao.TagDao;
 import com.limyel.haoyuan.blog.main.domain.PostTagDO;
 import com.limyel.haoyuan.blog.main.domain.TagDO;
 import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
+import com.limyel.haoyuan.blog.main.vo.tag.TagPostVO;
 import com.limyel.haoyuan.common.core.exception.BizException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// todo 将 tag 的 slug 和 name 冗余存储？
 @Service
 @RequiredArgsConstructor
 public class PostTagService {
@@ -43,6 +48,17 @@ public class PostTagService {
         List<PostTagDO> postTagDOList = postTagDao.selectList(PostTagDO::getPostId, postId);
         return postTagDOList.stream()
                 .map(PostTagDO::getTagId)
+                .toList();
+    }
+
+    public List<TagPostVO> getTagsByPostId(Long postId) {
+        List<Long> tagIds = getTagIds(postId);
+        if (CollectionUtils.isEmpty(tagIds)) {
+            return List.of();
+        }
+        List<TagDO> tagDOList = tagDao.selectByIds(tagIds);
+        return tagDOList.stream()
+                .map(TagConvert.INSTANCE::toPostVO)
                 .toList();
     }
 

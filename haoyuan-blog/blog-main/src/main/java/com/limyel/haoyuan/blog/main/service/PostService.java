@@ -1,13 +1,19 @@
 package com.limyel.haoyuan.blog.main.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.blog.main.convert.PostConvert;
 import com.limyel.haoyuan.blog.main.dao.PostDao;
 import com.limyel.haoyuan.blog.main.dto.post.PostDTO;
 import com.limyel.haoyuan.blog.main.domain.PostDO;
+import com.limyel.haoyuan.blog.main.dto.post.PostFilterDTO;
 import com.limyel.haoyuan.blog.main.dto.post.PostPageDTO;
 import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
+import com.limyel.haoyuan.blog.main.vo.post.PostArchiveVO;
+import com.limyel.haoyuan.blog.main.vo.post.PostListVO;
+import com.limyel.haoyuan.blog.main.vo.post.PostDetailVO;
 import com.limyel.haoyuan.blog.main.vo.post.PostPageVO;
+import com.limyel.haoyuan.common.core.constant.StatusEnum;
 import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
@@ -15,6 +21,12 @@ import com.limyel.haoyuan.common.web.pojo.PageParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -87,8 +99,58 @@ public class PostService {
         return new PageData<>(page, PostConvert.INSTANCE.toPageVO(page.getRecords()));
     }
 
-    public PageData<?> getList(PageParam pageParam) {
+    public PageData<PostListVO> getList(PostFilterDTO dto) {
+        Page<PostDO> page = new Page<>(dto.getPageNum(), dto.getPageSize());
+        LambdaQueryWrapper<PostDO> wrapper = new LambdaQueryWrapper<PostDO>()
+                .eq(PostDO::getStatus, StatusEnum.ENABLE.getValue())
+                .orderByDesc(PostDO::getCreateTime);
+        postDao.selectPage(page, wrapper);
+        List<PostListVO> list = page.getRecords().stream().map(postDO -> {
+            PostListVO vo = PostConvert.INSTANCE.toListVO(postDO);
+            vo.setTags(postTagService.getTagsByPostId(postDO.getId()));
+            return vo;
+        }).toList();
+        return new PageData<>(page, list);
+    }
 
+    public PostDetailVO getDetail(String slug) {
+        LambdaQueryWrapper<PostDO> wrapper = new LambdaQueryWrapper<PostDO>()
+                .eq(PostDO::getSlug, slug)
+                .eq(PostDO::getStatus, StatusEnum.ENABLE.getValue());
+        PostDO postDO = postDao.selectOne(wrapper);
+        if (postDO == null) {
+            throw new BizException(MainErrorCode.POST_NOT_FOUND);
+        }
+
+        PostDetailVO result = PostConvert.INSTANCE.toDetailVO(postDO);
+        result.setTags(postTagService.getTagsByPostId(postDO.getId()));
+        result.setContent(postContentService.getContent(postDO.getId()));
+
+        return result;
+    }
+
+    public List<PostArchiveVO> getArchive() {
+        LambdaQueryWrapper<PostDO> wrapper = new LambdaQueryWrapper<PostDO>()
+                .eq(PostDO::getStatus, StatusEnum.ENABLE.getValue())
+                .orderByDesc(PostDO::getCreateTime);
+        List<PostDO> postDOList = postDao.selectList(wrapper);
+        Map<Integer, List<PostDO>> map = postDOList.stream().collect(Collectors.groupingBy(PostDO::getCreateYear));
+
+        List<PostArchiveVO> result = new ArrayList<>();
+        map.forEach((year, posts) -> {
+            List<PostArchiveVO.Item> items = posts.stream().map(postDO -> {
+                PostArchiveVO.Item item = PostConvert.INSTANCE.toArciveVOItem(postDO);
+                item.setTags(postTagService.getTagsByPostId(postDO.getId()));
+                return item;
+            }).toList();
+            PostArchiveVO archiveVO = new PostArchiveVO();
+            archiveVO.setYear(year);
+            archiveVO.setPosts(items);
+            result.add(archiveVO);
+        });
+
+        Collections.reverse(result);
+        return result;
     }
 
     private void validateTitleUnique(Long id, String title) {

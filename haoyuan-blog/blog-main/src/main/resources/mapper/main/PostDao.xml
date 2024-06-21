@@ -3,4 +3,11 @@
 
 <mapper namespace="com.limyel.haoyuan.blog.main.dao.PostDao">
 
+    <select id="selectPage" parameterType="com.limyel.haoyuan.blog.main.dto.post.PostFilterDTO" resultType="postDO">
+        SELECT *
+        FROM `main_post` t1
+                 INNER JOIN `main_post_tag` t2 ON t1.id = t2.post_id
+                 INNER JOIN `main_tag` t3 ON t3.id = t2.tag_id
+    </select>
+
 </mapper>

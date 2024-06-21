@@ -1,6 +1,12 @@
 package com.limyel.haoyuan.blog.main.controller.blog;
 
+import com.limyel.haoyuan.blog.main.dto.post.PostFilterDTO;
 import com.limyel.haoyuan.blog.main.service.PostService;
+import com.limyel.haoyuan.blog.main.vo.post.PostArchiveVO;
+import com.limyel.haoyuan.blog.main.vo.post.PostDetailVO;
+import com.limyel.haoyuan.blog.main.vo.post.PostListVO;
+import com.limyel.haoyuan.common.mybatis.pojo.PageData;
+import com.limyel.haoyuan.common.web.log.ApiOperationLog;
 import com.limyel.haoyuan.common.web.pojo.PageParam;
 import com.limyel.haoyuan.common.web.pojo.R;
 import io.swagger.annotations.Api;
@@ -11,23 +17,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController("blogPostController")
 @RequestMapping("/post")
 @RequiredArgsConstructor
-@Api(tags = "文章")
+@Api(tags = "文章模块")
 public class PostController {
 
     private final PostService postService;
 
     @GetMapping("/get/by/{slug}")
     @ApiOperation(value = "文章详情")
-    public R<?> getBySlug(@PathVariable String slug) {
-        return R.ok();
+    public R<PostDetailVO> getBySlug(@PathVariable String slug) {
+        PostDetailVO result = postService.getDetail(slug);
+        return R.ok(result);
     }
 
-    @GetMapping("/get/page")
-    @ApiOperation(value = "文章分页")
-    public R<?> getPage(PageParam pageParam) {
-        return R.ok();
+    @GetMapping("/get/list")
+    @ApiOperation("文章列表")
+    @ApiOperationLog(description = "文章列表")
+    public R<PageData<PostListVO>> getList(PostFilterDTO dto) {
+        PageData<PostListVO> result = postService.getList(dto);
+        return R.ok(result);
+    }
+
+    @GetMapping("/get/archive")
+    @ApiOperation("文章归档")
+    @ApiOperationLog(description = "文章归档")
+    public R<List<PostArchiveVO>> getArchive() {
+        List<PostArchiveVO> result = postService.getArchive();
+        return R.ok(result);
     }
 }

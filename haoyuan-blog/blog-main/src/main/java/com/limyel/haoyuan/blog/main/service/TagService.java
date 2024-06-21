@@ -8,6 +8,7 @@ import com.limyel.haoyuan.blog.main.dto.tag.TagDTO;
 import com.limyel.haoyuan.blog.main.dto.tag.TagPageDTO;
 import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
 import com.limyel.haoyuan.blog.main.vo.tag.TagPageVO;
+import com.limyel.haoyuan.blog.main.vo.tag.TagPostVO;
 import com.limyel.haoyuan.blog.main.vo.tag.TagSelectVO;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
@@ -48,6 +49,13 @@ public class TagService {
     public List<TagSelectVO> getSelect() {
         List<TagDO> tagDOList = tagDao.selectList();
         return TagConvert.INSTANCE.toSelectVO(tagDOList);
+    }
+
+    public List<TagPostVO> getAll() {
+        List<TagDO> tagDOList = tagDao.selectList();
+        return tagDOList.stream()
+                .map(TagConvert.INSTANCE::toPostVO)
+                .toList();
     }
 
     private void validateNameUnique(Long id, String name) {

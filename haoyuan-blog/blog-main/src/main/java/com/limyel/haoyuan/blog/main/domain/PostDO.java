@@ -26,4 +26,8 @@ public class PostDO extends BaseDO {
 
     private LocalDateTime publishTime;
 
+    public int getCreateYear() {
+        return getCreateTime().getYear();
+    }
+
 }
