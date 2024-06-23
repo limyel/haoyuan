@@ -4,12 +4,13 @@ import com.limyel.haoyuan.common.web.pojo.PageParam;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class PostFilterDTO extends PageParam {
+public class PostListDTO extends PageParam {
 
-    List<String> tags;
+    List<String> tags = new ArrayList<>();
 
 }

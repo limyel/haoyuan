@@ -6,7 +6,7 @@ import com.limyel.haoyuan.blog.main.convert.PostConvert;
 import com.limyel.haoyuan.blog.main.dao.PostDao;
 import com.limyel.haoyuan.blog.main.dto.post.PostDTO;
 import com.limyel.haoyuan.blog.main.domain.PostDO;
-import com.limyel.haoyuan.blog.main.dto.post.PostFilterDTO;
+import com.limyel.haoyuan.blog.main.dto.post.PostListDTO;
 import com.limyel.haoyuan.blog.main.dto.post.PostPageDTO;
 import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
 import com.limyel.haoyuan.blog.main.vo.post.PostArchiveVO;
@@ -17,7 +17,6 @@ import com.limyel.haoyuan.common.core.constant.StatusEnum;
 import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.common.web.pojo.PageParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -99,12 +98,14 @@ public class PostService {
         return new PageData<>(page, PostConvert.INSTANCE.toPageVO(page.getRecords()));
     }
 
-    public PageData<PostListVO> getList(PostFilterDTO dto) {
+    public PageData<PostListVO> getList(PostListDTO dto) {
         Page<PostDO> page = new Page<>(dto.getPageNum(), dto.getPageSize());
-        LambdaQueryWrapper<PostDO> wrapper = new LambdaQueryWrapper<PostDO>()
-                .eq(PostDO::getStatus, StatusEnum.ENABLE.getValue())
-                .orderByDesc(PostDO::getCreateTime);
-        postDao.selectPage(page, wrapper);
+        postDao.selectPage(page, dto);
+
+//        LambdaQueryWrapper<PostDO> wrapper = new LambdaQueryWrapper<PostDO>()
+//                .eq(PostDO::getStatus, StatusEnum.ENABLE.getValue())
+//                .orderByDesc(PostDO::getCreateTime);
+//        postDao.selectPage(page, wrapper);
         List<PostListVO> list = page.getRecords().stream().map(postDO -> {
             PostListVO vo = PostConvert.INSTANCE.toListVO(postDO);
             vo.setTags(postTagService.getTagsByPostId(postDO.getId()));

@@ -1,13 +1,12 @@
 package com.limyel.haoyuan.blog.main.controller.blog;
 
-import com.limyel.haoyuan.blog.main.dto.post.PostFilterDTO;
+import com.limyel.haoyuan.blog.main.dto.post.PostListDTO;
 import com.limyel.haoyuan.blog.main.service.PostService;
 import com.limyel.haoyuan.blog.main.vo.post.PostArchiveVO;
 import com.limyel.haoyuan.blog.main.vo.post.PostDetailVO;
 import com.limyel.haoyuan.blog.main.vo.post.PostListVO;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.web.log.ApiOperationLog;
-import com.limyel.haoyuan.common.web.pojo.PageParam;
 import com.limyel.haoyuan.common.web.pojo.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,7 +36,7 @@ public class PostController {
     @GetMapping("/get/list")
     @ApiOperation("文章列表")
     @ApiOperationLog(description = "文章列表")
-    public R<PageData<PostListVO>> getList(PostFilterDTO dto) {
+    public R<PageData<PostListVO>> getList(PostListDTO dto) {
         PageData<PostListVO> result = postService.getList(dto);
         return R.ok(result);
     }
