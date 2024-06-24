@@ -10,6 +10,4 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface PostDao extends BaseDao<PostDO> {
 
-    IPage<PostDO> selectPage(IPage<PostDO> page, @Param("dto") PostListDTO dto);
-
 }

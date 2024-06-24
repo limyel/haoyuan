@@ -100,12 +100,15 @@ public class PostService {
 
     public PageData<PostListVO> getList(PostListDTO dto) {
         Page<PostDO> page = new Page<>(dto.getPageNum(), dto.getPageSize());
-        postDao.selectPage(page, dto);
+        List<Long> postIds = postTagService.getPostIdsBySlugs(dto.getTags());
+//        postDao.selectPage(page, dto);
 
-//        LambdaQueryWrapper<PostDO> wrapper = new LambdaQueryWrapper<PostDO>()
-//                .eq(PostDO::getStatus, StatusEnum.ENABLE.getValue())
-//                .orderByDesc(PostDO::getCreateTime);
-//        postDao.selectPage(page, wrapper);
+        LambdaQueryWrapperPlus<PostDO> wrapperPlus = new LambdaQueryWrapperPlus<PostDO>();
+        wrapperPlus.inIfPresent(PostDO::getId, postIds);
+        wrapperPlus.eq(PostDO::getStatus, StatusEnum.ENABLE.getValue());
+        wrapperPlus.orderByDesc(PostDO::getCreateTime);
+
+        postDao.selectPage(page, wrapperPlus);
         List<PostListVO> list = page.getRecords().stream().map(postDO -> {
             PostListVO vo = PostConvert.INSTANCE.toListVO(postDO);
             vo.setTags(postTagService.getTagsByPostId(postDO.getId()));

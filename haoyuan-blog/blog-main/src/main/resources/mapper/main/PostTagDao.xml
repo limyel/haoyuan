@@ -7,4 +7,13 @@
         DELETE FROM `main_post_tag` WHERE `post_id` = #{postId}
     </delete>
 
+    <select id="selectPostIdByTagIds" resultType="long">
+        select `post_id` FROM `main_post_tag` WHERE `tag_id` in
+        <foreach item="item" collection="tagIds" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        GROUP BY `post_id`
+        HAVING COUNT(DISTINCT `tag_id`) = ${tagIds.size}
+    </select>
+
 </mapper>

@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.blog.main.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.limyel.haoyuan.blog.main.convert.TagConvert;
 import com.limyel.haoyuan.blog.main.dao.PostTagDao;
 import com.limyel.haoyuan.blog.main.dao.TagDao;
@@ -49,6 +50,26 @@ public class PostTagService {
         return postTagDOList.stream()
                 .map(PostTagDO::getTagId)
                 .toList();
+    }
+
+    public List<Long> getTagIds(List<String> slugs) {
+        List<TagDO> tagDOList = tagDao.selectList(new LambdaQueryWrapper<TagDO>()
+                .in(TagDO::getSlug, slugs));
+        return tagDOList.stream()
+                .map(TagDO::getId)
+                .toList();
+    }
+
+    public List<Long> getPostIdsByTagIds(List<Long> tagIds) {
+        return postTagDao.selectPostIdByTagIds(tagIds);
+    }
+
+    public List<Long> getPostIdsBySlugs(List<String> slugs) {
+        if (CollectionUtils.isEmpty(slugs)) {
+            return List.of();
+        }
+        List<Long> tagIds = getTagIds(slugs);
+        return getPostIdsByTagIds(tagIds);
     }
 
     public List<TagPostVO> getTagsByPostId(Long postId) {
