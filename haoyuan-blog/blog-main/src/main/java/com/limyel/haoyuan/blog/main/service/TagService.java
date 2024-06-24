@@ -7,6 +7,7 @@ import com.limyel.haoyuan.blog.main.domain.TagDO;
 import com.limyel.haoyuan.blog.main.dto.tag.TagDTO;
 import com.limyel.haoyuan.blog.main.dto.tag.TagPageDTO;
 import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
+import com.limyel.haoyuan.blog.main.vo.tag.TagDetailVO;
 import com.limyel.haoyuan.blog.main.vo.tag.TagPageVO;
 import com.limyel.haoyuan.blog.main.vo.tag.TagPostVO;
 import com.limyel.haoyuan.blog.main.vo.tag.TagSelectVO;
@@ -22,6 +23,8 @@ import java.util.List;
 public class TagService {
 
     private final TagDao tagDao;
+
+    private final PostTagService postTagService;
 
     public int create(TagDTO dto) {
         validateNameUnique(null, dto.getName());
@@ -51,10 +54,14 @@ public class TagService {
         return TagConvert.INSTANCE.toSelectVO(tagDOList);
     }
 
-    public List<TagPostVO> getAll() {
+    public List<TagDetailVO> getAll() {
         List<TagDO> tagDOList = tagDao.selectList();
         return tagDOList.stream()
-                .map(TagConvert.INSTANCE::toPostVO)
+                .map(tagDO -> {
+                    TagDetailVO vo = TagConvert.INSTANCE.toDetailVO(tagDO);
+                    vo.setPostNum(postTagService.getPostNumByTagId(tagDO.getId()));
+                    return vo;
+                })
                 .toList();
     }
 

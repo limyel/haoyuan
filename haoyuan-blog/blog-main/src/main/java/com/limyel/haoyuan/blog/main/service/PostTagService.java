@@ -60,6 +60,17 @@ public class PostTagService {
                 .toList();
     }
 
+    public List<TagPostVO> getTagsByPostId(Long postId) {
+        List<Long> tagIds = getTagIds(postId);
+        if (CollectionUtils.isEmpty(tagIds)) {
+            return List.of();
+        }
+        List<TagDO> tagDOList = tagDao.selectByIds(tagIds);
+        return tagDOList.stream()
+                .map(TagConvert.INSTANCE::toPostVO)
+                .toList();
+    }
+
     public List<Long> getPostIdsByTagIds(List<Long> tagIds) {
         return postTagDao.selectPostIdByTagIds(tagIds);
     }
@@ -72,15 +83,8 @@ public class PostTagService {
         return getPostIdsByTagIds(tagIds);
     }
 
-    public List<TagPostVO> getTagsByPostId(Long postId) {
-        List<Long> tagIds = getTagIds(postId);
-        if (CollectionUtils.isEmpty(tagIds)) {
-            return List.of();
-        }
-        List<TagDO> tagDOList = tagDao.selectByIds(tagIds);
-        return tagDOList.stream()
-                .map(TagConvert.INSTANCE::toPostVO)
-                .toList();
+    public long getPostNumByTagId(Long tagId) {
+        return postTagDao.selectCount(PostTagDO::getTagId, tagId);
     }
 
     private void validateTagIds(List<Long> tagIds) {
