@@ -26,7 +26,7 @@ public class PostController {
 
     private final PostService postService;
 
-    @GetMapping("/get/by/{slug}")
+    @GetMapping("/get/detail/{slug}")
     @ApiOperation(value = "文章详情")
     public R<PostDetailVO> getBySlug(@PathVariable String slug) {
         PostDetailVO result = postService.getDetail(slug);
