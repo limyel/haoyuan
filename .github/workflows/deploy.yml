@@ -37,4 +37,4 @@ jobs:
             docker build -t haoyuan-blog-image .
             docker stop haoyuan-blog
             docker container rm haoyuan-blog
-            docker run -d -p 8000:8000 --name hoayuan-blog haoyuan-blog-image
+            docker run -d -p 8000:8000 --name haoyuan-blog haoyuan-blog-image
