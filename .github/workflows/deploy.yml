@@ -28,9 +28,9 @@ jobs:
           TARGET: ${{ secrets.TARGET }}
           SCRIPT_AFTER: |
             cd ~/haoyuan
-            rm ./blog-startup/src/main/resources/application.yml
-            cp ~/config/blog.yml ./blog-startup/src/main/resources/application.yml
-            cp ~/config/blog-pro.yml ./blog-startup/src/main/resources/application-pro.yml
+            rm ./haoyuan-blog/blog-startup/src/main/resources/application.yml
+            cp ~/config/blog.yml ./haoyuan-blog/blog-startup/src/main/resources/application.yml
+            cp ~/config/blog-pro.yml ./haoyuan-blog/blog-startup/src/main/resources/application-pro.yml
             /opt/maven/bin/mvn clean compile package install --file pom.xml
             cd ./haoyuan-blog
             docker image rm haoyuan-blog-image
