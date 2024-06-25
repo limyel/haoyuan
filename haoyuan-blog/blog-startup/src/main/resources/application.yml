@@ -50,3 +50,6 @@ mybatis-plus:
     prefix:
     blobType: BLOB
     boolValue: TRUE
+
+logging:
+  config: classpath:logback-blog.xml

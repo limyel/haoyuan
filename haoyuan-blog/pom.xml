@@ -11,6 +11,7 @@
 
     <artifactId>haoyuan-blog</artifactId>
     <packaging>pom</packaging>
+    <version>${haoyuan-blog.version}</version>
 
     <modules>
         <module>blog-main</module>
@@ -19,9 +20,10 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <haoyuan-blog.version>0.1.0</haoyuan-blog.version>
     </properties>
 
 </project>

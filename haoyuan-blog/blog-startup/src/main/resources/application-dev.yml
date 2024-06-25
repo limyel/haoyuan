@@ -31,10 +31,6 @@ spring:
         min-idle: 0
 
 
-logging:
-  config: classpath:logback-blog.xml
-
-
 haoyuan:
   knife4j:
     title: "Blog 接口文档"

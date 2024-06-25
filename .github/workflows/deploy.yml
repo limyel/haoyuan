@@ -1,0 +1,36 @@
+# 当前工作流名称
+name: Deploy haoyuan-blog
+on:
+  push:
+    branches:
+      - master # 只在master上push触发部署
+    paths-ignore: # 下列文件的变更不触发部署，可以自行添加
+      - README.md
+      - LICENSE
+
+# 构建任务
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # 使用ubuntu系统镜像运行自动化脚本
+
+    # 构建任务的步骤
+    steps:
+      # 切换分支
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: ssh deploy
+        uses: easingthemes/ssh-deploy@v5.0.3
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.TARGET }}
+          SCRIPT_AFTER: |
+            cd ~/haoyuan/haoyuan-blog
+            cp ~/config/blog-pro.yml ./blog-startup/src/main/resources/application-pro.yml
+            docker image rm haoyuan-blog-image
+            docker build -t haoyuan-blog-image .
+            docker stop haoyuan-blog
+            docker container rm haoyuan-blog
+            docker run -d -p 8000:80 --name blog-ui blog-ui-image
