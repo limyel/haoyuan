@@ -3,6 +3,7 @@ package com.limyel.haoyuan.blog.main.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.blog.main.convert.TagConvert;
 import com.limyel.haoyuan.blog.main.dao.TagDao;
+import com.limyel.haoyuan.blog.main.domain.PostDO;
 import com.limyel.haoyuan.blog.main.domain.TagDO;
 import com.limyel.haoyuan.blog.main.dto.tag.TagDTO;
 import com.limyel.haoyuan.blog.main.dto.tag.TagPageDTO;
@@ -63,6 +64,10 @@ public class TagService {
                     return vo;
                 })
                 .toList();
+    }
+
+    public Long getCount() {
+        return tagDao.selectCount();
     }
 
     private void validateNameUnique(Long id, String name) {

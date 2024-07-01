@@ -8,6 +8,7 @@ import com.limyel.haoyuan.blog.main.dto.post.PostDTO;
 import com.limyel.haoyuan.blog.main.domain.PostDO;
 import com.limyel.haoyuan.blog.main.dto.post.PostListDTO;
 import com.limyel.haoyuan.blog.main.dto.post.PostPageDTO;
+import com.limyel.haoyuan.blog.main.event.PostViewEvent;
 import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
 import com.limyel.haoyuan.blog.main.vo.post.PostArchiveVO;
 import com.limyel.haoyuan.blog.main.vo.post.PostListVO;
@@ -18,6 +19,7 @@ import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,6 +38,8 @@ public class PostService {
     private final PostTagService postTagService;
 
     private final PostContentService postContentService;
+
+    private final ApplicationEventPublisher eventPublisher;
 
     @Transactional(rollbackFor = Exception.class)
     public int create(PostDTO dto) {
@@ -130,6 +134,8 @@ public class PostService {
         result.setTags(postTagService.getTagsByPostId(postDO.getId()));
         result.setContent(postContentService.getContent(postDO.getId()));
 
+        eventPublisher.publishEvent(new PostViewEvent(this, postDO.getId()));
+
         return result;
     }
 
@@ -155,6 +161,17 @@ public class PostService {
 
         Collections.reverse(result);
         return result;
+    }
+
+    public Long getCount() {
+        return postDao.selectCount(PostDO::getStatus, StatusEnum.ENABLE.getValue());
+    }
+
+    public Long getAllViewNum() {
+        List<PostDO> list = postDao.selectList(PostDO::getStatus, StatusEnum.ENABLE.getValue());
+        return list.stream()
+                .mapToLong(PostDO::getViewNum)
+                .sum();
     }
 
     private void validateTitleUnique(Long id, String title) {

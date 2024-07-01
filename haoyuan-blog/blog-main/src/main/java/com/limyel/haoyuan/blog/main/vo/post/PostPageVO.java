@@ -11,6 +11,8 @@ public class PostPageVO {
 
     private String title;
 
+    private String slug;
+
     private Boolean top;
 
     private Integer status;
