@@ -19,6 +19,8 @@ public class PostListVO {
 
     private int viewNum;
 
+    private Boolean top;
+
     private List<TagPostVO> tags;
 
 }

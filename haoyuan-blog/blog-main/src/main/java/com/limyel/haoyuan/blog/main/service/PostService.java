@@ -105,11 +105,11 @@ public class PostService {
     public PageData<PostListVO> getList(PostListDTO dto) {
         Page<PostDO> page = new Page<>(dto.getPageNum(), dto.getPageSize());
         List<Long> postIds = postTagService.getPostIdsBySlugs(dto.getTags());
-//        postDao.selectPage(page, dto);
 
         LambdaQueryWrapperPlus<PostDO> wrapperPlus = new LambdaQueryWrapperPlus<PostDO>();
         wrapperPlus.inIfPresent(PostDO::getId, postIds);
         wrapperPlus.eq(PostDO::getStatus, StatusEnum.ENABLE.getValue());
+        wrapperPlus.orderByDesc(PostDO::getTop);
         wrapperPlus.orderByDesc(PostDO::getCreateTime);
 
         postDao.selectPage(page, wrapperPlus);
