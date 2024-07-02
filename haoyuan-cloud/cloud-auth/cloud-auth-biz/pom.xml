@@ -5,20 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-cloud</artifactId>
+        <artifactId>cloud-auth</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>cloud-auth</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>cloud-auth-biz</module>
-        <module>cloud-auth-api</module>
-    </modules>
+    <artifactId>cloud-auth-biz</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
