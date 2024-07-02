@@ -15,6 +15,7 @@
         <module>haoyuan-common</module>
         <module>haoyuan-framework</module>
         <module>haoyuan-blog</module>
+        <module>haoyuan-cloud</module>
     </modules>
 
     <properties>
@@ -59,13 +60,13 @@
     </dependencies>
 
     <build>
-        <!-- 统一插件管理 -->
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
+                        <includeSystemScope>true</includeSystemScope>
                         <excludes>
                             <exclude>
                                 <groupId>org.projectlombok</groupId>
@@ -73,9 +74,19 @@
                             </exclude>
                         </excludes>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <id>repackage</id>
+                            <goals>
+                                <!-- 将依赖的 jar 一起打包 -->
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

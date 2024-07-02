@@ -5,17 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan</artifactId>
+        <artifactId>haoyuan-framework</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>haoyuan-framework</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>haoyuan-netty</module>
-        <module>haoyuan-search</module>
-        <module>haoyuan-threadpool</module>
-    </modules>
+    <artifactId>haoyuan-search</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

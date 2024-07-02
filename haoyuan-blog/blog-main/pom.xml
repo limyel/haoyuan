@@ -33,6 +33,11 @@
             <artifactId>common-knife4j</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-redis</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
