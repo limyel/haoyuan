@@ -5,14 +5,18 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
+import com.limyel.haoyuan.common.core.exception.BizException;
+import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
+import com.limyel.haoyuan.common.mybatis.pojo.BaseDO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
 
-public interface BaseDao<T> extends BaseMapper<T> {
+public interface BaseDao<T extends BaseDO> extends BaseMapper<T> {
 
     // 批量插入
     int insertBatchSomeColumn(@Param("list") List<T> batchList);
@@ -69,6 +73,23 @@ public interface BaseDao<T> extends BaseMapper<T> {
 
     default int insertOrUpdate(T domain) {
         return Db.saveOrUpdate(domain) ? 1 : 0;
+    }
+
+    default <F> void validateUnique(Long id, SFunction<T, F> field, F value, ErrorCode errorCode) {
+        T item = selectOne(field, value);
+        if (item != null) {
+            item.validateUnique(id, errorCode);
+        }
+    }
+
+    default void validateExist(Long id, ErrorCode errorCode) {
+        if (id == null) {
+            return;
+        }
+        T item = selectById(id);
+        if (item == null) {
+            throw new BizException(errorCode);
+        }
     }
 
 }
