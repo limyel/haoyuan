@@ -43,12 +43,11 @@ public class PostService {
 
     @Transactional(rollbackFor = Exception.class)
     public int create(PostDTO dto) {
-        validateTitleUnique(null, dto.getTitle());
-        validateSlugUnique(null, dto.getSlug());
+        postDao.validateUnique(null, PostDO::getTitle, dto.getTitle(), MainErrorCode.POST_TITLE_DUPLICATE);
+        postDao.validateUnique(null, PostDO::getSlug, dto.getSlug(), MainErrorCode.POST_SLUG_DUPLICATE);
 
         PostDO postDO = PostConvert.INSTANCE.toEntity(dto);
         int result = postDao.insert(postDO);
-        Long postId = postDO.getId();
 
         postContentService.create(postDO.getId(), dto.getContent());
         postTagService.create(postDO.getId(), dto.getTagIds());
@@ -58,7 +57,8 @@ public class PostService {
 
     @Transactional(rollbackFor = Exception.class)
     public int delete(Long id) {
-        validateExist(id);
+        postDao.validateExist(id, MainErrorCode.POST_NOT_FOUND);
+
         postTagService.deleteByPostId(id);
         postContentService.deleteByPostId(id);
         return postDao.deleteById(id);
@@ -66,9 +66,9 @@ public class PostService {
 
     @Transactional(rollbackFor = Exception.class)
     public int update(PostDTO dto) {
-        validateExist(dto.getId());
-        validateTitleUnique(dto.getId(), dto.getTitle());
-        validateSlugUnique(dto.getId(), dto.getSlug());
+        postDao.validateExist(dto.getId(), MainErrorCode.POST_NOT_FOUND);
+        postDao.validateUnique(dto.getId(), PostDO::getTitle, dto.getTitle(), MainErrorCode.POST_TITLE_DUPLICATE);
+        postDao.validateUnique(dto.getId(), PostDO::getSlug, dto.getSlug(), MainErrorCode.POST_SLUG_DUPLICATE);
 
         PostDO postDO = PostConvert.INSTANCE.toEntity(dto);
         int result = postDao.updateById(postDO);
@@ -172,30 +172,6 @@ public class PostService {
         return list.stream()
                 .mapToLong(PostDO::getViewNum)
                 .sum();
-    }
-
-    private void validateTitleUnique(Long id, String title) {
-        PostDO postDO = postDao.selectOne(PostDO::getTitle, title);
-        if (postDO != null) {
-            postDO.validateUnique(id, MainErrorCode.POST_SLUG_DUPLICATE);
-        }
-    }
-
-    private void validateSlugUnique(Long id, String slug) {
-        PostDO postDO = postDao.selectOne(PostDO::getSlug, slug);
-        if (postDO != null) {
-            postDO.validateUnique(id, MainErrorCode.POST_SLUG_DUPLICATE);
-        }
-    }
-
-    private void validateExist(Long id) {
-        if (id == null) {
-            return;
-        }
-        PostDO postDO = postDao.selectById(id);
-        if (postDO == null) {
-            throw new BizException(MainErrorCode.POST_NOT_FOUND);
-        }
     }
 
 }

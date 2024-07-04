@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Data
 @TableName("main_post_content")
-public class PostContentDO {
+public class PostContentDO extends BaseDO {
 
     @TableId
     private Long id;

@@ -7,6 +7,7 @@ import com.limyel.haoyuan.blog.main.vo.post.PostPageVO;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.web.log.ApiOperationLog;
 import com.limyel.haoyuan.common.web.pojo.R;
+import com.limyel.haoyuan.common.web.validate.Create;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class PostController {
     @PostMapping("/create")
     @ApiOperation("添加文章")
     @ApiOperationLog(description = "添加文章")
-    public R<?> create(@Validated @RequestBody PostDTO dto) {
+    public R<?> create(@Validated(Create.class) @RequestBody PostDTO dto) {
         postService.create(dto);
         return R.ok();
     }

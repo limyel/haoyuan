@@ -37,6 +37,7 @@ public class PostDTO {
     @NotNull(message = "是否置顶不能为空")
     private Boolean top;
 
+    @NotNull
     @Range(min = 0, max = 1, message = "状态范围错误")
     private Integer status;
 

@@ -28,8 +28,8 @@ public class TagService {
     private final PostTagService postTagService;
 
     public int create(TagDTO dto) {
-        validateNameUnique(null, dto.getName());
-        validateSlugUnique(null, dto.getSlug());
+        tagDao.validateUnique(null, TagDO::getName, dto.getName(), MainErrorCode.TAG_NAME_DUPLICATE);
+        tagDao.validateUnique(null, TagDO::getSlug, dto.getSlug(), MainErrorCode.TAG_SLUG_DUPLICATE);
 
         TagDO tagDO = TagConvert.INSTANCE.toEntity(dto);
         return tagDao.insert(tagDO);
@@ -68,20 +68,6 @@ public class TagService {
 
     public Long getCount() {
         return tagDao.selectCount();
-    }
-
-    private void validateNameUnique(Long id, String name) {
-        TagDO tagDO = tagDao.selectOne(TagDO::getName, name);
-        if (tagDO != null) {
-            tagDO.validateUnique(id, MainErrorCode.TAG_NAME_DUPLICATE);
-        }
-    }
-
-    private void validateSlugUnique(Long id, String slug) {
-        TagDO tagDO = tagDao.selectOne(TagDO::getSlug, slug);
-        if (tagDO != null) {
-            tagDO.validateUnique(id, MainErrorCode.TAG_SLUG_DUPLICATE);
-        }
     }
 
 }
