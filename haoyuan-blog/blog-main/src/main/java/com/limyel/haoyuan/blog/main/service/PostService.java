@@ -19,6 +19,7 @@ import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import lombok.RequiredArgsConstructor;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,6 +42,8 @@ public class PostService {
 
     private final ApplicationEventPublisher eventPublisher;
 
+    private final RocketMQTemplate rocketMQTemplate;
+
     @Transactional(rollbackFor = Exception.class)
     public int create(PostDTO dto) {
         postDao.validateUnique(null, PostDO::getTitle, dto.getTitle(), MainErrorCode.POST_TITLE_DUPLICATE);
@@ -51,6 +54,8 @@ public class PostService {
 
         postContentService.create(postDO.getId(), dto.getContent());
         postTagService.create(postDO.getId(), dto.getTagIds());
+
+        rocketMQTemplate.convertAndSend("test-sender", dto.getTitle());
 
         return result;
     }
