@@ -15,7 +15,8 @@
         <module>haoyuan-common</module>
         <module>haoyuan-framework</module>
         <module>haoyuan-blog</module>
-        <module>haoyuan-cloud</module>
+        <module>haoyuan-coupon</module>
+        <module>haoyuan-coupon-cloud</module>
     </modules>
 
     <properties>

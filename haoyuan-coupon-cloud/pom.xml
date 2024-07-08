@@ -6,15 +6,10 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>haoyuan</artifactId>
-        <version>${revision}</version>
+        <version>0.0.0</version>
     </parent>
 
-    <artifactId>haoyuan-cloud</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>cloud-auth</module>
-    </modules>
+    <artifactId>haoyuan-coupon-cloud</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
