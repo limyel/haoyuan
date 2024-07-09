@@ -5,12 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-common</artifactId>
+        <artifactId>coupon-template-service</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>common-coupon</artifactId>
+    <artifactId>coupon-template-impl</artifactId>
     <packaging>jar</packaging>
+    <description>核心业务逻辑的实现层，对外提供 API</description>
 
     <properties>
         <maven.compiler.source>${java.version}</maven.compiler.source>

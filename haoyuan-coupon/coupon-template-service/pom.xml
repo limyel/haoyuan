@@ -10,7 +10,12 @@
     </parent>
 
     <artifactId>coupon-template-service</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+    <description>创建、查找、克隆、删除优惠券模板</description>
+    <modules>
+        <module>coupon-template-dao</module>
+        <module>coupon-template-impl</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>${java.version}</maven.compiler.source>

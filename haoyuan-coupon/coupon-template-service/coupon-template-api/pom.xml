@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-coupon</artifactId>
+        <artifactId>coupon-template-service</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>coupon-calculation-service</artifactId>
-    <packaging>pom</packaging>
-    <description>计算优惠后订单价格、试算每个优惠券</description>
+    <artifactId>coupon-template-api</artifactId>
+    <packaging>jar</packaging>
+    <description>存放公共 POJO 类或者对外接口的子模块</description>
 
     <properties>
         <maven.compiler.source>${java.version}</maven.compiler.source>

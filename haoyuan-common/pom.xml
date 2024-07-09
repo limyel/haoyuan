@@ -20,7 +20,6 @@
         <module>common-knife4j</module>
         <module>common-jwt</module>
         <module>common-security</module>
-        <module>common-coupon</module>
     </modules>
 
     <properties>

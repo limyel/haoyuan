@@ -8,6 +8,7 @@ import com.limyel.haoyuan.blog.main.dto.post.PostDTO;
 import com.limyel.haoyuan.blog.main.domain.PostDO;
 import com.limyel.haoyuan.blog.main.dto.post.PostListDTO;
 import com.limyel.haoyuan.blog.main.dto.post.PostPageDTO;
+import com.limyel.haoyuan.blog.main.dto.post.PostPublishDTO;
 import com.limyel.haoyuan.blog.main.event.PostViewEvent;
 import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
 import com.limyel.haoyuan.blog.main.vo.post.PostArchiveVO;
@@ -55,7 +56,9 @@ public class PostService {
         postContentService.create(postDO.getId(), dto.getContent());
         postTagService.create(postDO.getId(), dto.getTagIds());
 
-        rocketMQTemplate.convertAndSend("test-sender", dto.getTitle());
+        PostPublishDTO publishDTO = new PostPublishDTO();
+        publishDTO.setId(postDO.getId());
+        rocketMQTemplate.convertAndSend("test-sender", publishDTO);
 
         return result;
     }

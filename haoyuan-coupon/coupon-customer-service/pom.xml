@@ -10,7 +10,8 @@
     </parent>
 
     <artifactId>coupon-customer-service</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+    <description>领取、删除优惠券，下单等</description>
 
     <properties>
         <maven.compiler.source>${java.version}</maven.compiler.source>
