@@ -187,6 +187,10 @@
                 <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
             </dependency>
+
+
+            <!-- haoyuan-coupon -->
+
         </dependencies>
     </dependencyManagement>
 

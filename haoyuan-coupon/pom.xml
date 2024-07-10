@@ -12,10 +12,6 @@
     <artifactId>haoyuan-coupon</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>coupon-template-service</module>
-        <module>coupon-calculation-service</module>
-        <module>coupon-customer-service</module>
-        <module>coupon-template-service/coupon-template-api</module>
     </modules>
 
     <properties>
@@ -28,11 +24,6 @@
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>common-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>common-jpa</artifactId>
         </dependency>
     </dependencies>
 
