@@ -5,26 +5,34 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan</artifactId>
+        <artifactId>haoyuan-platform-parent</artifactId>
         <version>${revision}</version>
+        <relativePath>../haoyuan-platform-parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>haoyuan-coupon</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-    </modules>
+    <artifactId>haoyuan-platform-application</artifactId>
 
     <properties>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-core</artifactId>
+            <artifactId>haoyuan-platform-core</artifactId>
+            <version>${revision}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
