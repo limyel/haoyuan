@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>haoyuan-algo-ds</artifactId>
-        <version>0.0.0</version>
+        <version>${haoyuan-algo-ds.version}</version>
     </parent>
 
     <artifactId>haoyuan-algo</artifactId>
