@@ -2,7 +2,7 @@ package com.limyel.haoyuan.algo.util;
 
 import java.util.Random;
 
-public class ArrayGenerator {
+public class ArrayUtil {
 
     public static Integer[] generateOrderedArray(int n) {
         Integer[] arr = new Integer[n];
@@ -19,6 +19,12 @@ public class ArrayGenerator {
             arr[i] = random.nextInt(bound);
         }
         return arr;
+    }
+
+    public static <E> void swap(E[] arr, int index1, int index2) {
+        E tmp = arr[index1];
+        arr[index1] = arr[index2];
+        arr[index2] = tmp;
     }
 
 }

@@ -1,6 +1,6 @@
-package com.limyel.haoyuan.algo.search.linear;
+package com.limyel.haoyuan.algo.search;
 
-import com.limyel.haoyuan.algo.util.ArrayGenerator;
+import com.limyel.haoyuan.algo.util.ArrayUtil;
 
 /**
  * 线性搜索
@@ -20,7 +20,7 @@ public class LinearSearch {
 
     public static void main(String[] args) {
         int n = 10000000;
-        Integer[] data = ArrayGenerator.generateOrderedArray(n);
+        Integer[] data = ArrayUtil.generateOrderedArray(n);
 
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < 100; i++) {

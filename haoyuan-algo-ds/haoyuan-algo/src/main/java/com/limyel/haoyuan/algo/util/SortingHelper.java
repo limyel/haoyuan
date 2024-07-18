@@ -1,6 +1,7 @@
 package com.limyel.haoyuan.algo.util;
 
 import com.limyel.haoyuan.algo.sort.SelectionSort;
+import com.limyel.haoyuan.algo.sort.InsertionSort;
 
 public abstract class SortingHelper {
 
@@ -17,6 +18,8 @@ public abstract class SortingHelper {
         long startTime = System.nanoTime();
         if (sortname.equals("SelectionSort")) {
             SelectionSort.sort(arr);
+        } else if (sortname.equals("Insertion")) {
+            InsertionSort.sortV2(arr);
         }
         long endTime = System.nanoTime();
 
