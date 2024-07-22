@@ -1,0 +1,2 @@
+com.limyel.haoyuan.platform.core.autoconfig.JacksonAutoConfig
+com.limyel.haoyuan.platform.core.autoconfig.GlobalExceptionHandlerAutoConfig
