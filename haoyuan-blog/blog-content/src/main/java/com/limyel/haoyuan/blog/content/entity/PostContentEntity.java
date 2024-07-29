@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.blog.content.domain;
+package com.limyel.haoyuan.blog.content.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;

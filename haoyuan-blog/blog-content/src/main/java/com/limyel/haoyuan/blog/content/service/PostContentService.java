@@ -2,7 +2,7 @@ package com.limyel.haoyuan.blog.content.service;
 
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.limyel.haoyuan.blog.content.dao.PostContentDao;
-import com.limyel.haoyuan.blog.content.domain.PostContentEntity;
+import com.limyel.haoyuan.blog.content.entity.PostContentEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

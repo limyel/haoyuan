@@ -4,10 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.limyel.haoyuan.blog.content.convert.TagConvert;
 import com.limyel.haoyuan.blog.content.dao.PostTagDao;
 import com.limyel.haoyuan.blog.content.dao.TagDao;
-import com.limyel.haoyuan.blog.content.domain.PostTagEntity;
-import com.limyel.haoyuan.blog.content.domain.TagEntity;
+import com.limyel.haoyuan.blog.content.entity.PostTagEntity;
+import com.limyel.haoyuan.blog.content.entity.TagEntity;
 import com.limyel.haoyuan.blog.content.exception.MainErrorCode;
 import com.limyel.haoyuan.blog.content.vo.tag.TagPostVO;
+import com.limyel.haoyuan.common.core.exception.ServiceException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -88,7 +89,7 @@ public class PostTagService {
     private void validateTagIds(List<Long> tagIds) {
         List<TagEntity> tagDOList = tagDao.selectByIds(tagIds);
         if (tagDOList.size() != tagIds.size()) {
-            throw new BizException(MainErrorCode.TAG_NOT_FOUND);
+            throw new ServiceException(MainErrorCode.TAG_NOT_FOUND);
         }
     }
 

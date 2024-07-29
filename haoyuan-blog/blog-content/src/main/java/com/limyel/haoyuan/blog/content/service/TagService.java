@@ -3,7 +3,7 @@ package com.limyel.haoyuan.blog.content.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.blog.content.convert.TagConvert;
 import com.limyel.haoyuan.blog.content.dao.TagDao;
-import com.limyel.haoyuan.blog.content.domain.TagEntity;
+import com.limyel.haoyuan.blog.content.entity.TagEntity;
 import com.limyel.haoyuan.blog.content.dto.tag.TagDTO;
 import com.limyel.haoyuan.blog.content.dto.tag.TagPageDTO;
 import com.limyel.haoyuan.blog.content.exception.MainErrorCode;

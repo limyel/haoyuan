@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.blog.content.domain;
+package com.limyel.haoyuan.blog.content.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
@@ -7,13 +7,11 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("main_tag")
-public class TagEntity extends BaseEntity {
+@TableName("main_post_tag")
+public class PostTagEntity extends BaseEntity {
 
-    private String name;
+    private Long postId;
 
-    private String slug;
-
-    private String remark;
+    private Long tagId;
 
 }

@@ -2,7 +2,7 @@ package com.limyel.haoyuan.blog.content.service;
 
 import com.limyel.haoyuan.blog.content.convert.SettingConvert;
 import com.limyel.haoyuan.blog.content.dao.SettingDao;
-import com.limyel.haoyuan.blog.content.domain.SettingEntity;
+import com.limyel.haoyuan.blog.content.entity.SettingEntity;
 import com.limyel.haoyuan.blog.content.dto.setting.SettingDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.blog.content.convert.PostConvert;
 import com.limyel.haoyuan.blog.content.dao.PostDao;
-import com.limyel.haoyuan.blog.content.domain.PostEntity;
+import com.limyel.haoyuan.blog.content.entity.PostEntity;
 import com.limyel.haoyuan.blog.content.dto.post.PostDTO;
 import com.limyel.haoyuan.blog.content.dto.post.PostListDTO;
 import com.limyel.haoyuan.blog.content.dto.post.PostPageDTO;
@@ -16,6 +16,7 @@ import com.limyel.haoyuan.blog.content.vo.post.PostListVO;
 import com.limyel.haoyuan.blog.content.vo.post.PostDetailVO;
 import com.limyel.haoyuan.blog.content.vo.post.PostPageVO;
 import com.limyel.haoyuan.common.core.constant.StatusEnum;
+import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import lombok.RequiredArgsConstructor;
@@ -89,7 +90,7 @@ public class PostService {
     public PostDTO getById(Long id) {
         PostEntity postDO = postDao.selectById(id);
         if (postDO == null) {
-            throw new BizException(MainErrorCode.POST_NOT_FOUND);
+            throw new ServiceException(MainErrorCode.POST_NOT_FOUND);
         }
 
         PostDTO result = PostConvert.INSTANCE.toDTO(postDO);
@@ -134,7 +135,7 @@ public class PostService {
                 .eq(PostEntity::getStatus, StatusEnum.ENABLE.getValue());
         PostEntity postDO = postDao.selectOne(wrapper);
         if (postDO == null) {
-            throw new BizException(MainErrorCode.POST_NOT_FOUND);
+            throw new ServiceException(MainErrorCode.POST_NOT_FOUND);
         }
 
         PostDetailVO result = PostConvert.INSTANCE.toDetailVO(postDO);

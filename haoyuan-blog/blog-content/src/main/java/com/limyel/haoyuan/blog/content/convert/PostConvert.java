@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.blog.content.convert;
 
-import com.limyel.haoyuan.blog.content.domain.PostEntity;
+import com.limyel.haoyuan.blog.content.entity.PostEntity;
 import com.limyel.haoyuan.blog.content.dto.post.PostDTO;
 import com.limyel.haoyuan.blog.content.vo.post.PostArchiveVO;
 import com.limyel.haoyuan.blog.content.vo.post.PostDetailVO;

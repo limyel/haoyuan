@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.blog.content.dao;
 
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.limyel.haoyuan.blog.content.domain.PostEntity;
+import com.limyel.haoyuan.blog.content.entity.PostEntity;
 import com.limyel.haoyuan.common.mybatis.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 

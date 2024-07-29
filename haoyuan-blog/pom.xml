@@ -17,6 +17,7 @@
         <module>blog-content</module>
         <module>blog-admin</module>
         <module>blog-startup</module>
+        <module>blog-store</module>
     </modules>
 
     <properties>
