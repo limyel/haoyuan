@@ -17,6 +17,7 @@
         <module>haoyuan-blog</module>
         <module>haoyuan-algo-ds</module>
         <module>haoyuan-platform</module>
+        <module>haoyuan-blog-cloud</module>
     </modules>
 
     <properties>

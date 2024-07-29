@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
+import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
 import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
 import org.apache.ibatis.annotations.Param;
@@ -76,7 +77,12 @@ public interface BaseDao<T extends BaseEntity> extends BaseMapper<T> {
     default <F> void validateUnique(Long id, SFunction<T, F> field, F value, ErrorCode errorCode) {
         T item = selectOne(field, value);
         if (item != null) {
-            item.validateUnique(id, errorCode);
+            if (id == null) {
+                throw new ServiceException(errorCode);
+            }
+            if (!item.getId().equals(id)) {
+                throw new ServiceException(errorCode);
+            }
         }
     }
 
@@ -86,7 +92,7 @@ public interface BaseDao<T extends BaseEntity> extends BaseMapper<T> {
         }
         T item = selectById(id);
         if (item == null) {
-            throw new BizException(errorCode);
+            throw new ServiceException(errorCode);
         }
     }
 

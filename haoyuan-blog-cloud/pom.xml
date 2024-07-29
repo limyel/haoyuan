@@ -9,23 +9,12 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>haoyuan-blog</artifactId>
-    <packaging>pom</packaging>
-    <version>${haoyuan-blog.version}</version>
-
-    <modules>
-        <module>blog-main</module>
-        <module>blog-admin</module>
-        <module>blog-startup</module>
-        <module>blog-store</module>
-        <module>blog-project</module>
-    </modules>
+    <artifactId>haoyuan-blog-cloud</artifactId>
 
     <properties>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <haoyuan-blog.version>0.1.0</haoyuan-blog.version>
     </properties>
 
 </project>
