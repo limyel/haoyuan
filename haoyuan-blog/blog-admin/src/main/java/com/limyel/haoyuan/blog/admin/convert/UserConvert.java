@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.blog.admin.convert;
 
-import com.limyel.haoyuan.blog.admin.domain.UserDO;
+import com.limyel.haoyuan.blog.admin.domain.UserEntity;
 import com.limyel.haoyuan.blog.admin.dto.user.UpdatePasswordDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -10,6 +10,6 @@ public interface UserConvert {
 
     UserConvert INSTANCE = Mappers.getMapper(UserConvert.class);
 
-    UserDO toDO(UpdatePasswordDTO dto);
+    UserEntity toDO(UpdatePasswordDTO dto);
 
 }

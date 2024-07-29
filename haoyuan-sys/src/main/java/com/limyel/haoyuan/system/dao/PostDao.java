@@ -2,26 +2,26 @@ package com.limyel.haoyuan.system.dao;
 
 import com.limyel.haoyuan.common.mybatis.dao.BaseDao;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.system.domain.PostDO;
+import com.limyel.haoyuan.system.domain.PostEntity;
 import com.limyel.haoyuan.system.dto.post.PostPageDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
-public interface PostDao extends BaseDao<PostDO> {
+public interface PostDao extends BaseDao<PostEntity> {
 
-    default List<PostDO> selectList(PostPageDTO req) {
-        return selectList(new LambdaQueryWrapperPlus<PostDO>()
-                .likeIfPresent(PostDO::getName, req.getName())
-                .eqIfPresent(PostDO::getStatus, req.getStatus())
-                .orderByAsc(PostDO::getSort));
+    default List<PostEntity> selectList(PostPageDTO req) {
+        return selectList(new LambdaQueryWrapperPlus<PostEntity>()
+                .likeIfPresent(PostEntity::getName, req.getName())
+                .eqIfPresent(PostEntity::getStatus, req.getStatus())
+                .orderByAsc(PostEntity::getSort));
     }
 
-    default PostDO selectByNameAndCode(String name, String code) {
-        return selectOne(new LambdaQueryWrapperPlus<PostDO>()
-                .eqIfPresent(PostDO::getName, name)
-                .eqIfPresent(PostDO::getCode, code));
+    default PostEntity selectByNameAndCode(String name, String code) {
+        return selectOne(new LambdaQueryWrapperPlus<PostEntity>()
+                .eqIfPresent(PostEntity::getName, name)
+                .eqIfPresent(PostEntity::getCode, code));
     }
 
 }

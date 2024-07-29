@@ -1,9 +1,9 @@
 package com.limyel.haoyuan.system.dao;
 
 import com.limyel.haoyuan.common.mybatis.dao.BaseDao;
-import com.limyel.haoyuan.system.domain.SysUserPostDO;
+import com.limyel.haoyuan.system.domain.SysUserPostEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface SysUserPostDao extends BaseDao<SysUserPostDO> {
+public interface SysUserPostDao extends BaseDao<SysUserPostEntity> {
 }

@@ -1,7 +1,6 @@
 package com.limyel.haoyuan.common.web.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
 import com.limyel.haoyuan.common.core.exception.code.GlobalErrorCode;
 import lombok.Data;

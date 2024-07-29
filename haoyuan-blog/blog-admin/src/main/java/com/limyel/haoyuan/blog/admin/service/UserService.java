@@ -1,8 +1,7 @@
 package com.limyel.haoyuan.blog.admin.service;
 
-import com.limyel.haoyuan.blog.admin.convert.UserConvert;
 import com.limyel.haoyuan.blog.admin.dao.UserDao;
-import com.limyel.haoyuan.blog.admin.domain.UserDO;
+import com.limyel.haoyuan.blog.admin.domain.UserEntity;
 import com.limyel.haoyuan.blog.admin.dto.user.UpdatePasswordDTO;
 import com.limyel.haoyuan.blog.admin.vo.UserInfoVO;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +18,8 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserDO getByUsername(String username) {
-        return userDao.selectOne(UserDO::getUsername, username);
+    public UserEntity getByUsername(String username) {
+        return userDao.selectOne(UserEntity::getUsername, username);
     }
 
     public UserInfoVO getCurrentUserInfo() {

@@ -1,13 +1,12 @@
 package com.limyel.haoyuan.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.system.constant.SysErrorCode;
 import com.limyel.haoyuan.system.convert.PostConvert;
 import com.limyel.haoyuan.system.dao.PostDao;
-import com.limyel.haoyuan.system.domain.PostDO;
+import com.limyel.haoyuan.system.domain.PostEntity;
 import com.limyel.haoyuan.system.dto.post.PostDTO;
 import com.limyel.haoyuan.system.dto.post.PostPageDTO;
 import com.limyel.haoyuan.system.service.PostService;
@@ -28,7 +27,7 @@ public class PostServiceImpl implements PostService {
         validateNameUnique(null, dto.getName());
         validateCodeUnique(null, dto.getCode());
 
-        PostDO sysPost = PostConvert.INSTANCE.toEntity(dto);
+        PostEntity sysPost = PostConvert.INSTANCE.toEntity(dto);
         postDao.insert(sysPost);
 
         return sysPost.getId();
@@ -40,7 +39,7 @@ public class PostServiceImpl implements PostService {
         validateNameUnique(dto.getId(), dto.getName());
         validateCodeUnique(dto.getId(), dto.getCode());
 
-        PostDO post = PostConvert.INSTANCE.toEntity(dto);
+        PostEntity post = PostConvert.INSTANCE.toEntity(dto);
         postDao.updateById(post);
     }
 
@@ -51,22 +50,22 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDO get(Long id) {
+    public PostEntity get(Long id) {
         return postDao.selectById(id);
     }
 
     @Override
-    public List<PostDO> getList(PostPageDTO dto) {
+    public List<PostEntity> getList(PostPageDTO dto) {
         return postDao.selectList(dto);
     }
 
     @Override
-    public PageData<PostDO> getPage(PostPageDTO dto) {
-        Page<PostDO> page = new Page<>(dto.getPageNum(), dto.getPageSize());
-        LambdaQueryWrapperPlus<PostDO> wrapperPlus = new LambdaQueryWrapperPlus<PostDO>()
-                .likeIfPresent(PostDO::getName, dto.getName())
-                .eqIfPresent(PostDO::getStatus, dto.getStatus())
-                .orderByAsc(PostDO::getSort);
+    public PageData<PostEntity> getPage(PostPageDTO dto) {
+        Page<PostEntity> page = new Page<>(dto.getPageNum(), dto.getPageSize());
+        LambdaQueryWrapperPlus<PostEntity> wrapperPlus = new LambdaQueryWrapperPlus<PostEntity>()
+                .likeIfPresent(PostEntity::getName, dto.getName())
+                .eqIfPresent(PostEntity::getStatus, dto.getStatus())
+                .orderByAsc(PostEntity::getSort);
         postDao.selectPage(page, wrapperPlus);
         return new PageData<>(page);
     }
@@ -75,14 +74,14 @@ public class PostServiceImpl implements PostService {
         if (id == null) {
             return;
         }
-        PostDO post = postDao.selectById(id);
+        PostEntity post = postDao.selectById(id);
         if (post == null) {
             throw new BizException(SysErrorCode.POST_NOT_FOUND);
         }
     }
 
     private void validateNameUnique(Long id, String name) {
-        PostDO post = postDao.selectByNameAndCode(name, null);
+        PostEntity post = postDao.selectByNameAndCode(name, null);
         if (post == null) {
             return;
         }
@@ -95,7 +94,7 @@ public class PostServiceImpl implements PostService {
     }
 
     private void validateCodeUnique(Long id, String code) {
-        PostDO post = postDao.selectByNameAndCode(null, code);
+        PostEntity post = postDao.selectByNameAndCode(null, code);
         if (post == null) {
             return;
         }

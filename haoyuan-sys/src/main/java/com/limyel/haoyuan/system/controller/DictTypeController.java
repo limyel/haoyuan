@@ -2,7 +2,7 @@ package com.limyel.haoyuan.system.controller;
 
 import com.limyel.haoyuan.common.web.pojo.R;
 import com.limyel.haoyuan.system.convert.DictTypeConvert;
-import com.limyel.haoyuan.system.domain.DictTypeDO;
+import com.limyel.haoyuan.system.domain.DictTypeEntity;
 import com.limyel.haoyuan.system.dto.dict.type.DictTypeDTO;
 import com.limyel.haoyuan.system.service.DictTypeService;
 import com.limyel.haoyuan.system.vo.dict.type.DictTypeVO;
@@ -43,7 +43,7 @@ public class DictTypeController {
 
     @GetMapping("/{id}")
     public R<DictTypeVO> get(@PathVariable("id") Long id) {
-        DictTypeDO dictType = dictTypeService.get(id);
+        DictTypeEntity dictType = dictTypeService.get(id);
         return R.ok(DictTypeConvert.INSTANCE.toVO(dictType));
     }
 

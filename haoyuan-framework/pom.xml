@@ -3,24 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.limyel</groupId>
-        <artifactId>haoyuan</artifactId>
-        <version>${revision}</version>
-    </parent>
 
+    <groupId>com.limyel</groupId>
     <artifactId>haoyuan-framework</artifactId>
     <packaging>pom</packaging>
+    <version>${haoyuan-framework.version}</version>
+
     <modules>
-        <module>haoyuan-netty</module>
-        <module>haoyuan-search</module>
-        <module>haoyuan-threadpool</module>
     </modules>
 
     <properties>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <haoyuan-framework.version>0.0.0</haoyuan-framework.version>
     </properties>
 
 </project>

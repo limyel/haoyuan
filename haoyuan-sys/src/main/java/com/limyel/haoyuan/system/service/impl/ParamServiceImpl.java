@@ -1,11 +1,10 @@
 package com.limyel.haoyuan.system.service.impl;
 
-import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.system.constant.ParamTypeEnum;
 import com.limyel.haoyuan.system.constant.SysErrorCode;
 import com.limyel.haoyuan.system.convert.ParamConvert;
 import com.limyel.haoyuan.system.dao.ParamDao;
-import com.limyel.haoyuan.system.domain.ParamDO;
+import com.limyel.haoyuan.system.domain.ParamEntity;
 import com.limyel.haoyuan.system.dto.param.ParamDTO;
 import com.limyel.haoyuan.system.service.ParamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class ParamServiceImpl implements ParamService {
     public Long create(ParamDTO dto) {
         validateCodeUnique(null, dto.getCode());
 
-        ParamDO param = ParamConvert.INSTANCE.toDO(dto);
+        ParamEntity param = ParamConvert.INSTANCE.toDO(dto);
         paramDao.insert(param);
         return param.getId();
     }
@@ -33,7 +32,7 @@ public class ParamServiceImpl implements ParamService {
         validateType(dto.getId());
         validateCodeUnique(dto.getId(), dto.getCode());
 
-        ParamDO param = ParamConvert.INSTANCE.toDO(dto);
+        ParamEntity param = ParamConvert.INSTANCE.toDO(dto);
         paramDao.updateById(param);
     }
 
@@ -45,7 +44,7 @@ public class ParamServiceImpl implements ParamService {
     }
 
     @Override
-    public ParamDO get(Long id) {
+    public ParamEntity get(Long id) {
         return paramDao.selectById(id);
     }
 
@@ -53,14 +52,14 @@ public class ParamServiceImpl implements ParamService {
         if (id == null) {
             return;
         }
-        ParamDO param = paramDao.selectById(id);
+        ParamEntity param = paramDao.selectById(id);
         if (param == null) {
             throw new BizException(SysErrorCode.PARAM_NOT_FOUND);
         }
     }
 
     private void validateCodeUnique(Long id, String code) {
-        ParamDO param = paramDao.selectByCode(code);
+        ParamEntity param = paramDao.selectByCode(code);
         if (param == null) {
             return;
         }
@@ -74,7 +73,7 @@ public class ParamServiceImpl implements ParamService {
 
     private void validateType(Long id) {
         validateExist(id);
-        ParamDO param = paramDao.selectById(id);
+        ParamEntity param = paramDao.selectById(id);
         if (ParamTypeEnum.SYSTEM.getType().equals(param.getType())) {
             throw new BizException();
         }

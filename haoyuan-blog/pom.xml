@@ -14,7 +14,7 @@
     <version>${haoyuan-blog.version}</version>
 
     <modules>
-        <module>blog-main</module>
+        <module>blog-content</module>
         <module>blog-admin</module>
         <module>blog-startup</module>
     </modules>

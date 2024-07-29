@@ -1,11 +1,10 @@
 package com.limyel.haoyuan.system.service.impl;
 
-import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.system.constant.MenuTypeEnum;
 import com.limyel.haoyuan.system.constant.SysErrorCode;
 import com.limyel.haoyuan.system.convert.MenuConvert;
 import com.limyel.haoyuan.system.dao.MenuDao;
-import com.limyel.haoyuan.system.domain.MenuDO;
+import com.limyel.haoyuan.system.domain.MenuEntity;
 import com.limyel.haoyuan.system.dto.menu.MenuDTO;
 import com.limyel.haoyuan.system.service.MenuService;
 import com.limyel.haoyuan.system.service.RoleMenuService;
@@ -33,7 +32,7 @@ public class MenuServiceImpl implements MenuService {
         validatePid(dto.getPid(), dto.getId());
         validateNameUnique(dto.getPid(), dto.getId(), dto.getName());
 
-        MenuDO menu = MenuConvert.INSTANCE.toDO(dto);
+        MenuEntity menu = MenuConvert.INSTANCE.toDO(dto);
         menuDao.insert(menu);
         return menu.getId();
     }
@@ -44,7 +43,7 @@ public class MenuServiceImpl implements MenuService {
         validatePid(dto.getPid(), dto.getId());
         validateNameUnique(dto.getPid(), dto.getId(), dto.getName());
 
-        MenuDO menu = MenuConvert.INSTANCE.toDO(dto);
+        MenuEntity menu = MenuConvert.INSTANCE.toDO(dto);
         menuDao.updateById(menu);
     }
 
@@ -55,7 +54,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public MenuDO get(Long id) {
+    public MenuEntity get(Long id) {
         return menuDao.selectById(id);
     }
 
@@ -65,7 +64,7 @@ public class MenuServiceImpl implements MenuService {
         if (CollectionUtils.isEmpty(menuIds)) {
             return new ArrayList<>();
         }
-        List<MenuDO> list = menuDao.selectByIds(menuIds);
+        List<MenuEntity> list = menuDao.selectByIds(menuIds);
         List<String[]> permissionsList = list.stream().map(menu -> {
             String permissions = menu.getPermissions();
             return permissions.split(",");
@@ -83,20 +82,20 @@ public class MenuServiceImpl implements MenuService {
         if (id == null) {
             return;
         }
-        MenuDO menu = menuDao.selectById(id);
+        MenuEntity menu = menuDao.selectById(id);
         if (menu == null) {
             throw new BizException(SysErrorCode.MENU_NOT_FOUND);
         }
     }
 
     private void validatePid(Long pid, Long id) {
-        if (pid == null || MenuDO.ROOT_ID.equals(pid)) {
+        if (pid == null || MenuEntity.ROOT_ID.equals(pid)) {
             return;
         }
         if (pid.equals(id)) {
             throw new BizException(SysErrorCode.MENU_PID_ERROR);
         }
-        MenuDO pMenu = menuDao.selectById(pid);
+        MenuEntity pMenu = menuDao.selectById(pid);
         if (pMenu == null) {
             throw new BizException(SysErrorCode.MENU_PID_NOT_FOUND);
         }
@@ -107,7 +106,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     private void validateNameUnique(Long pid, Long id, String name) {
-        MenuDO menu = menuDao.selectByPidAndName(pid, name);
+        MenuEntity menu = menuDao.selectByPidAndName(pid, name);
         if (menu == null) {
             return;
         }

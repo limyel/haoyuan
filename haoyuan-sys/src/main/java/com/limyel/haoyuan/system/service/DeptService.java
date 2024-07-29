@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.system.service;
 
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.system.domain.DeptDO;
+import com.limyel.haoyuan.system.domain.DeptEntity;
 import com.limyel.haoyuan.system.dto.dept.DeptDTO;
 import com.limyel.haoyuan.system.dto.dept.DeptPageDTO;
 
@@ -15,10 +15,10 @@ public interface DeptService {
 
     void delete(Long id);
 
-    DeptDO get(Long id);
+    DeptEntity get(Long id);
 
-    PageData<DeptDO> getPage(DeptPageDTO dto);
+    PageData<DeptEntity> getPage(DeptPageDTO dto);
 
-    List<DeptDO> getList(DeptPageDTO dto);
+    List<DeptEntity> getList(DeptPageDTO dto);
 
 }

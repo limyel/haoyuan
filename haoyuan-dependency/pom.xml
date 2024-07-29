@@ -111,7 +111,7 @@
 
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>blog-main</artifactId>
+                <artifactId>blog-content</artifactId>
                 <version>${haoyuan-blog.version}</version>
             </dependency>
 

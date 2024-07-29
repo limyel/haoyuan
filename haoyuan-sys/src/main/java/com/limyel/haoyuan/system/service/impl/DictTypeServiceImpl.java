@@ -1,10 +1,9 @@
 package com.limyel.haoyuan.system.service.impl;
 
-import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.system.constant.SysErrorCode;
 import com.limyel.haoyuan.system.convert.DictTypeConvert;
 import com.limyel.haoyuan.system.dao.DictTypeDao;
-import com.limyel.haoyuan.system.domain.DictTypeDO;
+import com.limyel.haoyuan.system.domain.DictTypeEntity;
 import com.limyel.haoyuan.system.dto.dict.type.DictTypeDTO;
 import com.limyel.haoyuan.system.service.DictTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class DictTypeServiceImpl implements DictTypeService {
         validateNameUnique(dto.getId(), dto.getName());
         validateTypeUnique(dto.getId(), dto.getType());
 
-        DictTypeDO dictType = DictTypeConvert.INSTANCE.toDO(dto);
+        DictTypeEntity dictType = DictTypeConvert.INSTANCE.toDO(dto);
         dictTypeDao.insert(dictType);
         return dictType.getId();
     }
@@ -34,7 +33,7 @@ public class DictTypeServiceImpl implements DictTypeService {
         validateNameUnique(dto.getId(), dto.getName());
         validateTypeUnique(dto.getId(), dto.getType());
 
-        DictTypeDO dictType = DictTypeConvert.INSTANCE.toDO(dto);
+        DictTypeEntity dictType = DictTypeConvert.INSTANCE.toDO(dto);
         dictTypeDao.updateById(dictType);
     }
 
@@ -45,12 +44,12 @@ public class DictTypeServiceImpl implements DictTypeService {
     }
 
     @Override
-    public DictTypeDO get(Long id) {
+    public DictTypeEntity get(Long id) {
         return dictTypeDao.selectById(id);
     }
 
     @Override
-    public DictTypeDO getByType(String type) {
+    public DictTypeEntity getByType(String type) {
         return null;
     }
 
@@ -58,14 +57,14 @@ public class DictTypeServiceImpl implements DictTypeService {
         if (id == null) {
             return;
         }
-        DictTypeDO dictType = dictTypeDao.selectById(id);
+        DictTypeEntity dictType = dictTypeDao.selectById(id);
         if (dictType == null) {
             throw new BizException(SysErrorCode.DICT_TYPE_NOT_FOUND);
         }
     }
 
     private void validateNameUnique(Long id, String name) {
-        DictTypeDO dictType = dictTypeDao.selectByName(name);
+        DictTypeEntity dictType = dictTypeDao.selectByName(name);
         if (dictType == null) {
             return;
         }
@@ -78,7 +77,7 @@ public class DictTypeServiceImpl implements DictTypeService {
     }
 
     private void validateTypeUnique(Long id, String type) {
-        DictTypeDO dictType = dictTypeDao.selectByType(type);
+        DictTypeEntity dictType = dictTypeDao.selectByType(type);
         if (dictType == null) {
             return;
         }

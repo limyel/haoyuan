@@ -1,12 +1,11 @@
 package com.limyel.haoyuan.system.service.impl;
 
-import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.system.constant.RoleCodeEnum;
 import com.limyel.haoyuan.system.constant.RoleTypeEnum;
 import com.limyel.haoyuan.system.constant.SysErrorCode;
 import com.limyel.haoyuan.system.convert.RoleConvert;
 import com.limyel.haoyuan.system.dao.RoleDao;
-import com.limyel.haoyuan.system.domain.RoleDO;
+import com.limyel.haoyuan.system.domain.RoleEntity;
 import com.limyel.haoyuan.system.dto.role.RoleDTO;
 import com.limyel.haoyuan.system.service.RoleService;
 import com.limyel.haoyuan.system.service.SysUserRoleService;
@@ -31,7 +30,7 @@ public class RoleServiceImpl implements RoleService {
         validateCodeUnique(dto.getId(), dto.getCode());
         validateNameUnique(dto.getId(), dto.getName());
 
-        RoleDO role = RoleConvert.INSTANCE.toDO(dto);
+        RoleEntity role = RoleConvert.INSTANCE.toDO(dto);
         roleDao.insert(role);
         return role.getId();
     }
@@ -42,7 +41,7 @@ public class RoleServiceImpl implements RoleService {
         validateCodeUnique(dto.getId(), dto.getCode());
         validateNameUnique(dto.getId(), dto.getName());
 
-        RoleDO role = RoleConvert.INSTANCE.toDO(dto);
+        RoleEntity role = RoleConvert.INSTANCE.toDO(dto);
         roleDao.updateById(role);
     }
 
@@ -53,12 +52,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleDO get(Long id) {
+    public RoleEntity get(Long id) {
         return roleDao.selectById(id);
     }
 
     @Override
-    public List<RoleDO> list(Collection<Long> ids) {
+    public List<RoleEntity> list(Collection<Long> ids) {
         return roleDao.selectByIds(ids);
     }
 
@@ -66,14 +65,14 @@ public class RoleServiceImpl implements RoleService {
         if (id == null) {
             return;
         }
-        RoleDO role = roleDao.selectById(id);
+        RoleEntity role = roleDao.selectById(id);
         if (role == null) {
             throw new BizException(SysErrorCode.ROLE_NOT_FOUND);
         }
     }
 
     private void validateNameUnique(Long id, String name) {
-        RoleDO role = roleDao.selectByName(name);
+        RoleEntity role = roleDao.selectByName(name);
         if (role == null) {
             return;
         }
@@ -89,7 +88,7 @@ public class RoleServiceImpl implements RoleService {
         if (RoleCodeEnum.isSuperAdmin(code)) {
             throw new BizException();
         }
-        RoleDO role = roleDao.selectByCode(code);
+        RoleEntity role = roleDao.selectByCode(code);
         if (role == null) {
             return;
         }
@@ -103,7 +102,7 @@ public class RoleServiceImpl implements RoleService {
 
     private void validateType(Long id) {
         validateExist(id);
-        RoleDO role = roleDao.selectById(id);
+        RoleEntity role = roleDao.selectById(id);
         if (RoleTypeEnum.SYSTEM.getType().equals(role.getType())) {
             throw new BizException();
         }

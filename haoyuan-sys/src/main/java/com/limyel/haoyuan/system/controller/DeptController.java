@@ -3,7 +3,7 @@ package com.limyel.haoyuan.system.controller;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.web.pojo.R;
 import com.limyel.haoyuan.system.convert.DeptConvert;
-import com.limyel.haoyuan.system.domain.DeptDO;
+import com.limyel.haoyuan.system.domain.DeptEntity;
 import com.limyel.haoyuan.system.dto.dept.DeptDTO;
 import com.limyel.haoyuan.system.dto.dept.DeptPageDTO;
 import com.limyel.haoyuan.system.service.DeptService;
@@ -44,13 +44,13 @@ public class DeptController {
 
     @GetMapping("/get/by/{id}")
     public R<DeptVO> getById(@PathVariable("id") Long id) {
-        DeptDO dept = deptService.get(id);
+        DeptEntity dept = deptService.get(id);
         return R.ok(DeptConvert.INSTANCE.toVO(dept));
     }
 
     @GetMapping("/get/page")
     public R<PageData<DeptVO>> getPage(DeptPageDTO dto) {
-        PageData<DeptDO> page = deptService.getPage(dto);
+        PageData<DeptEntity> page = deptService.getPage(dto);
         return R.ok(new PageData<>(page, DeptConvert.INSTANCE.toListVO(page.getList())));
     }
 

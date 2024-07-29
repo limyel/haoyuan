@@ -1,13 +1,12 @@
 package com.limyel.haoyuan.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.system.constant.SysErrorCode;
 import com.limyel.haoyuan.system.convert.DeptConvert;
 import com.limyel.haoyuan.system.dao.DeptDao;
-import com.limyel.haoyuan.system.domain.DeptDO;
+import com.limyel.haoyuan.system.domain.DeptEntity;
 import com.limyel.haoyuan.system.dto.dept.DeptDTO;
 import com.limyel.haoyuan.system.dto.dept.DeptPageDTO;
 import com.limyel.haoyuan.system.service.DeptService;
@@ -26,13 +25,13 @@ public class DeptServiceImpl implements DeptService {
     @Override
     public Long create(DeptDTO dto) {
         if (dto.getPid() == null) {
-            dto.setPid(DeptDO.PID_ROOT);
+            dto.setPid(DeptEntity.PID_ROOT);
         }
 
         validatePid(null, dto.getPid());
         validateNameUnique(null, dto.getPid(), dto.getName());
 
-        DeptDO dept = DeptConvert.INSTANCE.toEntity(dto);
+        DeptEntity dept = DeptConvert.INSTANCE.toEntity(dto);
         deptDao.insert(dept);
 
         return dept.getId();
@@ -41,14 +40,14 @@ public class DeptServiceImpl implements DeptService {
     @Override
     public void update(DeptDTO dto) {
         if (dto.getPid() == null) {
-            dto.setPid(DeptDO.PID_ROOT);
+            dto.setPid(DeptEntity.PID_ROOT);
         }
 
         validateExist(dto.getId());
         validatePid(dto.getId(), dto.getPid());
         validateNameUnique(dto.getId(), dto.getPid(), dto.getName());
 
-        DeptDO dept = DeptConvert.INSTANCE.toEntity(dto);
+        DeptEntity dept = DeptConvert.INSTANCE.toEntity(dto);
         deptDao.updateById(dept);
     }
 
@@ -64,23 +63,23 @@ public class DeptServiceImpl implements DeptService {
     }
 
     @Override
-    public DeptDO get(Long id) {
+    public DeptEntity get(Long id) {
         return deptDao.selectById(id);
     }
 
     @Override
-    public PageData<DeptDO> getPage(DeptPageDTO dto) {
-        Page<DeptDO> page = new Page<>(dto.getPageNum(), dto.getPageSize());
-        LambdaQueryWrapperPlus<DeptDO> wrapperPlus = new LambdaQueryWrapperPlus<DeptDO>()
-                .likeIfPresent(DeptDO::getName, dto.getName())
-                .eqIfPresent(DeptDO::getStatus, dto.getStatus())
-                .orderByAsc(DeptDO::getSort);
+    public PageData<DeptEntity> getPage(DeptPageDTO dto) {
+        Page<DeptEntity> page = new Page<>(dto.getPageNum(), dto.getPageSize());
+        LambdaQueryWrapperPlus<DeptEntity> wrapperPlus = new LambdaQueryWrapperPlus<DeptEntity>()
+                .likeIfPresent(DeptEntity::getName, dto.getName())
+                .eqIfPresent(DeptEntity::getStatus, dto.getStatus())
+                .orderByAsc(DeptEntity::getSort);
         deptDao.selectPage(page, wrapperPlus);
         return new PageData<>(page);
     }
 
     @Override
-    public List<DeptDO> getList(DeptPageDTO dto) {
+    public List<DeptEntity> getList(DeptPageDTO dto) {
         return deptDao.selectList(dto);
     }
 
@@ -90,7 +89,7 @@ public class DeptServiceImpl implements DeptService {
      * @param pid 上级部门ID
      */
     private void validatePid(Long id, Long pid) {
-        if (pid == null || DeptDO.PID_ROOT.equals(pid)) {
+        if (pid == null || DeptEntity.PID_ROOT.equals(pid)) {
             return;
         }
         // 1. 上级部门不能是本身
@@ -98,7 +97,7 @@ public class DeptServiceImpl implements DeptService {
             throw new BizException(SysErrorCode.DEPT_PARENT_ERROR);
         }
         // 2. 上级部门不存在
-        DeptDO parent = deptDao.selectById(pid);
+        DeptEntity parent = deptDao.selectById(pid);
         if (parent == null) {
             throw new BizException(SysErrorCode.DEPT_PARENT_NOT_FOUND);
         }
@@ -108,7 +107,7 @@ public class DeptServiceImpl implements DeptService {
             return;
         }
         pid = parent.getPid();
-        while (!DeptDO.PID_ROOT.equals(pid) && pid != null) {
+        while (!DeptEntity.PID_ROOT.equals(pid) && pid != null) {
             if (Objects.equals(id, pid)) {
                 throw new BizException(SysErrorCode.DEPT_PARENT_IS_CHILD);
             }
@@ -127,7 +126,7 @@ public class DeptServiceImpl implements DeptService {
      * @param name 部门名称
      */
     private void validateNameUnique(Long id, Long pid, String name) {
-        DeptDO dept = deptDao.selectByPidAndName(pid, name);
+        DeptEntity dept = deptDao.selectByPidAndName(pid, name);
         if (dept == null) {
             return;
         }
@@ -149,7 +148,7 @@ public class DeptServiceImpl implements DeptService {
         if (id == null) {
             return;
         }
-        DeptDO dept = deptDao.selectById(id);
+        DeptEntity dept = deptDao.selectById(id);
         if (dept == null) {
             throw new BizException(SysErrorCode.DEPT_NOT_FOUND);
         }

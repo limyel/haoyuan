@@ -2,7 +2,7 @@ package com.limyel.haoyuan.system.service.impl;
 
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.system.dao.SysUserPostDao;
-import com.limyel.haoyuan.system.domain.SysUserPostDO;
+import com.limyel.haoyuan.system.domain.SysUserPostEntity;
 import com.limyel.haoyuan.system.service.SysUserPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class SysUserPostServiceImpl implements SysUserPostService {
     @Override
     public Integer createUserPosts(Long userId, Set<Long> postIds) {
         return sysUserPostDao.insertBatchSomeColumn(postIds.stream().map(postId -> {
-            SysUserPostDO sysUserPost = new SysUserPostDO();
+            SysUserPostEntity sysUserPost = new SysUserPostEntity();
             sysUserPost.setPostId(postId);
             sysUserPost.setUserId(userId);
             return sysUserPost;
@@ -29,11 +29,11 @@ public class SysUserPostServiceImpl implements SysUserPostService {
 
     @Override
     public void updateUserPosts(Long userId, Set<Long> newPostIds) {
-        LambdaQueryWrapperPlus<SysUserPostDO> wrapperPlus = new LambdaQueryWrapperPlus<>();
-        wrapperPlus.eq(SysUserPostDO::getUserId, userId);
-        wrapperPlus.select(SysUserPostDO::getPostId);
+        LambdaQueryWrapperPlus<SysUserPostEntity> wrapperPlus = new LambdaQueryWrapperPlus<>();
+        wrapperPlus.eq(SysUserPostEntity::getUserId, userId);
+        wrapperPlus.select(SysUserPostEntity::getPostId);
         Set<Long> oldPostIds = sysUserPostDao.selectList(wrapperPlus).stream()
-                .map(SysUserPostDO::getPostId)
+                .map(SysUserPostEntity::getPostId)
                 .collect(Collectors.toSet());
 
         Set<Long> deletePostIds = new HashSet<>(oldPostIds);
@@ -47,14 +47,14 @@ public class SysUserPostServiceImpl implements SysUserPostService {
 
     @Override
     public void deleteByPostIds(Set<Long> postIds) {
-        sysUserPostDao.delete(new LambdaQueryWrapperPlus<SysUserPostDO>()
-                .inIfPresent(SysUserPostDO::getPostId, postIds));
+        sysUserPostDao.delete(new LambdaQueryWrapperPlus<SysUserPostEntity>()
+                .inIfPresent(SysUserPostEntity::getPostId, postIds));
     }
 
     @Override
     public void deleteByUserId(Long userId) {
-        sysUserPostDao.delete(new LambdaQueryWrapperPlus<SysUserPostDO>()
-                .eqIfPresent(SysUserPostDO::getUserId, userId));
+        sysUserPostDao.delete(new LambdaQueryWrapperPlus<SysUserPostEntity>()
+                .eqIfPresent(SysUserPostEntity::getUserId, userId));
     }
 
 }

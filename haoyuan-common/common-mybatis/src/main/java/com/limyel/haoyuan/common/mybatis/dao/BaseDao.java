@@ -5,18 +5,16 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
-import com.limyel.haoyuan.common.core.exception.BizException;
 import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
-import com.limyel.haoyuan.common.mybatis.pojo.BaseDO;
+import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Function;
 
-public interface BaseDao<T extends BaseDO> extends BaseMapper<T> {
+public interface BaseDao<T extends BaseEntity> extends BaseMapper<T> {
 
     // 批量插入
     int insertBatchSomeColumn(@Param("list") List<T> batchList);

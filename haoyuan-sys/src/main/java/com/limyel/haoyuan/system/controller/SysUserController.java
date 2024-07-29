@@ -2,7 +2,7 @@ package com.limyel.haoyuan.system.controller;
 
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.web.pojo.R;
-import com.limyel.haoyuan.system.domain.SysUserDO;
+import com.limyel.haoyuan.system.domain.SysUserEntity;
 import com.limyel.haoyuan.system.dto.post.PostPageDTO;
 import com.limyel.haoyuan.system.dto.user.SysUserDTO;
 import com.limyel.haoyuan.system.service.SysUserService;
@@ -43,8 +43,8 @@ public class SysUserController {
     }
 
     @GetMapping("/get/by/{id}")
-    public R<SysUserDO> getById(@PathVariable("id") Long id) {
-        SysUserDO sysUser = sysUserService.get(id);
+    public R<SysUserEntity> getById(@PathVariable("id") Long id) {
+        SysUserEntity sysUser = sysUserService.get(id);
         return R.ok(sysUser);
     }
 

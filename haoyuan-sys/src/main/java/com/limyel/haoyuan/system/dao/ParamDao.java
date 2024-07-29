@@ -2,15 +2,15 @@ package com.limyel.haoyuan.system.dao;
 
 import com.limyel.haoyuan.common.mybatis.dao.BaseDao;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.system.domain.ParamDO;
+import com.limyel.haoyuan.system.domain.ParamEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ParamDao extends BaseDao<ParamDO> {
+public interface ParamDao extends BaseDao<ParamEntity> {
 
-    default ParamDO selectByCode(String code) {
-        return selectOne(new LambdaQueryWrapperPlus<ParamDO>()
-                .eqIfPresent(ParamDO::getCode, code));
+    default ParamEntity selectByCode(String code) {
+        return selectOne(new LambdaQueryWrapperPlus<ParamEntity>()
+                .eqIfPresent(ParamEntity::getCode, code));
     }
 
 }

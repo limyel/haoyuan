@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.system.convert;
 
-import com.limyel.haoyuan.system.domain.RoleDO;
+import com.limyel.haoyuan.system.domain.RoleEntity;
 import com.limyel.haoyuan.system.dto.role.RoleDTO;
 import com.limyel.haoyuan.system.vo.role.RoleVO;
 import org.mapstruct.Mapper;
@@ -11,8 +11,8 @@ public interface RoleConvert {
 
     RoleConvert INSTANCE = Mappers.getMapper(RoleConvert.class);
 
-    RoleDO toDO(RoleDTO dto);
+    RoleEntity toDO(RoleDTO dto);
 
-    RoleVO toVO(RoleDO role);
+    RoleVO toVO(RoleEntity role);
 
 }
