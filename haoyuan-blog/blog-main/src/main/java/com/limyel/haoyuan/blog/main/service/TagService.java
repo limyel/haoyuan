@@ -1,12 +1,12 @@
 package com.limyel.haoyuan.blog.main.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.limyel.haoyuan.blog.main.constant.MainErrorMsg;
 import com.limyel.haoyuan.blog.main.convert.TagConvert;
 import com.limyel.haoyuan.blog.main.dao.TagDao;
 import com.limyel.haoyuan.blog.main.entity.TagEntity;
 import com.limyel.haoyuan.blog.main.dto.tag.TagDTO;
 import com.limyel.haoyuan.blog.main.dto.tag.TagPageDTO;
-import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
 import com.limyel.haoyuan.blog.main.vo.tag.TagDetailVO;
 import com.limyel.haoyuan.blog.main.vo.tag.TagPageVO;
 import com.limyel.haoyuan.blog.main.vo.tag.TagSelectVO;
@@ -26,8 +26,8 @@ public class TagService {
     private final PostTagService postTagService;
 
     public int create(TagDTO dto) {
-        tagDao.validateUnique(null, TagEntity::getName, dto.getName(), MainErrorCode.TAG_NAME_DUPLICATE);
-        tagDao.validateUnique(null, TagEntity::getSlug, dto.getSlug(), MainErrorCode.TAG_SLUG_DUPLICATE);
+        tagDao.validateUnique(null, TagEntity::getName, dto.getName(), MainErrorMsg.TAG_NAME_DUPLICATE);
+        tagDao.validateUnique(null, TagEntity::getSlug, dto.getSlug(), MainErrorMsg.TAG_SLUG_DUPLICATE);
 
         TagEntity tagDO = TagConvert.INSTANCE.toEntity(dto);
         return tagDao.insert(tagDO);

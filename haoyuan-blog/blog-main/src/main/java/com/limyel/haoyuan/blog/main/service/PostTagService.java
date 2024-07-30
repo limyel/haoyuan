@@ -1,12 +1,12 @@
 package com.limyel.haoyuan.blog.main.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.limyel.haoyuan.blog.main.constant.MainErrorMsg;
 import com.limyel.haoyuan.blog.main.convert.TagConvert;
 import com.limyel.haoyuan.blog.main.dao.PostTagDao;
 import com.limyel.haoyuan.blog.main.dao.TagDao;
 import com.limyel.haoyuan.blog.main.entity.PostTagEntity;
 import com.limyel.haoyuan.blog.main.entity.TagEntity;
-import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
 import com.limyel.haoyuan.blog.main.vo.tag.TagPostVO;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import lombok.RequiredArgsConstructor;
@@ -89,7 +89,7 @@ public class PostTagService {
     private void validateTagIds(List<Long> tagIds) {
         List<TagEntity> tagDOList = tagDao.selectByIds(tagIds);
         if (tagDOList.size() != tagIds.size()) {
-            throw new ServiceException(MainErrorCode.TAG_NOT_FOUND);
+            throw new ServiceException(MainErrorMsg.TAG_NOT_FOUND);
         }
     }
 

@@ -2,6 +2,7 @@ package com.limyel.haoyuan.blog.main.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.limyel.haoyuan.blog.main.constant.MainErrorMsg;
 import com.limyel.haoyuan.blog.main.convert.PostConvert;
 import com.limyel.haoyuan.blog.main.dao.PostDao;
 import com.limyel.haoyuan.blog.main.entity.PostEntity;
@@ -10,7 +11,6 @@ import com.limyel.haoyuan.blog.main.dto.post.PostListDTO;
 import com.limyel.haoyuan.blog.main.dto.post.PostPageDTO;
 import com.limyel.haoyuan.blog.main.dto.post.PostPublishDTO;
 import com.limyel.haoyuan.blog.main.event.PostViewEvent;
-import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
 import com.limyel.haoyuan.blog.main.vo.post.PostArchiveVO;
 import com.limyel.haoyuan.blog.main.vo.post.PostListVO;
 import com.limyel.haoyuan.blog.main.vo.post.PostDetailVO;
@@ -47,8 +47,8 @@ public class PostService {
 
     @Transactional(rollbackFor = Exception.class)
     public int create(PostDTO dto) {
-        postDao.validateUnique(null, PostEntity::getTitle, dto.getTitle(), MainErrorCode.POST_TITLE_DUPLICATE);
-        postDao.validateUnique(null, PostEntity::getSlug, dto.getSlug(), MainErrorCode.POST_SLUG_DUPLICATE);
+        postDao.validateUnique(null, PostEntity::getTitle, dto.getTitle(), MainErrorMsg.POST_TITLE_DUPLICATE);
+        postDao.validateUnique(null, PostEntity::getSlug, dto.getSlug(), MainErrorMsg.POST_SLUG_DUPLICATE);
 
         PostEntity postDO = PostConvert.INSTANCE.toEntity(dto);
         int result = postDao.insert(postDO);
@@ -65,7 +65,7 @@ public class PostService {
 
     @Transactional(rollbackFor = Exception.class)
     public int delete(Long id) {
-        postDao.validateExist(id, MainErrorCode.POST_NOT_FOUND);
+        postDao.validateExist(id, MainErrorMsg.POST_NOT_FOUND);
 
         postTagService.deleteByPostId(id);
         postContentService.deleteByPostId(id);
@@ -74,9 +74,9 @@ public class PostService {
 
     @Transactional(rollbackFor = Exception.class)
     public int update(PostDTO dto) {
-        postDao.validateExist(dto.getId(), MainErrorCode.POST_NOT_FOUND);
-        postDao.validateUnique(dto.getId(), PostEntity::getTitle, dto.getTitle(), MainErrorCode.POST_TITLE_DUPLICATE);
-        postDao.validateUnique(dto.getId(), PostEntity::getSlug, dto.getSlug(), MainErrorCode.POST_SLUG_DUPLICATE);
+        postDao.validateExist(dto.getId(), MainErrorMsg.POST_NOT_FOUND);
+        postDao.validateUnique(dto.getId(), PostEntity::getTitle, dto.getTitle(), MainErrorMsg.POST_TITLE_DUPLICATE);
+        postDao.validateUnique(dto.getId(), PostEntity::getSlug, dto.getSlug(), MainErrorMsg.POST_SLUG_DUPLICATE);
 
         PostEntity postDO = PostConvert.INSTANCE.toEntity(dto);
         int result = postDao.updateById(postDO);
@@ -90,7 +90,7 @@ public class PostService {
     public PostDTO getById(Long id) {
         PostEntity postDO = postDao.selectById(id);
         if (postDO == null) {
-            throw new ServiceException(MainErrorCode.POST_NOT_FOUND);
+            throw new ServiceException("文章不存在");
         }
 
         PostDTO result = PostConvert.INSTANCE.toDTO(postDO);
@@ -135,7 +135,7 @@ public class PostService {
                 .eq(PostEntity::getStatus, StatusEnum.ENABLE.getValue());
         PostEntity postDO = postDao.selectOne(wrapper);
         if (postDO == null) {
-            throw new ServiceException(MainErrorCode.POST_NOT_FOUND);
+            throw new ServiceException(MainErrorMsg.POST_NOT_FOUND);
         }
 
         PostDetailVO result = PostConvert.INSTANCE.toDetailVO(postDO);

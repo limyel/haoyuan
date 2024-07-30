@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
-import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
 import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.util.CollectionUtils;
@@ -74,25 +73,25 @@ public interface BaseDao<T extends BaseEntity> extends BaseMapper<T> {
         return Db.saveOrUpdate(domain) ? 1 : 0;
     }
 
-    default <F> void validateUnique(Long id, SFunction<T, F> field, F value, ErrorCode errorCode) {
+    default <F> void validateUnique(Long id, SFunction<T, F> field, F value, String errorMsg) {
         T item = selectOne(field, value);
         if (item != null) {
             if (id == null) {
-                throw new ServiceException(errorCode);
+                throw new ServiceException(errorMsg);
             }
             if (!item.getId().equals(id)) {
-                throw new ServiceException(errorCode);
+                throw new ServiceException(errorMsg);
             }
         }
     }
 
-    default void validateExist(Long id, ErrorCode errorCode) {
+    default void validateExist(Long id, String errorMsg) {
         if (id == null) {
             return;
         }
         T item = selectById(id);
         if (item == null) {
-            throw new ServiceException(errorCode);
+            throw new ServiceException(errorMsg);
         }
     }
 

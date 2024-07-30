@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.common.core.exception;
 
+import com.limyel.haoyuan.common.core.exception.code.BasicErrorCode;
 import com.limyel.haoyuan.common.core.exception.code.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,6 +40,7 @@ public class ServiceException extends RuntimeException {
 
     public ServiceException(String msg) {
         this.msg = msg;
+        this.code = BasicErrorCode.FAILED.getCode();
     }
 
     public ServiceException(ErrorCode errorCode) {

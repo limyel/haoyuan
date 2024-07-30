@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.blog.project.dto.project;
 
-import com.limyel.haoyuan.common.web.validate.Create;
-import com.limyel.haoyuan.common.web.validate.Update;
+import com.limyel.haoyuan.common.core.validator.group.Create;
+import com.limyel.haoyuan.common.core.validator.group.Update;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 

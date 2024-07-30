@@ -2,6 +2,7 @@ package com.limyel.haoyuan.blog.project.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.limyel.haoyuan.blog.project.constant.ProjectErrorMsg;
 import com.limyel.haoyuan.blog.project.convert.ProjectConvert;
 import com.limyel.haoyuan.blog.project.dao.ProjectDao;
 import com.limyel.haoyuan.blog.project.dto.project.ProjectDTO;
@@ -26,7 +27,7 @@ public class ProjectService {
 
     @Transactional(rollbackFor = Exception.class)
     public int create(ProjectDTO dto) {
-        projectDao.validateUnique(null, ProjectEntity::getName, dto.getName(), null);
+        projectDao.validateUnique(null, ProjectEntity::getName, dto.getName(), ProjectErrorMsg.PROJECT_NAME_DUPLICATE);
 
         ProjectEntity project = ProjectConvert.INSTANCE.toEntity(dto);
 
@@ -34,14 +35,14 @@ public class ProjectService {
     }
 
     public int delete(Long id) {
-        projectDao.validateExist(id, null);
+        projectDao.validateExist(id, ProjectErrorMsg.PROJECT_NOT_FOUND);
         return projectDao.deleteById(id);
     }
 
     @Transactional(rollbackFor = Exception.class)
     public int update(ProjectDTO dto) {
-        projectDao.validateExist(dto.getId(), null);
-        projectDao.validateUnique(dto.getId(), ProjectEntity::getName, dto.getName(), null);
+        projectDao.validateExist(dto.getId(), ProjectErrorMsg.PROJECT_NOT_FOUND);
+        projectDao.validateUnique(dto.getId(), ProjectEntity::getName, dto.getName(), ProjectErrorMsg.PROJECT_NAME_DUPLICATE);
 
         ProjectEntity project = ProjectConvert.INSTANCE.toEntity(dto);
         return projectDao.updateById(project);
@@ -50,7 +51,7 @@ public class ProjectService {
     public ProjectDTO getById(Long id) {
         ProjectEntity project = projectDao.selectById(id);
         if (project == null) {
-            throw new ServiceException();
+            throw new ServiceException(ProjectErrorMsg.PROJECT_NOT_FOUND);
         }
 
         return ProjectConvert.INSTANCE.toDTO(project);
