@@ -64,11 +64,6 @@
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>common-web</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.limyel</groupId>
                 <artifactId>common-mybatis</artifactId>
                 <version>${revision}</version>
             </dependency>
@@ -105,13 +100,25 @@
 
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>blog-admin</artifactId>
+                <artifactId>blog-sys</artifactId>
                 <version>${haoyuan-blog.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>blog-main</artifactId>
+                <version>${haoyuan-blog.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>blog-project</artifactId>
+                <version>${haoyuan-blog.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>blog-member-api</artifactId>
                 <version>${haoyuan-blog.version}</version>
             </dependency>
 

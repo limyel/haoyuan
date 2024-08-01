@@ -1,13 +1,9 @@
 package com.limyel.haoyuan.common.security.handler;
 
-import com.limyel.haoyuan.common.core.exception.code.AuthFailureErrorCode;
-import com.limyel.haoyuan.common.web.pojo.R;
-import com.limyel.haoyuan.common.web.util.RespUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +20,11 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
         log.warn("用户未登录访问受保护资源: ", authException);
         if (authException instanceof InsufficientAuthenticationException) {
             // todo
-            RespUtil.writeResp(response, R.failed(new AuthFailureErrorCode("Unloggin", "用户未登录")));
+//            RespUtil.writeResp(response, R.failed(new AuthFailureErrorCode("Unloggin", "用户未登录")));
             return;
         }
 
         // todo
-        RespUtil.writeResp(response, R.failed(new AuthFailureErrorCode(null, authException.getMessage())));
+//        RespUtil.writeResp(response, R.failed(new AuthFailureErrorCode(null, authException.getMessage())));
     }
 }

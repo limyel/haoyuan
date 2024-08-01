@@ -3,7 +3,7 @@ package com.limyel.haoyuan.blog.main.controller.admin;
 import com.limyel.haoyuan.blog.main.dto.setting.SettingDTO;
 import com.limyel.haoyuan.blog.main.service.SettingService;
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
-import com.limyel.haoyuan.common.web.pojo.R;
+import com.limyel.haoyuan.common.core.pojo.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

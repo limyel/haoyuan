@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.blog.main.dto.post;
 
-import com.limyel.haoyuan.common.web.validate.Create;
-import com.limyel.haoyuan.common.web.validate.Update;
+import com.limyel.haoyuan.common.core.validator.group.Create;
+import com.limyel.haoyuan.common.core.validator.group.Update;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

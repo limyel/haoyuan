@@ -1,8 +1,8 @@
 package com.limyel.haoyuan.common.security.filter;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.util.JsonUtil;
-import com.limyel.haoyuan.common.security.exception.UsernameOrPasswordNullException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -43,7 +43,7 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
 
         if (usernameNode == null || passwordNode == null
             || !StringUtils.hasText(usernameNode.textValue()) || !StringUtils.hasText(passwordNode.textValue())) {
-            throw new UsernameOrPasswordNullException("用户名或密码为空");
+            throw new ServiceException("用户名或密码为空");
         }
 
         String username = usernameNode.textValue();

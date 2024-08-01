@@ -20,12 +20,17 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>blog-admin</artifactId>
+            <artifactId>blog-sys</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>blog-main</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>blog-project</artifactId>
         </dependency>
 
         <dependency>

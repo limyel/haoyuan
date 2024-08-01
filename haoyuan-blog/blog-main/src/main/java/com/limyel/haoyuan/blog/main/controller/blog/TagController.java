@@ -3,7 +3,7 @@ package com.limyel.haoyuan.blog.main.controller.blog;
 import com.limyel.haoyuan.blog.main.service.TagService;
 import com.limyel.haoyuan.blog.main.vo.tag.TagDetailVO;
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
-import com.limyel.haoyuan.common.web.pojo.R;
+import com.limyel.haoyuan.common.core.pojo.R;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

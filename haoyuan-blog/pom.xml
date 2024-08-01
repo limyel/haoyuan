@@ -15,10 +15,11 @@
 
     <modules>
         <module>blog-main</module>
-        <module>blog-admin</module>
+        <module>blog-sys</module>
         <module>blog-startup</module>
-        <module>blog-store</module>
         <module>blog-project</module>
+        <module>blog-store</module>
+        <module>blog-member</module>
     </modules>
 
     <properties>

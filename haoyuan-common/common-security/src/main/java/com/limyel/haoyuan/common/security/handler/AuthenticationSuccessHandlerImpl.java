@@ -1,9 +1,9 @@
 package com.limyel.haoyuan.common.security.handler;
 
+import com.limyel.haoyuan.common.core.pojo.R;
+import com.limyel.haoyuan.common.core.util.HttpUtil;
 import com.limyel.haoyuan.common.security.token.TokenHelper;
 import com.limyel.haoyuan.common.security.vo.TokenVO;
-import com.limyel.haoyuan.common.web.pojo.R;
-import com.limyel.haoyuan.common.web.util.RespUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -35,6 +35,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
         TokenVO tokenVO = new TokenVO();
         tokenVO.setToken(token);
 
-        RespUtil.writeResp(response, R.ok(tokenVO));
+        // todo
+        HttpUtil.writeResp(response, R.ok(tokenVO));
     }
 }

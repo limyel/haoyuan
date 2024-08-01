@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.blog.main.dto.tag;
 
-import com.limyel.haoyuan.common.web.pojo.PageParam;
+import com.limyel.haoyuan.common.core.pojo.PageParam;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

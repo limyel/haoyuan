@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-web</artifactId>
+            <artifactId>common-core</artifactId>
         </dependency>
 
         <dependency>

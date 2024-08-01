@@ -1,12 +1,9 @@
 package com.limyel.haoyuan.common.security.filter;
 
-import com.limyel.haoyuan.common.core.exception.auth.BadTokenException;
-import com.limyel.haoyuan.common.core.exception.auth.TokenExpiredException;
 import com.limyel.haoyuan.common.security.config.SecurityProperties;
 import com.limyel.haoyuan.common.security.token.TokenHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +13,6 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -49,14 +45,18 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             if (StringUtils.hasText(token)) {
                 try {
                     tokenHelper.validateToken(token);
-                } catch (BadTokenException e) {
-                    // 触发异常，由 AuthenticationEntryPoint 统一处理
-                    authenticationEntryPoint.commence(request, response, new AuthenticationServiceException("Token 不可用"));
-                    return;
-                } catch (TokenExpiredException e) {
-                    authenticationEntryPoint.commence(request, response, new AuthenticationServiceException("Token 已失效"));
-                    return;
+                } catch (Exception e) {
+
                 }
+                // todo
+//                } catch (BadTokenException e) {
+//                    // 触发异常，由 AuthenticationEntryPoint 统一处理
+//                    authenticationEntryPoint.commence(request, response, new AuthenticationServiceException("Token 不可用"));
+//                    return;
+//                } catch (TokenExpiredException e) {
+//                    authenticationEntryPoint.commence(request, response, new AuthenticationServiceException("Token 已失效"));
+//                    return;
+//                }
 
                 String username = tokenHelper.getUsernameByToken(token);
                 if (StringUtils.hasText(username)

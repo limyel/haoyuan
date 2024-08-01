@@ -1,10 +1,10 @@
 package com.limyel.haoyuan.common.core.config.properties;
 
 import lombok.Data;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
-@ConditionalOnProperty(prefix = "thread-pool")
+@ConfigurationProperties(prefix = "haoyuan.thread-pool")
 public class ThreadPoolProperties {
 
     /**

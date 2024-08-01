@@ -1,18 +1,12 @@
 package com.limyel.haoyuan.common.jwt.util;
 
 import com.limyel.haoyuan.common.jwt.config.JwtProperties;
-import com.limyel.haoyuan.common.core.exception.auth.BadTokenException;
-import com.limyel.haoyuan.common.core.exception.auth.TokenExpiredException;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.security.SignatureException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.InitializingBean;
 

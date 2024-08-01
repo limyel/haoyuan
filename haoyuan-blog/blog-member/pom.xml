@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.limyel</groupId>
+        <artifactId>haoyuan-blog</artifactId>
+        <version>0.1.0</version>
+    </parent>
+
+    <artifactId>blog-member</artifactId>
+    <packaging>pom</packaging>
+    <description>会员模块</description>
+    <modules>
+        <module>blog-member-biz</module>
+        <module>blog-member-api</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-mybatis</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

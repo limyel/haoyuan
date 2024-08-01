@@ -10,11 +10,24 @@
     </parent>
 
     <artifactId>haoyuan-blog-cloud</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>blog-sys-service</module>
+        <module>blog-main-service</module>
+        <module>blog-point-service</module>
+        <module>blog-project-service</module>
+        <module>blog-store-service</module>
+        <module>blog-store-service/blog-store-service-biz</module>
+        <module>blog-store-service/blog-store-service-api</module>
+        <module>blog-project-service/blog-project-service-biz</module>
+    </modules>
+    <version>${haoyuan-blog-cloud.version}</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <haoyuan-blog-cloud.version>0.0.0</haoyuan-blog-cloud.version>
     </properties>
 
 </project>

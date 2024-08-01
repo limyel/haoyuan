@@ -1,14 +1,14 @@
 package com.limyel.haoyuan.blog.main.controller.admin;
 
+import com.limyel.haoyuan.blog.main.constant.MainErrorMsg;
 import com.limyel.haoyuan.blog.main.dto.tag.TagDTO;
 import com.limyel.haoyuan.blog.main.dto.tag.TagPageDTO;
-import com.limyel.haoyuan.blog.main.exception.MainErrorCode;
 import com.limyel.haoyuan.blog.main.service.TagService;
 import com.limyel.haoyuan.blog.main.vo.tag.TagPageVO;
 import com.limyel.haoyuan.blog.main.vo.tag.TagSelectVO;
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
+import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.common.web.pojo.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +35,7 @@ public class TagController {
     @ApiOperationLog(description = "添加分类")
     public R<?> create(@Validated @RequestBody TagDTO dto) {
         int result = tagService.create(dto);
-        return result == 1 ? R.ok() : R.failed(MainErrorCode.TAG_CREATE_FAILED);
+        return result == 1 ? R.ok() : R.failed(MainErrorMsg.TAG_CREATE_FAILED);
     }
 
     @GetMapping("/delete/{slug}")

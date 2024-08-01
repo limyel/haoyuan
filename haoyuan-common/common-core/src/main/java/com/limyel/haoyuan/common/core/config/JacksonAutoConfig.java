@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.limyel.haoyuan.common.core.jackson.DateFormatUtils;
 import com.limyel.haoyuan.common.core.jackson.TimestampSerializer;
+import com.limyel.haoyuan.common.core.util.SpringContextUtil;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
@@ -23,6 +24,11 @@ import java.util.TimeZone;
 
 @AutoConfiguration
 public class JacksonAutoConfig {
+
+    @Bean
+    public SpringContextUtil springContextUtil() {
+        return new SpringContextUtil();
+    }
 
     @Bean
     @Primary

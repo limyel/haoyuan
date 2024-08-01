@@ -14,9 +14,9 @@
         <module>haoyuan-sys</module>
         <module>haoyuan-common</module>
         <module>haoyuan-framework</module>
-        <module>haoyuan-blog</module>
         <module>haoyuan-algo-ds</module>
         <module>haoyuan-platform</module>
+        <module>haoyuan-blog</module>
         <module>haoyuan-blog-cloud</module>
     </modules>
 

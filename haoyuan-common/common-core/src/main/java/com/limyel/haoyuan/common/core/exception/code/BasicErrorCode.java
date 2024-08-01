@@ -12,7 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public enum BasicErrorCode implements ErrorCode {
     OK(0, "成功"),
-    FAILED(500, "请求失败")
+    FAILED(500, "请求失败"),
+
+    UNAUTHORIZED(401, "认证失败"),
+    FORBIDDEN(403, "没有访问权限"),
     ;
 
     private Integer code;
