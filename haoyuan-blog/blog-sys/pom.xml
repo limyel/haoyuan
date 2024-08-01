@@ -11,6 +11,11 @@
 
     <artifactId>blog-sys</artifactId>
     <description>单体服务的管理后台服务</description>
+    <modules>
+        <module>blog-sys-biz</module>
+        <module>blog-sys-api</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>${java.version}</maven.compiler.source>

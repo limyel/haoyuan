@@ -35,9 +35,4 @@ public class PointLogEntity extends BaseEntity {
      */
     private String reason;
 
-    /**
-     * 变动结果，0-失败，1-成功
-     */
-    private String result;
-
 }

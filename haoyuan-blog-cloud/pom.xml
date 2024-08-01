@@ -14,12 +14,13 @@
     <modules>
         <module>blog-sys-service</module>
         <module>blog-main-service</module>
-        <module>blog-point-service</module>
+        <module>blog-member-service</module>
         <module>blog-project-service</module>
         <module>blog-store-service</module>
         <module>blog-store-service/blog-store-service-biz</module>
         <module>blog-store-service/blog-store-service-api</module>
         <module>blog-project-service/blog-project-service-biz</module>
+        <module>blog-auth-service</module>
     </modules>
     <version>${haoyuan-blog-cloud.version}</version>
 

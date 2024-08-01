@@ -19,7 +19,6 @@ CREATE TABLE `member_point_log` (
     `type` tinyint NOT NULL COMMENT '变动类型，0-减少，1-增加',
     `changed_point` int NOT NULL DEFAULT 0 COMMENT '变动的积分',
     `reason` varchar(128) NOT NULL COMMENT '变动原因',
-    `result` tinyint NOT NULL DEFAULT 0 COMMENT '变动结果，0-失败，1-成功',
     `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',

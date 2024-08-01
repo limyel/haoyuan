@@ -22,6 +22,12 @@
             <groupId>com.limyel</groupId>
             <artifactId>blog-member-api</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>blog-sys-api</artifactId>
+            <version>0.1.0</version>
+        </dependency>
     </dependencies>
 
 </project>
