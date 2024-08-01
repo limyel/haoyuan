@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.blogcloud.sys.dto.user;
 
-import com.limyel.haoyuan.common.web.pojo.PageParam;
+import com.limyel.haoyuan.common.core.pojo.PageParam;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,13 +8,9 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class SysUserPageDTO extends PageParam {
+public class UserPageDTO extends PageParam {
 
     private String username;
-
-    private Long deptId;
-
-    private String mobile;
 
     private Integer status;
 

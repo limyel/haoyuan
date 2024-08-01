@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.blogcloud.sys.controller;
 
-import com.limyel.haoyuan.blogcloud.sys.dto.user.SysUserDTO;
+import com.limyel.haoyuan.blogcloud.sys.dto.user.UserDTO;
 import com.limyel.haoyuan.blogcloud.sys.entity.UserEntity;
 import com.limyel.haoyuan.blogcloud.sys.service.SysUserService;
 import com.limyel.haoyuan.common.core.pojo.R;
@@ -23,13 +23,13 @@ public class UserController {
     private final SysUserService userService;
 
     @PostMapping("/create")
-    public R<Long> create(@RequestBody SysUserDTO dto) {
+    public R<Long> create(@RequestBody UserDTO dto) {
         Long id = userService.create(dto);
         return R.ok(id);
     }
 
     @PostMapping("/update")
-    public R<?> update(@RequestBody SysUserDTO dto) {
+    public R<?> update(@RequestBody UserDTO dto) {
         userService.update(dto);
         return new R<>();
     }

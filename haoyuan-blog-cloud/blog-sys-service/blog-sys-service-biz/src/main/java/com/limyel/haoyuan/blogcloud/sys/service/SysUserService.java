@@ -2,8 +2,8 @@ package com.limyel.haoyuan.blogcloud.sys.service;
 
 import com.limyel.haoyuan.blogcloud.sys.convert.UserConvert;
 import com.limyel.haoyuan.blogcloud.sys.dao.UserDao;
-import com.limyel.haoyuan.blogcloud.sys.dto.user.SysUserDTO;
-import com.limyel.haoyuan.blogcloud.sys.dto.user.SysUserPageDTO;
+import com.limyel.haoyuan.blogcloud.sys.dto.user.UserDTO;
+import com.limyel.haoyuan.blogcloud.sys.dto.user.UserPageDTO;
 import com.limyel.haoyuan.blogcloud.sys.entity.UserEntity;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
@@ -21,7 +21,7 @@ public class SysUserService {
 
     private final UserDao userDao;
 
-    public Long create(SysUserDTO dto) {
+    public Long create(UserDTO dto) {
         validateUsernameUnique(null, dto.getUsername());
 
         UserEntity sysUser = UserConvert.INSTANCE.toEntity(dto);
@@ -32,7 +32,7 @@ public class SysUserService {
         return sysUser.getId();
     }
 
-    public void update(SysUserDTO dto) {
+    public void update(UserDTO dto) {
         validateExist(dto.getId(), null);
         validateUsernameUnique(dto.getId(), dto.getUsername());
 
@@ -52,11 +52,11 @@ public class SysUserService {
         return userDao.selectById(id);
     }
 
-    public List<UserEntity> getList(SysUserPageDTO dto) {
+    public List<UserEntity> getList(UserPageDTO dto) {
         return null;
     }
 
-    public PageData<UserEntity> getPage(SysUserPageDTO dto) {
+    public PageData<UserEntity> getPage(UserPageDTO dto) {
         return null;
     }
 
