@@ -18,8 +18,7 @@
         <module>blog-sys</module>
         <module>blog-startup</module>
         <module>blog-project</module>
-        <module>blog-store</module>
-        <module>blog-member</module>
+        <module>blog-sync</module>
     </modules>
 
     <properties>

@@ -1,8 +1,0 @@
-###
-POST http://localhost:8000/sys/dept
-token: 85b0d772d753f04d4bfbcb50ba74c82e
-Content-Type: application/json
-
-{
-  "name": "test-dept2"
-}

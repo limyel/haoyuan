@@ -24,10 +24,6 @@
             <version>0.1.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>blog-member-api</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

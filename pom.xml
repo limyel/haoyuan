@@ -11,12 +11,11 @@
 
     <modules>
         <module>haoyuan-dependency</module>
-        <module>haoyuan-sys</module>
         <module>haoyuan-common</module>
         <module>haoyuan-framework</module>
         <module>haoyuan-algo-ds</module>
         <module>haoyuan-blog</module>
-        <module>haoyuan-blog-cloud</module>
+        <module>haoyuan-mall-cloud</module>
     </modules>
 
     <properties>
