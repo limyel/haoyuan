@@ -22,8 +22,8 @@ public class SpringContextUtil implements ApplicationContextAware, EmbeddedValue
         SpringContextUtil.valueResolver = resolver;
     }
 
-    public static Object getBean(String name) {
-        return applicationContext.getBean(name);
+    public static <T> T getBean(String name) {
+        return (T) applicationContext.getBean(name);
     }
 
     public static <T> T getBean(Class<T> type) {
@@ -32,5 +32,9 @@ public class SpringContextUtil implements ApplicationContextAware, EmbeddedValue
 
     public static String getProperty(String key) {
         return valueResolver.resolveStringValue(key);
+    }
+
+    public static boolean containsBean(String beanName) {
+        return applicationContext.containsBean(beanName);
     }
 }

@@ -22,6 +22,17 @@
             <groupId>com.limyel</groupId>
             <artifactId>common-mybatis</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-sys-service-api</artifactId>
+            <version>0.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

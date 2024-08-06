@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.mall.sys.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
 import lombok.Data;
@@ -55,6 +56,7 @@ public class SysUserEntity extends BaseEntity {
     /**
      * 最后登录IP
      */
+    @TableField(value = "login_ip")
     private String loginIP;
 
     /**

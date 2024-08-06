@@ -1,0 +1,6 @@
+###
+POST http://localhost:8010/auth/token/login?username=test&password=123456
+
+
+###
+GET http://localhost:8010/auth/token/isLogin

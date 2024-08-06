@@ -2,12 +2,16 @@ package com.limyel.haoyuan.mall.auth.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 public class LoginDTO {
 
-    private String clientId;
+    @NotBlank(message = "系统类型不能为空")
+    private String sysType;
 
-    private String grantType;
+    @NotBlank(message = "登录类型不能为空")
+    private String loginType;
 
     private String authInfo;
 
