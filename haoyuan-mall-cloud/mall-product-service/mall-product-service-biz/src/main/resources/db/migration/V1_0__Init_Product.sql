@@ -47,6 +47,7 @@ CREATE TABLE `product_stock_rule` (
     `min_quantity` int NOT NULL DEFAULT 0 COMMENT '最少更新数量',
     `max_quantity` int NOT NULL DEFAULT 0 COMMENT '最多更新数量',
     `cron` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '更新 cron 表达式',
+    `status` tinyint NOT NULL DEFAULT 1 COMMENT '状态，0-关闭，1-开启',
     `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',

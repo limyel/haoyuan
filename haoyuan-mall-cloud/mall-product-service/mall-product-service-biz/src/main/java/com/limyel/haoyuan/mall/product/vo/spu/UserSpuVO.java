@@ -1,0 +1,22 @@
+package com.limyel.haoyuan.mall.product.vo.spu;
+
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
+public class UserSpuVO {
+
+    private String picUrl;
+
+    private String name;
+
+    private String summary;
+
+    private Integer type;
+
+    private Integer quantity;
+
+    private LocalDateTime subscribeTime;
+
+}
