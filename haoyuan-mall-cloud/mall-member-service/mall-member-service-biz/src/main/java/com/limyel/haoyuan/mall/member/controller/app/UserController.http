@@ -1,0 +1,3 @@
+###
+# @no-cookie-jar
+GET http://localhost:8030/mall-member/member/app/user/get/by-username/test

@@ -1,6 +1,31 @@
 ###
-POST http://localhost:8010/auth/token/login?username=test&password=123456
+# @no-cookie-jar
+POST http://localhost:8030/mall-auth/auth/token/login
+Content-Type: application/json
+
+{
+  "authInfo": "{\"username\": \"test\",\"password\": \"123456\"}",
+  "loginType": "admin",
+  "authType": "password"
+}
 
 
 ###
-GET http://localhost:8010/auth/token/isLogin
+# @no-cookie-jar
+POST http://localhost:8030/mall-auth/auth/token/login
+Content-Type: application/json
+
+{
+  "authInfo": "{\"username\": \"ttest\",\"password\": \"123456\"}",
+  "loginType": "user",
+  "authType": "password"
+}
+
+
+###
+POST http://localhost:8030/mall-auth/auth/token/logout
+Content-Type: application/json
+
+{
+
+}

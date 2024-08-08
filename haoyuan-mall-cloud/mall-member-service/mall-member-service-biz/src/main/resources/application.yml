@@ -4,7 +4,7 @@ server:
     threads:
       max: 1000
       min-spare: 30
-  port: 8000
+  port: 8020
   servlet:
     session:
       cookie:
@@ -50,6 +50,20 @@ mybatis-plus:
     prefix:
     blobType: BLOB
     boolValue: TRUE
+
+sa-token:
+  token-name: satoken
+  # token 存活时间（秒），-1 永久
+  timeout: 2592000
+  # token 最低活跃频率（秒）,超过指定时间冻结 token
+  active-timeout: -1
+  # 是否允许同一账号多地同时登录
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个 token
+  is-share: true
+  token-style: uuid
+  is-log: true
+  check-same-token: true
 
 logging:
   config: classpath:logback-blog.xml

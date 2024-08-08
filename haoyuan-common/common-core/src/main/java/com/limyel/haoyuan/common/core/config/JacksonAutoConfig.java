@@ -10,6 +10,7 @@ import com.limyel.haoyuan.common.core.jackson.DateFormatUtils;
 import com.limyel.haoyuan.common.core.jackson.TimestampSerializer;
 import com.limyel.haoyuan.common.core.util.SpringContextUtil;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -22,7 +23,9 @@ import java.time.ZoneId;
 import java.util.Locale;
 import java.util.TimeZone;
 
-@AutoConfiguration
+@AutoConfiguration(before = {org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration.class,
+        HttpMessageConvertersAutoConfiguration.class
+})
 public class JacksonAutoConfig {
 
     @Bean

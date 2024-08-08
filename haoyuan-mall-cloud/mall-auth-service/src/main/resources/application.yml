@@ -13,7 +13,7 @@ server:
 
 spring:
   application:
-    name: mall-auth-service
+    name: mall-auth
   profiles:
     active: dev
   messages:

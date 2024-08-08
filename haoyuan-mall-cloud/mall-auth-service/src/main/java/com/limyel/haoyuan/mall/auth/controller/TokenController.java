@@ -1,12 +1,12 @@
 package com.limyel.haoyuan.mall.auth.controller;
 
-import cn.dev33.satoken.stp.StpUtil;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.mall.auth.dto.LoginDTO;
-import com.limyel.haoyuan.mall.sys.api.SysUserApi;
+import com.limyel.haoyuan.mall.auth.dto.LogoutDTO;
+import com.limyel.haoyuan.mall.auth.service.AuthStrategy;
+import com.limyel.haoyuan.mall.auth.vo.LoginVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,22 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class TokenController {
 
-    private final SysUserApi sysUserApi;
-
     @PostMapping("/login")
-    public R<?> login(@Validated @RequestBody LoginDTO dto) {
-        String loginType = dto.getLoginType();
+    public R<LoginVO> login(@Validated @RequestBody LoginDTO dto) {
+        LoginVO result = AuthStrategy.login(dto.getAuthInfo(), dto.getLoginType(), dto.getAuthType());
 
-
-
-        return R.failed();
+        return R.ok(result);
     }
 
-    @GetMapping("/isLogin")
-    public String isLogin() {
-        return "当前会话是否登录：" + StpUtil.isLogin();
+    @PostMapping("/logout")
+    public R<?> logout(@Validated @RequestBody LogoutDTO dto) {
+        return R.ok();
     }
-
 
 
 }

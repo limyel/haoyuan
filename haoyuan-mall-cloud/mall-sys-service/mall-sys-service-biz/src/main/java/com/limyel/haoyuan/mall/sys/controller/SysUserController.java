@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/sys-user")
 @RequiredArgsConstructor
@@ -43,7 +45,7 @@ public class SysUserController {
     }
 
     @GetMapping("/get/by-username/{username}")
-    public R<SysUserInfoDTO> getByUsername(@PathVariable("username") String username) {
+    public R<SysUserInfoDTO> getByUsername(@PathVariable("username") String username, HttpServletRequest request) {
         SysUserInfoDTO result = sysUserService.getByUsername(username);
         return R.ok(result);
     }

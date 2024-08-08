@@ -19,4 +19,9 @@ public class GlobalExceptionHandler {
         return code == null ? R.failed(msg) : R.of(code, msg);
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public R<?> handleException(Exception e, HttpServletRequest request) {
+        return R.failed(e.getMessage());
+    }
+
 }

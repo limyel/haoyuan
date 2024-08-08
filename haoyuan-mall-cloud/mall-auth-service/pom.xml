@@ -19,8 +19,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-spring-boot-starter</artifactId>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-satoken</artifactId>
+            <version>0.0.0</version>
         </dependency>
 
         <dependency>
