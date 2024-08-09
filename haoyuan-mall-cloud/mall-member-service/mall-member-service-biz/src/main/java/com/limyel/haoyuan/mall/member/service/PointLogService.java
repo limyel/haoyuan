@@ -8,7 +8,7 @@ import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.mall.member.convert.PointLogConvert;
 import com.limyel.haoyuan.mall.member.dao.PointLogDao;
 import com.limyel.haoyuan.mall.member.dto.pointlog.PointLogPageDTO;
-import com.limyel.haoyuan.mall.member.entity.PointLogEntity;
+import com.limyel.haoyuan.mall.member.entity.PayLogEntity;
 import com.limyel.haoyuan.mall.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.member.vo.pointlog.PointLogListVO;
 import com.limyel.haoyuan.mall.member.vo.pointlog.PointLogPageVO;
@@ -26,10 +26,10 @@ public class PointLogService {
     private final UserService userService;
 
     public PageData<PointLogPageVO> getPage(PointLogPageDTO dto) {
-        Page<PointLogEntity> page = new Page<>(dto.getPageNum(), dto.getPageSize());
+        Page<PayLogEntity> page = new Page<>(dto.getPageNum(), dto.getPageSize());
 
-        LambdaQueryWrapperPlus<PointLogEntity> wrapperPlus = new LambdaQueryWrapperPlus<>();
-        wrapperPlus.eqIfPresent(PointLogEntity::getUserId, dto.getUserId());
+        LambdaQueryWrapperPlus<PayLogEntity> wrapperPlus = new LambdaQueryWrapperPlus<>();
+        wrapperPlus.eqIfPresent(PayLogEntity::getUserId, dto.getUserId());
         pointLogDao.selectPage(page, wrapperPlus);
 
         List<PointLogPageVO> list = page.getRecords().stream()
@@ -43,10 +43,10 @@ public class PointLogService {
     }
 
     public PageData<PointLogListVO> getList(PageParam pageParam, Long userId) {
-        Page<PointLogEntity> page = new Page<>(pageParam.getPageNum(), pageParam.getPageSize());
+        Page<PayLogEntity> page = new Page<>(pageParam.getPageNum(), pageParam.getPageSize());
 
-        LambdaQueryWrapper<PointLogEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(PointLogEntity::getUserId, userId);
+        LambdaQueryWrapper<PayLogEntity> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(PayLogEntity::getUserId, userId);
         pointLogDao.selectPage(page, wrapper);
 
         List<PointLogListVO> list = page.getRecords().stream()

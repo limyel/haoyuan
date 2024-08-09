@@ -16,12 +16,13 @@ CREATE TABLE `member_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='会员用户表';
 
 
-DROP TABLE IF EXISTS `member_point_log`;
-CREATE TABLE `member_point_log` (
+DROP TABLE IF EXISTS `member_pay_log`;
+CREATE TABLE `member_pay_log` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `user_id` bigint NOT NULL COMMENT '用户ID',
     `type` tinyint NOT NULL COMMENT '变动类型，0-减少，1-增加',
     `changed_point` bigint NOT NULL DEFAULT 0 COMMENT '变动的积分',
+    `changed_balance` bigint NOT NULL DEFAULT 0 COMMENT '变动的余额',
     `reason` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '变动原因',
     `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',

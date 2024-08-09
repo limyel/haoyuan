@@ -9,6 +9,8 @@ public class PointLogListVO {
 
     private Long changedPoint;
 
+    private Long changedBalance;
+
     private String reason;
 
 }

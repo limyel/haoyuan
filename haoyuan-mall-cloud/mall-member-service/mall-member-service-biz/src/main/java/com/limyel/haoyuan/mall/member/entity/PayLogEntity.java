@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("member_point_log")
-public class PointLogEntity extends BaseEntity {
+public class PayLogEntity extends BaseEntity {
 
     /**
      * 用户ID
@@ -24,6 +24,11 @@ public class PointLogEntity extends BaseEntity {
      * 变动的积分
      */
     private Long changedPoint;
+
+    /**
+     * 变动的余额
+     */
+    private Long changedBalance;
 
     /**
      * 变动原因

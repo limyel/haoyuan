@@ -26,6 +26,11 @@ public class UserEntity extends BaseEntity {
     private Long point;
 
     /**
+     * 余额
+     */
+    private Long balance;
+
+    /**
      * 锁定积分
      */
     private Long lockedPoint;

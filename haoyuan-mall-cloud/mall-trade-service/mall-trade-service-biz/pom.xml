@@ -25,6 +25,18 @@
         </dependency>
 
         <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-satoken</artifactId>
+            <version>0.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-product-service-api</artifactId>
+            <version>0.0.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
         </dependency>
