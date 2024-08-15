@@ -8,16 +8,19 @@ import com.limyel.haoyuan.common.core.util.CryptUtil;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
+import com.limyel.haoyuan.mall.member.constant.PaymentMethodEnum;
 import com.limyel.haoyuan.mall.member.convert.UserConvert;
 import com.limyel.haoyuan.mall.member.dao.UserDao;
-import com.limyel.haoyuan.mall.member.dto.user.UserDTO;
-import com.limyel.haoyuan.mall.member.dto.user.UserInfoDTO;
-import com.limyel.haoyuan.mall.member.dto.user.UserPageDTO;
+import com.limyel.haoyuan.mall.member.rdto.user.PointBalanceRDTO;
+import com.limyel.haoyuan.mall.member.rdto.user.UserDTO;
+import com.limyel.haoyuan.mall.member.rdto.user.UserInfoRDTO;
+import com.limyel.haoyuan.mall.member.rdto.user.UserPageDTO;
 import com.limyel.haoyuan.mall.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;
 import com.limyel.haoyuan.mall.member.vo.user.UserPageVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -33,6 +36,7 @@ public class UserService {
         UserEntity user = UserConvert.INSTANCE.toEntity(dto);
         user.setPassword(CryptUtil.encrypt(dto.getPassword()));
         user.setPoint(0L);
+        user.setBalance(0L);
         user.setStatus(StatusEnum.ENABLE.getValue());
 
         return userDao.insert(user);
@@ -81,7 +85,7 @@ public class UserService {
     }
 
     public UserInfoVO getCurrentUserInfo() {
-        Long loginId = (Long) StpUserUtil.getLoginId();
+        Long loginId = StpUserUtil.getLoginIdAsLong();
         UserEntity user = userDao.selectOne(UserEntity::getId, loginId);
         if (user == null) {
             throw new ServiceException("用户不存在");
@@ -90,9 +94,47 @@ public class UserService {
         return UserConvert.INSTANCE.toInfoVO(user);
     }
 
-    public UserInfoDTO getByUsername(String username) {
+    public UserInfoRDTO getByUsername(String username) {
         UserEntity user = userDao.selectOne(UserEntity::getUsername, username);
         return UserConvert.INSTANCE.toInfoDTO(user);
+    }
+
+    public Integer deductPointBalance(PointBalanceRDTO dto) {
+        Long userId = dto.getUserId();
+        UserEntity user = userDao.selectById(userId);
+        Long total = dto.getTotal();
+        Integer type = dto.getType();
+
+        if (PaymentMethodEnum.POINT.getValue().equals(type)) {
+            if (user.getPoint() < total) {
+                throw new ServiceException("用户积分不足");
+            }
+            user.setPoint(user.getPoint() - total);
+        } else if (PaymentMethodEnum.BALANCE.getValue().equals(type)) {
+            if (user.getBalance() < total) {
+                throw new ServiceException("用户余额不足");
+            }
+            user.setBalance(user.getBalance() - total);
+        } else if (PaymentMethodEnum.POINT_BALANCE.getValue().equals(type)) {
+            if (user.getPoint() + user.getBalance() < total) {
+                throw new ServiceException("用户积分、余额不足");
+            }
+            long delta = user.getPoint() - total;
+            if (delta < 0) {
+                user.setPoint(0L);
+                user.setBalance(user.getBalance() + delta);
+            } else {
+                user.setPoint(delta);
+            }
+        }
+
+        int result = userDao.updateById(user);
+        Assert.isTrue(result == 1, "积分、余额扣减失败");
+
+        // todo 发送消息，记录 paylog
+
+
+        return result;
     }
 
 }

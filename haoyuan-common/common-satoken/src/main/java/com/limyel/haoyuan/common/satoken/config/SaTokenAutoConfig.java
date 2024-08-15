@@ -6,10 +6,12 @@ import cn.dev33.satoken.filter.SaServletFilter;
 import cn.dev33.satoken.interceptor.SaInterceptor;
 import cn.dev33.satoken.same.SaSameUtil;
 import cn.dev33.satoken.stp.StpInterface;
+import cn.dev33.satoken.stp.StpLogic;
 import cn.dev33.satoken.strategy.SaStrategy;
 import cn.dev33.satoken.util.SaResult;
 import com.limyel.haoyuan.common.satoken.handler.SameTokenInterceptor;
 import com.limyel.haoyuan.common.satoken.service.StpInterfaceImpl;
+import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -34,6 +36,7 @@ public class SaTokenAutoConfig implements WebMvcConfigurer, InitializingBean {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        StpLogic userLogic = StpUserUtil.stpLogic;
         registry.addInterceptor(new SaInterceptor()).addPathPatterns("/**");
     }
 

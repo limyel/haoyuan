@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>mall-promotion-service</artifactId>
-        <version>0.0.0</version>
+        <version>${haoyuan-mall-cloud.version}</version>
     </parent>
 
     <artifactId>mall-promotion-service-api</artifactId>

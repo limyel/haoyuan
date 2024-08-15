@@ -12,7 +12,7 @@ public class OrderConfirmDTO {
     @Data
     public static class CartItem {
         private Long spuId;
-        private Integer num;
+        private Integer quantity;
     }
 
 }

@@ -85,11 +85,6 @@
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>common-jwt</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.limyel</groupId>
                 <artifactId>common-security</artifactId>
                 <version>${revision}</version>
             </dependency>

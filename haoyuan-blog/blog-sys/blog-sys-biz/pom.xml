@@ -6,10 +6,11 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>blog-sys</artifactId>
-        <version>0.1.0</version>
+        <version>${haoyuan-blog.version}</version>
     </parent>
 
     <artifactId>blog-sys-biz</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("member_point_log")
+@TableName("member_pay_log")
 public class PayLogEntity extends BaseEntity {
 
     /**

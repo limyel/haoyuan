@@ -16,7 +16,7 @@ POST http://localhost:8030/mall-auth/auth/token/login
 Content-Type: application/json
 
 {
-  "authInfo": "{\"username\": \"ttest\",\"password\": \"123456\"}",
+  "authInfo": "{\"username\": \"test1\",\"password\": \"123456\"}",
   "loginType": "user",
   "authType": "password"
 }

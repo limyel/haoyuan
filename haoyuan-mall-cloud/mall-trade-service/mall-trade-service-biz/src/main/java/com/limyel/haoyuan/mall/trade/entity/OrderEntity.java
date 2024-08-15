@@ -28,7 +28,7 @@ public class OrderEntity extends BaseEntity {
     private Integer totalQuantity;
 
     /**
-     * 订单状态，101-待支付，102-用户取消，103-系统取消, 201-已完成
+     * 订单状态，0-待支付，1-用户取消，2-系统取消, 3-已完成
      */
     private Integer status;
 
@@ -61,5 +61,10 @@ public class OrderEntity extends BaseEntity {
      * 支付时间
      */
     private LocalDateTime paymentTime;
+
+    /**
+     * 支付方式，0-积分，1-余额，2-积分+余额
+     */
+    private Integer paymentMethod;
 
 }

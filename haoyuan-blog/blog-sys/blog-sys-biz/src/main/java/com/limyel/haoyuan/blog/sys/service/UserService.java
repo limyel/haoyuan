@@ -1,7 +1,5 @@
 package com.limyel.haoyuan.blog.sys.service;
 
-import com.limyel.haoyuan.blog.member.api.MemberPointApi;
-import com.limyel.haoyuan.blog.member.dto.point.PointCreateDTO;
 import com.limyel.haoyuan.blog.sys.convert.UserConvert;
 import com.limyel.haoyuan.blog.sys.dao.UserDao;
 import com.limyel.haoyuan.blog.sys.domain.UserEntity;
@@ -22,19 +20,12 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final MemberPointApi memberPointApi;
-
     @Transactional(rollbackFor = Exception.class)
     public int create(UserDTO dto) {
         userDao.validateUnique(null, UserEntity::getUsername, dto.getUsername(), "用户名已存在");
 
         UserEntity user = UserConvert.INSTANCE.toEntity(dto);
         int result = userDao.insert(user);
-
-        PointCreateDTO pointCreateDTO = new PointCreateDTO();
-        pointCreateDTO.setUserId(user.getId());
-        pointCreateDTO.setPoint(0);
-        memberPointApi.create(pointCreateDTO);
 
         return result;
     }

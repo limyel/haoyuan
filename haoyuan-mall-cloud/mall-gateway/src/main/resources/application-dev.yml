@@ -45,3 +45,15 @@ spring:
             - Path=/mall-member/**
           filters:
             - StripPrefix=1
+        - id: mall-product
+          uri: lb://mall-product
+          predicates:
+            - Path=/mall-product/**
+          filters:
+            - StripPrefix=1
+        - id: mall-trade
+          uri: lb://mall-trade
+          predicates:
+            - Path=/mall-trade/**
+          filters:
+            - StripPrefix=1

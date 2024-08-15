@@ -26,6 +26,11 @@ public class OrderItemEntity extends BaseEntity {
     private String spuName;
 
     /**
+     *
+     */
+    private Integer type;
+
+    /**
      * 商品图片
      */
     private String picUrl;

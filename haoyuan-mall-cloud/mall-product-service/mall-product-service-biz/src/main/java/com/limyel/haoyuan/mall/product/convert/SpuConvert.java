@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.mall.product.convert;
 
-import com.limyel.haoyuan.mall.product.dto.SpuRpcDTO;
+import com.limyel.haoyuan.mall.product.dto.SpuRDTO;
 import com.limyel.haoyuan.mall.product.dto.spu.SpuDTO;
 import com.limyel.haoyuan.mall.product.entity.SpuEntity;
 import com.limyel.haoyuan.mall.product.vo.spu.SpuListVO;
@@ -21,6 +21,8 @@ public interface SpuConvert {
 
     SpuDTO toDTO(SpuEntity entity);
 
-    SpuRpcDTO toRpcDTO(SpuDTO dto);
+    SpuRDTO toRpcDTO(SpuDTO dto);
+
+    SpuRDTO toRpcDTO(SpuEntity entity);
 
 }

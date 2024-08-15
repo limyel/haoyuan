@@ -1,11 +1,17 @@
 package com.limyel.haoyuan.mall.product.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
+import com.limyel.haoyuan.common.core.util.JSONUtil;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
+import com.limyel.haoyuan.mall.product.constant.SpuRedisKey;
 import com.limyel.haoyuan.mall.product.convert.SpuConvert;
 import com.limyel.haoyuan.mall.product.dao.SpuDao;
+import com.limyel.haoyuan.mall.product.dto.SpuRDTO;
+import com.limyel.haoyuan.mall.product.dto.StockDeductRDTO;
 import com.limyel.haoyuan.mall.product.dto.spu.SpuDTO;
 import com.limyel.haoyuan.mall.product.dto.spu.SpuListDTO;
 import com.limyel.haoyuan.mall.product.dto.spu.SpuPageDTO;
@@ -13,7 +19,9 @@ import com.limyel.haoyuan.mall.product.entity.SpuEntity;
 import com.limyel.haoyuan.mall.product.vo.spu.SpuListVO;
 import com.limyel.haoyuan.mall.product.vo.spu.SpuPageVO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -22,6 +30,8 @@ import java.util.List;
 public class SpuService {
 
     private final SpuDao spuDao;
+
+    private final StringRedisTemplate redisTemplate;
 
     public int create(SpuDTO dto) {
         spuDao.validateUnique(null, SpuEntity::getName, dto.getName(), "商品名称已存在");
@@ -64,6 +74,15 @@ public class SpuService {
         return SpuConvert.INSTANCE.toDTO(spu);
     }
 
+    public List<SpuRDTO> getByIds(List<Long> ids) {
+        LambdaQueryWrapper<SpuEntity> wrapper = new LambdaQueryWrapper<>();
+        wrapper.in(SpuEntity::getId, ids);
+        List<SpuEntity> spuList = spuDao.selectList(wrapper);
+        return spuList.stream()
+                .map(SpuConvert.INSTANCE::toRpcDTO)
+                .toList();
+    }
+
     public PageData<SpuListVO> getList(SpuListDTO dto) {
         Page<SpuEntity> page = new Page<>(dto.getPageNum(), dto.getPageSize());
 
@@ -77,6 +96,20 @@ public class SpuService {
                 .map(SpuConvert.INSTANCE::toListVO)
                 .toList();
         return new PageData<>(page, list);
+    }
+
+    public void deductStock(StockDeductRDTO dto) {
+        String orderToken = dto.getOrderToken();
+        for (StockDeductRDTO.SpuDTO spu : dto.getSpuList()) {
+            int deductResult = spuDao.update(new LambdaUpdateWrapper<SpuEntity>()
+                    .setSql("stock = stock - " + spu.getQuantity())
+                    .eq(SpuEntity::getId, spu.getSpuId())
+                    .apply("stock >= {0}", spu.getQuantity())
+            );
+            Assert.isTrue(deductResult == 1, "商品库存不足");
+
+            redisTemplate.opsForList().rightPush(SpuRedisKey.SPU_STOCK_DEDUCT_PREFIX + orderToken, JSONUtil.toJson(spu));
+        }
     }
 
 }

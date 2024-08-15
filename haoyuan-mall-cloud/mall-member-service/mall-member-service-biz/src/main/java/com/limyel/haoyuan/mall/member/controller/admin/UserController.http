@@ -1,0 +1,11 @@
+### 创建用户
+# @no-cookie-jar
+POST http://localhost:8030/mall-member/member/admin/user/create
+Content-Type: application/json
+satoken: 61cf6398-b69d-44e6-8e40-3d7c55397a73
+
+{
+  "username": "test1",
+  "password": "123456",
+  "checkPassword": "123456"
+}

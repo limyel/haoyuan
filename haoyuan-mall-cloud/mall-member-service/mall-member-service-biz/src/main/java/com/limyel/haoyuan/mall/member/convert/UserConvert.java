@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mall.member.convert;
 
-import com.limyel.haoyuan.mall.member.dto.user.UserDTO;
-import com.limyel.haoyuan.mall.member.dto.user.UserInfoDTO;
+import com.limyel.haoyuan.mall.member.rdto.user.UserDTO;
+import com.limyel.haoyuan.mall.member.rdto.user.UserInfoRDTO;
 import com.limyel.haoyuan.mall.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;
 import com.limyel.haoyuan.mall.member.vo.user.UserPageVO;
@@ -17,7 +17,7 @@ public interface UserConvert {
 
     UserDTO toDTO(UserEntity entity);
 
-    UserInfoDTO toInfoDTO(UserEntity entity);
+    UserInfoRDTO toInfoDTO(UserEntity entity);
 
     UserInfoVO toInfoVO(UserEntity entity);
 

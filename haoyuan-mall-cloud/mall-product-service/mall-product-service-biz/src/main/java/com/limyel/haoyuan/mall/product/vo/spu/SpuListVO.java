@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class SpuListVO {
 
+    private Long id;
+
     private String picUrl;
 
     private String name;

@@ -9,11 +9,11 @@ server:
     session:
       cookie:
         http-only: true
-    context-path: /member
+    context-path: /trade
 
 spring:
   application:
-    name: mall-member
+    name: mall-trade
   profiles:
     active: dev
   messages:

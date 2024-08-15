@@ -4,6 +4,7 @@ CREATE TABLE `member_user` (
     `username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户名',
     `password` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
     `point` bigint NOT NULL DEFAULT 0 COMMENT '积分',
+    `balance` bigint NOT NULL DEFAULT 0 COMMENT '余额',
     `locked_point` bigint NULL DEFAULT NULL COMMENT '锁定积分',
     `blog_admin_id` bigint NOT NULL DEFAULT 0 COMMENT '博客管理员ID',
     `status` tinyint NOT NULL DEFAULT 1 COMMENT '状态，0-封禁，1-正常',

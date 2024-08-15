@@ -19,25 +19,6 @@ CREATE TABLE `product_spu` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='商品表';
 
 
-DROP TABLE IF EXISTS `product_user_spu`;
-CREATE TABLE `product_user_spu` (
-    `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
-    `user_id` bigint NOT NULL COMMENT '用户ID',
-    `pic_url` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '商品图片',
-    `name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '名称',
-    `summary` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '摘要',
-    `type` tinyint NOT NULL DEFAULT 0 COMMENT '类型，0-一次性，1-订阅',
-    `quantity` int NOT NULL DEFAULT 0 COMMENT '数量',
-    `subscribe_time` datetime NULL DEFAULT NULL COMMENT '订阅时间',
-    `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
-    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',
-    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
-    PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户商品表';
-
-
 DROP TABLE IF EXISTS `product_stock_rule`;
 CREATE TABLE `product_stock_rule` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',

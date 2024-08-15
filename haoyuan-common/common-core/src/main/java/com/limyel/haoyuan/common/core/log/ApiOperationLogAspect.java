@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.common.core.log;
 
-import com.limyel.haoyuan.common.core.util.JsonUtil;
+import com.limyel.haoyuan.common.core.util.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -34,7 +34,7 @@ public class ApiOperationLogAspect {
 
             // 请求参数
             Object[] args = point.getArgs();
-            String argsJson = Arrays.stream(args).map(JsonUtil::toJson).collect(Collectors.joining(", "));
+            String argsJson = Arrays.stream(args).map(JSONUtil::toJson).collect(Collectors.joining(", "));
 
             String description = getApiOperationLogDescription(point);
 
@@ -48,7 +48,7 @@ public class ApiOperationLogAspect {
 
             // 响应日志
             log.info("====== 请求结束: [{}], 耗时: {}ms, 出参: {} =====",
-                    description, endTime - startTime, JsonUtil.toJson(result));
+                    description, endTime - startTime, JSONUtil.toJson(result));
 
             return result;
         } finally {

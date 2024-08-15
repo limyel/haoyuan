@@ -20,7 +20,7 @@ public class HttpUtil {
     }
 
     public static void writeResp(HttpServletResponse response, R<?> resp) {
-        String content = JsonUtil.toJson(resp);
+        String content = JSONUtil.toJson(resp);
         writeResp(response, content);
     }
 

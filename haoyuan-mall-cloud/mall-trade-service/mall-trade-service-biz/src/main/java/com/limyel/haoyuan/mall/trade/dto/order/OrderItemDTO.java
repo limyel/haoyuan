@@ -15,4 +15,6 @@ public class OrderItemDTO {
 
     private Integer quantity;
 
+    private Integer type;
+
 }

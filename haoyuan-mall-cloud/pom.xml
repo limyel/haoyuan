@@ -11,6 +11,7 @@
 
     <artifactId>haoyuan-mall-cloud</artifactId>
     <packaging>pom</packaging>
+    <version>${haoyuan-mall-cloud.version}</version>
     <modules>
         <module>mall-auth-service</module>
         <module>mall-trade-service</module>
@@ -25,6 +26,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <haoyuan-mall-cloud.version>0.0.0</haoyuan-mall-cloud.version>
     </properties>
 
     <dependencies>

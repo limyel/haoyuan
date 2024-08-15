@@ -4,9 +4,10 @@ import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.mall.member.dto.user.UpdateStatus;
-import com.limyel.haoyuan.mall.member.dto.user.UserPageDTO;
-import com.limyel.haoyuan.mall.member.dto.user.UserUpdateDTO;
+import com.limyel.haoyuan.mall.member.rdto.user.UpdateStatus;
+import com.limyel.haoyuan.mall.member.rdto.user.UserDTO;
+import com.limyel.haoyuan.mall.member.rdto.user.UserPageDTO;
+import com.limyel.haoyuan.mall.member.rdto.user.UserUpdateDTO;
 import com.limyel.haoyuan.mall.member.service.UserService;
 import com.limyel.haoyuan.mall.member.vo.user.UserPageVO;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,13 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+
+    @SaCheckLogin(type = "login")
+    @PostMapping("/create")
+    public R<?> create(@RequestBody UserDTO dto) {
+        userService.create(dto);
+        return R.ok();
+    }
 
     @SaCheckLogin
     @GetMapping("/delete/{ids}")

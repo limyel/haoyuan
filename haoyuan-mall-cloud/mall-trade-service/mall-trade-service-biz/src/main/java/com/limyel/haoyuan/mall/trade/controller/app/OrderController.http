@@ -1,0 +1,60 @@
+### 确认订单
+# @no-cookie-jar
+POST http://localhost:8030/mall-trade/trade/app/order/confirm
+Content-Type: application/json
+satoken: 4ef64d6a-8db7-4994-aef2-527baa5e841e
+
+{
+  "list": [
+    {
+      "spuId": 2,
+      "quantity": 2
+    },
+    {
+      "spuId": 1,
+      "quantity": 10
+    }
+  ]
+}
+
+
+### 提交订单
+# @no-cookie-jar
+POST http://localhost:8030/mall-trade/trade/app/order/submit
+Content-Type: application/json
+satoken: 4ef64d6a-8db7-4994-aef2-527baa5e841e
+
+{
+  "orderToken": "33c3afdc44584d3187e989f1de316dd2",
+  "orderItems": [
+    {
+      "spuId": 2,
+      "spuName": "测试商品2",
+      "picUrl": "http://localhsot:8080/pic",
+      "price": 100,
+      "quantity": 2,
+      "type": 1
+    },
+    {
+      "spuId": 1,
+      "spuName": "测试商品1",
+      "picUrl": "http://localhsot:8080/pic",
+      "price": 100,
+      "quantity": 10,
+      "type": 0
+    }
+  ],
+  "paymentAmount": 1200
+}
+
+
+### 支付订单
+# @no-cookie-jar
+POST http://localhost:8030/mall-trade/trade/app/order/pay
+Content-Type: application/json
+satoken: 4ef64d6a-8db7-4994-aef2-527baa5e841e
+
+{
+  "orderSn": "633daa7ce89e4d908e33111399c030f5",
+  "paymentMethod": 0
+}

@@ -5,6 +5,7 @@ import com.limyel.haoyuan.common.security.handler.AccessDeniedHandlerImpl;
 import com.limyel.haoyuan.common.security.handler.AuthenticationEntryPointImpl;
 import com.limyel.haoyuan.common.security.handler.AuthenticationFailureHandlerImpl;
 import com.limyel.haoyuan.common.security.handler.AuthenticationSuccessHandlerImpl;
+import com.limyel.haoyuan.common.security.token.JwtTokenHelper;
 import com.limyel.haoyuan.common.security.token.TokenHelper;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -29,9 +30,6 @@ import javax.annotation.Resource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
-    private TokenHelper tokenHelper;
-
-    @Resource
     private UserDetailsService userDetailsService;
 
     @Resource
@@ -39,6 +37,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
     private PasswordEncoder passwordEncoder;
+
+    @Bean
+    public TokenHelper tokenHelper() {
+        return new JwtTokenHelper();
+    }
 
     @Bean
     public AuthenticationSecurityConfig authenticationSecurityConfig() {
@@ -58,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AuthenticationSuccessHandler authenticationSuccessHandler() {
-        return new AuthenticationSuccessHandlerImpl(tokenHelper);
+        return new AuthenticationSuccessHandlerImpl(tokenHelper());
     }
 
     @Bean
@@ -101,7 +104,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public TokenAuthenticationFilter tokenAuthenticationFilter() {
-        return new TokenAuthenticationFilter(tokenHelper, userDetailsService, authenticationEntryPoint(), securityProperties);
+        return new TokenAuthenticationFilter(tokenHelper(), userDetailsService, authenticationEntryPoint(), securityProperties);
     }
 
 }

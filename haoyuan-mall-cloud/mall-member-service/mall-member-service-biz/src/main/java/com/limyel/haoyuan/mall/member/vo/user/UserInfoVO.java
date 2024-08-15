@@ -9,4 +9,6 @@ public class UserInfoVO {
 
     private Long point;
 
+    private Long balance;
+
 }

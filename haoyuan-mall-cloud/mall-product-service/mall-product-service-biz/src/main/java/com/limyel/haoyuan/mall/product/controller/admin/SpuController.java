@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.mall.product.controller.admin;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.core.validator.group.Create;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import java.util.List;
 @RestController("adminSpuController")
 @RequestMapping("/spu")
 @RequiredArgsConstructor
+@SaCheckLogin
 public class SpuController {
 
     private final SpuService spuService;
@@ -35,8 +38,8 @@ public class SpuController {
         return R.ok();
     }
 
-    @GetMapping("/delete/{ids}")
-    public R<?> delete(@PathVariable("ids") String ids) {
+    @GetMapping("/delete")
+    public R<?> delete(@RequestParam("ids") String ids) {
         List<Long> idList = new ArrayList<>();
         for (String idStr : ids.split(",")) {
             if (!StringUtils.hasText(idStr) || !idStr.matches("\\d+")) {

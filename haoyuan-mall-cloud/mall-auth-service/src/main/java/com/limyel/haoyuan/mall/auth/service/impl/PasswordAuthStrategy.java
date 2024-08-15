@@ -4,13 +4,13 @@ import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.util.CryptUtil;
-import com.limyel.haoyuan.common.core.util.JsonUtil;
+import com.limyel.haoyuan.common.core.util.JSONUtil;
 import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import com.limyel.haoyuan.mall.auth.dto.PasswordAuthDTO;
 import com.limyel.haoyuan.mall.auth.service.AuthStrategy;
 import com.limyel.haoyuan.mall.auth.vo.LoginVO;
 import com.limyel.haoyuan.mall.member.api.UserApi;
-import com.limyel.haoyuan.mall.member.dto.user.UserInfoDTO;
+import com.limyel.haoyuan.mall.member.rdto.user.UserInfoRDTO;
 import com.limyel.haoyuan.mall.sys.api.SysUserApi;
 import com.limyel.haoyuan.mall.sys.dto.sysuser.SysUserInfoDTO;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class PasswordAuthStrategy implements AuthStrategy {
 
     @Override
     public LoginVO login(String authInfo, String loginType) {
-        PasswordAuthDTO authDTO = JsonUtil.parseObject(authInfo, PasswordAuthDTO.class);
+        PasswordAuthDTO authDTO = JSONUtil.parseObject(authInfo, PasswordAuthDTO.class);
         boolean match = false;
         LoginVO result = new LoginVO();
 
@@ -41,7 +41,7 @@ public class PasswordAuthStrategy implements AuthStrategy {
             result.setAccessToken(tokenInfo.tokenValue);
             result.setExpireIn(tokenInfo.tokenTimeout);
         } else if ("user".equals(loginType)) {
-            UserInfoDTO user = userApi.getByUsername(authDTO.getUsername());
+            UserInfoRDTO user = userApi.getByUsername(authDTO.getUsername());
             match = CryptUtil.match(authDTO.getPassword(), user.getPassword());
             if (!match) {
                 throw new ServiceException();

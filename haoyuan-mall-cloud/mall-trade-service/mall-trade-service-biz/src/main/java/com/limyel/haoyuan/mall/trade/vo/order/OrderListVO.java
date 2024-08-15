@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.mall.trade.vo.order;
 
+import com.limyel.haoyuan.mall.trade.dto.order.OrderItemDTO;
 import lombok.Data;
 
 import java.util.List;
@@ -21,6 +22,6 @@ public class OrderListVO {
 
     private String remark;
 
-    private List<OrderItemVO> orderItems;
+    private List<OrderItemDTO> orderItems;
 
 }

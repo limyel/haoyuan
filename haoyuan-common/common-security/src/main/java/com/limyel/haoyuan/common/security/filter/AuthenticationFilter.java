@@ -2,7 +2,7 @@ package com.limyel.haoyuan.common.security.filter;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
-import com.limyel.haoyuan.common.core.util.JsonUtil;
+import com.limyel.haoyuan.common.core.util.JSONUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -37,7 +37,7 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
         // 解析提交的数据
-        JsonNode jsonNode = JsonUtil.OBJECT_MAPPER.readTree(request.getInputStream());
+        JsonNode jsonNode = JSONUtil.OBJECT_MAPPER.readTree(request.getInputStream());
         JsonNode usernameNode = jsonNode.get("username");
         JsonNode passwordNode = jsonNode.get("password");
 
