@@ -7,11 +7,11 @@ import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.mall.member.convert.PointLogConvert;
 import com.limyel.haoyuan.mall.member.dao.PayLogDao;
-import com.limyel.haoyuan.mall.member.dto.pointlog.PayLogPageDTO;
+import com.limyel.haoyuan.mall.member.dto.paylog.PayLogPageDTO;
 import com.limyel.haoyuan.mall.member.entity.PayLogEntity;
 import com.limyel.haoyuan.mall.member.entity.UserEntity;
-import com.limyel.haoyuan.mall.member.vo.pointlog.PointLogListVO;
 import com.limyel.haoyuan.mall.member.vo.pointlog.PayLogPageVO;
+import com.limyel.haoyuan.mall.member.vo.pointlog.PointLogListVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +24,10 @@ public class PayLogService {
     private final PayLogDao payLogDao;
 
     private final UserService userService;
+
+    public int create(PayLogEntity entity) {
+        return payLogDao.insert(entity);
+    }
 
     public PageData<PayLogPageVO> getPage(PayLogPageDTO dto) {
         Page<PayLogEntity> page = new Page<>(dto.getPageNum(), dto.getPageSize());

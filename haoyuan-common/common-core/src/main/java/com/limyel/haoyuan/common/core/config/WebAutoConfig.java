@@ -3,10 +3,14 @@ package com.limyel.haoyuan.common.core.config;
 import com.limyel.haoyuan.common.core.config.properties.WebProperties;
 import com.limyel.haoyuan.common.core.web.AutoPrefixUrlMapping;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcRegistrations;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -51,4 +55,19 @@ public class WebAutoConfig implements WebMvcRegistrations {
     public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
         return new AutoPrefixUrlMapping(properties);
     }
+
+    @Bean
+    @ConditionalOnMissingBean(RestTemplate.class)
+    public RestTemplate restTemplate(ClientHttpRequestFactory simpleClientHttpRequestFactory) {
+        return new RestTemplate(simpleClientHttpRequestFactory);
+    }
+
+    @Bean
+    public ClientHttpRequestFactory simpleClientHttpRequestFactory() {
+        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
+        factory.setReadTimeout(5000);//单位为ms
+        factory.setConnectTimeout(5000);//单位为ms
+        return factory;
+    }
+
 }

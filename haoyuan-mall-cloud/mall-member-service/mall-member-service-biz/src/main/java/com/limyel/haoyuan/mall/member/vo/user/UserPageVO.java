@@ -11,7 +11,7 @@ public class UserPageVO {
 
     private Long point;
 
-    private Long blogAdminId;
+    private String blogUsername;
 
     private Integer status;
 

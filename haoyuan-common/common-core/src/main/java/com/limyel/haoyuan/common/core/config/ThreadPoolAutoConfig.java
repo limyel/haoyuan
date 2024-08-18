@@ -8,8 +8,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @AutoConfiguration
@@ -20,8 +22,6 @@ public class ThreadPoolAutoConfig {
      * 核心线程数 = cpu 核心数 + 1
      */
     private final int core = Runtime.getRuntime().availableProcessors() + 1;
-
-    private ScheduledExecutorService scheduledExecutorService;
 
     /**
      * 线程池
@@ -42,6 +42,24 @@ public class ThreadPoolAutoConfig {
         return executor;
     }
 
-
+    @Bean
+    @ConditionalOnProperty(prefix = "haoyuan.thread-pool", name = "enabled", havingValue = "true")
+    public ThreadPoolExecutor threadPoolExecutor(ThreadPoolProperties properties) {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                core,
+                core * 2,
+                properties.getKeepAliveSeconds(),
+                TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(10),
+                new ThreadFactory() {
+                    @Override
+                    public Thread newThread(Runnable r) {
+                        return new Thread(r);
+                    }
+                },
+                new ThreadPoolExecutor.AbortPolicy()
+        );
+        return executor;
+    }
 
 }

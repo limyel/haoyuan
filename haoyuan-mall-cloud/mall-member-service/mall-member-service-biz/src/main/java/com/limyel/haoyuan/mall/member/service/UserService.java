@@ -11,11 +11,11 @@ import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import com.limyel.haoyuan.mall.member.constant.PaymentMethodEnum;
 import com.limyel.haoyuan.mall.member.convert.UserConvert;
 import com.limyel.haoyuan.mall.member.dao.UserDao;
+import com.limyel.haoyuan.mall.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.member.rdto.user.PointBalanceRDTO;
 import com.limyel.haoyuan.mall.member.rdto.user.UserDTO;
 import com.limyel.haoyuan.mall.member.rdto.user.UserInfoRDTO;
 import com.limyel.haoyuan.mall.member.rdto.user.UserPageDTO;
-import com.limyel.haoyuan.mall.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;
 import com.limyel.haoyuan.mall.member.vo.user.UserPageVO;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +46,10 @@ public class UserService {
         return userDao.deleteBatchIds(ids);
     }
 
+    public int update(UserEntity entity) {
+        return userDao.updateById(entity);
+    }
+
     public int updateStatus(Long id, Integer status) {
         LambdaUpdateWrapper<UserEntity> wrapper = new LambdaUpdateWrapper<>();
         wrapper.set(UserEntity::getStatus, status);
@@ -54,9 +58,9 @@ public class UserService {
         return userDao.update(wrapper);
     }
 
-    public int updateBlogAdminId(Long id, Long blogAdminId) {
+    public int updateBlogUsername(Long id, String blogUsername) {
         LambdaUpdateWrapper<UserEntity> wrapper = new LambdaUpdateWrapper<>();
-        wrapper.set(UserEntity::getBlogAdminId, blogAdminId);
+        wrapper.set(UserEntity::getBlogUsername, blogUsername);
         wrapper.eq(UserEntity::getId, id);
 
         return userDao.update(wrapper);
@@ -97,6 +101,14 @@ public class UserService {
     public UserInfoRDTO getByUsername(String username) {
         UserEntity user = userDao.selectOne(UserEntity::getUsername, username);
         return UserConvert.INSTANCE.toInfoDTO(user);
+    }
+
+    public UserEntity getByBlogUsername(String blogUsername) {
+        UserEntity result = userDao.selectOne(UserEntity::getBlogUsername, blogUsername);
+        if (result == null) {
+            throw new ServiceException("用户不存在");
+        }
+        return result;
     }
 
     public Integer deductPointBalance(PointBalanceRDTO dto) {

@@ -1,0 +1,8 @@
+###
+POST http://localhost:8888/blog/login
+Content-Type: application/json
+
+{
+  "username": "limyel",
+  "password": "12i3oj2109+-[]sdfJIOJS()))_I"
+}

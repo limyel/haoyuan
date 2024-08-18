@@ -9,13 +9,10 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.RequiredArgsConstructor;
 
-import javax.annotation.Resource;
-
 @RequiredArgsConstructor
 public class JwtTokenHelper implements TokenHelper {
 
-    @Resource
-    private JwtUtil jwtUtil;
+    private final JwtUtil jwtUtil;
 
     @Override
     public String generateToken(Object o) {

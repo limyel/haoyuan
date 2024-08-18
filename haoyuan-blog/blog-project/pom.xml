@@ -32,6 +32,12 @@
             <groupId>com.limyel</groupId>
             <artifactId>common-knife4j</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>blog-sync</artifactId>
+            <version>0.1.0</version>
+        </dependency>
     </dependencies>
 
 </project>

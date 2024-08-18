@@ -59,3 +59,13 @@ haoyuan:
     issuer: limyel
     secret: mhf6b3wbVxmmUWFgeqGMTBoSR9s9rUl4QeyYwZTTBRvybd+ZDmqB8/mYy0yOO201acd7Sia4b7JNSP174DtUoQ==
     expireHours: 120
+
+  thread-pool:
+    enabled: true
+    queueCapacity: 10
+    keepAliveSeconds: 10
+    namePrefix: blog
+
+  github:
+    token: 123
+    username: limyel

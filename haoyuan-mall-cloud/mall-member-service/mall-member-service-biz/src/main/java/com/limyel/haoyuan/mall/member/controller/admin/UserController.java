@@ -59,7 +59,7 @@ public class UserController {
 
     @PostMapping("/update/blog-admin")
     public R<?> updateBlogAdmin(@Validated @RequestBody UserUpdateDTO dto) {
-        userService.updateBlogAdminId(dto.getId(), dto.getBlogAdminId());
+        userService.updateBlogUsername(dto.getId(), dto.getBlogUsername());
         return R.ok();
     }
 

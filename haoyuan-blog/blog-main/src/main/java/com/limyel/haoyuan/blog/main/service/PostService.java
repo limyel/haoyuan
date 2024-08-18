@@ -5,23 +5,24 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.blog.main.constant.MainErrorMsg;
 import com.limyel.haoyuan.blog.main.convert.PostConvert;
 import com.limyel.haoyuan.blog.main.dao.PostDao;
-import com.limyel.haoyuan.blog.main.entity.PostEntity;
 import com.limyel.haoyuan.blog.main.dto.post.PostDTO;
 import com.limyel.haoyuan.blog.main.dto.post.PostListDTO;
 import com.limyel.haoyuan.blog.main.dto.post.PostPageDTO;
 import com.limyel.haoyuan.blog.main.dto.post.PostPublishDTO;
+import com.limyel.haoyuan.blog.main.entity.PostEntity;
 import com.limyel.haoyuan.blog.main.event.PostViewEvent;
 import com.limyel.haoyuan.blog.main.vo.post.PostArchiveVO;
-import com.limyel.haoyuan.blog.main.vo.post.PostListVO;
 import com.limyel.haoyuan.blog.main.vo.post.PostDetailVO;
+import com.limyel.haoyuan.blog.main.vo.post.PostListVO;
 import com.limyel.haoyuan.blog.main.vo.post.PostPageVO;
+import com.limyel.haoyuan.blog.sync.event.PointAddEvent;
 import com.limyel.haoyuan.common.core.constant.StatusEnum;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import lombok.RequiredArgsConstructor;
-import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,26 +40,23 @@ public class PostService {
 
     private final PostTagService postTagService;
 
-    private final PostContentService postContentService;
-
     private final ApplicationEventPublisher eventPublisher;
-
-    private final RocketMQTemplate rocketMQTemplate;
 
     @Transactional(rollbackFor = Exception.class)
     public int create(PostDTO dto) {
         postDao.validateUnique(null, PostEntity::getTitle, dto.getTitle(), MainErrorMsg.POST_TITLE_DUPLICATE);
         postDao.validateUnique(null, PostEntity::getSlug, dto.getSlug(), MainErrorMsg.POST_SLUG_DUPLICATE);
 
-        PostEntity postDO = PostConvert.INSTANCE.toEntity(dto);
-        int result = postDao.insert(postDO);
-
-        postContentService.create(postDO.getId(), dto.getContent());
-        postTagService.create(postDO.getId(), dto.getTagIds());
+        PostEntity post = PostConvert.INSTANCE.toEntity(dto);
+        int result = postDao.insert(post);
 
         PostPublishDTO publishDTO = new PostPublishDTO();
-        publishDTO.setId(postDO.getId());
-        rocketMQTemplate.convertAndSend("test-sender", publishDTO);
+        publishDTO.setId(post.getId());
+
+        if (StatusEnum.ENABLE.getValue().equals(post.getStatus())) {
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            eventPublisher.publishEvent(new PointAddEvent(this, 100L, "发布文章", username));
+        }
 
         return result;
     }
@@ -68,7 +66,6 @@ public class PostService {
         postDao.validateExist(id, MainErrorMsg.POST_NOT_FOUND);
 
         postTagService.deleteByPostId(id);
-        postContentService.deleteByPostId(id);
         return postDao.deleteById(id);
     }
 
@@ -81,7 +78,6 @@ public class PostService {
         PostEntity postDO = PostConvert.INSTANCE.toEntity(dto);
         int result = postDao.updateById(postDO);
 
-        postContentService.update(dto.getId(), dto.getContent());
         postTagService.create(dto.getId(), dto.getTagIds());
 
         return result;
@@ -95,7 +91,6 @@ public class PostService {
 
         PostDTO result = PostConvert.INSTANCE.toDTO(postDO);
         result.setTagIds(postTagService.getTagIds(id));
-        result.setContent(postContentService.getContent(id));
 
         return result;
     }
@@ -140,7 +135,6 @@ public class PostService {
 
         PostDetailVO result = PostConvert.INSTANCE.toDetailVO(postDO);
         result.setTags(postTagService.getTagsByPostId(postDO.getId()));
-        result.setContent(postContentService.getContent(postDO.getId()));
 
         eventPublisher.publishEvent(new PostViewEvent(this, postDO.getId()));
 

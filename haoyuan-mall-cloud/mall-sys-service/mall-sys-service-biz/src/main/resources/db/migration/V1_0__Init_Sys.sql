@@ -20,6 +20,9 @@ CREATE TABLE `sys_user` (
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统用户表';
 
+INSERT INTO `sys_user` (id, dept_id, username, type, email, mobile, avatar, password, status, login_ip, login_time, remark) VALUES
+    ()
+
 
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (

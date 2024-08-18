@@ -15,6 +15,6 @@ public class UserUpdateDTO {
     @Range(min = 0, max = 1, message = "状态范围异常")
     private Integer status;
 
-    private Long blogAdminId;
+    private String blogUsername;
 
 }

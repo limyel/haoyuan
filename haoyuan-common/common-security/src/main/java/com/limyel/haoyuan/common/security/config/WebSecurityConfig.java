@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.common.security.config;
 
+import com.limyel.haoyuan.common.core.util.JwtUtil;
 import com.limyel.haoyuan.common.security.filter.TokenAuthenticationFilter;
 import com.limyel.haoyuan.common.security.handler.AccessDeniedHandlerImpl;
 import com.limyel.haoyuan.common.security.handler.AuthenticationEntryPointImpl;
@@ -38,9 +39,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private PasswordEncoder passwordEncoder;
 
+    @Resource
+    private JwtUtil jwtUtil;
+
     @Bean
     public TokenHelper tokenHelper() {
-        return new JwtTokenHelper();
+        return new JwtTokenHelper(jwtUtil);
     }
 
     @Bean

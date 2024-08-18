@@ -36,9 +36,9 @@ public class UserEntity extends BaseEntity {
     private Long lockedPoint;
 
     /**
-     * 博客管理员ID
+     * 博客管理员用户名
      */
-    private Long blogAdminId;
+    private String blogUsername;
 
     /**
      * 状态，0-封禁，1-正常

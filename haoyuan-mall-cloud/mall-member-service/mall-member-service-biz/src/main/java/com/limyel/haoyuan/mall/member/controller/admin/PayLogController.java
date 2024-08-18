@@ -2,7 +2,7 @@ package com.limyel.haoyuan.mall.member.controller.admin;
 
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.mall.member.dto.pointlog.PayLogPageDTO;
+import com.limyel.haoyuan.mall.member.dto.paylog.PayLogPageDTO;
 import com.limyel.haoyuan.mall.member.service.PayLogService;
 import com.limyel.haoyuan.mall.member.vo.pointlog.PayLogPageVO;
 import lombok.RequiredArgsConstructor;

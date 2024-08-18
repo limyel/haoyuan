@@ -18,6 +18,8 @@ public class PostEntity extends BaseEntity {
 
     private String summary;
 
+    private String content;
+
     private Boolean top;
 
     private Integer status;
@@ -25,8 +27,6 @@ public class PostEntity extends BaseEntity {
     private Integer viewNum;
 
     private LocalDateTime publishTime;
-
-    private Integer type;
 
     public int getCreateYear() {
         return getCreateTime().getYear();

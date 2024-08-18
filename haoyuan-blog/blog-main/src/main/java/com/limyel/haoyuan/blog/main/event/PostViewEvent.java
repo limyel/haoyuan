@@ -12,4 +12,5 @@ public class PostViewEvent extends ApplicationEvent {
         super(source);
         this.postId = postId;
     }
+
 }
