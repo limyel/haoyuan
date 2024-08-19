@@ -7,4 +7,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties(GithubProperties.class)
 public class GithubConfig {
+
 }
