@@ -31,6 +31,8 @@ jobs:
           SCRIPT_AFTER_REQUIRED: true
           SCRIPT_AFTER: |
             cd ~/haoyuan
+            cp ~/config/blog.yml /tmp
+            cp ~/config/blog-pro.yml /tmp
             /opt/maven/bin/mvn clean compile package install --file pom.xml
             cd ./haoyuan-blog
             docker stop haoyuan-blog
