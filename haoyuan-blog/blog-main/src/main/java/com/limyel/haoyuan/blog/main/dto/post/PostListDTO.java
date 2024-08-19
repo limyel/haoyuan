@@ -11,6 +11,8 @@ import java.util.List;
 @Data
 public class PostListDTO extends PageParam {
 
-    List<String> tags = new ArrayList<>();
+    private List<String> tags = new ArrayList<>();
+
+    private Boolean lastDay = false;
 
 }

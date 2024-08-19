@@ -24,6 +24,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -107,6 +108,12 @@ public class PostService {
         wrapperPlus.eq(PostEntity::getStatus, StatusEnum.ENABLE.getValue());
         wrapperPlus.orderByDesc(PostEntity::getTop);
         wrapperPlus.orderByDesc(PostEntity::getCreateTime);
+        if (dto.getLastDay()) {
+            LocalDateTime now = LocalDateTime.now();
+            now = now.minusHours(now.getHour());
+            now = now.minusMinutes(now.getMinute());
+            wrapperPlus.ge(PostEntity::getCreateTime, now);
+        }
 
         postDao.selectPage(page, wrapperPlus);
         List<PostListVO> list = page.getRecords().stream().map(postDO -> {

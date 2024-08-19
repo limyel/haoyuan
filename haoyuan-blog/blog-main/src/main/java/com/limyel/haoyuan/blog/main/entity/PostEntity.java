@@ -5,8 +5,6 @@ import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.time.LocalDateTime;
-
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("main_post")
@@ -22,11 +20,12 @@ public class PostEntity extends BaseEntity {
 
     private Boolean top;
 
+    /**
+     * 状态，0-隐藏 1-展示
+     */
     private Integer status;
 
     private Integer viewNum;
-
-    private LocalDateTime publishTime;
 
     public int getCreateYear() {
         return getCreateTime().getYear();

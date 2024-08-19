@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.mall.member.service;
+package com.limyel.haoyuan.mall.member.service.sync;
 
 import com.limyel.haoyuan.mall.member.entity.PayLogEntity;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +19,8 @@ public class PointSyncService {
     private final RocketMQTemplate rocketMQTemplate;
 
     public void syncPost() {
+
+
         PayLogEntity payLog = new PayLogEntity();
 
         rocketMQTemplate.asyncSend("point-topic", payLog, new SendCallback() {

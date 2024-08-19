@@ -16,7 +16,7 @@ CREATE TABLE `project_project` (
 
 INSERT INTO `project_project` (id, name, summary, url, status) VALUES
     (1, 'haoyuan', '对一些后端技术的练手项目，以及各种造轮子。', 'https://github.com/limyel/haoyuan', 1),
-    (2, 'haoyuan-ui', '对一些前端技术的练手项目。', 'https://github.com/limyel/haoyuan-ui', 1),
+    (2, 'blog-ui', '个人博客的前端页面。', 'https://github.com/limyel/blog-ui', 1),
     (3, 'whatis-sql', '什么是 SQL？一个基于 Java 实现的简易关系型数据库。', 'https://github.com/limyel/whatis-sql', 1),
     (4, 'whatis-kv', '什么是 key-value？一个基于 Java 实现的简易键值对数据库。', 'https://github.com/limyel/whatis-kv', 1),
     (5, 'whatis-mq', '什么是 MQ？一个基于 Java 实现的简易消息队列。', 'https://github.com/limyel/whatis-mq', 1);
