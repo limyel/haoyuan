@@ -11,7 +11,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -40,8 +39,6 @@ public class PostDTO {
     @NotNull
     @Range(min = 0, max = 1, message = "状态范围错误")
     private Integer status;
-
-    private LocalDateTime publishTime;
 
     @NotEmpty(message = "标签不能为空")
     private List<Long> tagIds;
