@@ -48,4 +48,13 @@ public class PostController {
         List<PostArchiveVO> result = postService.getArchive();
         return R.ok(result);
     }
+
+    @GetMapping("/get/today-num")
+    @ApiOperation("当天发布数量")
+    @ApiOperationLog(description = "当天发布数量")
+    public R<Long> getTodayNum() {
+        Long result = postService.getTodayCount();
+        return R.ok(result);
+    }
+
 }

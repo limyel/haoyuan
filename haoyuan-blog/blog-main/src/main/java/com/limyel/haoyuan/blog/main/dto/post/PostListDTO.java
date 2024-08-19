@@ -13,6 +13,4 @@ public class PostListDTO extends PageParam {
 
     private List<String> tags = new ArrayList<>();
 
-    private Boolean lastDay = false;
-
 }

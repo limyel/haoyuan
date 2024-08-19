@@ -108,12 +108,6 @@ public class PostService {
         wrapperPlus.eq(PostEntity::getStatus, StatusEnum.ENABLE.getValue());
         wrapperPlus.orderByDesc(PostEntity::getTop);
         wrapperPlus.orderByDesc(PostEntity::getCreateTime);
-        if (dto.getLastDay()) {
-            LocalDateTime now = LocalDateTime.now();
-            now = now.minusHours(now.getHour());
-            now = now.minusMinutes(now.getMinute());
-            wrapperPlus.ge(PostEntity::getCreateTime, now);
-        }
 
         postDao.selectPage(page, wrapperPlus);
         List<PostListVO> list = page.getRecords().stream().map(postDO -> {
@@ -167,6 +161,18 @@ public class PostService {
 
     public Long getCount() {
         return postDao.selectCount(PostEntity::getStatus, StatusEnum.ENABLE.getValue());
+    }
+
+    public Long getTodayCount() {
+        LambdaQueryWrapper<PostEntity> wrapper = new LambdaQueryWrapper<>();
+
+        LocalDateTime now = LocalDateTime.now();
+        now = now.minusHours(now.getHour());
+        now = now.minusMinutes(now.getMinute());
+        wrapper.ge(PostEntity::getCreateTime, now);
+        wrapper.eq(PostEntity::getStatus, StatusEnum.ENABLE.getValue());
+
+        return postDao.selectCount(wrapper);
     }
 
     public Long getAllViewNum() {
