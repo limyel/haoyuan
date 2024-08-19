@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.blog.project.controller.blog;
+package com.limyel.haoyuan.blog.project.controller.app;
 
 import com.limyel.haoyuan.blog.project.service.ProjectService;
 import com.limyel.haoyuan.blog.project.vo.project.ProjectListVO;

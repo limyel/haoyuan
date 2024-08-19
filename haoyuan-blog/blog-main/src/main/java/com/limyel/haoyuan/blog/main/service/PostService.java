@@ -15,14 +15,12 @@ import com.limyel.haoyuan.blog.main.vo.post.PostArchiveVO;
 import com.limyel.haoyuan.blog.main.vo.post.PostDetailVO;
 import com.limyel.haoyuan.blog.main.vo.post.PostListVO;
 import com.limyel.haoyuan.blog.main.vo.post.PostPageVO;
-import com.limyel.haoyuan.blog.sync.event.PointAddEvent;
 import com.limyel.haoyuan.common.core.constant.StatusEnum;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,11 +50,6 @@ public class PostService {
 
         PostPublishDTO publishDTO = new PostPublishDTO();
         publishDTO.setId(post.getId());
-
-        if (StatusEnum.ENABLE.getValue().equals(post.getStatus())) {
-            String username = SecurityContextHolder.getContext().getAuthentication().getName();
-            eventPublisher.publishEvent(new PointAddEvent(this, 100L, "发布文章", username));
-        }
 
         return result;
     }
