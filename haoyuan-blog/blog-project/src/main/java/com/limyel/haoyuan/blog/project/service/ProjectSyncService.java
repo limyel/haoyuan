@@ -2,7 +2,6 @@ package com.limyel.haoyuan.blog.project.service;
 
 import com.limyel.haoyuan.blog.project.config.properties.GithubProperties;
 import com.limyel.haoyuan.blog.project.vo.project.ProjectListVO;
-import com.limyel.haoyuan.blog.sync.service.RecordService;
 import com.limyel.haoyuan.common.core.util.JSONUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,8 +28,6 @@ public class ProjectSyncService {
 
     private final ProjectService projectService;
 
-    private final RecordService recordService;
-
     private final RestTemplate restTemplate;
 
     private final GithubProperties githubProperties;
@@ -56,7 +53,7 @@ public class ProjectSyncService {
                     Object message = commitMap.get("message");
                     if (message instanceof String msg) {
                         if (msg.startsWith("feat")) {
-                            recordService.create(10L, "项目推送了一个 commit", "limyel");
+//                            recordService.create(10L, "项目推送了一个 commit", "limyel");
                         }
                     }
                 }
