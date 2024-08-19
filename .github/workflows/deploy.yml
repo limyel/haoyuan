@@ -26,6 +26,8 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.TARGET }}
+          SCRIPT_BEFORE: |
+            rm -rf ~/haoyuan
           SCRIPT_AFTER_REQUIRED: true
           SCRIPT_AFTER: |
             cd ~/haoyuan
