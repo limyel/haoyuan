@@ -73,8 +73,7 @@ public class PointSyncService {
         }
     }
 
-//    @Scheduled(cron = "0 59 23 * * ?")
-    @Scheduled(cron = "5 * * * * ?")
+    @Scheduled(cron = "0 59 23 * * ?")
     public void syncProject() {
         ResponseEntity<String> responseEntity = restTemplate.getForEntity("https://api.limyel.com/blog/app/project/get/list", String.class);
         String body = responseEntity.getBody();
