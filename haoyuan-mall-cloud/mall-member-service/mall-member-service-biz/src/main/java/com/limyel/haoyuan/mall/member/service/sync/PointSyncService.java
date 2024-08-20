@@ -38,9 +38,9 @@ public class PointSyncService {
     private final ThreadPoolExecutor threadPoolExecutor;
 
     @Value("${haoyuan.github.token:}")
-    private String token;
+    private String githubToken;
     @Value("${haoyuan.github.username:}")
-    private String username;
+    private String githubUsername;
 
     @Scheduled(cron = "0 59 23 * * ?")
     public void syncPost() {
@@ -81,7 +81,7 @@ public class PointSyncService {
         Object data = bodyMap.get("data");
         if (data != null && data instanceof List<?> list) {
             HttpHeaders headers = new HttpHeaders();
-            headers.add("Authorization", "token " + token);
+            headers.add("Authorization", "token " + githubToken);
             HttpEntity<Object> request = new HttpEntity<>(headers);
 
             for (Object project : list) {
@@ -90,7 +90,7 @@ public class PointSyncService {
                     if (projectName != null) {
                         threadPoolExecutor.execute(() -> {
                             String since = LocalDateTime.now().minusDays(1L).format(DateTimeFormatter.ISO_DATE_TIME);
-                            ResponseEntity<List> forEntity = restTemplate.exchange("https://api.github.com/repos/" + username + "/" + projectName + "/commits?sha=master&since=" + since, HttpMethod.GET, request, List.class);
+                            ResponseEntity<List> forEntity = restTemplate.exchange("https://api.github.com/repos/" + githubUsername + "/" + projectName + "/commits?sha=master&since=" + since, HttpMethod.GET, request, List.class);
                             log.info("获取项目 {} 的 commit，从 {} 开始共 {} 次。", projectName, since, forEntity.getBody().size());
                             int commitNum = 0;
                             for (Object s : forEntity.getBody()) {
