@@ -1,18 +1,18 @@
 ### 确认订单
 # @no-cookie-jar
-POST http://localhost:8030/mall-trade/trade/app/order/confirm
+POST http://localhost:8010/mall-trade/trade/app/order/confirm
 Content-Type: application/json
-satoken: 4ef64d6a-8db7-4994-aef2-527baa5e841e
+satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
 
 {
   "list": [
     {
-      "spuId": 2,
+      "spuId": 100,
       "quantity": 2
     },
     {
-      "spuId": 1,
-      "quantity": 10
+      "spuId": 101,
+      "quantity": 3
     }
   ]
 }
@@ -20,41 +20,41 @@ satoken: 4ef64d6a-8db7-4994-aef2-527baa5e841e
 
 ### 提交订单
 # @no-cookie-jar
-POST http://localhost:8030/mall-trade/trade/app/order/submit
+POST http://localhost:8010/mall-trade/trade/app/order/submit
 Content-Type: application/json
-satoken: 4ef64d6a-8db7-4994-aef2-527baa5e841e
+satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
 
 {
-  "orderToken": "33c3afdc44584d3187e989f1de316dd2",
+  "orderToken": "6ad63fbafe9b4c2b9e9fd56fbd017f0b",
   "orderItems": [
     {
-      "spuId": 2,
-      "spuName": "测试商品2",
-      "picUrl": "http://localhsot:8080/pic",
-      "price": 100,
+      "spuId": 100,
+      "spuName": "方天画戟",
+      "picUrl": "https://localhost:8080/pic",
+      "price": 500,
       "quantity": 2,
-      "type": 1
+      "type": 0
     },
     {
-      "spuId": 1,
-      "spuName": "测试商品1",
-      "picUrl": "http://localhsot:8080/pic",
-      "price": 100,
-      "quantity": 10,
+      "spuId": 101,
+      "spuName": "赤兔马",
+      "picUrl": "https://localhost:8080/pic",
+      "price": 450,
+      "quantity": 3,
       "type": 0
     }
   ],
-  "paymentAmount": 1200
+  "paymentAmount": 2350
 }
 
 
 ### 支付订单
 # @no-cookie-jar
-POST http://localhost:8030/mall-trade/trade/app/order/pay
+POST http://localhost:8010/mall-trade/trade/app/order/pay
 Content-Type: application/json
-satoken: 4ef64d6a-8db7-4994-aef2-527baa5e841e
+satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
 
 {
-  "orderSn": "633daa7ce89e4d908e33111399c030f5",
+  "orderSn": "fb76cc600d894439836174fdaabff117",
   "paymentMethod": 0
 }

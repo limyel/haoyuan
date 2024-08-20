@@ -3,7 +3,7 @@ package com.limyel.haoyuan.mall.member.vo.pointlog;
 import lombok.Data;
 
 @Data
-public class PointLogListVO {
+public class PayLogListVO {
 
     private Integer type;
 

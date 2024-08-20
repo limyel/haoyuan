@@ -1,18 +1,18 @@
 package com.limyel.haoyuan.mall.member.convert;
 
 import com.limyel.haoyuan.mall.member.entity.PayLogEntity;
-import com.limyel.haoyuan.mall.member.vo.pointlog.PointLogListVO;
+import com.limyel.haoyuan.mall.member.vo.pointlog.PayLogListVO;
 import com.limyel.haoyuan.mall.member.vo.pointlog.PayLogPageVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface PointLogConvert {
+public interface PayLogConvert {
 
-    PointLogConvert INSTANCE = Mappers.getMapper(PointLogConvert.class);
+    PayLogConvert INSTANCE = Mappers.getMapper(PayLogConvert.class);
 
     PayLogPageVO toPageVO(PayLogEntity entity);
 
-    PointLogListVO toListVO(PayLogEntity entity);
+    PayLogListVO toListVO(PayLogEntity entity);
 
 }

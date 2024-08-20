@@ -6,16 +6,16 @@ import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.satoken.annotation.SaUserCheckLogin;
 import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import com.limyel.haoyuan.mall.member.service.PayLogService;
-import com.limyel.haoyuan.mall.member.vo.pointlog.PointLogListVO;
+import com.limyel.haoyuan.mall.member.vo.pointlog.PayLogListVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/point-log")
+@RequestMapping("/pay-log")
 @RequiredArgsConstructor
-public class PointLogController {
+public class PayLogController {
 
     private final PayLogService payLogService;
 
@@ -23,7 +23,7 @@ public class PointLogController {
     @GetMapping("/get/list")
     public R<?> getList(PageParam pageParam) {
         Long loginId = StpUserUtil.getLoginIdAsLong();
-        PageData<PointLogListVO> result = payLogService.getList(pageParam, loginId);
+        PageData<PayLogListVO> result = payLogService.getList(pageParam, loginId);
         return R.ok(result);
     }
 

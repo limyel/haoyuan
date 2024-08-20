@@ -5,7 +5,7 @@ import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.util.CryptUtil;
 import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import com.limyel.haoyuan.mall.member.dto.auth.LoginDTO;
-import com.limyel.haoyuan.mall.member.rdto.user.UserInfoRDTO;
+import com.limyel.haoyuan.mall.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.member.vo.auth.LoginVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class AuthService {
     private final UserService userService;
 
     public LoginVO login(LoginDTO dto) {
-        UserInfoRDTO user = userService.getByUsername(dto.getUsername());
+        UserEntity user = userService.getByUsername(dto.getUsername());
         boolean match = CryptUtil.match(dto.getPassword(), user.getPassword());
         if (!match) {
             throw new ServiceException();

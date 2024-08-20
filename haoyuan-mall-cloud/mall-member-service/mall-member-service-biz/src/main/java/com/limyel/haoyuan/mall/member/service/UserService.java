@@ -14,7 +14,6 @@ import com.limyel.haoyuan.mall.member.dao.UserDao;
 import com.limyel.haoyuan.mall.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.member.rdto.user.PointBalanceRDTO;
 import com.limyel.haoyuan.mall.member.rdto.user.UserDTO;
-import com.limyel.haoyuan.mall.member.rdto.user.UserInfoRDTO;
 import com.limyel.haoyuan.mall.member.rdto.user.UserPageDTO;
 import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;
 import com.limyel.haoyuan.mall.member.vo.user.UserPageVO;
@@ -98,9 +97,12 @@ public class UserService {
         return UserConvert.INSTANCE.toInfoVO(user);
     }
 
-    public UserInfoRDTO getByUsername(String username) {
+    public UserEntity getByUsername(String username) {
         UserEntity user = userDao.selectOne(UserEntity::getUsername, username);
-        return UserConvert.INSTANCE.toInfoDTO(user);
+        if (user == null) {
+            throw new ServiceException();
+        }
+        return user;
     }
 
     public UserEntity getByBlogUsername(String blogUsername) {
