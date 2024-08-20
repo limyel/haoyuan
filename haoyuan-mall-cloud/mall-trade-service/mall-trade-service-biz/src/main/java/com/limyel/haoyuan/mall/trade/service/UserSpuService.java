@@ -1,9 +1,12 @@
 package com.limyel.haoyuan.mall.trade.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.limyel.haoyuan.common.core.exception.ServiceException;
+import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import com.limyel.haoyuan.mall.product.constant.SpuTypeEnum;
 import com.limyel.haoyuan.mall.trade.convert.UserSpuConvert;
 import com.limyel.haoyuan.mall.trade.dao.UserSpuDao;
+import com.limyel.haoyuan.mall.trade.dto.userspu.UseSpuDTO;
 import com.limyel.haoyuan.mall.trade.entity.OrderItemEntity;
 import com.limyel.haoyuan.mall.trade.entity.UserSpuEntity;
 import com.limyel.haoyuan.mall.trade.vo.userspu.UserSpuVO;
@@ -38,6 +41,7 @@ public class UserSpuService {
                 userSpu = new UserSpuEntity();
                 userSpu.setUserId(userId);
                 BeanUtils.copyProperties(orderItem, userSpu);
+                userSpu.setQuantity(null);
             }
 
             if (SpuTypeEnum.ONCE.getValue().equals(orderItem.getType())) {
@@ -63,5 +67,25 @@ public class UserSpuService {
         return list.stream()
                 .map(UserSpuConvert.INSTANCE::toVO)
                 .toList();
+    }
+
+    public void useSpu(UseSpuDTO dto) {
+        long userId = StpUserUtil.getLoginIdAsLong();
+        LambdaQueryWrapper<UserSpuEntity> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserSpuEntity::getUserId, userId);
+        wrapper.eq(UserSpuEntity::getSpuId, dto.getSpuId());
+        wrapper.eq(UserSpuEntity::getType, SpuTypeEnum.ONCE.getValue());
+
+        UserSpuEntity userSpu = userSpuDao.selectOne(wrapper);
+        if (userSpu == null) {
+            throw new ServiceException();
+        }
+
+        if (userSpu.getQuantity() < dto.getQuantity()) {
+            throw new ServiceException();
+        }
+
+        userSpu.setQuantity(userSpu.getQuantity() - dto.getQuantity());
+        userSpuDao.updateById(userSpu);
     }
 }
