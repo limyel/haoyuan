@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <version>${haoyuan-mall-cloud.version}</version>
     <modules>
-        <module>mall-auth-service</module>
         <module>mall-trade-service</module>
         <module>mall-product-service</module>
         <module>mall-promotion-service</module>

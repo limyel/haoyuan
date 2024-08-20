@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.mall.auth.vo;
+package com.limyel.haoyuan.mall.sys.vo.auth;
 
 import lombok.Data;
 

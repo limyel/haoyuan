@@ -1,9 +1,9 @@
-package com.limyel.haoyuan.mall.member.controller.app;
+package com.limyel.haoyuan.mall.sys.controller.admin;
 
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.mall.member.dto.auth.LoginDTO;
-import com.limyel.haoyuan.mall.member.service.AuthService;
-import com.limyel.haoyuan.mall.member.vo.auth.LoginVO;
+import com.limyel.haoyuan.mall.sys.dto.auth.LoginDTO;
+import com.limyel.haoyuan.mall.sys.service.AuthService;
+import com.limyel.haoyuan.mall.sys.vo.auth.LoginVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("userAuthController")
+@RestController("sysAuthController")
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {

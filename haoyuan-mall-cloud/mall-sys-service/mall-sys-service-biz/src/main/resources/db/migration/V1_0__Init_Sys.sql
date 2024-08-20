@@ -3,7 +3,6 @@ CREATE TABLE `sys_user` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `dept_id` bigint NULL DEFAULT NULL COMMENT '部门ID',
     `username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户名',
-    `type` tinyint NOT NULL DEFAULT 0 COMMENT '用户类型',
     `email` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '邮箱',
     `mobile` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '手机号',
     `avatar` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像',
@@ -20,8 +19,8 @@ CREATE TABLE `sys_user` (
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统用户表';
 
-INSERT INTO `sys_user` (id, dept_id, username, type, email, mobile, avatar, password, status, login_ip, login_time, remark) VALUES
-    ()
+INSERT INTO `sys_user` (id, dept_id, username, email, mobile, avatar, password, status, remark) VALUES
+    (1, null, 'admin', 'limyel@outlook.com', '13000000000', '', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1, '');
 
 
 DROP TABLE IF EXISTS `sys_role`;

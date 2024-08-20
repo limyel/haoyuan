@@ -1,7 +1,5 @@
-package com.limyel.haoyuan.mall.sys.controller;
+package com.limyel.haoyuan.mall.sys.controller.admin;
 
-import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.mall.sys.dto.sysuser.SysUserInfoDTO;
 import com.limyel.haoyuan.mall.sys.service.SysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/sys-user")
@@ -43,13 +39,6 @@ public class SysUserController {
     public void getById(@PathVariable("id") Long id) {
 
     }
-
-    @GetMapping("/get/by-username/{username}")
-    public R<SysUserInfoDTO> getByUsername(@PathVariable("username") String username, HttpServletRequest request) {
-        SysUserInfoDTO result = sysUserService.getByUsername(username);
-        return R.ok(result);
-    }
-
 
 
 }

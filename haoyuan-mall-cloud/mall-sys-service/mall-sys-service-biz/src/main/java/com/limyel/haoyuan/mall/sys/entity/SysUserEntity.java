@@ -24,11 +24,6 @@ public class SysUserEntity extends BaseEntity {
     private String username;
 
     /**
-     * 用户类型
-     */
-    private String type;
-
-    /**
      * 邮箱
      */
     private String email;
