@@ -4,7 +4,7 @@ server:
     threads:
       max: 1000
       min-spare: 30
-  port: 8030
+  port: 8010
 
 spring:
   application:

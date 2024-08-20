@@ -4,7 +4,7 @@ server:
     threads:
       max: 1000
       min-spare: 30
-  port: 8020
+  port: 8030
   servlet:
     session:
       cookie:
