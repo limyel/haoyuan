@@ -25,13 +25,13 @@ Content-Type: application/json
 satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
 
 {
-  "orderToken": "6ad63fbafe9b4c2b9e9fd56fbd017f0b",
+  "orderToken": "883aac933c444def82f20f69341a952c",
   "orderItems": [
     {
       "spuId": 100,
       "spuName": "方天画戟",
       "picUrl": "https://localhost:8080/pic",
-      "price": 500,
+      "price": 10,
       "quantity": 2,
       "type": 0
     },
@@ -39,7 +39,7 @@ satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
       "spuId": 101,
       "spuName": "赤兔马",
       "picUrl": "https://localhost:8080/pic",
-      "price": 450,
+      "price": 8,
       "quantity": 3,
       "type": 0
     }
