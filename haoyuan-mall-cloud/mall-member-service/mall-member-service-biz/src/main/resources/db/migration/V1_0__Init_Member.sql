@@ -25,7 +25,7 @@ INSERT INTO `member_user` (`id`, `username`, `password`, `point`, `balance`, `st
     (5, 'zhu_ge_liang', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 7000, 1500, 1),
     (6, 'zhao_yun', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
     (7, 'ma_chao', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
-    (8, 'huang_zhaong', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
+    (8, 'huang_zhong', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
     (9, 'cao_cao', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 8000, 3000, 1),
     (10, 'guo_jia', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
     (11, 'zhang_liao', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 5000, 1500, 1),

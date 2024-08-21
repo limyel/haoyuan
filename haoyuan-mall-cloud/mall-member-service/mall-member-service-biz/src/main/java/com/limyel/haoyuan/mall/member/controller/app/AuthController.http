@@ -3,6 +3,6 @@ POST http://localhost:8010/mall-member/member/app/auth/login
 Content-Type: application/json
 
 {
-  "username": "liu_bei",
+  "username": "huang_zhong",
   "password": "123456"
 }
