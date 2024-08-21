@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://192.168.31.41:8848
+        namespace: ab10bfa7-2de4-4dd2-af64-77f58354c9cc
+      config:
+        server-addr: http://192.168.31.41:8848
+        namespace: ab10bfa7-2de4-4dd2-af64-77f58354c9cc
+        file-extension: yaml
+        prefix: mall-gateway

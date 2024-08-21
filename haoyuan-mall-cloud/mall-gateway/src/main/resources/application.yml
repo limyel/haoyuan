@@ -10,7 +10,7 @@ spring:
   application:
     name: mall-gateway
   profiles:
-    active: dev
+    active: test
   main:
     web-application-type: reactive
 
