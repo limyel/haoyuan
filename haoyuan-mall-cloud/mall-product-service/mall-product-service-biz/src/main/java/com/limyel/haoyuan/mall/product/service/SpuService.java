@@ -99,6 +99,7 @@ public class SpuService {
     }
 
     /**
+     * todo 分布式锁
      * 扣减库存
      * @param dto
      */

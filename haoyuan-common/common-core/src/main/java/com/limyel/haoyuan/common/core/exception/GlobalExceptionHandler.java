@@ -32,6 +32,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     public R<?> handleException(Exception e, HttpServletRequest request) {
+        e.printStackTrace();
         return R.failed(e.getMessage());
     }
 

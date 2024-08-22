@@ -25,6 +25,12 @@ public class UserSpuService {
 
     private final OrderItemService orderItemService;
 
+    /**
+     * todo 分布式锁
+     * @param userId
+     * @param orderId
+     * @return
+     */
     public int createOrUpdate(Long userId, Long orderId) {
         int result = 0;
 

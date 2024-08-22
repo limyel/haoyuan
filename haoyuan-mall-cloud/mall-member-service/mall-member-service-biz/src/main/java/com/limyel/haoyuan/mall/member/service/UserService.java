@@ -113,6 +113,11 @@ public class UserService {
         return result;
     }
 
+    /**
+     * todo 分布式锁
+     * @param dto
+     * @return
+     */
     public Integer deductPointBalance(PointBalanceRDTO dto) {
         Long userId = dto.getUserId();
         UserEntity user = userDao.selectById(userId);
