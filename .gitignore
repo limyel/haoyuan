@@ -37,3 +37,4 @@ mvnw
 .DS_Store
 
 logs/
+spy.log
