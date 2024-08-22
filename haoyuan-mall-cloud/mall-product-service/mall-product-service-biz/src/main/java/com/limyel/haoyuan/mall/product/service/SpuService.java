@@ -98,17 +98,28 @@ public class SpuService {
         return new PageData<>(page, list);
     }
 
+    /**
+     * 扣减库存
+     * @param dto
+     */
     public void deductStock(StockDeductRDTO dto) {
         String orderToken = dto.getOrderToken();
-        for (StockDeductRDTO.SpuDTO spu : dto.getSpuList()) {
+        for (StockDeductRDTO.SpuDTO spuDTO : dto.getSpuList()) {
+//            SpuEntity spu = spuDao.selectById(spuDTO.getSpuId());
+//            if (spu.getStock() < spuDTO.getQuantity()) {
+//                throw new ServiceException("商品库存不足");
+//            }
+//            spu.setStock(spu.getStock() - spuDTO.getQuantity());
+//            spuDao.updateById(spu);
+
             int deductResult = spuDao.update(new LambdaUpdateWrapper<SpuEntity>()
-                    .setSql("stock = stock - " + spu.getQuantity())
-                    .eq(SpuEntity::getId, spu.getSpuId())
-                    .apply("stock >= {0}", spu.getQuantity())
+                    .setSql("stock = stock - " + spuDTO.getQuantity())
+                    .eq(SpuEntity::getId, spuDTO.getSpuId())
+                    .apply("stock >= {0}", spuDTO.getQuantity())
             );
             Assert.isTrue(deductResult == 1, "商品库存不足");
 
-            redisTemplate.opsForList().rightPush(SpuRedisKey.SPU_STOCK_DEDUCT_PREFIX + orderToken, JSONUtil.toJson(spu));
+            redisTemplate.opsForList().rightPush(SpuRedisKey.SPU_STOCK_DEDUCT_PREFIX + orderToken, JSONUtil.toJson(spuDTO));
         }
     }
 

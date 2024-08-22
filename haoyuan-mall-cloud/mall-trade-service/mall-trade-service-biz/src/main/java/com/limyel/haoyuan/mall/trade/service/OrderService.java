@@ -68,6 +68,11 @@ public class OrderService {
         return new PageData<>(page, list);
     }
 
+    /**
+     * 确认订单，返回订单 token 和订单详情
+     * @param dto
+     * @return
+     */
     public OrderConfirmVO confirm(OrderConfirmDTO dto) {
         OrderConfirmVO result = new OrderConfirmVO();
 
@@ -85,7 +90,7 @@ public class OrderService {
             result.getOrderItems().add(orderItem);
         }
 
-        // 创建 orderToken
+        // 创建 orderToken，避免重复支付
         String orderToken = UUID.randomUUID().toString().replace("-", "");
         result.setOrderToken(orderToken);
         redisTemplate.opsForValue().set(OrderRedisKey.ORDER_TOKEN_PREFIX + orderToken, orderToken);
@@ -93,6 +98,11 @@ public class OrderService {
         return result;
     }
 
+    /**
+     * 提交订单，返回订单编号
+     * @param dto
+     * @return
+     */
     public String submit(OrderSubmitDTO dto) {
         // 判断订单是否重复提交
         // todo 用 lua 脚本保证原子性

@@ -28,7 +28,7 @@ public class OrderEntity extends BaseEntity {
     private Integer totalQuantity;
 
     /**
-     * 订单状态，0-待支付，1-用户取消，2-系统取消, 3-已完成
+     * 订单状态，0-待支付，1-已取消，2-超时未支付, 3-已完成
      */
     private Integer status;
 
