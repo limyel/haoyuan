@@ -100,6 +100,7 @@ public class SpuService {
 
     /**
      * todo 分布式锁
+     * 互斥性、可重入性、锁超时，防死锁、锁释放正确，防误删、阻塞和非阻塞、公平和非公平
      * 扣减库存
      * @param dto
      */
@@ -113,6 +114,10 @@ public class SpuService {
 //            spu.setStock(spu.getStock() - spuDTO.getQuantity());
 //            spuDao.updateById(spu);
 
+            // 使用 mysql 悲观锁的问题：
+            // 1、易造成锁范围过大
+            // 2、无法在程序中获取扣减库存之前的库存值
+            // 3、很多场景下无法满足业务诉求
             int deductResult = spuDao.update(new LambdaUpdateWrapper<SpuEntity>()
                     .setSql("stock = stock - " + spuDTO.getQuantity())
                     .eq(SpuEntity::getId, spuDTO.getSpuId())

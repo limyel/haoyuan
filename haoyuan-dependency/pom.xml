@@ -31,6 +31,7 @@
         <knife4j.version>4.3.0</knife4j.version>
         <jbcrypt.version>0.4</jbcrypt.version>
         <redisson.verson>3.27.2</redisson.verson>
+        <feign-hc5.version>13.3</feign-hc5.version>
     </properties>
 
     <dependencyManagement>
@@ -195,6 +196,12 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson.verson}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-hc5</artifactId>
+                <version>${feign-hc5.version}</version>
             </dependency>
 
             <!-- haoyuan-coupon -->
