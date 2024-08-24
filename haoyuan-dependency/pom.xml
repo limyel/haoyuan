@@ -15,6 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <revision>0.0.0</revision>
         <haoyuan-blog.version>0.1.0</haoyuan-blog.version>
+        <haoyuan-mall-cloud.version>0.0.0</haoyuan-mall-cloud.version>
 
         <spring-boot.version>2.7.18</spring-boot.version>
         <spring-cloud.version>2021.0.5</spring-cloud.version>
@@ -59,6 +60,7 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- haoyuan-common -->
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>common-core</artifactId>
@@ -89,23 +91,44 @@
                 <artifactId>common-security</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>common-satoken</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
+            <!-- blog -->
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>blog-sys</artifactId>
                 <version>${haoyuan-blog.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>blog-main</artifactId>
                 <version>${haoyuan-blog.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>blog-project</artifactId>
                 <version>${haoyuan-blog.version}</version>
+            </dependency>
+
+            <!-- mall-cloud -->
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-member-service-api</artifactId>
+                <version>${haoyuan-mall-cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-product-service-api</artifactId>
+                <version>${haoyuan-mall-cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-trade-service-api</artifactId>
+                <version>${haoyuan-mall-cloud.version}</version>
             </dependency>
 
             <!-- db -->
@@ -164,6 +187,7 @@
                 <version>${jjwt.version}</version>
             </dependency>
 
+            <!-- sa-token -->
             <dependency>
                 <groupId>cn.dev33</groupId>
                 <artifactId>sa-token-spring-boot-starter</artifactId>
@@ -180,6 +204,7 @@
                 <version>${satoken.version}</version>
             </dependency>
 
+            <!-- 接口文档 -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
@@ -203,8 +228,6 @@
                 <artifactId>feign-hc5</artifactId>
                 <version>${feign-hc5.version}</version>
             </dependency>
-
-            <!-- haoyuan-coupon -->
 
         </dependencies>
     </dependencyManagement>

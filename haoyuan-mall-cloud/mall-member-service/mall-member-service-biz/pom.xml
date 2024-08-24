@@ -33,13 +33,11 @@
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>mall-member-service-api</artifactId>
-            <version>0.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>mall-product-service-api</artifactId>
-            <version>0.0.0</version>
         </dependency>
 
         <dependency>
