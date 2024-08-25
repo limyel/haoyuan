@@ -27,7 +27,6 @@
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>common-satoken</artifactId>
-            <version>0.0.0</version>
         </dependency>
 
         <dependency>
