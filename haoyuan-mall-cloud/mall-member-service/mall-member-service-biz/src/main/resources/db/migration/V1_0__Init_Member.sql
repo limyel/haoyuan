@@ -60,8 +60,7 @@ DROP TABLE IF EXISTS `member_level`;
 CREATE TABLE `member_level` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '等级名称',
-    `min_point` bigint NOT NULL DEFAULT 0 COMMENT '积分下限',
-    `max_point` bigint NOT NULL DEFAULT 0 COMMENT '积分上限',
+    `point` bigint NOT NULL DEFAULT 0 COMMENT '需要的积分',
     `sort` int NOT NULL DEFAULT 0 COMMENT '展示顺序',
     `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -71,3 +70,8 @@ CREATE TABLE `member_level` (
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='会员等级表';
 
+INSERT INTO `member_level` (id, name, point, sort) VALUES
+    (1, '青铜', 0, 1),
+    (2, '白银', 500, 2),
+    (3, '黄金', 1500, 3),
+    (4, '钻石', 3500, 4);
