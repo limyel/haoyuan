@@ -26,21 +26,6 @@ public class SpuEntity extends BaseEntity {
     private String summary;
 
     /**
-     * 价格（分）
-     */
-    private Long price;
-
-    /**
-     * 库存数量
-     */
-    private Integer stock;
-
-    /**
-     * 库存锁定数量
-     */
-    private Integer lockedStock;
-
-    /**
      * 类型，0-一次性，1-订阅
      */
     private Integer type;
@@ -49,10 +34,5 @@ public class SpuEntity extends BaseEntity {
      * 状态，0-下架 1-正常
      */
     private Integer status;
-
-    /**
-     * 可购买的会员等级
-     */
-    private Long memberLevelId;
 
 }
