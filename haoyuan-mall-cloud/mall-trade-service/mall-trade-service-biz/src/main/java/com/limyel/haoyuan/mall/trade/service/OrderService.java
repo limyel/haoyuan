@@ -24,6 +24,10 @@ import com.limyel.haoyuan.mall.trade.entity.OrderEntity;
 import com.limyel.haoyuan.mall.trade.vo.order.OrderConfirmVO;
 import com.limyel.haoyuan.mall.trade.vo.order.OrderListVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.client.producer.SendCallback;
+import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -35,6 +39,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderService {
 
     private final OrderDao orderDao;
@@ -48,6 +53,8 @@ public class OrderService {
     private final UserApi userApi;
 
     private final StringRedisTemplate redisTemplate;
+
+    private final RocketMQTemplate rocketMQTemplate;
 
     public PageData<OrderListVO> getList(PageParam pageParam) {
         Page<OrderEntity> page = new Page<>(pageParam.getPageNum(), pageParam.getPageSize());
@@ -161,6 +168,19 @@ public class OrderService {
         order.setUserId(StpUserUtil.getLoginIdAsLong());
         orderDao.insert(order);
         orderItemService.create(order.getId(), dto.getOrderItems());
+
+        long ts = System.currentTimeMillis() + 5000;
+        rocketMQTemplate.asyncSend("order-pay-delay", order, new SendCallback() {
+            @Override
+            public void onSuccess(SendResult sendResult) {
+                log.info("订单 {} 支付延时消息发送成功", order.getOrderSn());
+            }
+
+            @Override
+            public void onException(Throwable throwable) {
+                log.error("订单 {} 支付延时消息发送失败，原因：{}", order.getOrderSn(), throwable.getMessage());
+            }
+        }, ts);
 
         return order.getOrderSn();
     }

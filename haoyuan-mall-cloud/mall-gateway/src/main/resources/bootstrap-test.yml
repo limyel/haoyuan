@@ -3,9 +3,9 @@ spring:
     nacos:
       discovery:
         server-addr: http://192.168.31.99:8848
-        namespace: d7203cce-ce50-4f57-8438-2029653386d7
+        namespace: ab10bfa7-2de4-4dd2-af64-77f58354c9cc
       config:
         server-addr: http://192.168.31.99:8848
-        namespace: d7203cce-ce50-4f57-8438-2029653386d7
+        namespace: ab10bfa7-2de4-4dd2-af64-77f58354c9cc
         file-extension: yaml
         prefix: mall-gateway
