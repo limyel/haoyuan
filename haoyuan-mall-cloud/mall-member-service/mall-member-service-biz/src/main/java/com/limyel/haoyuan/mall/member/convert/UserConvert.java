@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.mall.member.convert;
 
-import com.limyel.haoyuan.mall.member.rdto.user.UserDTO;
+import com.limyel.haoyuan.mall.member.dto.user.UserDTO;
 import com.limyel.haoyuan.mall.member.rdto.user.UserInfoRDTO;
 import com.limyel.haoyuan.mall.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;

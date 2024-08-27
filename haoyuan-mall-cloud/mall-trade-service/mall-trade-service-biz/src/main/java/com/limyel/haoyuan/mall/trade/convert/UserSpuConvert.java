@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mall.trade.convert;
 
-import com.limyel.haoyuan.mall.trade.entity.UserSpuEntity;
-import com.limyel.haoyuan.mall.trade.vo.userspu.UserSpuVO;
+import com.limyel.haoyuan.mall.trade.entity.UserProductEntity;
+import com.limyel.haoyuan.mall.trade.vo.userspu.UserProductVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -10,7 +10,7 @@ public interface UserSpuConvert {
 
     UserSpuConvert INSTANCE = Mappers.getMapper(UserSpuConvert.class);
 
-    UserSpuVO toVO(UserSpuEntity entity);
+    UserProductVO toVO(UserProductEntity entity);
 
 
 }

@@ -8,8 +8,8 @@ import com.limyel.haoyuan.mall.trade.convert.UserSpuConvert;
 import com.limyel.haoyuan.mall.trade.dao.UserSpuDao;
 import com.limyel.haoyuan.mall.trade.dto.userspu.UseSpuDTO;
 import com.limyel.haoyuan.mall.trade.entity.OrderItemEntity;
-import com.limyel.haoyuan.mall.trade.entity.UserSpuEntity;
-import com.limyel.haoyuan.mall.trade.vo.userspu.UserSpuVO;
+import com.limyel.haoyuan.mall.trade.entity.UserProductEntity;
+import com.limyel.haoyuan.mall.trade.vo.userspu.UserProductVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserSpuService {
+public class UserProductService {
 
     private final UserSpuDao userSpuDao;
 
@@ -36,39 +36,39 @@ public class UserSpuService {
 
         List<OrderItemEntity> orderItems = orderItemService.getByOrderId(orderId);
         for (OrderItemEntity orderItem : orderItems) {
-            UserSpuEntity userSpu = userSpuDao.selectOne(new LambdaQueryWrapper<UserSpuEntity>()
-                    .eq(UserSpuEntity::getUserId, userId)
-                    .eq(UserSpuEntity::getSpuId, orderItem.getSpuId()));
+            UserProductEntity userProduct = userSpuDao.selectOne(new LambdaQueryWrapper<UserProductEntity>()
+                    .eq(UserProductEntity::getUserId, userId)
+                    .eq(UserProductEntity::getSkuId, orderItem.getSkuId()));
 
             Integer quantity = null;
             LocalDateTime subscribeTime = null;
             LocalDateTime now = LocalDateTime.now();
-            if (userSpu == null) {
-                userSpu = new UserSpuEntity();
-                userSpu.setUserId(userId);
-                BeanUtils.copyProperties(orderItem, userSpu);
-                userSpu.setQuantity(null);
+            if (userProduct == null) {
+                userProduct = new UserProductEntity();
+                userProduct.setUserId(userId);
+                BeanUtils.copyProperties(orderItem, userProduct);
+                userProduct.setQuantity(null);
             }
 
             if (SpuTypeEnum.ONCE.getValue().equals(orderItem.getType())) {
-                quantity = userSpu.getQuantity() == null ? 0 : userSpu.getQuantity();
-                userSpu.setQuantity(quantity + orderItem.getQuantity());
+                quantity = userProduct.getQuantity() == null ? 0 : userProduct.getQuantity();
+                userProduct.setQuantity(quantity + orderItem.getQuantity());
             } else if (SpuTypeEnum.SUBSCRIBE.getValue().equals(orderItem.getType())) {
-                subscribeTime = userSpu.getSubscribeTime() == null || userSpu.getSubscribeTime().isBefore(now)
-                        ? now : userSpu.getSubscribeTime();
-                userSpu.setSubscribeTime(subscribeTime.plusDays(userSpu.getQuantity() * 7L));
+                subscribeTime = userProduct.getSubscribeTime() == null || userProduct.getSubscribeTime().isBefore(now)
+                        ? now : userProduct.getSubscribeTime();
+                userProduct.setSubscribeTime(subscribeTime.plusDays(userProduct.getQuantity() * 7L));
             }
 
-            result += userSpuDao.insertOrUpdate(userSpu);
+            result += userSpuDao.insertOrUpdate(userProduct);
         }
 
         return result;
     }
 
-    public List<UserSpuVO> getByUserId(Long userId) {
-        List<UserSpuEntity> list = userSpuDao.selectList(new LambdaQueryWrapper<UserSpuEntity>()
-                .eq(UserSpuEntity::getUserId, userId)
-                .and(wrapper -> wrapper.ge(UserSpuEntity::getQuantity, 0).or().ge(UserSpuEntity::getSubscribeTime, LocalDateTime.now()))
+    public List<UserProductVO> getByUserId(Long userId) {
+        List<UserProductEntity> list = userSpuDao.selectList(new LambdaQueryWrapper<UserProductEntity>()
+                .eq(UserProductEntity::getUserId, userId)
+                .and(wrapper -> wrapper.ge(UserProductEntity::getQuantity, 0).or().ge(UserProductEntity::getSubscribeTime, LocalDateTime.now()))
         );
         return list.stream()
                 .map(UserSpuConvert.INSTANCE::toVO)
@@ -77,12 +77,12 @@ public class UserSpuService {
 
     public void useSpu(UseSpuDTO dto) {
         long userId = StpUserUtil.getLoginIdAsLong();
-        LambdaQueryWrapper<UserSpuEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(UserSpuEntity::getUserId, userId);
-        wrapper.eq(UserSpuEntity::getSpuId, dto.getSpuId());
-        wrapper.eq(UserSpuEntity::getType, SpuTypeEnum.ONCE.getValue());
+        LambdaQueryWrapper<UserProductEntity> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserProductEntity::getUserId, userId);
+        wrapper.eq(UserProductEntity::getSkuId, dto.getSpuId());
+        wrapper.eq(UserProductEntity::getType, SpuTypeEnum.ONCE.getValue());
 
-        UserSpuEntity userSpu = userSpuDao.selectOne(wrapper);
+        UserProductEntity userSpu = userSpuDao.selectOne(wrapper);
         if (userSpu == null) {
             throw new ServiceException();
         }

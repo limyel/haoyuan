@@ -11,7 +11,7 @@ public class OrderConfirmDTO {
 
     @Data
     public static class CartItem {
-        private Long spuId;
+        private Long skuId;
         private Integer quantity;
     }
 

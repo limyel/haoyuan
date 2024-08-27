@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.mall.member.rdto.user;
+package com.limyel.haoyuan.mall.member.dto.user;
 
 import com.limyel.haoyuan.common.core.pojo.PageParam;
 import lombok.Data;

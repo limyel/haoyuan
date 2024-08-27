@@ -5,15 +5,13 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class UserSpuVO {
+public class UserProductVO {
 
-    private Long spuId;
-
-    private String picUrl;
+    private Long skuId;
 
     private String spuName;
 
-    private String summary;
+    private String skuName;
 
     private Integer type;
 

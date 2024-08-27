@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("trade_user_spu")
-public class UserSpuEntity extends BaseEntity {
+@TableName("trade_user_product")
+public class UserProductEntity extends BaseEntity {
 
     /**
      * 用户ID
@@ -18,24 +18,19 @@ public class UserSpuEntity extends BaseEntity {
     private Long userId;
 
     /**
-     * 商品ID
+     * SKU ID
      */
-    private Long spuId;
+    private Long skuId;
 
     /**
-     * 商品图片
-     */
-    private String picUrl;
-
-    /**
-     * 商品名称
+     * SPU 名称
      */
     private String spuName;
 
     /**
-     * 摘要
+     * SKU 名称
      */
-    private String summary;
+    private String skuName;
 
     /**
      * 类型，0-一次性，1-订阅

@@ -9,11 +9,11 @@ public class StockDeductRDTO {
 
     private String orderToken;
 
-    List<SpuDTO> spuList;
+    List<SkuDTO> skuList;
 
     @Data
-    public static class SpuDTO {
-        private Long spuId;
+    public static class SkuDTO {
+        private Long skuId;
 
         private Integer quantity;
     }

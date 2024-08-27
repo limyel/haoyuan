@@ -35,6 +35,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-member-service-api</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
         </dependency>

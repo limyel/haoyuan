@@ -5,11 +5,11 @@ import lombok.Data;
 @Data
 public class OrderItemDTO {
 
-    private Long spuId;
-
     private String spuName;
 
-    private String picUrl;
+    private Long skuId;
+
+    private String skuName;
 
     private Long price;
 

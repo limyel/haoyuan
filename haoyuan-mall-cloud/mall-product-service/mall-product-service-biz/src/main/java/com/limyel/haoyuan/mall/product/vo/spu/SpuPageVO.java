@@ -11,10 +11,6 @@ public class SpuPageVO {
 
     private String picUrl;
 
-    private Long price;
-
-    private Integer stock;
-
     private Integer type;
 
     private Integer status;

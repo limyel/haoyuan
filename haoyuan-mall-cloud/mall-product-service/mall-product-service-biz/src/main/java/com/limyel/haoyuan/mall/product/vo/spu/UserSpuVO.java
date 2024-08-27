@@ -11,8 +11,6 @@ public class UserSpuVO {
 
     private String name;
 
-    private String summary;
-
     private Integer type;
 
     private Integer quantity;

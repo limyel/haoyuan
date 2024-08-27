@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(value = "mall-product", contextId = "spu", configuration = FeignDecoderConfig.class)
-public interface SpuApi {
+@FeignClient(value = "mall-product", contextId = "sku", configuration = FeignDecoderConfig.class)
+public interface SkuApi {
 
-    @GetMapping("/product/rpc/spu/get/by-id/{id}")
+    @GetMapping("/product/rpc/sku/get/by-id/{id}")
     SkuConfirm getById(@PathVariable("id") Long id);
 
-    @GetMapping("/product/rpc/spu/get/by-ids")
+    @GetMapping("/product/rpc/sku/get/by-ids")
     List<SkuConfirm> getByIds(@RequestParam("ids") List<Long> ids);
 
-    @PostMapping("/product/rpc/spu/deduct")
+    @PostMapping("/product/rpc/sku/deduct")
     void deduct(StockDeductRDTO dto);
 
 }

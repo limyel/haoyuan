@@ -5,7 +5,6 @@ import com.limyel.haoyuan.common.core.validator.group.Update;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -24,14 +23,6 @@ public class SpuDTO {
 
     private String summary;
 
-    @Min(value = 0, message = "商品价格不能低于 0")
-    @NotNull(message = "商品价格不能为空")
-    private Long price;
-
-    @Min(value = 0, message = "库存不能低于 0")
-    @NotNull(message = "库存不能为空")
-    private Integer stock;
-
     @Range(min = 0, max = 1, message = "商品类型范围异常")
     @NotNull(message = "商品类型不能为空")
     private Integer type;
@@ -39,7 +30,5 @@ public class SpuDTO {
     @Range(min = 0, max = 1, message = "商品状态范围异常")
     @NotNull(message = "商品状态不能为空")
     private Integer status;
-
-    private Long memberLevelId;
 
 }

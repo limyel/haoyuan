@@ -9,8 +9,8 @@ import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import com.limyel.haoyuan.mall.member.api.UserApi;
 import com.limyel.haoyuan.mall.member.rdto.user.PointBalanceRDTO;
-import com.limyel.haoyuan.mall.product.api.SpuApi;
-import com.limyel.haoyuan.mall.product.dto.SpuRDTO;
+import com.limyel.haoyuan.mall.product.api.SkuApi;
+import com.limyel.haoyuan.mall.product.dto.SkuConfirm;
 import com.limyel.haoyuan.mall.product.dto.StockDeductRDTO;
 import com.limyel.haoyuan.mall.trade.constant.OrderRedisKey;
 import com.limyel.haoyuan.mall.trade.constant.OrderStatusEnum;
@@ -41,9 +41,9 @@ public class OrderService {
 
     private final OrderItemService orderItemService;
 
-    private final UserSpuService userSpuService;
+    private final UserProductService userProductService;
 
-    private final SpuApi spuApi;
+    private final SkuApi skuApi;
 
     private final UserApi userApi;
 
@@ -78,14 +78,14 @@ public class OrderService {
 
         // 获取订单商品
         for (OrderConfirmDTO.CartItem item : dto.getList()) {
-            SpuRDTO spu = spuApi.getById(item.getSpuId());
+            SkuConfirm sku = skuApi.getById(item.getSkuId());
             OrderItemDTO orderItem = new OrderItemDTO();
-            orderItem.setSpuId(spu.getId());
-            orderItem.setSpuName(spu.getName());
-            orderItem.setPicUrl(spu.getPicUrl());
-            orderItem.setPrice(spu.getPrice());
-            orderItem.setType(spu.getType());
+            orderItem.setSpuName(sku.getSpuName());
+            orderItem.setSkuId(sku.getId());
+            orderItem.setSkuName(sku.getName());
+            orderItem.setPrice(sku.getPrice());
             orderItem.setQuantity(item.getQuantity());
+            orderItem.setType(sku.getType());
 
             result.getOrderItems().add(orderItem);
         }
@@ -117,25 +117,25 @@ public class OrderService {
         // 订单商品校验，确认商品价格、状态
         List<OrderItemDTO> orderItems = dto.getOrderItems();
         List<Long> skuIds = orderItems.stream()
-                .map(OrderItemDTO::getSpuId)
+                .map(OrderItemDTO::getSkuId)
                 .toList();
-        List<SpuRDTO> spuList = spuApi.getByIds(skuIds);
+        List<SkuConfirm> spuList = skuApi.getByIds(skuIds);
 
-        List<StockDeductRDTO.SpuDTO> deductSpuList = new ArrayList<>();
+        List<StockDeductRDTO.SkuDTO> deductSpuList = new ArrayList<>();
         Long totalAmount = 0L;
         Integer totalQuantity = 0;
 
         for (OrderItemDTO orderItem : orderItems) {
-            SpuRDTO spu = spuList.stream()
-                    .filter(item -> item.getId().equals(orderItem.getSpuId()))
+            SkuConfirm spu = spuList.stream()
+                    .filter(item -> item.getId().equals(orderItem.getSkuId()))
                     .findFirst()
                     .orElse(null);
             Assert.isTrue(spu != null, "商品已下架或删除");
             Assert.isTrue(orderItem.getPrice().compareTo(spu.getPrice()) == 0, "商品价格发生变动，请刷新页面");
 
             // 用于扣减库存
-            StockDeductRDTO.SpuDTO deductSpu = new StockDeductRDTO.SpuDTO();
-            deductSpu.setSpuId(spu.getId());
+            StockDeductRDTO.SkuDTO deductSpu = new StockDeductRDTO.SkuDTO();
+            deductSpu.setSkuId(spu.getId());
             deductSpu.setQuantity(orderItem.getQuantity());
             deductSpuList.add(deductSpu);
 
@@ -147,8 +147,8 @@ public class OrderService {
         // 扣减库存
         StockDeductRDTO deductDTO = new StockDeductRDTO();
         deductDTO.setOrderToken(orderToken);
-        deductDTO.setSpuList(deductSpuList);
-        spuApi.deduct(deductDTO);
+        deductDTO.setSkuList(deductSpuList);
+        skuApi.deduct(deductDTO);
 
         // 创建订单实例
         OrderEntity order = new OrderEntity();
@@ -182,7 +182,7 @@ public class OrderService {
         order.setStatus(OrderStatusEnum.COMPLETE.getValue());
         orderDao.updateById(order);
 
-        userSpuService.createOrUpdate(StpUserUtil.getLoginIdAsLong(), order.getId());
+        userProductService.createOrUpdate(StpUserUtil.getLoginIdAsLong(), order.getId());
     }
 
     public void cancel(String orderSn) {

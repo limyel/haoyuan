@@ -2,6 +2,7 @@ package com.limyel.haoyuan.mall.member.convert;
 
 import com.limyel.haoyuan.mall.member.dto.level.LevelDTO;
 import com.limyel.haoyuan.mall.member.entity.LevelEntity;
+import com.limyel.haoyuan.mall.member.rdto.level.LevelRDTO;
 import com.limyel.haoyuan.mall.member.vo.level.LevelPageVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -14,5 +15,9 @@ public interface LevelConvert {
     LevelEntity toEntity(LevelDTO dto);
 
     LevelPageVO toPageVO(LevelEntity level);
+
+    LevelDTO toDTO(LevelEntity entity);
+
+    LevelRDTO toRDTO(LevelDTO dto);
 
 }

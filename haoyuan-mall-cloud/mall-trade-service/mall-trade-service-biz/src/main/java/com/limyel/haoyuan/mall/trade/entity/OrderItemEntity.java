@@ -16,24 +16,24 @@ public class OrderItemEntity extends BaseEntity {
     private Long orderId;
 
     /**
-     * 商品ID
+     * SKU ID
      */
-    private Long spuId;
+    private Long skuId;
 
     /**
-     * 商品名称
+     * SPU 名称
      */
     private String spuName;
 
     /**
-     *
+     * SKU 名称
      */
-    private Integer type;
+    private String skuName;
 
     /**
-     * 商品图片
+     * 类型，0-一次性，1-订阅
      */
-    private String picUrl;
+    private Integer type;
 
     /**
      * 商品单价（分）

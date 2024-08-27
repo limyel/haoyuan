@@ -25,9 +25,9 @@ DROP TABLE IF EXISTS `trade_order_item`;
 CREATE TABLE `trade_order_item` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `order_id` bigint NOT NULL COMMENT '订单ID',
-    `spu_id` bigint NOT NULL COMMENT '商品ID',
-    `spu_name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '商品名称',
-    `pic_url` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '商品图片',
+    `sku_id` bigint NOT NULL COMMENT 'SKU ID',
+    `spu_name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'SPU 名称',
+    `sku_name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'SKU 名称',
     `type` tinyint NOT NULL DEFAULT 0 COMMENT '类型，0-一次性，1-订阅',
     `price` bigint NOT NULL COMMENT '商品单价（分）',
     `quantity` int NOT NULL COMMENT '商品数量',
@@ -41,14 +41,13 @@ CREATE TABLE `trade_order_item` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='订单商品信息表';
 
 
-DROP TABLE IF EXISTS `trade_user_spu`;
-CREATE TABLE `trade_user_spu` (
+DROP TABLE IF EXISTS trade_user_product;
+CREATE TABLE trade_user_product (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `user_id` bigint NOT NULL COMMENT '用户ID',
-    `spu_id` bigint NOT NULL COMMENT '商品ID',
-    `pic_url` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '商品图片',
-    `spu_name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '商品名称',
-    `summary` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '摘要',
+    `sku_id` bigint NOT NULL COMMENT 'SKU ID',
+    `spu_name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'SPU 名称',
+    `sku_name` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'SKU 名称',
     `type` tinyint NOT NULL DEFAULT 0 COMMENT '类型，0-一次性，1-订阅',
     `quantity` int NOT NULL DEFAULT 0 COMMENT '数量',
     `subscribe_time` datetime NULL DEFAULT NULL COMMENT '订阅时间',
@@ -58,5 +57,5 @@ CREATE TABLE `trade_user_spu` (
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
     PRIMARY KEY (`id`) USING BTREE,
-    UNIQUE KEY `uk_user_id_spu_id` (`user_id`, `spu_id`)
+    UNIQUE KEY `uk_user_id_spu_id` (`user_id`, `sku_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户商品表';

@@ -13,10 +13,6 @@ public class SpuListVO {
 
     private String summary;
 
-    private Long price;
-
-    private Integer stock;
-
     /**
      * 类型，0-一次性，1-订阅
      */

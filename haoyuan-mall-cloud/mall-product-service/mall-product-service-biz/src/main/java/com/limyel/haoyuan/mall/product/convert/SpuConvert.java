@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.mall.product.convert;
 
-import com.limyel.haoyuan.mall.product.dto.SpuRDTO;
+import com.limyel.haoyuan.mall.product.dto.SkuConfirm;
 import com.limyel.haoyuan.mall.product.dto.spu.SpuDTO;
 import com.limyel.haoyuan.mall.product.entity.SpuEntity;
 import com.limyel.haoyuan.mall.product.vo.spu.SpuListVO;
@@ -21,8 +21,8 @@ public interface SpuConvert {
 
     SpuDTO toDTO(SpuEntity entity);
 
-    SpuRDTO toRpcDTO(SpuDTO dto);
+    SkuConfirm toRpcDTO(SpuDTO dto);
 
-    SpuRDTO toRpcDTO(SpuEntity entity);
+    SkuConfirm toRpcDTO(SpuEntity entity);
 
 }

@@ -1,6 +1,7 @@
 package com.limyel.haoyuan.mall.member.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.mall.member.convert.LevelConvert;
@@ -36,6 +37,14 @@ public class LevelService {
 
         LevelEntity level = LevelConvert.INSTANCE.toEntity(dto);
         return levelDao.updateById(level);
+    }
+
+    public LevelDTO getById(Long id) {
+        LevelEntity level = levelDao.selectById(id);
+        if (level == null) {
+            throw new ServiceException("会员等级不存在");
+        }
+        return LevelConvert.INSTANCE.toDTO(level);
     }
 
     public PageData<LevelPageVO> getPage(LevelPageDTO dto) {
