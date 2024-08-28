@@ -31,7 +31,7 @@ spring:
         min-idle: 0
   cache:
     redis:
-      time-to-live: 10s
+      time-to-live: 24000s
       key-prefix: "blog:"
 
 
