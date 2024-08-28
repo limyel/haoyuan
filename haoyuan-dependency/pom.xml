@@ -16,6 +16,7 @@
         <revision>0.0.0</revision>
         <haoyuan-blog.version>0.1.0</haoyuan-blog.version>
         <haoyuan-mall-cloud.version>0.0.0</haoyuan-mall-cloud.version>
+        <haoyuan-mall.version>0.0.0</haoyuan-mall.version>
 
         <spring-boot.version>2.7.18</spring-boot.version>
         <spring-cloud.version>2021.0.5</spring-cloud.version>
@@ -131,6 +132,39 @@
                 <artifactId>mall-trade-service-api</artifactId>
                 <version>${haoyuan-mall-cloud.version}</version>
             </dependency>
+
+            <!-- mall -->
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-member-biz</artifactId>
+                <version>${haoyuan-mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-member-api</artifactId>
+                <version>${haoyuan-mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-product-biz</artifactId>
+                <version>${haoyuan-mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-product-api</artifactId>
+                <version>${haoyuan-mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-trade-biz</artifactId>
+                <version>${haoyuan-mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-trade-api</artifactId>
+                <version>${haoyuan-mall.version}</version>
+            </dependency>
+
 
             <!-- db -->
             <dependency>

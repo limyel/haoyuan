@@ -16,6 +16,7 @@
         <module>haoyuan-algo-ds</module>
         <module>haoyuan-blog</module>
         <module>haoyuan-mall-cloud</module>
+        <module>haoyuan-mall</module>
     </modules>
 
     <properties>
