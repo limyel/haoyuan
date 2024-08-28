@@ -11,7 +11,7 @@ CREATE TABLE `admin_user` (
     UNIQUE KEY `uk_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户';
 
-INSERT INTO `admin_user` (`id`, `username`, `password`) values (1, 'limyel', '$2a$10$ahpMO/WKLzrrNbRzRkCm5Om23ytX9xklLTfs3wG.dsgdGpj.7s2ne');
+INSERT INTO `admin_user` (`id`, `username`, `password`) values (1, 'limyel', '$2a$10$daVPB.5Ra3dEf8F9Rex9XufccUQYl4AG15fHp4SrDsKnN8taTVGeK');
 
 
 CREATE TABLE `admin_user_role` (
