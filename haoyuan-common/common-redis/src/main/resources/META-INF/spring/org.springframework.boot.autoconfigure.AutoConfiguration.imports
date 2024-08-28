@@ -1,1 +1,2 @@
 com.limyel.haoyuan.common.redis.config.RedisAutoConfig
+com.limyel.haoyuan.common.redis.config.RedisCacheAutoConfig

@@ -2,13 +2,11 @@ package com.limyel.haoyuan.common.redis.config;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 
-@EnableCaching
 @AutoConfiguration(before = RedisAutoConfiguration.class)
 public class RedisAutoConfig {
 

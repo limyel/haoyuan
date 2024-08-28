@@ -29,6 +29,10 @@ spring:
         max-idle: 10
         # 连接池中的最小空闲连接
         min-idle: 0
+  cache:
+    redis:
+      time-to-live: 10s
+      key-prefix: "blog:"
 
 
 rocketmq:
