@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.mall.trade;
 
-import com.limyel.haoyuan.mall.member.api.UserApi;
+import com.limyel.haoyuan.mall.member.UserApi;
 import com.limyel.haoyuan.mall.product.api.SpuApi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

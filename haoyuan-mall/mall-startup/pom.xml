@@ -21,6 +21,11 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
+            <artifactId>mall-sys-biz</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
             <artifactId>mall-member-biz</artifactId>
         </dependency>
 

@@ -18,4 +18,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-sys-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-security</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

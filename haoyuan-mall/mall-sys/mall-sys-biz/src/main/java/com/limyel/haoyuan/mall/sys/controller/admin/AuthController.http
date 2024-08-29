@@ -1,0 +1,8 @@
+###
+POST http://localhost:8090/mall/admin/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "123456"
+}

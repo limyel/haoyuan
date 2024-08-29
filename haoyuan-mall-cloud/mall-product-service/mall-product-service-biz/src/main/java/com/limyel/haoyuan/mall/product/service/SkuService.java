@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.util.JSONUtil;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.mall.member.api.LevelApi;
+import com.limyel.haoyuan.mall.member.LevelApi;
 import com.limyel.haoyuan.mall.member.rdto.level.LevelRDTO;
 import com.limyel.haoyuan.mall.product.constant.SpuRedisKey;
 import com.limyel.haoyuan.mall.product.convert.SkuConvert;

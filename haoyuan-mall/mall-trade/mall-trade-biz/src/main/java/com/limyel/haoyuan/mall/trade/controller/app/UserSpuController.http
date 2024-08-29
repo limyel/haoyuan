@@ -1,0 +1,17 @@
+### 查询已有商品
+# @no-cookie-jar
+GET http://localhost:8010/mall-trade/trade/app/user-spu/get/me
+Content-Type: application/json
+satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
+
+
+### 使用已有商品
+# @no-cookie-jar
+POST http://localhost:8010/mall-trade/trade/app/user-spu/use
+Content-Type: application/json
+satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
+
+{
+  "spuId": 100,
+  "quantity": 1
+}

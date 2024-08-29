@@ -18,4 +18,31 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-product-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-member-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

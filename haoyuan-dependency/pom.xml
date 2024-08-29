@@ -136,6 +136,16 @@
             <!-- mall -->
             <dependency>
                 <groupId>com.limyel</groupId>
+                <artifactId>mall-sys-biz</artifactId>
+                <version>${haoyuan-mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-sys-api</artifactId>
+                <version>${haoyuan-mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
                 <artifactId>mall-member-biz</artifactId>
                 <version>${haoyuan-mall.version}</version>
             </dependency>
@@ -162,6 +172,13 @@
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-trade-api</artifactId>
+                <version>${haoyuan-mall.version}</version>
+            </dependency>
+
+            <!-- mall-common -->
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-security</artifactId>
                 <version>${haoyuan-mall.version}</version>
             </dependency>
 

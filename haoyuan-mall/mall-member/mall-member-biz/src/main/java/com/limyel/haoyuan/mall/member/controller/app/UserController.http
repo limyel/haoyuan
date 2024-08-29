@@ -1,0 +1,5 @@
+###
+# @no-cookie-jar
+GET http://localhost:8010/mall/member/app/user/get/me
+Content-Type: application/json
+token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaXNzIjoibGlteWVsIiwiaWF0IjoxNzI0OTE1ODUxLCJleHAiOjE3MjUzNDc4NTF9.gwX7XHTOVXsRfu3gk_k5BMu_m-zX6TS16NlYFcGJUj8KXN-5JLmq-8qdpjG43sRA-rlht_PGedgEMpm5KgxYOg
