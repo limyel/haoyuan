@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mall.member.controller.rpc;
 
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.mall.member.rdto.user.PointBalanceRDTO;
+import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
 import com.limyel.haoyuan.mall.member.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;

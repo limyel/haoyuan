@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.mall.member.rdto.level;
+package com.limyel.haoyuan.mall.member.dto.level;
 
 import lombok.Data;
 

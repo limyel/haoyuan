@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.util.JSONUtil;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.mall.member.LevelApi;
-import com.limyel.haoyuan.mall.member.rdto.level.LevelRDTO;
+import com.limyel.haoyuan.mall.member.api.LevelApi;
+import com.limyel.haoyuan.mall.member.dto.level.LevelRDTO;
 import com.limyel.haoyuan.mall.product.constant.SpuRedisKey;
 import com.limyel.haoyuan.mall.product.convert.SkuConvert;
 import com.limyel.haoyuan.mall.product.dao.SkuDao;
@@ -126,12 +126,12 @@ public class SkuService {
     public void deductStock(StockDeductRDTO dto) {
         String orderToken = dto.getOrderToken();
         for (StockDeductRDTO.SkuDTO skuDTO : dto.getSkuList()) {
-//            SpuEntity spu = spuDao.selectById(spuDTO.getSpuId());
-//            if (spu.getStock() < spuDTO.getQuantity()) {
+//            SkuEntity sku = skuDao.selectById(skuDTO.getSkuId());
+//            if (sku.getStock() < skuDTO.getQuantity()) {
 //                throw new ServiceException("商品库存不足");
 //            }
-//            spu.setStock(spu.getStock() - spuDTO.getQuantity());
-//            spuDao.updateById(spu);
+//            sku.setStock(sku.getStock() - skuDTO.getQuantity());
+//            int deductResult = skuDao.updateById(sku);
 
             // 使用 mysql 悲观锁的问题：
             // 1、易造成锁范围过大

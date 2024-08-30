@@ -2,7 +2,7 @@ package com.limyel.haoyuan.mall.member.convert;
 
 import com.limyel.haoyuan.mall.member.dto.level.LevelDTO;
 import com.limyel.haoyuan.mall.member.entity.LevelEntity;
-import com.limyel.haoyuan.mall.member.rdto.level.LevelRDTO;
+import com.limyel.haoyuan.mall.member.dto.level.LevelRDTO;
 import com.limyel.haoyuan.mall.member.vo.level.LevelPageVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

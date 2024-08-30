@@ -12,7 +12,7 @@ import com.limyel.haoyuan.mall.member.constant.PaymentMethodEnum;
 import com.limyel.haoyuan.mall.member.convert.UserConvert;
 import com.limyel.haoyuan.mall.member.dao.UserDao;
 import com.limyel.haoyuan.mall.member.entity.UserEntity;
-import com.limyel.haoyuan.mall.member.rdto.user.PointBalanceRDTO;
+import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
 import com.limyel.haoyuan.mall.member.dto.user.UserDTO;
 import com.limyel.haoyuan.mall.member.dto.user.UserPageDTO;
 import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;
