@@ -40,4 +40,9 @@ public class SkuEntity extends BaseEntity {
      */
     private Long memberLevelId;
 
+    /**
+     * 状态，0-下架 1-正常
+     */
+    private Integer status;
+
 }

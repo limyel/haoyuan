@@ -20,7 +20,7 @@ CREATE TABLE `sys_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统用户表';
 
 INSERT INTO `sys_user` (id, dept_id, username, email, mobile, avatar, password, status, remark) VALUES
-    (1, null, 'admin', 'limyel@outlook.com', '13000000000', '', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1, ''),
+    (1, null, 'limyel', 'limyel@outlook.com', '13000000000', '', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1, ''),
     (2, null, 'liu_bei', 'liu_bei@outlook.com', '13000000100', '', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1, ''),
     (3, null, 'guan_yu', 'guan_yu@outlook.com', '13000000101', '', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1, ''),
     (4, null, 'zhang_fei', 'zhang_fei@outlook.com', '13000000102', '', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1, ''),
