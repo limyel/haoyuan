@@ -10,8 +10,10 @@ import com.limyel.haoyuan.mall.member.dto.user.PointBalance;
 import com.limyel.haoyuan.mall.member.dto.user.UserCreate;
 import com.limyel.haoyuan.mall.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;
+import com.limyel.haoyuan.mall.security.entity.LoginUser;
 import com.limyel.haoyuan.mall.sys.api.SysUserApi;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -63,12 +65,15 @@ public class UserService {
     }
 
     public UserInfoVO getCurrentUserInfo() {
-        UserEntity user = null;
+        LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserEntity user = userDao.selectById(loginUser.getId());
         if (user == null) {
             throw new ServiceException("用户不存在");
         }
 
-        return UserConvert.INSTANCE.toInfoVO(user);
+        UserInfoVO result = UserConvert.INSTANCE.toInfoVO(user);
+        result.setUsername(loginUser.getUsername());
+        return result;
     }
 
     /**

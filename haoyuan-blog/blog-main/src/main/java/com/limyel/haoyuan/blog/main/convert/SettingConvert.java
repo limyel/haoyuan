@@ -12,7 +12,7 @@ public interface SettingConvert {
 
     SettingEntity toDO(SettingDTO dto);
 
-    SettingDTO toDTO(SettingEntity settingDO);
+    SettingDTO toDTO(SettingEntity entity);
 
 
 }

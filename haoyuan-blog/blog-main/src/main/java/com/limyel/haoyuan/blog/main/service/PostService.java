@@ -19,7 +19,12 @@ import com.limyel.haoyuan.common.core.constant.StatusEnum;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
+import com.limyel.haoyuan.mall.member.dto.pointlog.PointChange;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.client.producer.SendCallback;
+import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PostService {
@@ -40,6 +46,8 @@ public class PostService {
     private final PostTagService postTagService;
 
     private final ApplicationEventPublisher eventPublisher;
+
+    private final RocketMQTemplate rocketMQTemplate;
 
     @Transactional(rollbackFor = Exception.class)
     public int create(PostDTO dto) {
@@ -51,6 +59,24 @@ public class PostService {
 
         PostPublishDTO publishDTO = new PostPublishDTO();
         publishDTO.setId(post.getId());
+
+        PointChange change = new PointChange();
+        change.setChangedPoint(100L);
+        change.setType(StatusEnum.ENABLE.getValue());
+        change.setReason(String.format("发布文章: %s", post.getTitle()));
+        change.setUserId(1L);
+        rocketMQTemplate.asyncSend("point-topic", change, new SendCallback() {
+            @Override
+            public void onSuccess(SendResult sendResult) {
+                log.info("发布文章: {}, 消息发送成功: {}, ", post.getId(), sendResult.getMsgId());
+            }
+
+            @Override
+            public void onException(Throwable throwable) {
+                log.error("发布文章: {}, 消息发送失败: {}", post.getId(), throwable.getMessage());
+                throwable.printStackTrace();
+            }
+        });
 
         return result;
     }

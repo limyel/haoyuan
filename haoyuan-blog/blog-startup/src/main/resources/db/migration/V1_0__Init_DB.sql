@@ -89,14 +89,32 @@ CREATE TABLE `main_post_tag` (
 
 CREATE TABLE `main_setting` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
-    `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '博客名称',
-    `about` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '关于',
+    `label` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '标签',
+    `value` varchar(2048) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '值',
+    `secret` bit(1) NOT NULL DEFAULT b'0' COMMENT '内部变量',
     `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
-    PRIMARY KEY (`id`) USING BTREE
+    PRIMARY KEY (`id`) USING BTREE,
+    UNIQUE KEY `uk_label` (`label`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='博客设置';
 
-INSERT INTO `main_setting` values (1, '小林的博客', '# 关于我', null, NOW(), null, NOW(), null);
+INSERT INTO `main_setting` (id, label, value, secret) values
+    (1, 'blog_name', '小林的博客', 0),
+    (2, 'blog_about', '## 关于我
+
+* 林新煌 / limyel。
+
+* 出生在南安，长大在德化，生活、工作在福州。
+
+* 已婚。
+* 编程是工作，历史是爱好，Nintendo Switch 是消遣。
+
+## 联系我
+
+ * [GitHub](https://github.com/limyel)
+* <a href=mailto:limyel@outlook.com>Email</a>', 0),
+    (3, 'github_name', 'limyel', 1),
+    (4, 'github_token', '123456', 1);

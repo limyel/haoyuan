@@ -13,13 +13,18 @@ public class SettingEntity extends BaseEntity {
     public static final Long DEFAULT_ID = 1L;
 
     /**
-     * 博客名称
+     * 标签
      */
-    private String name;
+    private String label;
 
     /**
-     * 关于
+     * 值
      */
-    private String about;
+    private String value;
+
+    /**
+     * 是否是系统设置
+     */
+    private Boolean secret;
 
 }

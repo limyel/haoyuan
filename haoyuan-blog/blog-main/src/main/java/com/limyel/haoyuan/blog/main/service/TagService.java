@@ -2,6 +2,7 @@ package com.limyel.haoyuan.blog.main.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.blog.main.constant.MainErrorMsg;
+import com.limyel.haoyuan.blog.main.constant.MainRedisKey;
 import com.limyel.haoyuan.blog.main.convert.TagConvert;
 import com.limyel.haoyuan.blog.main.dao.TagDao;
 import com.limyel.haoyuan.blog.main.entity.TagEntity;
@@ -13,6 +14,9 @@ import com.limyel.haoyuan.blog.main.vo.tag.TagSelectVO;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +29,7 @@ public class TagService {
 
     private final PostTagService postTagService;
 
+    @CacheEvict(value = MainRedisKey.TAG_DETAIL_KEY)
     public int create(TagDTO dto) {
         tagDao.validateUnique(null, TagEntity::getName, dto.getName(), MainErrorMsg.TAG_NAME_DUPLICATE);
         tagDao.validateUnique(null, TagEntity::getSlug, dto.getSlug(), MainErrorMsg.TAG_SLUG_DUPLICATE);
@@ -33,6 +38,7 @@ public class TagService {
         return tagDao.insert(tagDO);
     }
 
+    @CacheEvict(value = MainRedisKey.TAG_DETAIL_KEY)
     public void delete(String slug) {
         tagDao.delete(TagEntity::getSlug, slug);
     }
@@ -53,19 +59,26 @@ public class TagService {
         return TagConvert.INSTANCE.toSelectVO(tagDOList);
     }
 
+    @Cacheable(value = MainRedisKey.TAG_DETAIL_KEY)
     public List<TagDetailVO> getAll() {
         List<TagEntity> tagDOList = tagDao.selectList();
-        return tagDOList.stream()
+        List<TagDetailVO> result = tagDOList.stream()
                 .map(tagDO -> {
                     TagDetailVO vo = TagConvert.INSTANCE.toDetailVO(tagDO);
                     vo.setPostNum(postTagService.getPostNumByTagId(tagDO.getId()));
                     return vo;
                 })
                 .toList();
+        return cacheDetail(result);
     }
 
     public Long getCount() {
         return tagDao.selectCount();
+    }
+
+    @CachePut(value = MainRedisKey.TAG_DETAIL_KEY)
+    public List<TagDetailVO> cacheDetail(List<TagDetailVO> list) {
+        return list;
     }
 
 }

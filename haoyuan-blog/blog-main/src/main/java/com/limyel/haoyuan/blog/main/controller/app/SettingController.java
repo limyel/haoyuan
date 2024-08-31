@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.blog.main.controller.app;
 
-import com.limyel.haoyuan.blog.main.dto.setting.SettingDTO;
+import com.limyel.haoyuan.blog.main.constant.SettingLabelEnum;
 import com.limyel.haoyuan.blog.main.service.SettingService;
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;
@@ -25,16 +25,16 @@ public class SettingController {
     @ApiOperation("获取博客名")
     @ApiOperationLog(description = "获取博客名")
     public R<Map<String, String>> getName() {
-        SettingDTO settingDTO = settingService.get();
-        return R.ok(Map.of("name", settingDTO.getName()));
+        String result = settingService.getValue(SettingLabelEnum.BLOG_NAME.getLabel(), false);
+        return R.ok(Map.of("name", result));
     }
 
     @GetMapping("/get/about")
     @ApiOperation("获取关于")
     @ApiOperationLog(description = "获取关于")
     public R<Map<String, String>> getAbout() {
-        SettingDTO settingDTO = settingService.get();
-        return R.ok(Map.of("about", settingDTO.getAbout()));
+        String result = settingService.getValue(SettingLabelEnum.BLOG_ABOUT.getLabel(), false);
+        return R.ok(Map.of("about", result));
     }
 
 }

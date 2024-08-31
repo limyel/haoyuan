@@ -11,10 +11,12 @@ public class SettingDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @NotBlank(message = "博客名称不能为空")
-    private String name;
+    private Long id;
 
-    @NotBlank(message = "关于不能为空")
-    private String about;
+    @NotBlank(message = "标签不能为空")
+    private String label;
+
+    @NotBlank(message = "值不能为空")
+    private String value;
 
 }

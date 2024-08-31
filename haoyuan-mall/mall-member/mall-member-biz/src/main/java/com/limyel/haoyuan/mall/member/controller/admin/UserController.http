@@ -2,7 +2,7 @@
 # @no-cookie-jar
 POST http://localhost:8030/mall-member/member/admin/user/create
 Content-Type: application/json
-satoken: 61cf6398-b69d-44e6-8e40-3d7c55397a73
+token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6ImxpbXllbCIsImlhdCI6MTcyNDk0MDU0OCwiZXhwIjoxNzI1MzcyNTQ4fQ.d0D_m4g38lt6TLNS5iB4fTQGpXSNRNLlOCvEVZ6NxAuLDZo1n6ZFABWLKcwIhxEjZNmaV2caOkDj9KfBOAeaWA
 
 {
   "username": "test1",

@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.mall.member.convert;
 
+import com.limyel.haoyuan.mall.member.dto.pointlog.PointChange;
 import com.limyel.haoyuan.mall.member.entity.PayLogEntity;
 import com.limyel.haoyuan.mall.member.vo.pointlog.PayLogListVO;
 import com.limyel.haoyuan.mall.member.vo.pointlog.PayLogPageVO;
@@ -14,5 +15,7 @@ public interface PayLogConvert {
     PayLogPageVO toPageVO(PayLogEntity entity);
 
     PayLogListVO toListVO(PayLogEntity entity);
+
+    PayLogEntity toEntity(PointChange dto);
 
 }
