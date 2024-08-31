@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-@RocketMQMessageListener(topic = "point-topic", consumerGroup = "myconsumer")
+@RocketMQMessageListener(topic = "point-topic", consumerGroup = "point-consumer")
 public class PointService implements RocketMQListener<PayLogEntity> {
 
     private final PayLogService payLogService;

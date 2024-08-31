@@ -16,6 +16,7 @@ import java.time.ZoneId;
 import java.util.Base64;
 import java.util.Date;
 
+// todo 改成静态类
 @RequiredArgsConstructor
 public class JwtUtil implements InitializingBean {
 
@@ -44,15 +45,15 @@ public class JwtUtil implements InitializingBean {
 
     /**
      * 生成 jwt token
-     * @param username
+     * @param subject
      * @return
      */
-    public String generateToken(String username) {
+    public String generateToken(String subject) {
         LocalDateTime now = LocalDateTime.now();
         // token 一小时后失效
         LocalDateTime expireTime = now.plusHours(properties.getExpireHours());
 
-        return Jwts.builder().setSubject(username)
+        return Jwts.builder().setSubject(subject)
                 .setIssuer(properties.getIssuer())
                 .setIssuedAt(Date.from(now.atZone(ZoneId.systemDefault()).toInstant()))
                 .setExpiration(Date.from(expireTime.atZone(ZoneId.systemDefault()).toInstant()))

@@ -29,6 +29,8 @@ import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -169,8 +171,8 @@ public class OrderService {
         orderDao.insert(order);
         orderItemService.create(order.getId(), dto.getOrderItems());
 
-        long ts = System.currentTimeMillis() + 5000;
-        rocketMQTemplate.asyncSend("order-pay-delay", order, new SendCallback() {
+        Message<String> orderDelayMsg = MessageBuilder.withPayload(order.getOrderSn()).build();
+        rocketMQTemplate.asyncSend("order-pay-delay", orderDelayMsg, new SendCallback() {
             @Override
             public void onSuccess(SendResult sendResult) {
                 log.info("订单 {} 支付延时消息发送成功", order.getOrderSn());
@@ -180,7 +182,7 @@ public class OrderService {
             public void onException(Throwable throwable) {
                 log.error("订单 {} 支付延时消息发送失败，原因：{}", order.getOrderSn(), throwable.getMessage());
             }
-        }, ts);
+        }, 3000, 3);
 
         return order.getOrderSn();
     }
