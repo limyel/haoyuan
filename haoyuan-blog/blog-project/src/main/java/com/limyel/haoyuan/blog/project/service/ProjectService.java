@@ -111,7 +111,7 @@ public class ProjectService {
                 .toList();
     }
 
-    @Scheduled(cron = "0/10 * * * * ?")
+    @Scheduled(cron = "0 59 23 * * ?")
     public void syncProject() {
         List<ProjectListVO> projects = getList();
         HttpHeaders headers = new HttpHeaders();
