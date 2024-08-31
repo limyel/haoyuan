@@ -11,6 +11,7 @@ import com.limyel.haoyuan.mall.member.dto.user.PointBalance;
 import com.limyel.haoyuan.mall.product.api.SkuApi;
 import com.limyel.haoyuan.mall.product.dto.SkuConfirm;
 import com.limyel.haoyuan.mall.product.dto.StockDeduct;
+import com.limyel.haoyuan.mall.security.entity.LoginUser;
 import com.limyel.haoyuan.mall.trade.constant.OrderRedisKey;
 import com.limyel.haoyuan.mall.trade.constant.OrderStatusEnum;
 import com.limyel.haoyuan.mall.trade.convert.OrderConvert;
@@ -28,6 +29,7 @@ import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -56,11 +58,12 @@ public class OrderService {
     private final RocketMQTemplate rocketMQTemplate;
 
     public PageData<OrderListVO> getList(PageParam pageParam) {
+        LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         Page<OrderEntity> page = new Page<>(pageParam.getPageNum(), pageParam.getPageSize());
 
         LambdaQueryWrapper<OrderEntity> wrapper = new LambdaQueryWrapper<>();
-        // todo
-        wrapper.eq(OrderEntity::getUserId, null);
+        wrapper.eq(OrderEntity::getUserId, loginUser.getId());
 
         orderDao.selectPage(page, wrapper);
 
@@ -110,6 +113,8 @@ public class OrderService {
      * @return
      */
     public String submit(OrderSubmitDTO dto) {
+        LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         // 判断订单是否重复提交
         // todo 用 lua 脚本保证原子性
         String orderToken = dto.getOrderToken();
@@ -164,8 +169,7 @@ public class OrderService {
         order.setTotalAmount(totalAmount);
         order.setTotalQuantity(totalQuantity);
         order.setPaymentAmount(totalAmount);
-        // todo
-        order.setUserId(null);
+        order.setUserId(loginUser.getId());
         orderDao.insert(order);
         orderItemService.create(order.getId(), dto.getOrderItems());
 
@@ -186,6 +190,8 @@ public class OrderService {
     }
 
     public void pay(OrderPayDTO dto) {
+        LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         String orderSn = dto.getOrderSn();
         OrderEntity order = orderDao.selectOne(OrderEntity::getOrderSn, orderSn);
         Assert.notNull(order, "订单不存在");
@@ -193,8 +199,7 @@ public class OrderService {
         Assert.isTrue(OrderStatusEnum.UNPAID.getValue().equals(order.getStatus()), "订单不可支付，请检查订单状态");
 
         PointBalance pointBalance = new PointBalance();
-        // todo
-        pointBalance.setUserId(null);
+        pointBalance.setUserId(loginUser.getId());
         pointBalance.setType(dto.getPaymentMethod());
         pointBalance.setTotal(order.getPaymentAmount());
         if (!userApi.deductPointBalance(pointBalance)) {
@@ -204,7 +209,7 @@ public class OrderService {
         orderDao.updateById(order);
 
         // todo
-        userProductService.createOrUpdate(null, order.getId());
+        userProductService.createOrUpdate(loginUser.getId(), order.getId());
     }
 
     public void cancel(String orderSn) {

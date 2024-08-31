@@ -10,6 +10,7 @@ import com.limyel.haoyuan.mall.trade.service.OrderService;
 import com.limyel.haoyuan.mall.trade.vo.order.OrderConfirmVO;
 import com.limyel.haoyuan.mall.trade.vo.order.OrderListVO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,18 +27,21 @@ public class OrderController {
 
     private final OrderService orderService;
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/get/list")
     public R<PageData<OrderListVO>> getPage(PageParam pageParam) {
         PageData<OrderListVO> result = orderService.getList(pageParam);
         return R.ok(result);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/confirm")
     public R<OrderConfirmVO> confirm(@RequestBody OrderConfirmDTO dto) {
         OrderConfirmVO result = orderService.confirm(dto);
         return R.ok(result);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/submit")
     public R<Map<String, String>> submit(@RequestBody OrderSubmitDTO dto) {
         String orderSn = orderService.submit(dto);
@@ -45,12 +49,14 @@ public class OrderController {
         return R.ok(result);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/pay")
     public R<?> pay(@Validated @RequestBody OrderPayDTO dto) {
         orderService.pay(dto);
         return R.ok();
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/cancel")
     public void cancel(@Validated @RequestBody OrderPayDTO dto) {
         orderService.cancel(dto.getOrderSn());

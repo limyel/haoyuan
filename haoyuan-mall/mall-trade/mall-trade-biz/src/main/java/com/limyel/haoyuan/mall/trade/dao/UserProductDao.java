@@ -5,6 +5,6 @@ import com.limyel.haoyuan.mall.trade.entity.UserProductEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface UserSpuDao extends BaseDao<UserProductEntity> {
+public interface UserProductDao extends BaseDao<UserProductEntity> {
 
 }

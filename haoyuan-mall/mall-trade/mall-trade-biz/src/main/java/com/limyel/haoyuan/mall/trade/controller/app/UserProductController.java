@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mall.trade.controller.app;
 
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.mall.trade.dto.userspu.UseSpuDTO;
+import com.limyel.haoyuan.mall.trade.dto.userspu.UseProductDTO;
 import com.limyel.haoyuan.mall.trade.service.UserProductService;
 import com.limyel.haoyuan.mall.trade.vo.userspu.UserProductVO;
 import lombok.RequiredArgsConstructor;
@@ -23,14 +23,13 @@ public class UserProductController {
 
     @GetMapping("/get/me")
     public R<List<UserProductVO>> getMe() {
-        // todo
-        List<UserProductVO> result = userProductService.getByUserId(null);
+        List<UserProductVO> result = userProductService.getList();
         return R.ok(result);
     }
 
     @PostMapping("/use")
-    public R<?> useSpu(@Validated @RequestBody UseSpuDTO dto) {
-        userProductService.useSpu(dto);
+    public R<?> useSpu(@Validated @RequestBody UseProductDTO dto) {
+        userProductService.useProduct(dto);
         return R.ok();
     }
 
