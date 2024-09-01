@@ -1,7 +1,6 @@
 package com.limyel.haoyuan.mall.product.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.util.JSONUtil;
@@ -126,22 +125,23 @@ public class SkuService {
     public void deductStock(StockDeductRDTO dto) {
         String orderToken = dto.getOrderToken();
         for (StockDeductRDTO.SkuDTO skuDTO : dto.getSkuList()) {
-//            SkuEntity sku = skuDao.selectById(skuDTO.getSkuId());
-//            if (sku.getStock() < skuDTO.getQuantity()) {
-//                throw new ServiceException("商品库存不足");
-//            }
-//            sku.setStock(sku.getStock() - skuDTO.getQuantity());
-//            int deductResult = skuDao.updateById(sku);
+            SkuEntity sku = skuDao.selectById(skuDTO.getSkuId());
+            if (sku.getStock() < skuDTO.getQuantity()) {
+                throw new ServiceException("商品库存不足");
+            }
+            sku.setStock(sku.getStock() - skuDTO.getQuantity());
+            int deductResult = skuDao.updateById(sku);
 
             // 使用 mysql 悲观锁的问题：
             // 1、易造成锁范围过大
             // 2、无法在程序中获取扣减库存之前的库存值
             // 3、很多场景下无法满足业务诉求
-            int deductResult = skuDao.update(new LambdaUpdateWrapper<SkuEntity>()
-                    .setSql("stock = stock - " + skuDTO.getQuantity())
-                    .eq(SkuEntity::getId, skuDTO.getSkuId())
-                    .apply("stock >= {0}", skuDTO.getQuantity())
-            );
+//            int deductResult = skuDao.update(new LambdaUpdateWrapper<SkuEntity>()
+//                    .setSql("stock = stock - " + skuDTO.getQuantity())
+//                    .eq(SkuEntity::getId, skuDTO.getSkuId())
+//                    .apply("stock >= {0}", skuDTO.getQuantity())
+//            );
+
             Assert.isTrue(deductResult == 1, "商品库存不足");
 
             redisTemplate.opsForList().rightPush(SpuRedisKey.SPU_STOCK_DEDUCT_PREFIX + orderToken, JSONUtil.toJson(skuDTO));
