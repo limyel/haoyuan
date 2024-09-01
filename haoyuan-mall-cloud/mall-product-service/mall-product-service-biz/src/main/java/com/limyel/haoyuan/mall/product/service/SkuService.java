@@ -133,6 +133,8 @@ public class SkuService {
             RLock lock = redissonClient.getLock("lock" + skuDTO.getSkuId());
 
             try {
+                lock.lock();
+
                 SkuEntity sku = skuDao.selectById(skuDTO.getSkuId());
                 if (sku.getStock() < skuDTO.getQuantity()) {
                     throw new ServiceException("商品库存不足");
