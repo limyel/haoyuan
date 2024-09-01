@@ -156,7 +156,7 @@ public class SkuService {
 
                 redisTemplate.opsForList().rightPush(SpuRedisKey.SPU_STOCK_DEDUCT_PREFIX + orderToken, JSONUtil.toJson(skuDTO));
             } catch (Exception e) {
-
+                e.printStackTrace();
             } finally {
                 if (lock != null) {
                     lock.unlock();

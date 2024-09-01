@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ApiOperationLogAspect {
 
-    @Pointcut("@annotation(com.limyel.haoyuan.common.web.log.ApiOperationLog)")
+    @Pointcut("@annotation(com.limyel.haoyuan.common.core.log.ApiOperationLog)")
     public void apiOperationLog() {}
 
     @Around("apiOperationLog()")

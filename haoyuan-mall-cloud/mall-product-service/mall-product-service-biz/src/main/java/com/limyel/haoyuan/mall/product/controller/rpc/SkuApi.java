@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.mall.product.controller.rpc;
 
+import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.mall.product.dto.SkuConfirm;
 import com.limyel.haoyuan.mall.product.dto.StockDeductRDTO;
@@ -34,6 +35,7 @@ public class SkuApi {
         return R.ok(result);
     }
 
+    @ApiOperationLog(description = "扣减库存")
     @PostMapping("/deduct")
     public R<?> deductStock(@RequestBody StockDeductRDTO dto) {
         skuService.deductStock(dto);

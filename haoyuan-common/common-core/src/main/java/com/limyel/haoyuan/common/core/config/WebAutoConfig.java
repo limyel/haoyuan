@@ -1,6 +1,7 @@
 package com.limyel.haoyuan.common.core.config;
 
 import com.limyel.haoyuan.common.core.config.properties.WebProperties;
+import com.limyel.haoyuan.common.core.log.ApiOperationLogAspect;
 import com.limyel.haoyuan.common.core.web.AutoPrefixUrlMapping;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -68,6 +69,11 @@ public class WebAutoConfig implements WebMvcRegistrations {
         factory.setReadTimeout(5000);//单位为ms
         factory.setConnectTimeout(5000);//单位为ms
         return factory;
+    }
+
+    @Bean
+    public ApiOperationLogAspect apiOperationLogAspect() {
+        return new ApiOperationLogAspect();
     }
 
 }
