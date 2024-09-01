@@ -20,6 +20,7 @@
         <module>common-security</module>
         <module>common-cloud</module>
         <module>common-satoken</module>
+        <module>common-lock</module>
     </modules>
 
     <properties>

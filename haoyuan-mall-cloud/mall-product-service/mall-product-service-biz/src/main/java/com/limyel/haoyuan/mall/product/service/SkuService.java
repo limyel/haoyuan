@@ -19,6 +19,8 @@ import com.limyel.haoyuan.mall.product.entity.SkuEntity;
 import com.limyel.haoyuan.mall.product.vo.sku.SkuListVO;
 import com.limyel.haoyuan.mall.product.vo.sku.SkuPageVO;
 import lombok.RequiredArgsConstructor;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -33,6 +35,8 @@ public class SkuService {
     private final SkuDao skuDao;
 
     private final StringRedisTemplate redisTemplate;
+
+    private final RedissonClient redissonClient;
 
     private final SpuService spuService;
 
@@ -120,31 +124,44 @@ public class SkuService {
      * todo 分布式锁
      * 互斥性、可重入性、锁超时，防死锁、锁释放正确，防误删、阻塞和非阻塞、公平和非公平
      * 扣减库存
+     *
      * @param dto
      */
     public void deductStock(StockDeductRDTO dto) {
         String orderToken = dto.getOrderToken();
         for (StockDeductRDTO.SkuDTO skuDTO : dto.getSkuList()) {
-            SkuEntity sku = skuDao.selectById(skuDTO.getSkuId());
-            if (sku.getStock() < skuDTO.getQuantity()) {
-                throw new ServiceException("商品库存不足");
-            }
-            sku.setStock(sku.getStock() - skuDTO.getQuantity());
-            int deductResult = skuDao.updateById(sku);
+            RLock lock = redissonClient.getLock("lock" + skuDTO.getSkuId());
 
-            // 使用 mysql 悲观锁的问题：
-            // 1、易造成锁范围过大
-            // 2、无法在程序中获取扣减库存之前的库存值
-            // 3、很多场景下无法满足业务诉求
+            try {
+                SkuEntity sku = skuDao.selectById(skuDTO.getSkuId());
+                if (sku.getStock() < skuDTO.getQuantity()) {
+                    throw new ServiceException("商品库存不足");
+                }
+                sku.setStock(sku.getStock() - skuDTO.getQuantity());
+                int deductResult = skuDao.updateById(sku);
+
+                // 使用 mysql 悲观锁的问题：
+                // 1、易造成锁范围过大
+                // 2、无法在程序中获取扣减库存之前的库存值
+                // 3、很多场景下无法满足业务诉求
 //            int deductResult = skuDao.update(new LambdaUpdateWrapper<SkuEntity>()
 //                    .setSql("stock = stock - " + skuDTO.getQuantity())
 //                    .eq(SkuEntity::getId, skuDTO.getSkuId())
 //                    .apply("stock >= {0}", skuDTO.getQuantity())
 //            );
 
-            Assert.isTrue(deductResult == 1, "商品库存不足");
+                Assert.isTrue(deductResult == 1, "商品库存不足");
 
-            redisTemplate.opsForList().rightPush(SpuRedisKey.SPU_STOCK_DEDUCT_PREFIX + orderToken, JSONUtil.toJson(skuDTO));
+                redisTemplate.opsForList().rightPush(SpuRedisKey.SPU_STOCK_DEDUCT_PREFIX + orderToken, JSONUtil.toJson(skuDTO));
+            } catch (Exception e) {
+
+            } finally {
+                if (lock != null) {
+                    lock.unlock();
+                }
+            }
+
+
         }
     }
 
