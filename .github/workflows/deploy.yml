@@ -34,7 +34,7 @@ jobs:
             rm ./haoyuan-blog/blog-startup/src/main/resources/application.yml
             cp ~/config/blog.yml ./haoyuan-blog/blog-startup/src/main/resources/application.yml
             cp ~/config/blog-pro.yml ./haoyuan-blog/blog-startup/src/main/resources/application-pro.yml
-            /opt/maven/bin/mvn clean compile package install --file pom.xml
+            /opt/maven/bin/mvn clean compile package install -P pro --file pom.xml
             cd ./haoyuan-blog
             docker stop haoyuan-blog
             docker container rm haoyuan-blog
