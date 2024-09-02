@@ -26,6 +26,9 @@ public class RedissonAutoConfig {
         if (StringUtils.hasText(redisProperties.getPassword())) {
             singleServerConfig.setPassword(redisProperties.getPassword());
         }
+        System.out.println(singleServerConfig.getAddress());
+        System.out.println(singleServerConfig.getDatabase());
+        System.out.println(singleServerConfig.getConnectionMinimumIdleSize());
         return Redisson.create(config);
     }
 
