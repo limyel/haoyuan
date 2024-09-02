@@ -55,7 +55,7 @@ public class UserProductService {
             } else if (SpuTypeEnum.SUBSCRIBE.getValue().equals(orderItem.getType())) {
                 subscribeTime = userProduct.getSubscribeTime() == null || userProduct.getSubscribeTime().isBefore(now)
                         ? now : userProduct.getSubscribeTime();
-                userProduct.setSubscribeTime(subscribeTime.plusDays(userProduct.getQuantity() * 7L));
+                userProduct.setSubscribeTime(subscribeTime.plusDays(orderItem.getQuantity() * 7L));
             }
 
             result += userProductDao.insertOrUpdate(userProduct);
