@@ -1,6 +1,7 @@
 package com.limyel.haoyuan.common.redis.config;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.StringUtils;
 
+@Slf4j
 @AutoConfiguration
 @RequiredArgsConstructor
 public class RedissonAutoConfig {
@@ -26,9 +28,9 @@ public class RedissonAutoConfig {
         if (StringUtils.hasText(redisProperties.getPassword())) {
             singleServerConfig.setPassword(redisProperties.getPassword());
         }
-        System.out.println(singleServerConfig.getAddress());
-        System.out.println(singleServerConfig.getDatabase());
-        System.out.println(singleServerConfig.getConnectionMinimumIdleSize());
+        log.info(singleServerConfig.getAddress());
+        log.info(String.valueOf(singleServerConfig.getDatabase()));
+        log.info(String.valueOf(singleServerConfig.getConnectionMinimumIdleSize()));
         return Redisson.create(config);
     }
 
