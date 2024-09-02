@@ -5,21 +5,22 @@ import com.limyel.haoyuan.blog.main.constant.MainErrorMsg;
 import com.limyel.haoyuan.blog.main.constant.MainRedisKey;
 import com.limyel.haoyuan.blog.main.convert.TagConvert;
 import com.limyel.haoyuan.blog.main.dao.TagDao;
-import com.limyel.haoyuan.blog.main.entity.TagEntity;
 import com.limyel.haoyuan.blog.main.dto.tag.TagDTO;
 import com.limyel.haoyuan.blog.main.dto.tag.TagPageDTO;
+import com.limyel.haoyuan.blog.main.entity.TagEntity;
 import com.limyel.haoyuan.blog.main.vo.tag.TagDetailVO;
 import com.limyel.haoyuan.blog.main.vo.tag.TagPageVO;
 import com.limyel.haoyuan.blog.main.vo.tag.TagSelectVO;
+import com.limyel.haoyuan.common.core.util.JSONUtil;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -29,18 +30,26 @@ public class TagService {
 
     private final PostTagService postTagService;
 
-    @CacheEvict(value = MainRedisKey.TAG_DETAIL_KEY)
+    private final StringRedisTemplate redisTemplate;
+
     public int create(TagDTO dto) {
         tagDao.validateUnique(null, TagEntity::getName, dto.getName(), MainErrorMsg.TAG_NAME_DUPLICATE);
         tagDao.validateUnique(null, TagEntity::getSlug, dto.getSlug(), MainErrorMsg.TAG_SLUG_DUPLICATE);
 
         TagEntity tagDO = TagConvert.INSTANCE.toEntity(dto);
-        return tagDao.insert(tagDO);
+        int result = tagDao.insert(tagDO);
+        if (result == 1) {
+            redisTemplate.delete(MainRedisKey.TAG_DETAIL_KEY);
+        }
+        return result;
     }
 
-    @CacheEvict(value = MainRedisKey.TAG_DETAIL_KEY)
-    public void delete(String slug) {
-        tagDao.delete(TagEntity::getSlug, slug);
+    public int delete(String slug) {
+        int result = tagDao.delete(TagEntity::getSlug, slug);
+        if (result == 1) {
+            redisTemplate.delete(MainRedisKey.TAG_DETAIL_KEY);
+        }
+        return result;
     }
 
     public PageData<TagPageVO> getPage(TagPageDTO dto) {
@@ -59,8 +68,12 @@ public class TagService {
         return TagConvert.INSTANCE.toSelectVO(tagDOList);
     }
 
-    @Cacheable(value = MainRedisKey.TAG_DETAIL_KEY)
     public List<TagDetailVO> getAll() {
+        String cache = redisTemplate.opsForValue().get(MainRedisKey.TAG_DETAIL_KEY);
+        if (StringUtils.hasText(cache)) {
+            return JSONUtil.parseObject(cache, List.class);
+        }
+
         List<TagEntity> tagDOList = tagDao.selectList();
         List<TagDetailVO> result = tagDOList.stream()
                 .map(tagDO -> {
@@ -69,16 +82,12 @@ public class TagService {
                     return vo;
                 })
                 .toList();
-        return cacheDetail(result);
+        redisTemplate.opsForValue().set(MainRedisKey.TAG_DETAIL_KEY, JSONUtil.toJson(result), 12, TimeUnit.HOURS);
+        return result;
     }
 
     public Long getCount() {
         return tagDao.selectCount();
-    }
-
-    @CachePut(value = MainRedisKey.TAG_DETAIL_KEY)
-    public List<TagDetailVO> cacheDetail(List<TagDetailVO> list) {
-        return list;
     }
 
 }
