@@ -11,6 +11,8 @@ import com.limyel.haoyuan.mall.trade.entity.OrderItemEntity;
 import com.limyel.haoyuan.mall.trade.entity.UserProductEntity;
 import com.limyel.haoyuan.mall.trade.vo.userspu.UserProductVO;
 import lombok.RequiredArgsConstructor;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +27,9 @@ public class UserProductService {
 
     private final OrderItemService orderItemService;
 
+    private final RedissonClient redissonClient;
+
     /**
-     * todo 分布式锁
      * @param userId
      * @param orderId
      * @return
@@ -40,26 +43,37 @@ public class UserProductService {
                     .eq(UserProductEntity::getUserId, userId)
                     .eq(UserProductEntity::getSkuId, orderItem.getSkuId()));
 
-            Integer quantity = null;
-            LocalDateTime subscribeTime = null;
-            LocalDateTime now = LocalDateTime.now();
-            if (userProduct == null) {
-                userProduct = new UserProductEntity();
-                userProduct.setUserId(userId);
-                BeanUtils.copyProperties(orderItem, userProduct);
-                userProduct.setQuantity(null);
-            }
+            RLock lock = redissonClient.getLock("userProductLock:" + userId + orderItem.getSkuId());
+            try {
+                lock.lock();
 
-            if (SpuTypeEnum.ONCE.getValue().equals(orderItem.getType())) {
-                quantity = userProduct.getQuantity() == null ? 0 : userProduct.getQuantity();
-                userProduct.setQuantity(quantity + orderItem.getQuantity());
-            } else if (SpuTypeEnum.SUBSCRIBE.getValue().equals(orderItem.getType())) {
-                subscribeTime = userProduct.getSubscribeTime() == null || userProduct.getSubscribeTime().isBefore(now)
-                        ? now : userProduct.getSubscribeTime();
-                userProduct.setSubscribeTime(subscribeTime.plusDays(userProduct.getQuantity() * 7L));
-            }
+                Integer quantity = null;
+                LocalDateTime subscribeTime = null;
+                LocalDateTime now = LocalDateTime.now();
+                if (userProduct == null) {
+                    userProduct = new UserProductEntity();
+                    userProduct.setUserId(userId);
+                    BeanUtils.copyProperties(orderItem, userProduct);
+                    userProduct.setQuantity(null);
+                }
 
-            result += userSpuDao.insertOrUpdate(userProduct);
+                if (SpuTypeEnum.ONCE.getValue().equals(orderItem.getType())) {
+                    quantity = userProduct.getQuantity() == null ? 0 : userProduct.getQuantity();
+                    userProduct.setQuantity(quantity + orderItem.getQuantity());
+                } else if (SpuTypeEnum.SUBSCRIBE.getValue().equals(orderItem.getType())) {
+                    subscribeTime = userProduct.getSubscribeTime() == null || userProduct.getSubscribeTime().isBefore(now)
+                            ? now : userProduct.getSubscribeTime();
+                    userProduct.setSubscribeTime(subscribeTime.plusDays(userProduct.getQuantity() * 7L));
+                }
+
+                result += userSpuDao.insertOrUpdate(userProduct);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (lock != null) {
+                    lock.unlock();
+                }
+            }
         }
 
         return result;

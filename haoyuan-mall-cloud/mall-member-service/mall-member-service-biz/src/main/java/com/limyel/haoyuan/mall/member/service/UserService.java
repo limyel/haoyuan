@@ -11,6 +11,7 @@ import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import com.limyel.haoyuan.mall.member.constant.PaymentMethodEnum;
 import com.limyel.haoyuan.mall.member.convert.UserConvert;
 import com.limyel.haoyuan.mall.member.dao.UserDao;
+import com.limyel.haoyuan.mall.member.entity.PayLogEntity;
 import com.limyel.haoyuan.mall.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
 import com.limyel.haoyuan.mall.member.dto.user.UserDTO;
@@ -18,6 +19,8 @@ import com.limyel.haoyuan.mall.member.dto.user.UserPageDTO;
 import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;
 import com.limyel.haoyuan.mall.member.vo.user.UserPageVO;
 import lombok.RequiredArgsConstructor;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -28,6 +31,8 @@ import java.util.List;
 public class UserService {
 
     private final UserDao userDao;
+
+    private final RedissonClient redissonClient;
 
     public int create(UserDTO dto) {
         userDao.validateUnique(null, UserEntity::getUsername, dto.getUsername(), "用户名已存在");
@@ -52,14 +57,6 @@ public class UserService {
     public int updateStatus(Long id, Integer status) {
         LambdaUpdateWrapper<UserEntity> wrapper = new LambdaUpdateWrapper<>();
         wrapper.set(UserEntity::getStatus, status);
-        wrapper.eq(UserEntity::getId, id);
-
-        return userDao.update(wrapper);
-    }
-
-    public int updateBlogUsername(Long id, String blogUsername) {
-        LambdaUpdateWrapper<UserEntity> wrapper = new LambdaUpdateWrapper<>();
-        wrapper.set(UserEntity::getBlogUsername, blogUsername);
         wrapper.eq(UserEntity::getId, id);
 
         return userDao.update(wrapper);
@@ -114,44 +111,56 @@ public class UserService {
     }
 
     /**
-     * todo 分布式锁
      * @param dto
      * @return
      */
     public Integer deductPointBalance(PointBalanceRDTO dto) {
-        Long userId = dto.getUserId();
-        UserEntity user = userDao.selectById(userId);
-        Long total = dto.getTotal();
-        Integer type = dto.getType();
+        RLock lock = redissonClient.getLock("deductPointLock:" + dto.getUserId());
+        int result = 0;
 
-        if (PaymentMethodEnum.POINT.getValue().equals(type)) {
-            if (user.getPoint() < total) {
-                throw new ServiceException("用户积分不足");
+        try {
+            lock.lock();
+
+            Long userId = dto.getUserId();
+            UserEntity user = userDao.selectById(userId);
+            Long total = dto.getTotal();
+            Integer type = dto.getType();
+
+            if (PaymentMethodEnum.POINT.getValue().equals(type)) {
+                if (user.getPoint() < total) {
+                    throw new ServiceException("用户积分不足");
+                }
+                user.setPoint(user.getPoint() - total);
+            } else if (PaymentMethodEnum.BALANCE.getValue().equals(type)) {
+                if (user.getBalance() < total) {
+                    throw new ServiceException("用户余额不足");
+                }
+                user.setBalance(user.getBalance() - total);
+            } else if (PaymentMethodEnum.POINT_BALANCE.getValue().equals(type)) {
+                if (user.getPoint() + user.getBalance() < total) {
+                    throw new ServiceException("用户积分、余额不足");
+                }
+                long delta = user.getPoint() - total;
+                if (delta < 0) {
+                    user.setPoint(0L);
+                    user.setBalance(user.getBalance() + delta);
+                } else {
+                    user.setPoint(delta);
+                }
             }
-            user.setPoint(user.getPoint() - total);
-        } else if (PaymentMethodEnum.BALANCE.getValue().equals(type)) {
-            if (user.getBalance() < total) {
-                throw new ServiceException("用户余额不足");
-            }
-            user.setBalance(user.getBalance() - total);
-        } else if (PaymentMethodEnum.POINT_BALANCE.getValue().equals(type)) {
-            if (user.getPoint() + user.getBalance() < total) {
-                throw new ServiceException("用户积分、余额不足");
-            }
-            long delta = user.getPoint() - total;
-            if (delta < 0) {
-                user.setPoint(0L);
-                user.setBalance(user.getBalance() + delta);
-            } else {
-                user.setPoint(delta);
+
+            result = userDao.updateById(user);
+            Assert.isTrue(result == 1, "积分、余额扣减失败");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (lock != null) {
+                lock.unlock();
             }
         }
 
-        int result = userDao.updateById(user);
-        Assert.isTrue(result == 1, "积分、余额扣减失败");
-
         // todo 发送消息，记录 paylog
-
+        PayLogEntity payLogEntity = new PayLogEntity();
 
         return result;
     }
