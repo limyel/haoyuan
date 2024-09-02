@@ -33,6 +33,7 @@ spring:
     redis:
       time-to-live: 24000s
       key-prefix: "blog:"
+    type: redis
 
 
 rocketmq:
