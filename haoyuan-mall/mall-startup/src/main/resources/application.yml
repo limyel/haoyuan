@@ -15,7 +15,7 @@ spring:
   application:
     name: haoyuan-mall
   profiles:
-    active: dev
+    active: @profileActive@
   messages:
     encoding: UTF-8
     basename: i18n/message
