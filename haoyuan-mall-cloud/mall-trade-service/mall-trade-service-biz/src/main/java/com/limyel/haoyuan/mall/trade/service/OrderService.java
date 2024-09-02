@@ -172,7 +172,7 @@ public class OrderService {
         orderItemService.create(order.getId(), dto.getOrderItems());
 
         Message<String> orderDelayMsg = MessageBuilder.withPayload(order.getOrderSn()).build();
-        rocketMQTemplate.asyncSend("order-pay-delay", orderDelayMsg, new SendCallback() {
+        rocketMQTemplate.asyncSend("order-pay-topic", orderDelayMsg, new SendCallback() {
             @Override
             public void onSuccess(SendResult sendResult) {
                 log.info("订单 {} 支付延时消息发送成功", order.getOrderSn());

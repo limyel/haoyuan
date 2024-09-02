@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-@RocketMQMessageListener(topic = "order-pay-delay", consumerGroup = "myconsumer")
+@RocketMQMessageListener(topic = "order-pay-topic", consumerGroup = "myconsumer")
 public class OrderPayDelayService implements RocketMQListener<OrderEntity> {
 
     private final OrderService orderService;

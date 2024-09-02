@@ -174,7 +174,7 @@ public class OrderService {
         orderItemService.create(order.getId(), dto.getOrderItems());
 
         long ts = System.currentTimeMillis() + 5000;
-        rocketMQTemplate.asyncSend("order-pay-delay", order, new SendCallback() {
+        rocketMQTemplate.asyncSend("order-pay-topic", order, new SendCallback() {
             @Override
             public void onSuccess(SendResult sendResult) {
                 log.info("订单 {} 支付延时消息发送成功", order.getOrderSn());
@@ -185,7 +185,6 @@ public class OrderService {
                 log.error("订单 {} 支付延时消息发送失败，原因：{}", order.getOrderSn(), throwable.getMessage());
             }
         }, ts);
-
         return order.getOrderSn();
     }
 
