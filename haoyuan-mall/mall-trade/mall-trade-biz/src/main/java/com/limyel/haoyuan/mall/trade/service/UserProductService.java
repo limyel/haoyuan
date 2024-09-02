@@ -41,19 +41,17 @@ public class UserProductService {
                     .eq(UserProductEntity::getUserId, userId)
                     .eq(UserProductEntity::getSkuId, orderItem.getSkuId()));
 
-            Integer quantity = null;
             LocalDateTime subscribeTime = null;
             LocalDateTime now = LocalDateTime.now();
             if (userProduct == null) {
                 userProduct = new UserProductEntity();
                 userProduct.setUserId(userId);
                 BeanUtils.copyProperties(orderItem, userProduct);
-                userProduct.setQuantity(null);
+                userProduct.setQuantity(0);
             }
 
             if (SpuTypeEnum.ONCE.getValue().equals(orderItem.getType())) {
-                quantity = userProduct.getQuantity() == null ? 0 : userProduct.getQuantity();
-                userProduct.setQuantity(quantity + orderItem.getQuantity());
+                userProduct.setQuantity(userProduct.getQuantity() + orderItem.getQuantity());
             } else if (SpuTypeEnum.SUBSCRIBE.getValue().equals(orderItem.getType())) {
                 subscribeTime = userProduct.getSubscribeTime() == null || userProduct.getSubscribeTime().isBefore(now)
                         ? now : userProduct.getSubscribeTime();
