@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.mall.trade.controller.app;
 
+import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.PageParam;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
@@ -32,12 +33,14 @@ public class OrderController {
         return R.ok(result);
     }
 
+    @ApiOperationLog(description = "确认订单")
     @PostMapping("/confirm")
     public R<OrderConfirmVO> confirm(@RequestBody OrderConfirmDTO dto) {
         OrderConfirmVO result = orderService.confirm(dto);
         return R.ok(result);
     }
 
+    @ApiOperationLog(description = "提交订单")
     @PostMapping("/submit")
     public R<Map<String, String>> submit(@RequestBody OrderSubmitDTO dto) {
         String orderSn = orderService.submit(dto);
@@ -45,6 +48,7 @@ public class OrderController {
         return R.ok(result);
     }
 
+    @ApiOperationLog(description = "支付订单")
     @PostMapping("/pay")
     public R<?> pay(@Validated @RequestBody OrderPayDTO dto) {
         orderService.pay(dto);

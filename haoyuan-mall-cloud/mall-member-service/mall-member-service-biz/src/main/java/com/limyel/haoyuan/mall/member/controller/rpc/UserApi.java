@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.mall.member.controller.rpc;
 
+import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
 import com.limyel.haoyuan.mall.member.service.UserService;
@@ -17,6 +18,7 @@ public class UserApi {
 
     private final UserService userService;
 
+    @ApiOperationLog(description = "用户支付")
     @PostMapping("/point-balance/deduct")
     public R<Boolean> deductPointBalance(@Validated @RequestBody PointBalanceRDTO dto) {
         Integer result = userService.deductPointBalance(dto);

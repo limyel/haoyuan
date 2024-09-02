@@ -39,14 +39,14 @@ public class UserProductService {
 
         List<OrderItemEntity> orderItems = orderItemService.getByOrderId(orderId);
         for (OrderItemEntity orderItem : orderItems) {
-            UserProductEntity userProduct = userSpuDao.selectOne(new LambdaQueryWrapper<UserProductEntity>()
-                    .eq(UserProductEntity::getUserId, userId)
-                    .eq(UserProductEntity::getSkuId, orderItem.getSkuId()));
-
             RLock lock = redissonClient.getLock("userProductLock:" + userId + orderItem.getSkuId());
+
             try {
                 lock.lock();
 
+                UserProductEntity userProduct = userSpuDao.selectOne(new LambdaQueryWrapper<UserProductEntity>()
+                        .eq(UserProductEntity::getUserId, userId)
+                        .eq(UserProductEntity::getSkuId, orderItem.getSkuId()));
                 Integer quantity = null;
                 LocalDateTime subscribeTime = null;
                 LocalDateTime now = LocalDateTime.now();
