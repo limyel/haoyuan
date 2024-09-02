@@ -57,12 +57,6 @@ public class UserController {
         return R.ok();
     }
 
-    @PostMapping("/update/blog-admin")
-    public R<?> updateBlogAdmin(@Validated @RequestBody UserUpdateDTO dto) {
-        userService.updateBlogUsername(dto.getId(), dto.getBlogUsername());
-        return R.ok();
-    }
-
     @GetMapping("/get/page")
     public R<PageData<UserPageVO>> getPage(UserPageDTO dto) {
         PageData<UserPageVO> result = userService.getPage(dto);
