@@ -59,4 +59,9 @@ haoyuan:
     secret: mhf6b3wbVxmmUWFgeqGMTBoSR9s9rUl4QeyYwZTTBRvybd+ZDmqB8/mYy0yOO201acd7Sia4b7JNSP174DtUoQ==
     expireHours: 120
 
+  thread-pool:
+    enabled: true
+    queueCapacity: 1500
+    keepAliveSeconds: 10
+    namePrefix: blog
 

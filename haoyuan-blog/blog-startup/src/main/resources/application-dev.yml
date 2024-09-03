@@ -67,7 +67,7 @@ haoyuan:
 
   thread-pool:
     enabled: true
-    queueCapacity: 10
+    queueCapacity: 1500
     keepAliveSeconds: 10
     namePrefix: blog
 

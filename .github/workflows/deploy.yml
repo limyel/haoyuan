@@ -31,13 +31,8 @@ jobs:
           SCRIPT_AFTER_REQUIRED: true
           SCRIPT_AFTER: |
             cd ~/haoyuan
-            rm ./haoyuan-blog/blog-startup/src/main/resources/application.yml
-            cp ~/config/blog.yml ./haoyuan-blog/blog-startup/src/main/resources/application.yml
-            cp ~/config/blog-pro.yml ./haoyuan-blog/blog-startup/src/main/resources/application-pro.yml
             /opt/maven/bin/mvn clean compile package install -P pro --file pom.xml
-            cd ./haoyuan-blog
-            docker stop haoyuan-blog
-            docker container rm haoyuan-blog
-            docker image rm haoyuan-blog-image
-            docker build -t haoyuan-blog-image .
-            docker run -d -p 8000:8000 --name haoyuan-blog --mount type=bind,source=/tmp/blog-logs,target=/logs haoyuan-blog-image
+            rm /home/ubuntu/haoyuan-blog/blog-startup-0.1.0.jar
+            cp ./haoyuan-blog/blog-startup/target/blog-startup-0.1.0.jar /home/ubuntu/haoyuan-blog
+            cd /home/ubuntu/haoyuan-blog
+            ./service.sh restart
