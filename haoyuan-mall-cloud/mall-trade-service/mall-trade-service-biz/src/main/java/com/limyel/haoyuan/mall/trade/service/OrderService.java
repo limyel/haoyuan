@@ -9,9 +9,9 @@ import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import com.limyel.haoyuan.mall.member.api.UserApi;
 import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
-import com.limyel.haoyuan.mall.product.api.SkuApi;
-import com.limyel.haoyuan.mall.product.dto.SkuConfirm;
-import com.limyel.haoyuan.mall.product.dto.StockDeductRDTO;
+import com.limyel.haoyuan.mallcloud.product.api.SkuApi;
+import com.limyel.haoyuan.mallcloud.product.dto.SkuConfirm;
+import com.limyel.haoyuan.mallcloud.product.dto.StockDeduct;
 import com.limyel.haoyuan.mall.trade.constant.OrderRedisKey;
 import com.limyel.haoyuan.mall.trade.constant.OrderStatusEnum;
 import com.limyel.haoyuan.mall.trade.convert.OrderConvert;
@@ -58,6 +58,10 @@ public class OrderService {
 
     private final RocketMQTemplate rocketMQTemplate;
 
+    public int update(OrderEntity order) {
+        return orderDao.updateById(order);
+    }
+
     public PageData<OrderListVO> getList(PageParam pageParam) {
         Page<OrderEntity> page = new Page<>(pageParam.getPageNum(), pageParam.getPageSize());
 
@@ -75,6 +79,14 @@ public class OrderService {
                 })
                 .toList();
         return new PageData<>(page, list);
+    }
+
+    public OrderEntity getBySn(String orderSn) {
+        OrderEntity result = orderDao.selectOne(OrderEntity::getOrderSn, orderSn);
+        if (result == null) {
+            throw new ServiceException("订单不存在");
+        }
+        return result;
     }
 
     /**
@@ -130,7 +142,7 @@ public class OrderService {
                 .toList();
         List<SkuConfirm> spuList = skuApi.getByIds(skuIds);
 
-        List<StockDeductRDTO.SkuDTO> deductSpuList = new ArrayList<>();
+        List<StockDeduct.SkuDTO> deductSpuList = new ArrayList<>();
         Long totalAmount = 0L;
         Integer totalQuantity = 0;
 
@@ -143,7 +155,7 @@ public class OrderService {
             Assert.isTrue(orderItem.getPrice().compareTo(spu.getPrice()) == 0, "商品价格发生变动，请刷新页面");
 
             // 用于扣减库存
-            StockDeductRDTO.SkuDTO deductSpu = new StockDeductRDTO.SkuDTO();
+            StockDeduct.SkuDTO deductSpu = new StockDeduct.SkuDTO();
             deductSpu.setSkuId(spu.getId());
             deductSpu.setQuantity(orderItem.getQuantity());
             deductSpuList.add(deductSpu);
@@ -154,10 +166,10 @@ public class OrderService {
 
         // 校验库存并锁定库存？
         // 扣减库存
-        StockDeductRDTO deductDTO = new StockDeductRDTO();
+        StockDeduct deductDTO = new StockDeduct();
         deductDTO.setOrderToken(orderToken);
         deductDTO.setSkuList(deductSpuList);
-        skuApi.deduct(deductDTO);
+        skuApi.deductStock(deductDTO);
 
         // 创建订单实例
         OrderEntity order = new OrderEntity();

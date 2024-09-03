@@ -21,6 +21,7 @@
         <module>common-cloud</module>
         <module>common-satoken</module>
         <module>common-lock</module>
+        <module>common-rocketmq</module>
     </modules>
 
     <properties>

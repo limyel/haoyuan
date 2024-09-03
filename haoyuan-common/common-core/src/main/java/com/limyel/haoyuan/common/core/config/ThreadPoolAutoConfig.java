@@ -30,7 +30,7 @@ public class ThreadPoolAutoConfig {
      * @return
      */
     @Bean
-    @ConditionalOnProperty(prefix = "thread-pool", name = "enabled", havingValue = "true")
+    @ConditionalOnProperty(prefix = "haoyuan.thread-pool", name = "enabled", havingValue = "true")
     public ThreadPoolTaskExecutor threadPoolTaskExecutor(ThreadPoolProperties properties) {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(core);
@@ -50,7 +50,7 @@ public class ThreadPoolAutoConfig {
                 core * 2,
                 properties.getKeepAliveSeconds(),
                 TimeUnit.SECONDS,
-                new ArrayBlockingQueue<>(10),
+                new ArrayBlockingQueue<>(properties.getQueueCapacity()),
                 new ThreadFactory() {
                     @Override
                     public Thread newThread(Runnable r) {

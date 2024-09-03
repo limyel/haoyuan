@@ -1,10 +1,10 @@
 package com.limyel.haoyuan.mall.product.convert;
 
 import com.limyel.haoyuan.mall.product.dto.SkuConfirm;
-import com.limyel.haoyuan.mall.product.dto.spu.SpuDTO;
-import com.limyel.haoyuan.mall.product.entity.SpuEntity;
 import com.limyel.haoyuan.mall.product.vo.spu.SpuListVO;
 import com.limyel.haoyuan.mall.product.vo.spu.SpuPageVO;
+import com.limyel.haoyuan.mall.product.dto.spu.SpuDTO;
+import com.limyel.haoyuan.mall.product.entity.SpuEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

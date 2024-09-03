@@ -3,7 +3,7 @@ package com.limyel.haoyuan.mall.trade.service;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
-import com.limyel.haoyuan.mall.product.constant.SpuTypeEnum;
+import com.limyel.haoyuan.mallcloud.product.constant.SpuTypeEnum;
 import com.limyel.haoyuan.mall.trade.convert.UserSpuConvert;
 import com.limyel.haoyuan.mall.trade.dao.UserSpuDao;
 import com.limyel.haoyuan.mall.trade.dto.userspu.UseSpuDTO;
