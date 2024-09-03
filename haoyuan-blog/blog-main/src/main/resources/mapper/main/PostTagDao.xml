@@ -8,12 +8,11 @@
     </delete>
 
     <select id="selectPostIdByTagIds" resultType="long">
-        select `post_id` FROM `main_post_tag` WHERE `tag_id` in
-        <foreach item="item" collection="tagIds" index="index" open="(" separator="," close=")">
+        select t1.`post_id` FROM `main_post_tag` t1
+            join `main_tag` t2 on t1.tag_id = t2.id and t2.`slug` in
+        <foreach item="item" collection="tagSlugs" index="index" open="(" separator="," close=")">
             #{item}
         </foreach>
-        GROUP BY `post_id`
-        HAVING COUNT(DISTINCT `tag_id`) = ${tagIds.size}
     </select>
 
 </mapper>

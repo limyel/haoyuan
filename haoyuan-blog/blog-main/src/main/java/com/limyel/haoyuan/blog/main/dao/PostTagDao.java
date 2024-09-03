@@ -12,6 +12,6 @@ public interface PostTagDao extends BaseDao<PostTagEntity> {
 
     int deleteByPostId(Long postId);
 
-    List<Long> selectPostIdByTagIds(@Param("tagIds") List<Long> tagIds);
+    List<Long> selectPostIdByTagIds(@Param("tagSlugs") List<String> tagSlugs);
 
 }
