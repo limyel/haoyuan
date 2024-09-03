@@ -70,16 +70,11 @@ public class PostTagService {
                 .toList();
     }
 
-    public List<Long> getPostIdsByTagIds(List<Long> tagIds) {
-        return postTagDao.selectPostIdByTagIds(tagIds);
-    }
-
     public List<Long> getPostIdsBySlugs(List<String> slugs) {
         if (CollectionUtils.isEmpty(slugs)) {
             return List.of();
         }
-        List<Long> tagIds = getTagIds(slugs);
-        return getPostIdsByTagIds(tagIds);
+        return postTagDao.selectPostIdByTagIds(slugs);
     }
 
     public long getPostNumByTagId(Long tagId) {
