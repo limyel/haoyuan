@@ -57,6 +57,8 @@ public class PostService {
         PostEntity post = PostConvert.INSTANCE.toEntity(dto);
         int result = postDao.insert(post);
 
+        postTagService.create(post.getId(), dto.getTagIds());
+
         PostPublishDTO publishDTO = new PostPublishDTO();
         publishDTO.setId(post.getId());
 
