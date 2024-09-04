@@ -10,6 +10,7 @@
     <version>${haoyuan-framework.version}</version>
 
     <modules>
+        <module>haoyuan-spring</module>
     </modules>
 
     <properties>

@@ -4,8 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.limyel</groupId>
+        <artifactId>haoyuan-framework</artifactId>
+        <version>${haoyuan-framework.version}</version>
+    </parent>
+
     <artifactId>haoyuan-spring</artifactId>
     <version>${haoyuan-spring.version}</version>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -13,5 +20,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <haoyuan-spring.version>0.0.0</haoyuan-spring.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+
+    </dependencies>
 
 </project>
