@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<beans>
-    <bean id = "myService" class = "com.limyel.haoyuan.framework.spring.test.MyServiceImpl"></bean>
-</beans>
