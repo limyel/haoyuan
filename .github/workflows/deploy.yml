@@ -33,6 +33,10 @@ jobs:
             cd ~/haoyuan
             /opt/maven/bin/mvn clean compile package install -P pro --file pom.xml
             rm /home/ubuntu/haoyuan-blog/blog-startup-0.1.0.jar
+            rm /home/ubuntu/haoyuan-mall/mall-startup-0.0.0.jar
             cp ./haoyuan-blog/blog-startup/target/blog-startup-0.1.0.jar /home/ubuntu/haoyuan-blog
+            cp ./haoyuan-mall/mall-startup/target/mall-startup-0.0.0.jar /home/ubuntu/haoyuan-mall
             cd /home/ubuntu/haoyuan-blog
+            ./service.sh restart
+            cd /home/ubuntu/haoyuan-mall
             ./service.sh restart
