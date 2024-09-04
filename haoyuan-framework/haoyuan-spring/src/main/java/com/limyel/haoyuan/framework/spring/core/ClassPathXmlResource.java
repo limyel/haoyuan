@@ -8,6 +8,9 @@ import org.dom4j.io.SAXReader;
 import java.net.URL;
 import java.util.Iterator;
 
+/**
+ * XML 文件资源
+ */
 public class ClassPathXmlResource implements Resource {
 
     private Document document;

@@ -3,12 +3,15 @@ package com.limyel.haoyuan.framework.spring.beans;
 import com.limyel.haoyuan.framework.spring.core.Resource;
 import org.dom4j.Element;
 
+/**
+ * BeanDefinition 解析器
+ */
 public class XmlBeanDefinitionReader {
 
-    private final BeanFactory beanFactory;
+    private SimpleBeanFactory simpleBeanFactory;
 
-    public XmlBeanDefinitionReader(BeanFactory beanFactory) {
-        this.beanFactory = beanFactory;
+    public XmlBeanDefinitionReader(SimpleBeanFactory simpleBeanFactory) {
+        this.simpleBeanFactory = simpleBeanFactory;
     }
 
     /**
@@ -21,7 +24,8 @@ public class XmlBeanDefinitionReader {
             String beanId = element.attributeValue("id");
             String beanClassName = element.attributeValue("class");
             BeanDefinition beanDefinition = new BeanDefinition(beanId, beanClassName);
-            this.beanFactory.registerBeanDefinition(beanDefinition);
+            // 注册 BeanDefinition
+            this.simpleBeanFactory.registerBeanDefinition(beanDefinition);
         }
     }
 }

@@ -1,17 +1,17 @@
 package com.limyel.haoyuan.framework.spring.beans;
 
+import com.limyel.haoyuan.framework.spring.DefaultSingletonBeanRegistry;
 import com.limyel.haoyuan.framework.spring.beans.exception.BeansException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class SimpleBeanFactory implements BeanFactory {
+/**
+ * 简单的 BeanFactory 实现，具备单例 Bean 管理能力
+ */
+public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
 
-    private List<BeanDefinition> beanDefinitions = new ArrayList<>();
-    private List<String> beanNames = new ArrayList<>();
-    private Map<String, Object> singletons = new HashMap<>();
+    private Map<String, BeanDefinition> beanDefinitions = new ConcurrentHashMap<>(256);
 
     public SimpleBeanFactory() {
     }
@@ -19,31 +19,34 @@ public class SimpleBeanFactory implements BeanFactory {
     @Override
     public Object getBean(String beanName) throws BeansException {
         // 尝试获取 Bean 实例
-        Object singleton = singletons.get(beanName);
+        Object singleton = getSingleton(beanName);
         // 没有 Bean 实例，尝试获取它的 BeanDefinition 来创建实例
         if (singleton == null) {
-            int i = beanNames.indexOf(beanName);
-            if (i == -1) {
-                // todo
-                throw new BeansException("");
-            } else {
-                BeanDefinition beanDefinition = beanDefinitions.get(i);
-                try {
-                    // 创建 Bean 实例
-                    singleton = Class.forName(beanDefinition.getClassName()).newInstance();
-                    // 注册 Bean 实例
-                    singletons.put(beanDefinition.getId(), singleton);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            BeanDefinition beanDefinition = beanDefinitions.get(beanName);
+            if (beanDefinition == null) {
+                throw new BeansException("No bean.");
             }
+            try {
+                singleton = Class.forName(beanDefinition.getClassName()).newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            registerSingleton(beanName, singleton);
         }
         return singleton;
     }
 
     @Override
-    public void registerBeanDefinition(BeanDefinition beanDefinition) {
-        this.beanDefinitions.add(beanDefinition);
-        this.beanNames.add(beanDefinition.getId());
+    public void registerBean(String beanName, Object obj) {
+        registerSingleton(beanName, obj);
     }
+
+    public void registerBeanDefinition(BeanDefinition beanDefinition) {
+        beanDefinitions.put(beanDefinition.getId(), beanDefinition);
+    }
+
+    public Boolean containsBean(String name) {
+        return containsSingleton(name);
+    }
+
 }
