@@ -146,10 +146,6 @@ public class SkuService {
                 sku.setStock(sku.getStock() - skuDTO.getQuantity());
                 int deductResult = skuDao.updateById(sku);
 
-                // 使用 mysql 悲观锁的问题：
-                // 1、易造成锁范围过大
-                // 2、无法在程序中获取扣减库存之前的库存值
-                // 3、很多场景下无法满足业务诉求
 //            int deductResult = skuDao.update(new LambdaUpdateWrapper<SkuEntity>()
 //                    .setSql("stock = stock - " + skuDTO.getQuantity())
 //                    .eq(SkuEntity::getId, skuDTO.getSkuId())
