@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,7 +20,7 @@ public class PageData<T> implements Serializable {
 
     private Long current;
 
-    private List<T> list;
+    private List<T> list = new ArrayList<>();
 
     public PageData(IPage<T> page) {
         this.pages = page.getPages();

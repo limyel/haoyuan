@@ -17,7 +17,6 @@ import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -37,19 +36,12 @@ public class TagService {
         tagDao.validateUnique(null, TagEntity::getSlug, dto.getSlug(), MainErrorMsg.TAG_SLUG_DUPLICATE);
 
         TagEntity tagDO = TagConvert.INSTANCE.toEntity(dto);
-        int result = tagDao.insert(tagDO);
-        if (result == 1) {
-            redisTemplate.delete(MainRedisKey.TAG_DETAIL_KEY);
-        }
-        return result;
+
+        return tagDao.insert(tagDO);
     }
 
     public int delete(String slug) {
-        int result = tagDao.delete(TagEntity::getSlug, slug);
-        if (result == 1) {
-            redisTemplate.delete(MainRedisKey.TAG_DETAIL_KEY);
-        }
-        return result;
+        return tagDao.delete(TagEntity::getSlug, slug);
     }
 
     public PageData<TagPageVO> getPage(TagPageDTO dto) {
@@ -69,11 +61,6 @@ public class TagService {
     }
 
     public List<TagDetailVO> getAll() {
-        String cache = redisTemplate.opsForValue().get(MainRedisKey.TAG_DETAIL_KEY);
-        if (StringUtils.hasText(cache)) {
-            return JSONUtil.parseObject(cache, List.class);
-        }
-
         List<TagEntity> tagDOList = tagDao.selectList();
         List<TagDetailVO> result = tagDOList.stream()
                 .map(tagDO -> {

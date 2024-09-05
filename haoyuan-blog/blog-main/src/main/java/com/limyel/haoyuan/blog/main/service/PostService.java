@@ -28,6 +28,7 @@ import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -129,15 +130,22 @@ public class PostService {
 
     public PageData<PostListVO> getList(PostListDTO dto) {
         Page<PostEntity> page = new Page<>(dto.getPageNum(), dto.getPageSize());
-        List<Long> postIds = postTagService.getPostIdsBySlugs(dto.getTags());
+        List<Long> postIds = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(dto.getTags())) {
+            postIds = postTagService.getPostIdsBySlugs(dto.getTags());
+        }
+        if (postIds.isEmpty()) {
+            return new PageData<>();
+        }
 
-        LambdaQueryWrapper<PostEntity> wrapperPlus = new LambdaQueryWrapper<PostEntity>();
-        wrapperPlus.in(PostEntity::getId, postIds);
-        wrapperPlus.eq(PostEntity::getStatus, StatusEnum.ENABLE.getValue());
-        wrapperPlus.orderByDesc(PostEntity::getTop);
-        wrapperPlus.orderByDesc(PostEntity::getCreateTime);
 
-        postDao.selectPage(page, wrapperPlus);
+        LambdaQueryWrapper<PostEntity> wrapper = new LambdaQueryWrapper<PostEntity>();
+        wrapper.in(PostEntity::getId, postIds);
+        wrapper.eq(PostEntity::getStatus, StatusEnum.ENABLE.getValue());
+        wrapper.orderByDesc(PostEntity::getTop);
+        wrapper.orderByDesc(PostEntity::getCreateTime);
+
+        postDao.selectPage(page, wrapper);
         List<PostListVO> list = page.getRecords().stream().map(postDO -> {
             PostListVO vo = PostConvert.INSTANCE.toListVO(postDO);
             vo.setTags(postTagService.getTagsByPostId(postDO.getId()));
