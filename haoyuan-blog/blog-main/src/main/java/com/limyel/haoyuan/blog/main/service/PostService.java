@@ -133,11 +133,10 @@ public class PostService {
         List<Long> postIds = new ArrayList<>();
         if (!CollectionUtils.isEmpty(dto.getTags())) {
             postIds = postTagService.getPostIdsBySlugs(dto.getTags());
+            if (postIds.isEmpty()) {
+                return new PageData<>();
+            }
         }
-        if (postIds.isEmpty()) {
-            return new PageData<>();
-        }
-
 
         LambdaQueryWrapper<PostEntity> wrapper = new LambdaQueryWrapper<PostEntity>();
         wrapper.in(PostEntity::getId, postIds);
