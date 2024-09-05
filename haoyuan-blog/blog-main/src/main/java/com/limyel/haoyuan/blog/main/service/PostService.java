@@ -131,8 +131,8 @@ public class PostService {
         Page<PostEntity> page = new Page<>(dto.getPageNum(), dto.getPageSize());
         List<Long> postIds = postTagService.getPostIdsBySlugs(dto.getTags());
 
-        LambdaQueryWrapperPlus<PostEntity> wrapperPlus = new LambdaQueryWrapperPlus<PostEntity>();
-        wrapperPlus.inIfPresent(PostEntity::getId, postIds);
+        LambdaQueryWrapper<PostEntity> wrapperPlus = new LambdaQueryWrapper<PostEntity>();
+        wrapperPlus.in(PostEntity::getId, postIds);
         wrapperPlus.eq(PostEntity::getStatus, StatusEnum.ENABLE.getValue());
         wrapperPlus.orderByDesc(PostEntity::getTop);
         wrapperPlus.orderByDesc(PostEntity::getCreateTime);
