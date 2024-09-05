@@ -139,7 +139,7 @@ public class PostService {
         }
 
         LambdaQueryWrapper<PostEntity> wrapper = new LambdaQueryWrapper<PostEntity>();
-        wrapper.in(PostEntity::getId, postIds);
+        wrapper.in(!postIds.isEmpty(), PostEntity::getId, postIds);
         wrapper.eq(PostEntity::getStatus, StatusEnum.ENABLE.getValue());
         wrapper.orderByDesc(PostEntity::getTop);
         wrapper.orderByDesc(PostEntity::getCreateTime);
