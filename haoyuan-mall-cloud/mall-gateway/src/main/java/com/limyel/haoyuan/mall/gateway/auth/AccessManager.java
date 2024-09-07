@@ -16,6 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 权限管理器
+ */
 @Slf4j
 @Component
 public class AccessManager implements ReactiveAuthorizationManager<AuthorizationContext> {
@@ -40,13 +43,6 @@ public class AccessManager implements ReactiveAuthorizationManager<Authorization
 
         List<String> authorities = Arrays.asList("ADMIN", "CUSTOMER");
 
-//        mono
-//                .filter(Authentication::isAuthenticated)
-//                .flatMapIterable(Authentication::getAuthorities)
-//                .map(GrantedAuthority::getAuthority)
-//                .any(authorities::contains)
-//
-
         return mono
                 .doOnNext(auth -> System.out.println("Received auth: " + auth))
                 .doOnSubscribe(sub -> System.out.println("Subscribed"))
@@ -67,6 +63,7 @@ public class AccessManager implements ReactiveAuthorizationManager<Authorization
             log.info("clientId is {}",clientId);
         }
 
+        // todo 这里怎么拿到 MemberUserDetails？
         Object principal = auth.getPrincipal();
         log.info("用户信息:{}",principal.toString());
         return true;

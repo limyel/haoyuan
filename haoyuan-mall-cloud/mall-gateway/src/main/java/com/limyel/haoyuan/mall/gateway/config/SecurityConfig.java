@@ -12,7 +12,9 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.server.resource.web.server.ServerBearerTokenAuthenticationConverter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.AuthenticationWebFilter;
@@ -64,9 +66,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain webFluxSecurityFilterChain(ServerHttpSecurity http) throws Exception{
-        //token管理器
-        ReactiveAuthenticationManager tokenAuthenticationManager = new ReactiveJdbcAuthenticationManager(new JdbcTokenStore(dataSource));
-        //认证过滤器
+        // todo 做成可配置？
+        // token管理器
+        // ReactiveAuthenticationManager tokenAuthenticationManager = new ReactiveJdbcAuthenticationManager(tokenStore());
+        ReactiveAuthenticationManager tokenAuthenticationManager = new ReactiveJwtAuthenticationManager(tokenStore());
+
+        // 认证过滤器
         AuthenticationWebFilter authenticationWebFilter = new AuthenticationWebFilter(tokenAuthenticationManager);
         authenticationWebFilter.setServerAuthenticationConverter(new ServerBearerTokenAuthenticationConverter());
 
@@ -82,6 +87,23 @@ public class SecurityConfig {
                 //oauth2认证过滤器
                 .addFilterAt(authenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION);
         return http.build();
+    }
+
+    @Bean
+    public TokenStore tokenStore() {
+        // 使用数据库存储 token
+        // return new JdbcTokenStore(dataSource);
+
+        // 使用 jwt token
+        return new JwtTokenStore(jwtTokenEnhancer());
+    }
+
+    @Bean
+    public JwtAccessTokenConverter jwtTokenEnhancer() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        // 对称密钥
+        converter.setSigningKey("limyel");
+        return converter;
     }
 
 }

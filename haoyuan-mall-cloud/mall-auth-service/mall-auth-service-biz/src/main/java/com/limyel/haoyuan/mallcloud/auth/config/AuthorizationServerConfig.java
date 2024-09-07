@@ -4,6 +4,7 @@ import com.limyel.haoyuan.mallcloud.auth.service.MemberUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -13,8 +14,10 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import javax.sql.DataSource;
 
@@ -31,14 +34,44 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * 帮助 jwt token 和 oauth 身份信息之间做转换
+     * @return
+     */
+    @Bean
+    public JwtAccessTokenConverter jwtTokenEnhancer() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        // 对称密钥
+        converter.setSigningKey("limyel");
+        return converter;
+    }
+
     @Bean
     public TokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource);
+        // 使用数据库存储 token
+        // return new JdbcTokenStore(dataSource);
+
+        // 使用 jwt token
+        return new JwtTokenStore(jwtTokenEnhancer());
     }
 
     @Bean
     public ClientDetailsService jdbcClientDetailsService() {
         return new JdbcClientDetailsService(dataSource);
+    }
+
+    @Primary
+    @Bean
+    public DefaultTokenServices tokenServices() {
+        DefaultTokenServices tokenServices = new DefaultTokenServices();
+        tokenServices.setTokenEnhancer(jwtTokenEnhancer());
+        tokenServices.setTokenStore(tokenStore());
+        tokenServices.setSupportRefreshToken(true);
+        // access_token 过期时间，默认 12 小时
+        tokenServices.setAccessTokenValiditySeconds(60 * 60 * 6);
+        // refresh_token 过期时间，默认 30 天
+        tokenServices.setRefreshTokenValiditySeconds(60 * 60 * 24 * 7);
+        return tokenServices;
     }
 
     /**
@@ -49,9 +82,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.userDetailsService(memberUserDetailsService);
-        endpoints.authenticationManager(authenticationManager);
-        endpoints.tokenStore(tokenStore());
+        endpoints.userDetailsService(memberUserDetailsService)
+                .authenticationManager(authenticationManager)
+                .tokenServices(tokenServices());
     }
 
     /**
