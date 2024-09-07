@@ -1,6 +1,5 @@
 package com.limyel.haoyuan.mall.member.controller.admin;
 
-import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.core.validator.group.Create;
@@ -30,14 +29,12 @@ public class LevelController {
 
     private final LevelService levelService;
 
-    @SaCheckLogin
     @PostMapping("/create")
     public R<?> create(@Validated(Create.class) @RequestBody LevelDTO dto) {
         levelService.create(dto);
         return R.ok();
     }
 
-    @SaCheckLogin
     @GetMapping("/delete/{ids}")
     public R<?> delete(@PathVariable("ids") String ids) {
         // todo 封装
@@ -52,14 +49,12 @@ public class LevelController {
         return R.ok();
     }
 
-    @SaCheckLogin
     @PostMapping("/update")
     public R<?> update(@Validated(Update.class) @RequestBody LevelDTO dto) {
         levelService.update(dto);
         return R.ok();
     }
 
-    @SaCheckLogin
     @GetMapping("/get/page")
     public R<PageData<LevelPageVO>> getPage(LevelPageDTO dto) {
         PageData<LevelPageVO> result = levelService.getPage(dto);

@@ -26,7 +26,7 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-satoken</artifactId>
+            <artifactId>common-redis</artifactId>
         </dependency>
 
         <dependency>

@@ -79,4 +79,4 @@ sa-token:
   check-same-token: true
 
 logging:
-  config: classpath:logback-blog.xml
+  config: classpath:logback-mall-member.xml

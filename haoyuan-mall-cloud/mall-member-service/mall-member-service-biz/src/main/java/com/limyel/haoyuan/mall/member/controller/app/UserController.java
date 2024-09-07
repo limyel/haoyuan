@@ -2,7 +2,6 @@ package com.limyel.haoyuan.mall.member.controller.app;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.common.satoken.annotation.SaUserCheckLogin;
 import com.limyel.haoyuan.mall.member.service.UserService;
 import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,6 @@ public class UserController {
 
     private final UserService userService;
 
-    @SaUserCheckLogin
     @GetMapping("/get/me")
     @SentinelResource("getCurrentUserInfo")
     public R<UserInfoVO> getCurrentUserInfo() {

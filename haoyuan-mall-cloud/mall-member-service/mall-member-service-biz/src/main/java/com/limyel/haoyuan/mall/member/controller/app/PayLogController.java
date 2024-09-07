@@ -3,8 +3,6 @@ package com.limyel.haoyuan.mall.member.controller.app;
 import com.limyel.haoyuan.common.core.pojo.PageParam;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.common.satoken.annotation.SaUserCheckLogin;
-import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import com.limyel.haoyuan.mall.member.service.PayLogService;
 import com.limyel.haoyuan.mall.member.vo.pointlog.PayLogListVO;
 import lombok.RequiredArgsConstructor;
@@ -19,10 +17,9 @@ public class PayLogController {
 
     private final PayLogService payLogService;
 
-    @SaUserCheckLogin
     @GetMapping("/get/list")
     public R<?> getList(PageParam pageParam) {
-        Long loginId = StpUserUtil.getLoginIdAsLong();
+        Long loginId = null;
         PageData<PayLogListVO> result = payLogService.getList(pageParam, loginId);
         return R.ok(result);
     }

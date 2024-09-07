@@ -1,6 +1,5 @@
 package com.limyel.haoyuan.mall.member.controller.admin;
 
-import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
@@ -30,14 +29,12 @@ public class UserController {
 
     private final UserService userService;
 
-    @SaCheckLogin(type = "login")
     @PostMapping("/create")
     public R<?> create(@RequestBody UserDTO dto) {
         userService.create(dto);
         return R.ok();
     }
 
-    @SaCheckLogin
     @GetMapping("/delete/{ids}")
     public R<?> delete(@PathVariable("ids") String ids) {
         List<Long> idList = new ArrayList<>();

@@ -7,10 +7,10 @@ import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.util.CryptUtil;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import com.limyel.haoyuan.mall.member.constant.PaymentMethodEnum;
 import com.limyel.haoyuan.mall.member.convert.UserConvert;
 import com.limyel.haoyuan.mall.member.dao.UserDao;
+import com.limyel.haoyuan.mall.member.dto.user.MemberUserInfo;
 import com.limyel.haoyuan.mall.member.entity.PayLogEntity;
 import com.limyel.haoyuan.mall.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
@@ -85,21 +85,23 @@ public class UserService {
     }
 
     public UserInfoVO getCurrentUserInfo() {
-        Long loginId = StpUserUtil.getLoginIdAsLong();
-        UserEntity user = userDao.selectOne(UserEntity::getId, loginId);
+//        Long loginId = StpUserUtil.getLoginIdAsLong();
+//        UserEntity user = userDao.selectOne(UserEntity::getId, loginId);
+//        if (user == null) {
+//            throw new ServiceException("用户不存在");
+//        }
+//
+//        return UserConvert.INSTANCE.toInfoVO(user);
+        // todo
+        return null;
+    }
+
+    public MemberUserInfo getByUsername(String username) {
+        UserEntity user = userDao.selectOne(UserEntity::getUsername, username);
         if (user == null) {
             throw new ServiceException("用户不存在");
         }
-
-        return UserConvert.INSTANCE.toInfoVO(user);
-    }
-
-    public UserEntity getByUsername(String username) {
-        UserEntity user = userDao.selectOne(UserEntity::getUsername, username);
-        if (user == null) {
-            throw new ServiceException();
-        }
-        return user;
+        return UserConvert.INSTANCE.toInfoDTO(user);
     }
 
     public UserEntity getByBlogUsername(String blogUsername) {

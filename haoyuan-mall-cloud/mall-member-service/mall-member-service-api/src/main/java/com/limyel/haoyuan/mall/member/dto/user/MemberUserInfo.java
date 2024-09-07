@@ -3,7 +3,7 @@ package com.limyel.haoyuan.mall.member.dto.user;
 import lombok.Data;
 
 @Data
-public class UserInfoRDTO {
+public class MemberUserInfo {
 
     private Long id;
 

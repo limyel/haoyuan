@@ -14,6 +14,13 @@ spring:
   main:
     web-application-type: reactive
 
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/mall-auth?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
 sa-token:
   token-name: satoken
   # token 存活时间（秒），-1 永久
