@@ -3,7 +3,7 @@ package com.limyel.haoyuan.mall.trade.service;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.mall.product.constant.SpuTypeEnum;
-import com.limyel.haoyuan.mall.security.entity.LoginUser;
+import com.limyel.haoyuan.mall.security.entity.SysUserDetails;
 import com.limyel.haoyuan.mall.trade.convert.UserSpuConvert;
 import com.limyel.haoyuan.mall.trade.dao.UserProductDao;
 import com.limyel.haoyuan.mall.trade.dto.userspu.UseProductDTO;
@@ -65,10 +65,10 @@ public class UserProductService {
     }
 
     public List<UserProductVO> getList() {
-        LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        SysUserDetails sysUser = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         List<UserProductEntity> list = userProductDao.selectList(new LambdaQueryWrapper<UserProductEntity>()
-                .eq(UserProductEntity::getUserId, loginUser.getId())
+                .eq(UserProductEntity::getUserId, sysUser.getId())
                 .and(wrapper -> wrapper.ge(UserProductEntity::getQuantity, 0).or().ge(UserProductEntity::getSubscribeTime, LocalDateTime.now()))
         );
         return list.stream()
@@ -77,8 +77,8 @@ public class UserProductService {
     }
 
     public void useProduct(UseProductDTO dto) {
-        LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Long userId = loginUser.getId();
+        SysUserDetails sysUser = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = sysUser.getId();
         LambdaQueryWrapper<UserProductEntity> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(UserProductEntity::getUserId, userId);
         wrapper.eq(UserProductEntity::getSkuId, dto.getSkuId());

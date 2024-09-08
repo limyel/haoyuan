@@ -11,7 +11,7 @@ import com.limyel.haoyuan.mall.member.dto.user.PointBalance;
 import com.limyel.haoyuan.mall.product.api.SkuApi;
 import com.limyel.haoyuan.mall.product.dto.SkuConfirm;
 import com.limyel.haoyuan.mall.product.dto.StockDeduct;
-import com.limyel.haoyuan.mall.security.entity.LoginUser;
+import com.limyel.haoyuan.mall.security.entity.SysUserDetails;
 import com.limyel.haoyuan.mall.trade.constant.OrderRedisKey;
 import com.limyel.haoyuan.mall.trade.constant.OrderStatusEnum;
 import com.limyel.haoyuan.mall.trade.convert.OrderConvert;
@@ -58,12 +58,12 @@ public class OrderService {
     private final RocketMQTemplate rocketMQTemplate;
 
     public PageData<OrderListVO> getList(PageParam pageParam) {
-        LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        SysUserDetails sysUser = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Page<OrderEntity> page = new Page<>(pageParam.getPageNum(), pageParam.getPageSize());
 
         LambdaQueryWrapper<OrderEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(OrderEntity::getUserId, loginUser.getId());
+        wrapper.eq(OrderEntity::getUserId, sysUser.getId());
 
         orderDao.selectPage(page, wrapper);
 
@@ -113,7 +113,7 @@ public class OrderService {
      * @return
      */
     public String submit(OrderSubmitDTO dto) {
-        LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        SysUserDetails sysUser = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         // 判断订单是否重复提交
         // todo 用 lua 脚本保证原子性
@@ -169,7 +169,7 @@ public class OrderService {
         order.setTotalAmount(totalAmount);
         order.setTotalQuantity(totalQuantity);
         order.setPaymentAmount(totalAmount);
-        order.setUserId(loginUser.getId());
+        order.setUserId(sysUser.getId());
         orderDao.insert(order);
         orderItemService.create(order.getId(), dto.getOrderItems());
 
@@ -189,7 +189,7 @@ public class OrderService {
     }
 
     public void pay(OrderPayDTO dto) {
-        LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        SysUserDetails sysUser = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         String orderSn = dto.getOrderSn();
         OrderEntity order = orderDao.selectOne(OrderEntity::getOrderSn, orderSn);
@@ -198,7 +198,7 @@ public class OrderService {
         Assert.isTrue(OrderStatusEnum.UNPAID.getValue().equals(order.getStatus()), "订单不可支付，请检查订单状态");
 
         PointBalance pointBalance = new PointBalance();
-        pointBalance.setUserId(loginUser.getId());
+        pointBalance.setUserId(sysUser.getId());
         pointBalance.setType(dto.getPaymentMethod());
         pointBalance.setTotal(order.getPaymentAmount());
         if (!userApi.deductPointBalance(pointBalance)) {
@@ -208,7 +208,7 @@ public class OrderService {
         orderDao.updateById(order);
 
         // todo
-        userProductService.createOrUpdate(loginUser.getId(), order.getId());
+        userProductService.createOrUpdate(sysUser.getId(), order.getId());
     }
 
     public void cancel(String orderSn) {

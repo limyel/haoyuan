@@ -11,7 +11,7 @@ import com.limyel.haoyuan.mall.member.dto.paylog.PayLogPageDTO;
 import com.limyel.haoyuan.mall.member.entity.PayLogEntity;
 import com.limyel.haoyuan.mall.member.vo.pointlog.PayLogListVO;
 import com.limyel.haoyuan.mall.member.vo.pointlog.PayLogPageVO;
-import com.limyel.haoyuan.mall.security.entity.LoginUser;
+import com.limyel.haoyuan.mall.security.entity.SysUserDetails;
 import com.limyel.haoyuan.mall.sys.api.SysUserApi;
 import com.limyel.haoyuan.mall.sys.dto.sysuser.SysUserInfo;
 import lombok.RequiredArgsConstructor;
@@ -52,12 +52,12 @@ public class PayLogService {
     }
 
     public PageData<PayLogListVO> getList(PageParam pageParam) {
-        LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        SysUserDetails sysUser = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Page<PayLogEntity> page = new Page<>(pageParam.getPageNum(), pageParam.getPageSize());
 
         LambdaQueryWrapper<PayLogEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(PayLogEntity::getUserId, loginUser.getId());
+        wrapper.eq(PayLogEntity::getUserId, sysUser.getId());
         payLogDao.selectPage(page, wrapper);
 
         List<PayLogListVO> list = page.getRecords().stream()
