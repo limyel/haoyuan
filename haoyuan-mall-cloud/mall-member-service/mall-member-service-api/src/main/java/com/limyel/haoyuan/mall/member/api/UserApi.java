@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mall.member.api;
 
 import com.limyel.haoyuan.common.cloud.config.FeignDecoderConfig;
-import com.limyel.haoyuan.mall.member.dto.user.MemberUserInfo;
+import com.limyel.haoyuan.mall.member.dto.user.MemberUserSecurity;
 import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.validation.annotation.Validated;
@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface UserApi {
 
     @GetMapping("/rpc/user/get/by-username/{username}")
-    MemberUserInfo getByUsername(@PathVariable("username") String username);
+    MemberUserSecurity getByUsername(@PathVariable("username") String username);
+
+    @GetMapping("/rpc/user/get/by-mobille/{mobile}")
+    MemberUserSecurity getByMobile(@PathVariable("mobile") String mobile);
 
     @PostMapping("/rpc/user/point-balance/deduct")
     Boolean deductPointBalance(@Validated @RequestBody PointBalanceRDTO dto);

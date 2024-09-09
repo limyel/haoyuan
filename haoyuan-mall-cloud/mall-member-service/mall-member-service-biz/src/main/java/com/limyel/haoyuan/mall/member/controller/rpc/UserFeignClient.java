@@ -2,7 +2,7 @@ package com.limyel.haoyuan.mall.member.controller.rpc;
 
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.mall.member.dto.user.MemberUserInfo;
+import com.limyel.haoyuan.mall.member.dto.user.MemberUserSecurity;
 import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
 import com.limyel.haoyuan.mall.member.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class UserApi {
+public class UserFeignClient {
 
     private final UserService userService;
 
@@ -29,8 +29,14 @@ public class UserApi {
     }
 
     @GetMapping("/get/by-username/{username}")
-    public R<MemberUserInfo> getByUsername(@PathVariable("username") String username) {
-        MemberUserInfo result = userService.getByUsername(username);
+    public R<MemberUserSecurity> getByUsername(@PathVariable("username") String username) {
+        MemberUserSecurity result = userService.getByUsername(username);
+        return R.ok(result);
+    }
+
+    @GetMapping("/get/by-mobile/{mobile}")
+    public R<MemberUserSecurity> getByMobile(@PathVariable("mobile") String mobile) {
+        MemberUserSecurity result = userService.getByUsername(mobile);
         return R.ok(result);
     }
 

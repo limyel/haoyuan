@@ -10,7 +10,7 @@ import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
 import com.limyel.haoyuan.mall.member.constant.PaymentMethodEnum;
 import com.limyel.haoyuan.mall.member.convert.UserConvert;
 import com.limyel.haoyuan.mall.member.dao.UserDao;
-import com.limyel.haoyuan.mall.member.dto.user.MemberUserInfo;
+import com.limyel.haoyuan.mall.member.dto.user.MemberUserSecurity;
 import com.limyel.haoyuan.mall.member.entity.PayLogEntity;
 import com.limyel.haoyuan.mall.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
@@ -96,12 +96,20 @@ public class UserService {
         return null;
     }
 
-    public MemberUserInfo getByUsername(String username) {
+    public MemberUserSecurity getByUsername(String username) {
         UserEntity user = userDao.selectOne(UserEntity::getUsername, username);
         if (user == null) {
             throw new ServiceException("用户不存在");
         }
-        return UserConvert.INSTANCE.toInfoDTO(user);
+        return UserConvert.INSTANCE.toSecurity(user);
+    }
+
+    public MemberUserSecurity getByMobile(String mobile) {
+        UserEntity user = userDao.selectOne(UserEntity::getMobile, mobile);
+        if (user == null) {
+            throw new ServiceException("用户不存在");
+        }
+        return UserConvert.INSTANCE.toSecurity(user);
     }
 
     public UserEntity getByBlogUsername(String blogUsername) {

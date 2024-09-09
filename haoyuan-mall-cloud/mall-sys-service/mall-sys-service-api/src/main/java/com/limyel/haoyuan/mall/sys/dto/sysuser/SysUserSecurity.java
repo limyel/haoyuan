@@ -3,7 +3,7 @@ package com.limyel.haoyuan.mall.sys.dto.sysuser;
 import lombok.Data;
 
 @Data
-public class SysUserInfoDTO {
+public class SysUserSecurity {
 
     private Long id;
 

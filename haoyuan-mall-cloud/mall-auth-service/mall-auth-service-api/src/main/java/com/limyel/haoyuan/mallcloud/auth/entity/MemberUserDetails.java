@@ -44,21 +44,37 @@ public class MemberUserDetails implements MallUserDetails {
         return username;
     }
 
+    /**
+     * 账户过期
+     * @return
+     */
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    /**
+     * 锁定账户
+     * @return
+     */
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    /**
+     * 账户凭据（密码）过期
+     * @return
+     */
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    /**
+     * 禁用账户
+     * @return
+     */
     @Override
     public boolean isEnabled() {
         return true;

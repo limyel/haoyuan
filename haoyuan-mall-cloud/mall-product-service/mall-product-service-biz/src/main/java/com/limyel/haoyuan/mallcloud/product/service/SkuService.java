@@ -168,8 +168,8 @@ public class SkuService {
     }
 
     public void returnStock(StockReturn dto) {
+        // todo 从 redis 获取
         for (StockReturn.Sku sku : dto.getList()) {
-            log.info("队列长度：{}", threadPoolExecutor.getQueue().size());
             threadPoolExecutor.execute(() -> {
                 RLock lock = redissonClient.getLock("stock:lock:" + sku.getSkuId());
 

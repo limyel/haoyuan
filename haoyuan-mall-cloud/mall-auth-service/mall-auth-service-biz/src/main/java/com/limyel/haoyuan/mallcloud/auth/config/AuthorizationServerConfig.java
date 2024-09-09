@@ -1,5 +1,7 @@
 package com.limyel.haoyuan.mallcloud.auth.config;
 
+import com.limyel.haoyuan.mallcloud.auth.extention.app.AppPasswordTokenGranter;
+import com.limyel.haoyuan.mallcloud.auth.extention.sms.SmsCodeTokenGranter;
 import com.limyel.haoyuan.mallcloud.auth.service.MemberUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +15,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.CompositeTokenGranter;
+import org.springframework.security.oauth2.provider.TokenGranter;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -20,6 +24,9 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableAuthorizationServer
@@ -64,9 +71,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public DefaultTokenServices tokenServices() {
         DefaultTokenServices tokenServices = new DefaultTokenServices();
-        tokenServices.setTokenEnhancer(jwtTokenEnhancer());
         tokenServices.setTokenStore(tokenStore());
         tokenServices.setSupportRefreshToken(true);
+        tokenServices.setReuseRefreshToken(false);
+        tokenServices.setClientDetailsService(jdbcClientDetailsService());
+        tokenServices.setTokenEnhancer(jwtTokenEnhancer());
         // access_token 过期时间，默认 12 小时
         tokenServices.setAccessTokenValiditySeconds(60 * 60 * 6);
         // refresh_token 过期时间，默认 30 天
@@ -82,8 +91,21 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        // 获取原有默认的授权模式（授权码模式、密码模式、客户端模式、简化模式）的授权者
+        List<TokenGranter> granters = new ArrayList<>(Arrays.asList(endpoints.getTokenGranter()));
+
+        // 添加 app 用户名密码授权模式的授权者
+        granters.add(new AppPasswordTokenGranter(endpoints.getTokenServices(), endpoints.getClientDetailsService(),
+                endpoints.getOAuth2RequestFactory(), authenticationManager));
+        // 添加手机短信验证码授权模式的授权者
+        granters.add(new SmsCodeTokenGranter(endpoints.getTokenServices(), endpoints.getClientDetailsService(),
+                endpoints.getOAuth2RequestFactory(), authenticationManager));
+
+        CompositeTokenGranter compositeTokenGranter = new CompositeTokenGranter(granters);
+
         endpoints.userDetailsService(memberUserDetailsService)
                 .authenticationManager(authenticationManager)
+                .tokenGranter(compositeTokenGranter)
                 .tokenServices(tokenServices());
     }
 

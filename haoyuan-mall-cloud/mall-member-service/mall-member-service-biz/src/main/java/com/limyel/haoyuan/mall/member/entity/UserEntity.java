@@ -16,6 +16,11 @@ public class UserEntity extends BaseEntity {
     private String username;
 
     /**
+     * 手机号
+     */
+    private String mobile;
+
+    /**
      * 密码
      */
     private String password;

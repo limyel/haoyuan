@@ -26,12 +26,6 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-satoken</artifactId>
-            <version>0.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
             <artifactId>mall-sys-service-api</artifactId>
             <version>0.0.0</version>
         </dependency>

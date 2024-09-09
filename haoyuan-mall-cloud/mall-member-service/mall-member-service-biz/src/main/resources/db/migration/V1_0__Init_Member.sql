@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS `member_user`;
 CREATE TABLE `member_user` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户名',
+    `mobile` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '手机号',
     `password` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
     `point` bigint NOT NULL DEFAULT 0 COMMENT '积分',
     `balance` bigint NOT NULL DEFAULT 0 COMMENT '余额',
@@ -16,26 +17,26 @@ CREATE TABLE `member_user` (
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='会员用户表';
 
-INSERT INTO `member_user` (id, username, password, point, balance, blog_username, status) VALUES
-    (1, 'limyel', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 2000, 0, 'limyel', 1);
-INSERT INTO `member_user` (`id`, `username`, `password`, `point`, `balance`, `status`) VALUES
-    (2, 'liu_bei', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 8000, 3000, 1),
-    (3, 'guan_yu', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
-    (4, 'zhang_fei', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
-    (5, 'zhu_ge_liang', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 7000, 1500, 1),
-    (6, 'zhao_yun', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
-    (7, 'ma_chao', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
-    (8, 'huang_zhong', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
-    (9, 'cao_cao', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 8000, 3000, 1),
-    (10, 'guo_jia', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
-    (11, 'zhang_liao', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 5000, 1500, 1),
-    (12, 'le_jin', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 5000, 1500, 1),
-    (13, 'yu_jin', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 3000, 1000, 1),
-    (14, 'zhang_he', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 5000, 1500, 1),
-    (15, 'xu_huang', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 5000, 1500, 1),
-    (16, 'si_ma_yi', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1000, 500, 0),
-    (17, 'si_ma_shi', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1000, 500, 0),
-    (18, 'si_ma_zhao', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1000, 500, 0);
+INSERT INTO `member_user` (id, username, mobile, password, point, balance, blog_username, status) VALUES
+    (1, 'limyel', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 2000, 0, 'limyel', 1);
+INSERT INTO `member_user` (`id`, `username`, `mobile`, `password`, `point`, `balance`, `status`) VALUES
+    (2, 'liu_bei', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 8000, 3000, 1),
+    (3, 'guan_yu', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
+    (4, 'zhang_fei', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
+    (5, 'zhu_ge_liang', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 7000, 1500, 1),
+    (6, 'zhao_yun', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
+    (7, 'ma_chao', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
+    (8, 'huang_zhong', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
+    (9, 'cao_cao', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 8000, 3000, 1),
+    (10, 'guo_jia', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
+    (11, 'zhang_liao', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 5000, 1500, 1),
+    (12, 'le_jin', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 5000, 1500, 1),
+    (13, 'yu_jin', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 3000, 1000, 1),
+    (14, 'zhang_he', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 5000, 1500, 1),
+    (15, 'xu_huang', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 5000, 1500, 1),
+    (16, 'si_ma_yi', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1000, 500, 0),
+    (17, 'si_ma_shi', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1000, 500, 0),
+    (18, 'si_ma_zhao', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1000, 500, 0);
 
 
 
