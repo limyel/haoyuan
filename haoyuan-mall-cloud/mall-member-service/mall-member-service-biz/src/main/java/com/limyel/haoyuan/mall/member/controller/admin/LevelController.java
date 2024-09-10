@@ -10,6 +10,7 @@ import com.limyel.haoyuan.mall.member.dto.level.LevelPageDTO;
 import com.limyel.haoyuan.mall.member.service.LevelService;
 import com.limyel.haoyuan.mall.member.vo.level.LevelPageVO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,12 +30,14 @@ public class LevelController {
 
     private final LevelService levelService;
 
+    @PreAuthorize("@pms.hasPermission('level:create')")
     @PostMapping("/create")
     public R<?> create(@Validated(Create.class) @RequestBody LevelDTO dto) {
         levelService.create(dto);
         return R.ok();
     }
 
+    @PreAuthorize("@pms.hasPermission('level:delete')")
     @GetMapping("/delete/{ids}")
     public R<?> delete(@PathVariable("ids") String ids) {
         // todo 封装

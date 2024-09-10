@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mallcloud.auth.extention.app;
 
 import com.limyel.haoyuan.common.core.exception.ServiceException;
-import com.limyel.haoyuan.mallcloud.auth.entity.LoginUser;
+import com.limyel.haoyuan.mallcloud.auth.entity.UnLoginUser;
 import com.limyel.haoyuan.mallcloud.auth.service.MemberUserDetailsService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +23,9 @@ public class AppPasswordAuthenticationProvider implements AuthenticationProvider
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         AppPasswordAuthenticationToken authenticationToken = (AppPasswordAuthenticationToken) authentication;
 
-        LoginUser loginUser = (LoginUser) authenticationToken.getPrincipal();
-        UserDetails userDetails = memberUserDetailsService.loadUserByUsername(loginUser.getUsername());
-        if (!passwordEncoder.matches(loginUser.getPassword(), userDetails.getPassword())) {
+        UnLoginUser unLoginUser = (UnLoginUser) authenticationToken.getPrincipal();
+        UserDetails userDetails = memberUserDetailsService.loadUserByUsername(unLoginUser.getUsername());
+        if (!passwordEncoder.matches(unLoginUser.getPassword(), userDetails.getPassword())) {
             throw new ServiceException("账号密码错误。");
         }
 

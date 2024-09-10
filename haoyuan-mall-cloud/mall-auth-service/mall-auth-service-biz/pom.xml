@@ -42,6 +42,11 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
+            <artifactId>common-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
             <artifactId>common-cloud</artifactId>
             <version>0.0.0</version>
         </dependency>

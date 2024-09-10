@@ -19,10 +19,8 @@ public class LevelDTO {
     @NotBlank(message = "等级名不能为空")
     private String name;
 
-    @Min(value = 0, message = "积分下限不能低于 0")
-    private Long minPoint;
-
-    private Long maxPoint;
+    @Min(value = 0, message = "需要的积分不能低于 0")
+    private Long point;
 
     private Integer sort;
 

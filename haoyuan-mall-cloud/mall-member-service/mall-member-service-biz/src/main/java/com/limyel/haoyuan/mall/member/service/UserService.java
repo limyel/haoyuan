@@ -18,6 +18,7 @@ import com.limyel.haoyuan.mall.member.dto.user.UserDTO;
 import com.limyel.haoyuan.mall.member.dto.user.UserPageDTO;
 import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;
 import com.limyel.haoyuan.mall.member.vo.user.UserPageVO;
+import com.limyel.haoyuan.mallcloud.common.security.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -85,15 +87,15 @@ public class UserService {
     }
 
     public UserInfoVO getCurrentUserInfo() {
-//        Long loginId = StpUserUtil.getLoginIdAsLong();
-//        UserEntity user = userDao.selectOne(UserEntity::getId, loginId);
-//        if (user == null) {
-//            throw new ServiceException("用户不存在");
-//        }
-//
-//        return UserConvert.INSTANCE.toInfoVO(user);
-        // todo
-        return null;
+        Optional<Long> memberUserId = SecurityUtil.getMemberUserId();
+        Long userId = memberUserId.orElseThrow(() -> new ServiceException("用户未登录"));
+
+        UserEntity user = userDao.selectOne(UserEntity::getId, userId);
+        if (user == null) {
+            throw new ServiceException("用户不存在");
+        }
+
+        return UserConvert.INSTANCE.toInfoVO(user);
     }
 
     public MemberUserSecurity getByUsername(String username) {

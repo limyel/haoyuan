@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("member_level_entity")
+@TableName("member_level")
 public class LevelEntity extends BaseEntity {
 
     /**
@@ -16,14 +16,9 @@ public class LevelEntity extends BaseEntity {
     private String name;
 
     /**
-     * 积分下限
+     * 需要的积分
      */
-    private Long minPoint;
-
-    /**
-     * 积分上限
-     */
-    private Long maxPoint;
+    private Long point;
 
     /**
      * 展示顺序

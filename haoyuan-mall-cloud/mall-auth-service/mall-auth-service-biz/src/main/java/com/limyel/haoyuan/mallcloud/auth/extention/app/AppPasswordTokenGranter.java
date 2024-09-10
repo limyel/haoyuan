@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mallcloud.auth.extention.app;
 
 import com.limyel.haoyuan.common.core.exception.ServiceException;
-import com.limyel.haoyuan.mallcloud.auth.entity.LoginUser;
+import com.limyel.haoyuan.mallcloud.auth.entity.UnLoginUser;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -30,7 +30,7 @@ public class AppPasswordTokenGranter extends AbstractTokenGranter {
     @Override
     protected OAuth2Authentication getOAuth2Authentication(ClientDetails client, TokenRequest tokenRequest) {
         LinkedHashMap<String, String> parameters = new LinkedHashMap<>(tokenRequest.getRequestParameters());
-        LoginUser user = new LoginUser();
+        UnLoginUser user = new UnLoginUser();
         user.setUsername(parameters.get("username"));
         user.setPassword(parameters.get("password"));
 

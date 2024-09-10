@@ -3,11 +3,12 @@ package com.limyel.haoyuan.mallcloud.auth.config;
 import com.limyel.haoyuan.mallcloud.auth.extention.app.AppPasswordTokenGranter;
 import com.limyel.haoyuan.mallcloud.auth.extention.sms.SmsCodeTokenGranter;
 import com.limyel.haoyuan.mallcloud.auth.service.MemberUserDetailsService;
-import com.limyel.haoyuan.mallcloud.auth.token.JwtTokenConverter;
+import com.limyel.haoyuan.mallcloud.auth.token.MallJwtTokenConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -42,13 +43,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     private final PasswordEncoder passwordEncoder;
 
+    private final StringRedisTemplate redisTemplate;
+
     /**
      * 帮助 jwt token 和 oauth 身份信息之间做转换
      * @return
      */
     @Bean
     public JwtAccessTokenConverter jwtTokenEnhancer() {
-        JwtAccessTokenConverter converter = new JwtTokenConverter();
+        JwtAccessTokenConverter converter = new MallJwtTokenConverter(redisTemplate);
         // 对称密钥
         converter.setSigningKey("limyel");
         return converter;

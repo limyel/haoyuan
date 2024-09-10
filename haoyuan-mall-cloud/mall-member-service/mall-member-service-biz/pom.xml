@@ -50,8 +50,15 @@
         </dependency>
 
         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-auth-service-api</artifactId>
+            <version>0.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-security-starter</artifactId>
+            <version>0.0.0</version>
         </dependency>
 
     </dependencies>

@@ -1,8 +1,11 @@
 package com.limyel.haoyuan.mallcloud.auth.token;
 
+import com.limyel.haoyuan.common.core.util.JSONUtil;
 import com.limyel.haoyuan.mallcloud.auth.entity.MallUserDetails;
 import com.limyel.haoyuan.mallcloud.auth.entity.MemberUserDetails;
 import com.limyel.haoyuan.mallcloud.auth.entity.SysUserDetails;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -14,16 +17,21 @@ import java.util.Map;
 /**
  * jwt token 增强
  */
-public class JwtTokenConverter extends JwtAccessTokenConverter {
+@RequiredArgsConstructor
+public class MallJwtTokenConverter extends JwtAccessTokenConverter {
+
+    private final StringRedisTemplate redisTemplate;
 
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
-        MallUserDetails loginUser = (MallUserDetails) authentication.getUserAuthentication().getPrincipal();
+        MallUserDetails userDetails = (MallUserDetails) authentication.getUserAuthentication().getPrincipal();
         final Map<String, Object> additionalInformation = new HashMap<>(4);
-        if (loginUser instanceof SysUserDetails) {
-            additionalInformation.put("sysUserId", loginUser.getId());
-        } else if (loginUser instanceof MemberUserDetails) {
-            additionalInformation.put("memberUserId", loginUser.getId());
+        if (userDetails instanceof SysUserDetails sysUserDetails) {
+            additionalInformation.put("sysUserId", userDetails.getId());
+
+            redisTemplate.opsForValue().set("AUTH:SYS_USER_PERMS:" + sysUserDetails.getId(), JSONUtil.toJson(sysUserDetails.getPerms()));
+        } else if (userDetails instanceof MemberUserDetails) {
+            additionalInformation.put("memberUserId", userDetails.getId());
         }
 
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInformation);

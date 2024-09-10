@@ -20,6 +20,7 @@
         <module>mall-sys-service</module>
         <module>mall-gateway</module>
         <module>mall-auth-service</module>
+        <module>mall-common</module>
     </modules>
 
     <properties>

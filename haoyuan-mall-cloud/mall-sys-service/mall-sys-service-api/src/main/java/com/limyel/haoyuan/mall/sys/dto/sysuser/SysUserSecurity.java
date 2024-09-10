@@ -2,6 +2,8 @@ package com.limyel.haoyuan.mall.sys.dto.sysuser;
 
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 public class SysUserSecurity {
 
@@ -20,5 +22,7 @@ public class SysUserSecurity {
     private String password;
 
     private Integer status;
+
+    private Set<String> permissions;
 
 }
