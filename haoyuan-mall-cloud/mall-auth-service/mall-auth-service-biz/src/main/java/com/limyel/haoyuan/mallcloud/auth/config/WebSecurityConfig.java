@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .mvcMatchers("/auth/login", "/auth/refresh").permitAll()
+                .mvcMatchers("/auth/login", "/auth/refresh-token", "/auth/check-token").permitAll()
                 .anyRequest().authenticated()
                 .and().httpBasic()
                 .and().cors()

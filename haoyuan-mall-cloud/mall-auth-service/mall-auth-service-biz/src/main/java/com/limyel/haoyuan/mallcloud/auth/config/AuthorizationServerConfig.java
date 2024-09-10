@@ -3,6 +3,7 @@ package com.limyel.haoyuan.mallcloud.auth.config;
 import com.limyel.haoyuan.mallcloud.auth.extention.app.AppPasswordTokenGranter;
 import com.limyel.haoyuan.mallcloud.auth.extention.sms.SmsCodeTokenGranter;
 import com.limyel.haoyuan.mallcloud.auth.service.MemberUserDetailsService;
+import com.limyel.haoyuan.mallcloud.auth.token.JwtTokenConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,7 +48,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Bean
     public JwtAccessTokenConverter jwtTokenEnhancer() {
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        JwtAccessTokenConverter converter = new JwtTokenConverter();
         // 对称密钥
         converter.setSigningKey("limyel");
         return converter;
@@ -119,7 +120,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.allowFormAuthenticationForClients()
                 .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
+                .checkTokenAccess("permitAll()");
     }
 
     /**

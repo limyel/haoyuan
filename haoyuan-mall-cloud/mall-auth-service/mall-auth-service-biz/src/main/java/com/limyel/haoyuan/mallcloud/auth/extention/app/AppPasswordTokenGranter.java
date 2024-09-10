@@ -30,11 +30,11 @@ public class AppPasswordTokenGranter extends AbstractTokenGranter {
     @Override
     protected OAuth2Authentication getOAuth2Authentication(ClientDetails client, TokenRequest tokenRequest) {
         LinkedHashMap<String, String> parameters = new LinkedHashMap<>(tokenRequest.getRequestParameters());
-        LoginUser dto = new LoginUser();
-        dto.setUsername(parameters.get("username"));
-        dto.setPassword(parameters.get("password"));
+        LoginUser user = new LoginUser();
+        user.setUsername(parameters.get("username"));
+        user.setPassword(parameters.get("password"));
 
-        Authentication authentication = new AppPasswordAuthenticationToken(dto);
+        Authentication authentication = new AppPasswordAuthenticationToken(user);
         authentication = authenticationManager.authenticate(authentication);
 
         if (authentication != null && authentication.isAuthenticated()) {

@@ -3,12 +3,14 @@ package com.limyel.haoyuan.mallcloud.auth.controller;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.mallcloud.auth.constant.GrantTypeEnum;
+import com.limyel.haoyuan.mallcloud.auth.dto.CheckTokenDTO;
 import com.limyel.haoyuan.mallcloud.auth.dto.LoginDTO;
 import com.limyel.haoyuan.mallcloud.auth.dto.RefreshDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.provider.endpoint.CheckTokenEndpoint;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -30,6 +32,8 @@ import java.util.Map;
 public class AuthController {
 
     private final TokenEndpoint tokenEndpoint;
+
+    private final CheckTokenEndpoint checkTokenEndpoint;
 
     /**
      * 自定义认证接口
@@ -65,8 +69,8 @@ public class AuthController {
         return R.ok(result);
     }
 
-    @PostMapping("/refresh")
-    public R<OAuth2AccessToken> refresh(@Validated @RequestBody RefreshDTO dto, HttpServletRequest request) throws HttpRequestMethodNotSupportedException {
+    @PostMapping("/refresh-token")
+    public R<OAuth2AccessToken> refreshToken(@Validated @RequestBody RefreshDTO dto, HttpServletRequest request) throws HttpRequestMethodNotSupportedException {
         UsernamePasswordAuthenticationToken token = buildClientAuthentication(request);
 
         Map<String, String> map = new HashMap<>();
@@ -75,6 +79,12 @@ public class AuthController {
         map.put("grant_type", GrantTypeEnum.REFRESH_TOKEN.getValue());
 
         OAuth2AccessToken result = tokenEndpoint.postAccessToken(token, map).getBody();
+        return R.ok(result);
+    }
+
+    @PostMapping("/check-token")
+    public R<Map<String, ?>> checkToken(@Validated @RequestBody CheckTokenDTO dto) {
+        Map<String, ?> result = checkTokenEndpoint.checkToken(dto.getToken());
         return R.ok(result);
     }
 
