@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.mallcloud.product.api;
 
-import com.limyel.haoyuan.common.cloud.config.FeignDecoderConfig;
+import com.limyel.haoyuan.common.cloud.config.FeignConfig;
 import com.limyel.haoyuan.mallcloud.product.dto.SkuConfirm;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(value = "mall-product", contextId = "spu", configuration = FeignDecoderConfig.class)
+@FeignClient(value = "mall-product", contextId = "spu", configuration = FeignConfig.class)
 public interface SpuApi {
 
     @GetMapping("/product/rpc/spu/get/by-id/{id}")

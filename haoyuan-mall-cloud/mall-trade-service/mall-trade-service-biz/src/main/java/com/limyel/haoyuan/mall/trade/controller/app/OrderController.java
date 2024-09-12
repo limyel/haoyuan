@@ -43,7 +43,8 @@ public class OrderController {
     @ApiOperationLog(description = "提交订单")
     @PostMapping("/submit")
     public R<Map<String, String>> submit(@RequestBody OrderSubmitDTO dto) {
-        String orderSn = orderService.submit(dto);
+        String orderSn = orderService.submitOrderSn(dto);
+//        String orderSn = orderService.submit(dto);
         Map<String, String> result = Map.of("orderSn", orderSn);
         return R.ok(result);
     }

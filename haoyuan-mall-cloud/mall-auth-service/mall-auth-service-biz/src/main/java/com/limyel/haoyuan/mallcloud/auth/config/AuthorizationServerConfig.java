@@ -2,7 +2,7 @@ package com.limyel.haoyuan.mallcloud.auth.config;
 
 import com.limyel.haoyuan.mallcloud.auth.extention.app.AppPasswordTokenGranter;
 import com.limyel.haoyuan.mallcloud.auth.extention.sms.SmsCodeTokenGranter;
-import com.limyel.haoyuan.mallcloud.auth.service.MemberUserDetailsService;
+import com.limyel.haoyuan.mallcloud.auth.service.SysUserDetailsService;
 import com.limyel.haoyuan.mallcloud.auth.token.MallJwtTokenConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -39,9 +38,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     private final AuthenticationManager authenticationManager;
 
-    private final MemberUserDetailsService memberUserDetailsService;
-
-    private final PasswordEncoder passwordEncoder;
+    private final SysUserDetailsService sysUserDetailsService;
 
     private final StringRedisTemplate redisTemplate;
 
@@ -80,6 +77,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         tokenServices.setReuseRefreshToken(false);
         tokenServices.setClientDetailsService(jdbcClientDetailsService());
         tokenServices.setTokenEnhancer(jwtTokenEnhancer());
+        // 这里设置的时间不一定会生效，还会去 client_details 里面查看 client 的时间配置
         // access_token 过期时间，默认 12 小时
         tokenServices.setAccessTokenValiditySeconds(60 * 60 * 6);
         // refresh_token 过期时间，默认 30 天
@@ -107,7 +105,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         CompositeTokenGranter compositeTokenGranter = new CompositeTokenGranter(granters);
 
-        endpoints.userDetailsService(memberUserDetailsService)
+        endpoints.userDetailsService(sysUserDetailsService)
                 .authenticationManager(authenticationManager)
                 .tokenGranter(compositeTokenGranter)
                 .tokenServices(tokenServices());

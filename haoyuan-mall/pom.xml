@@ -19,7 +19,6 @@
         <module>mall-trade</module>
         <module>mall-startup</module>
         <module>mall-security</module>
-        <module>mall-security</module>
     </modules>
 
     <properties>

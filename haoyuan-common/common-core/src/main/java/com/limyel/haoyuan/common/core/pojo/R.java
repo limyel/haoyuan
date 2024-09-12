@@ -42,6 +42,12 @@ public class R<T> implements Serializable {
         return new R<>(code, msg);
     }
 
+    public static <T> R<T> of(Integer code, String msg, T data) {
+        R<T> r = new R<>(code, msg);
+        r.setData(data);
+        return r;
+    }
+
     public static R<?> ok() {
         return new R<>(BasicErrorCode.OK);
     }

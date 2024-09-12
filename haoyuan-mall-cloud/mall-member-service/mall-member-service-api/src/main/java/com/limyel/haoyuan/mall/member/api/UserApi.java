@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.mall.member.api;
 
-import com.limyel.haoyuan.common.cloud.config.FeignDecoderConfig;
+import com.limyel.haoyuan.common.cloud.config.FeignConfig;
 import com.limyel.haoyuan.mall.member.dto.user.MemberUserSecurity;
 import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(value = "mall-member", contextId = "user", path = "/member", configuration = FeignDecoderConfig.class)
+@FeignClient(value = "mall-member", contextId = "user", path = "/member", configuration = FeignConfig.class)
 public interface UserApi {
 
     @GetMapping("/rpc/user/get/by-username/{username}")

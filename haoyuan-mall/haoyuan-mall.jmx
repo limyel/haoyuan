@@ -11,7 +11,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="dev_ip" elementType="Argument">
             <stringProp name="Argument.name">dev_ip</stringProp>
-            <stringProp name="Argument.value">192.168.69.73</stringProp>
+            <stringProp name="Argument.value">127.0.0.1</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">192.168.31.32</stringProp>
           </elementProp>
@@ -59,7 +59,7 @@
         </collectionProp>
       </HeaderManager>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="mall-member" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="mall-member">
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器">
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
@@ -70,11 +70,10 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="请求头配置">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="请求头配置" enabled="false">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="" elementType="Header">
-              <stringProp name="Header.name">token</stringProp>
-              <stringProp name="Header.value">${user_token}</stringProp>
+              <stringProp name="Header.name">Authorization</stringProp>
             </elementProp>
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Content-Type</stringProp>
@@ -83,14 +82,14 @@
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取用户信息" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取用户信息">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="HTTPSampler.domain">${dev_ip}</stringProp>
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
-          <stringProp name="HTTPSampler.path">/mall/app/user/get/me</stringProp>
+          <stringProp name="HTTPSampler.path">/mall/app/user/get/me/</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>

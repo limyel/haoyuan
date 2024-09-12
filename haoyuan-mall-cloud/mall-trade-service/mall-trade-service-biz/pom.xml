@@ -26,17 +26,18 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-satoken</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
             <artifactId>mall-product-service-api</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>mall-member-service-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-security-starter</artifactId>
+            <version>0.0.0</version>
         </dependency>
 
         <dependency>

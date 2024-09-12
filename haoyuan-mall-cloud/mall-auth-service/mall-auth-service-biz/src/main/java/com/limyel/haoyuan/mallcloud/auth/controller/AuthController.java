@@ -2,11 +2,15 @@ package com.limyel.haoyuan.mallcloud.auth.controller;
 
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.R;
+import com.limyel.haoyuan.common.core.util.JSONUtil;
 import com.limyel.haoyuan.mallcloud.auth.constant.GrantTypeEnum;
 import com.limyel.haoyuan.mallcloud.auth.dto.CheckTokenDTO;
 import com.limyel.haoyuan.mallcloud.auth.dto.LoginDTO;
 import com.limyel.haoyuan.mallcloud.auth.dto.RefreshDTO;
+import com.limyel.haoyuan.mallcloud.auth.entity.SysUserDetails;
+import com.limyel.haoyuan.mallcloud.auth.service.SysUserDetailsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -34,6 +38,10 @@ public class AuthController {
     private final TokenEndpoint tokenEndpoint;
 
     private final CheckTokenEndpoint checkTokenEndpoint;
+
+    private final SysUserDetailsService sysUserDetailsService;
+
+    private final StringRedisTemplate redisTemplate;
 
     /**
      * 自定义认证接口
@@ -85,6 +93,7 @@ public class AuthController {
     @PostMapping("/check-token")
     public R<Map<String, ?>> checkToken(@Validated @RequestBody CheckTokenDTO dto) {
         Map<String, ?> result = checkTokenEndpoint.checkToken(dto.getToken());
+        cachePerms(result);
         return R.ok(result);
     }
 
@@ -96,6 +105,18 @@ public class AuthController {
 
         User client = new User(clientId, clientSecret, Collections.emptyList());
         return new UsernamePasswordAuthenticationToken(client, null, client.getAuthorities());
+    }
+
+    private void cachePerms(Map<String, ?> result) {
+        Boolean active = (Boolean) result.get("active");
+        if (active != null && !active) {
+            return;
+        }
+        String username = (String) result.get("user_name");
+        if (result.get("sysUserId") != null) {
+            SysUserDetails userDetails = (SysUserDetails) sysUserDetailsService.loadUserByUsername(username);
+            redisTemplate.opsForValue().set("AUTH:SYS_USER_PERMS:" + userDetails.getId(), JSONUtil.toJson(userDetails.getPerms()));
+        }
     }
 
 }

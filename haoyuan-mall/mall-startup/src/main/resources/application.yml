@@ -53,3 +53,5 @@ mybatis-plus:
 
 logging:
   config: classpath:logback-mall.xml
+  level:
+    org.springframework.security: trace

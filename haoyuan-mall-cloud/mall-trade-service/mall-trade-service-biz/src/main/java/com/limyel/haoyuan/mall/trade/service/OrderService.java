@@ -5,10 +5,11 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.PageParam;
+import com.limyel.haoyuan.common.core.util.JSONUtil;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import com.limyel.haoyuan.mall.member.api.UserApi;
 import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
+import com.limyel.haoyuan.mallcloud.common.security.util.SecurityUtil;
 import com.limyel.haoyuan.mallcloud.product.api.SkuApi;
 import com.limyel.haoyuan.mallcloud.product.dto.SkuConfirm;
 import com.limyel.haoyuan.mallcloud.product.dto.StockDeduct;
@@ -32,12 +33,14 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -62,10 +65,26 @@ public class OrderService {
         return orderDao.updateById(order);
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public int create(OrderSubmitDTO dto) {
+        OrderEntity order = new OrderEntity();
+
+        order.setOrderSn(dto.getOrderSn());
+        order.setRemark(dto.getRemark());
+        order.setStatus(OrderStatusEnum.UNPAID.getValue());
+        order.setUserId(SecurityUtil.getMemberUserId().get());
+        buildOrder(order, dto.getOrderItems());
+        int result = orderDao.insert(order);
+
+        orderItemService.create(order.getId(), dto.getOrderItems());
+
+        return result;
+    }
+
     public PageData<OrderListVO> getList(PageParam pageParam) {
         Page<OrderEntity> page = new Page<>(pageParam.getPageNum(), pageParam.getPageSize());
 
-        Long loginId = (Long) StpUserUtil.getLoginId();
+        Long loginId = SecurityUtil.getMemberUserId().get();
         LambdaQueryWrapper<OrderEntity> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(OrderEntity::getUserId, loginId);
 
@@ -91,6 +110,7 @@ public class OrderService {
 
     /**
      * 确认订单，返回订单 token 和订单详情
+     *
      * @param dto
      * @return
      */
@@ -119,12 +139,87 @@ public class OrderService {
         return result;
     }
 
+    public String submitOrderSn(OrderSubmitDTO dto) {
+        checkDuplicateOrder(dto.getOrderToken());
+
+        dto.setOrderSn(UUID.randomUUID().toString().replace("-", ""));
+        redisTemplate.opsForValue().set("ORDER:SUBMIT:" + dto.getOrderSn(), JSONUtil.toJson(dto), 30, TimeUnit.MINUTES);
+        rocketMQTemplate.sendMessageInTransaction("submit-order-tx", MessageBuilder.withPayload(dto.getOrderSn()).build()
+                , dto.getOrderSn());
+        return dto.getOrderSn();
+    }
+
+    /**
+     * 判断订单是否重复提交
+     */
+    private void checkDuplicateOrder(String orderToken) {
+        // todo 用 lua 脚本保证原子性
+        String key = OrderRedisKey.ORDER_TOKEN_PREFIX + orderToken;
+        String token = redisTemplate.opsForValue().get(key);
+        if (!StringUtils.hasText(token)) {
+            throw new ServiceException("订单重复提交");
+        }
+        redisTemplate.delete(key);
+    }
+
+    /**
+     * 订单商品校验，确认商品价格、状态
+     *
+     * @param orderItems
+     */
+    private void checkSku(List<OrderItemDTO> orderItems) {
+        List<Long> skuIds = orderItems.stream()
+                .map(OrderItemDTO::getSkuId)
+                .toList();
+        List<SkuConfirm> spuList = skuApi.getByIds(skuIds);
+        for (OrderItemDTO orderItem : orderItems) {
+            SkuConfirm spu = spuList.stream()
+                    .filter(item -> item.getId().equals(orderItem.getSkuId()))
+                    .findFirst()
+                    .orElse(null);
+            Assert.isTrue(spu != null, "商品已下架或删除");
+            Assert.isTrue(orderItem.getPrice().compareTo(spu.getPrice()) == 0, "商品价格发生变动，请刷新页面");
+        }
+    }
+
+    /**
+     * 扣减库存
+     *
+     * @param orderItems
+     * @param orderSn
+     * @return
+     */
+    public void deductStock(List<OrderItemDTO> orderItems, String orderSn) {
+        checkSku(orderItems);
+
+        List<StockDeduct.SkuDTO> deductSpuList = new ArrayList<>();
+
+        for (OrderItemDTO orderItem : orderItems) {
+            // 用于扣减库存
+            StockDeduct.SkuDTO deductSpu = new StockDeduct.SkuDTO();
+            deductSpu.setSkuId(orderItem.getSkuId());
+            deductSpu.setQuantity(orderItem.getQuantity());
+            deductSpuList.add(deductSpu);
+        }
+
+        // 校验库存并锁定库存？
+        // 扣减库存
+        StockDeduct deductDTO = new StockDeduct();
+        deductDTO.setOrderSn(orderSn);
+        deductDTO.setSkuList(deductSpuList);
+        skuApi.deductStock(deductDTO);
+    }
+
     /**
      * 提交订单，返回订单编号
+     *
      * @param dto
      * @return
      */
+    @Transactional(rollbackFor = Exception.class)
     public String submit(OrderSubmitDTO dto) {
+        dto.setOrderSn(UUID.randomUUID().toString().replace("-", ""));
+
         // 判断订单是否重复提交
         // todo 用 lua 脚本保证原子性
         String orderToken = dto.getOrderToken();
@@ -147,39 +242,39 @@ public class OrderService {
         Integer totalQuantity = 0;
 
         for (OrderItemDTO orderItem : orderItems) {
-            SkuConfirm spu = spuList.stream()
+            SkuConfirm sku = spuList.stream()
                     .filter(item -> item.getId().equals(orderItem.getSkuId()))
                     .findFirst()
                     .orElse(null);
-            Assert.isTrue(spu != null, "商品已下架或删除");
-            Assert.isTrue(orderItem.getPrice().compareTo(spu.getPrice()) == 0, "商品价格发生变动，请刷新页面");
+            Assert.isTrue(sku != null, "商品已下架或删除");
+            Assert.isTrue(orderItem.getPrice().compareTo(sku.getPrice()) == 0, "商品价格发生变动，请刷新页面");
 
             // 用于扣减库存
             StockDeduct.SkuDTO deductSpu = new StockDeduct.SkuDTO();
-            deductSpu.setSkuId(spu.getId());
+            deductSpu.setSkuId(sku.getId());
             deductSpu.setQuantity(orderItem.getQuantity());
             deductSpuList.add(deductSpu);
 
-            totalAmount += orderItem.getQuantity() * spu.getPrice();
+            totalAmount += orderItem.getQuantity() * sku.getPrice();
             totalQuantity += orderItem.getQuantity();
         }
 
         // 校验库存并锁定库存？
         // 扣减库存
         StockDeduct deductDTO = new StockDeduct();
-        deductDTO.setOrderToken(orderToken);
+        deductDTO.setOrderSn(dto.getOrderSn());
         deductDTO.setSkuList(deductSpuList);
         skuApi.deductStock(deductDTO);
 
         // 创建订单实例
         OrderEntity order = new OrderEntity();
-        order.setOrderSn(UUID.randomUUID().toString().replace("-", ""));
+        order.setOrderSn(dto.getOrderSn());
         order.setRemark(dto.getRemark());
         order.setStatus(OrderStatusEnum.UNPAID.getValue());
         order.setTotalAmount(totalAmount);
         order.setTotalQuantity(totalQuantity);
         order.setPaymentAmount(totalAmount);
-        order.setUserId(StpUserUtil.getLoginIdAsLong());
+        order.setUserId(SecurityUtil.getMemberUserId().get());
         orderDao.insert(order);
         orderItemService.create(order.getId(), dto.getOrderItems());
 
@@ -201,13 +296,25 @@ public class OrderService {
 
     public void pay(OrderPayDTO dto) {
         String orderSn = dto.getOrderSn();
-        OrderEntity order = orderDao.selectOne(OrderEntity::getOrderSn, orderSn);
-        Assert.notNull(order, "订单不存在");
+        OrderEntity order = null;
+        for (int i = 0; i < 3; i++) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            order = orderDao.selectOne(OrderEntity::getOrderSn, orderSn);
+            if (order != null) {
+                break;
+            }
+        }
+
+        Assert.notNull(order, "订单创建失败");
 
         Assert.isTrue(OrderStatusEnum.UNPAID.getValue().equals(order.getStatus()), "订单不可支付，请检查订单状态");
 
         PointBalanceRDTO pointBalanceRDTO = new PointBalanceRDTO();
-        pointBalanceRDTO.setUserId(StpUserUtil.getLoginIdAsLong());
+        pointBalanceRDTO.setUserId(SecurityUtil.getMemberUserId().get());
         pointBalanceRDTO.setType(dto.getPaymentMethod());
         pointBalanceRDTO.setTotal(order.getPaymentAmount());
         if (!userApi.deductPointBalance(pointBalanceRDTO)) {
@@ -216,7 +323,7 @@ public class OrderService {
         order.setStatus(OrderStatusEnum.COMPLETE.getValue());
         orderDao.updateById(order);
 
-        userProductService.createOrUpdate(StpUserUtil.getLoginIdAsLong(), order.getId());
+        userProductService.createOrUpdate(SecurityUtil.getMemberUserId().get(), order.getId());
     }
 
     public void cancel(String orderSn) {
@@ -229,5 +336,25 @@ public class OrderService {
         }
     }
 
+    /**
+     * 补充订单的信息，总额、总量等
+     *
+     * @param order
+     * @param orderItems
+     */
+    private void buildOrder(OrderEntity order, List<OrderItemDTO> orderItems) {
+        List<StockDeduct.SkuDTO> deductSpuList = new ArrayList<>();
+        Long totalAmount = 0L;
+        Integer totalQuantity = 0;
+
+        for (OrderItemDTO orderItem : orderItems) {
+            totalAmount += orderItem.getQuantity() * orderItem.getPrice();
+            totalQuantity += orderItem.getQuantity();
+        }
+
+        order.setTotalAmount(totalAmount);
+        order.setPaymentAmount(totalAmount);
+        order.setTotalQuantity(totalQuantity);
+    }
 
 }

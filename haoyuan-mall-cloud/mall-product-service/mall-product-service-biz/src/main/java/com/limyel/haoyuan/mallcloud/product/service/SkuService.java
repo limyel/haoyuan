@@ -48,6 +48,8 @@ public class SkuService {
 
     private final ThreadPoolExecutor threadPoolExecutor;
 
+    private final StockRecordService stockRecordService;
+
     public int create(SkuDTO dto) {
         skuDao.validateUnique(null, SkuEntity::getName, dto.getName(), "SKU 名称已存在");
 
@@ -127,13 +129,17 @@ public class SkuService {
     }
 
     /**
+     * 扣减库存
      * 扣减库存与归还库存使用同一把分布式锁！否则两个操作同时进行，会造成库存混乱。
      *
      * @param dto
      */
+//    @Transactional(rollbackFor = Exception.class)
     public void deductStock(StockDeduct dto) {
-        String orderToken = dto.getOrderToken();
+        String orderSn = dto.getOrderSn();
+        Integer skuNum = dto.getSkuList().size();
         for (StockDeduct.SkuDTO skuDTO : dto.getSkuList()) {
+            // 更新 SKU 库存的分布式锁
             RLock lock = redissonClient.getLock("stock:lock:" + skuDTO.getSkuId());
 
             try {
@@ -154,16 +160,14 @@ public class SkuService {
 
                 Assert.isTrue(deductResult == 1, "商品库存不足");
 
-                redisTemplate.opsForList().rightPush(SpuRedisKey.SPU_STOCK_DEDUCT_PREFIX + orderToken, JSONUtil.toJson(skuDTO));
-            } catch (Exception e) {
-                e.printStackTrace();
+                stockRecordService.create(sku.getId(), skuDTO.getQuantity(), skuNum, orderSn);
+
+                redisTemplate.opsForList().rightPush(SpuRedisKey.SPU_STOCK_DEDUCT_PREFIX + orderSn, JSONUtil.toJson(skuDTO));
             } finally {
                 if (lock != null) {
                     lock.unlock();
                 }
             }
-
-
         }
     }
 
@@ -171,6 +175,7 @@ public class SkuService {
         // todo 从 redis 获取
         for (StockReturn.Sku sku : dto.getList()) {
             threadPoolExecutor.execute(() -> {
+                // 更新 SKU 库存的分布式锁
                 RLock lock = redissonClient.getLock("stock:lock:" + sku.getSkuId());
 
                 try {

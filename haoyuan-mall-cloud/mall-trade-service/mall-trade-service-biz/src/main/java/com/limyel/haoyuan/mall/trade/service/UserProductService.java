@@ -2,14 +2,14 @@ package com.limyel.haoyuan.mall.trade.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
-import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
-import com.limyel.haoyuan.mallcloud.product.constant.SpuTypeEnum;
 import com.limyel.haoyuan.mall.trade.convert.UserSpuConvert;
 import com.limyel.haoyuan.mall.trade.dao.UserSpuDao;
 import com.limyel.haoyuan.mall.trade.dto.userspu.UseSpuDTO;
 import com.limyel.haoyuan.mall.trade.entity.OrderItemEntity;
 import com.limyel.haoyuan.mall.trade.entity.UserProductEntity;
 import com.limyel.haoyuan.mall.trade.vo.userspu.UserProductVO;
+import com.limyel.haoyuan.mallcloud.common.security.util.SecurityUtil;
+import com.limyel.haoyuan.mallcloud.product.constant.SpuTypeEnum;
 import lombok.RequiredArgsConstructor;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
@@ -39,6 +39,7 @@ public class UserProductService {
 
         List<OrderItemEntity> orderItems = orderItemService.getByOrderId(orderId);
         for (OrderItemEntity orderItem : orderItems) {
+            // 更新用户拥有商品数量的分布式锁
             RLock lock = redissonClient.getLock("userProductLock:" + userId + orderItem.getSkuId());
 
             try {
@@ -90,7 +91,7 @@ public class UserProductService {
     }
 
     public void useSpu(UseSpuDTO dto) {
-        long userId = StpUserUtil.getLoginIdAsLong();
+        long userId = SecurityUtil.getMemberUserId().get();
         LambdaQueryWrapper<UserProductEntity> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(UserProductEntity::getUserId, userId);
         wrapper.eq(UserProductEntity::getSkuId, dto.getSpuId());

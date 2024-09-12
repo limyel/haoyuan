@@ -7,7 +7,7 @@ import java.util.List;
 @Data
 public class StockDeduct {
 
-    private String orderToken;
+    private String orderSn;
 
     List<SkuDTO> skuList;
 

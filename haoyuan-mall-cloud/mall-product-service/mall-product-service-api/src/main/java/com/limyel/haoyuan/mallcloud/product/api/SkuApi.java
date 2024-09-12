@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.mallcloud.product.api;
 
-import com.limyel.haoyuan.common.cloud.config.FeignDecoderConfig;
+import com.limyel.haoyuan.common.cloud.config.FeignConfig;
 import com.limyel.haoyuan.mallcloud.product.dto.SkuConfirm;
 import com.limyel.haoyuan.mallcloud.product.dto.StockDeduct;
 import com.limyel.haoyuan.mallcloud.product.dto.StockReturn;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(value = "mall-product", contextId = "sku", configuration = FeignDecoderConfig.class)
+@FeignClient(value = "mall-product", contextId = "sku", configuration = FeignConfig.class)
 public interface SkuApi {
 
     @GetMapping("/product/rpc/sku/get/by-id/{id}")
@@ -22,7 +22,7 @@ public interface SkuApi {
     List<SkuConfirm> getByIds(@RequestParam("ids") List<Long> ids);
 
     @PostMapping("/product/rpc/sku/stock/deduct")
-    void deductStock(StockDeduct dto);
+    Object deductStock(StockDeduct dto);
 
     @PostMapping("/product/rpc/sku/stock/return")
     void returnStock(StockReturn dto);

@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@RestController("rpcSkuController")
 @RequestMapping("/sku")
 @RequiredArgsConstructor
-public class SkuApi {
+public class SkuController {
 
     private final SkuService skuService;
 
@@ -38,9 +38,9 @@ public class SkuApi {
 
     @ApiOperationLog(description = "扣减库存")
     @PostMapping("/stock/deduct")
-    public R<?> deductStock(@RequestBody StockDeduct dto) {
+    public R<Object> deductStock(@RequestBody StockDeduct dto) {
         skuService.deductStock(dto);
-        return R.ok();
+        return R.ok(null);
     }
 
     @ApiOperationLog(description = "归还库存")

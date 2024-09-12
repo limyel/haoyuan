@@ -127,6 +127,7 @@ public class UserService {
      * @return
      */
     public Integer deductPointBalance(PointBalanceRDTO dto) {
+        // 更新用户积分、余额的分布式锁
         RLock lock = redissonClient.getLock("deductPointLock:" + dto.getUserId());
         int result = 0;
 

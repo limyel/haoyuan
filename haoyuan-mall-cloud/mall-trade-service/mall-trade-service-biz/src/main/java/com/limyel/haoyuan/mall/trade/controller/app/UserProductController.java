@@ -1,12 +1,12 @@
 package com.limyel.haoyuan.mall.trade.controller.app;
 
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.common.satoken.annotation.SaUserCheckLogin;
-import com.limyel.haoyuan.common.satoken.service.StpUserUtil;
 import com.limyel.haoyuan.mall.trade.dto.userspu.UseSpuDTO;
 import com.limyel.haoyuan.mall.trade.service.UserProductService;
 import com.limyel.haoyuan.mall.trade.vo.userspu.UserProductVO;
+import com.limyel.haoyuan.mallcloud.common.security.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,14 +23,14 @@ public class UserProductController {
 
     private final UserProductService userProductService;
 
-    @SaUserCheckLogin
+    @PreAuthorize("@pms.memberAuthenticated()")
     @GetMapping("/get/me")
     public R<List<UserProductVO>> getMe() {
-        List<UserProductVO> result = userProductService.getByUserId(StpUserUtil.getLoginIdAsLong());
+        List<UserProductVO> result = userProductService.getByUserId(SecurityUtil.getMemberUserId().get());
         return R.ok(result);
     }
 
-    @SaUserCheckLogin
+    @PreAuthorize("@pms.memberAuthenticated()")
     @PostMapping("/use")
     public R<?> useSpu(@Validated @RequestBody UseSpuDTO dto) {
         userProductService.useSpu(dto);

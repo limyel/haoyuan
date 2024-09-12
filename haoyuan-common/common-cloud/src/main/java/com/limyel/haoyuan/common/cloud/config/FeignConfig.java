@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.support.ResponseEntityDecoder;
 import org.springframework.cloud.openfeign.support.SpringDecoder;
 import org.springframework.context.annotation.Bean;
 
-public class FeignDecoderConfig {
+public class FeignConfig {
 
     @Bean
     public Decoder feighDecoder(ObjectProvider<HttpMessageConverters> messageConverters) {
