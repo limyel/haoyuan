@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>mall-sys-service</artifactId>
-        <version>${haoyuan-mall-cloud.version}</version>
+        <version>${mall.version}</version>
     </parent>
 
     <artifactId>mall-sys-service-biz</artifactId>

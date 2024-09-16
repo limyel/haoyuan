@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>mall-member</artifactId>
+        <artifactId>haoyuan-mall-common</artifactId>
         <version>${mall.version}</version>
     </parent>
 
-    <artifactId>mall-member-biz</artifactId>
+    <artifactId>mall-security-starter</artifactId>
     <packaging>jar</packaging>
 
     <properties>
@@ -19,19 +19,24 @@
     </properties>
 
     <dependencies>
+        <!-- OAuth2 资源服务器-->
         <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>mall-member-api</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-resource-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+            <version>2.2.5.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-security</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-spring-boot-starter</artifactId>
+            <artifactId>common-redis</artifactId>
         </dependency>
     </dependencies>
 

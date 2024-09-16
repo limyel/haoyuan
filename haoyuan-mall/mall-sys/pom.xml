@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>haoyuan-mall</artifactId>
-        <version>${haoyuan-mall.version}</version>
+        <version>${mall.version}</version>
     </parent>
 
     <artifactId>mall-sys</artifactId>

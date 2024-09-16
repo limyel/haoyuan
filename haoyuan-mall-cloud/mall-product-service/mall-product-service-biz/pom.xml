@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>mall-product-service</artifactId>
-        <version>${haoyuan-mall-cloud.version}</version>
+        <version>${mall.version}</version>
     </parent>
 
     <artifactId>mall-product-service-biz</artifactId>
@@ -22,11 +22,6 @@
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>common-mybatis</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>common-satoken</artifactId>
         </dependency>
 
         <dependency>

@@ -5,16 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-mall-cloud</artifactId>
-        <version>${mall.version}</version>
+        <artifactId>haoyuan-mall-common</artifactId>
+        <version>0.0.0</version>
     </parent>
 
-    <artifactId>mall-promotion-service</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>mall-promotion-service-biz</module>
-        <module>mall-promotion-service-api</module>
-    </modules>
+    <artifactId>mall-common-sys</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

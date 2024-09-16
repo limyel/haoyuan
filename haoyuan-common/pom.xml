@@ -19,7 +19,6 @@
         <module>common-knife4j</module>
         <module>common-security</module>
         <module>common-cloud</module>
-        <module>common-satoken</module>
         <module>common-lock</module>
         <module>common-rocketmq</module>
     </modules>

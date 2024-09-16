@@ -11,7 +11,7 @@
 
     <artifactId>haoyuan-mall</artifactId>
     <packaging>pom</packaging>
-    <version>${haoyuan-mall.version}</version>
+    <version>${mall.version}</version>
     <modules>
         <module>mall-member</module>
         <module>mall-sys</module>
@@ -26,7 +26,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <haoyuan-mall.version>0.0.0</haoyuan-mall.version>
+        <mall.version>0.0.0</mall.version>
     </properties>
 
     <dependencies>

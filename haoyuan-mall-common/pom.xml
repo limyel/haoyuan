@@ -5,15 +5,21 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-mall-cloud</artifactId>
-        <version>${mall.version}</version>
+        <artifactId>haoyuan</artifactId>
+        <version>${revision}</version>
     </parent>
 
-    <artifactId>mall-promotion-service</artifactId>
+    <artifactId>haoyuan-mall-common</artifactId>
+    <version>${mall.version}</version>
     <packaging>pom</packaging>
+
     <modules>
-        <module>mall-promotion-service-biz</module>
-        <module>mall-promotion-service-api</module>
+        <module>mall-security-starter</module>
+        <module>mall-common-member</module>
+        <module>mall-common-trade</module>
+        <module>mall-common-product</module>
+        <module>mall-common-sys</module>
+        <module>mall-common-promotion</module>
     </modules>
 
     <properties>

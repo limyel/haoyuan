@@ -55,8 +55,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .mvcMatchers("/auth/login", "/auth/refresh-token", "/auth/check-token").permitAll()
                 .anyRequest().authenticated()
-                .and().httpBasic()
-                .and().cors()
+                .and()
+                .httpBasic().disable()
+                .cors()
                 .and().csrf().disable();
     }
 

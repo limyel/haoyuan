@@ -12,11 +12,10 @@
     <modules>
         <module>haoyuan-dependency</module>
         <module>haoyuan-common</module>
-        <module>haoyuan-framework</module>
-        <module>haoyuan-algo-ds</module>
         <module>haoyuan-blog</module>
         <module>haoyuan-mall-cloud</module>
         <module>haoyuan-mall</module>
+        <module>haoyuan-mall-common</module>
     </modules>
 
     <properties>
@@ -26,6 +25,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
         <revision>0.0.0</revision>
+        <mall.version>0.0.0</mall.version>
 
         <lombok.version>1.18.30</lombok.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
