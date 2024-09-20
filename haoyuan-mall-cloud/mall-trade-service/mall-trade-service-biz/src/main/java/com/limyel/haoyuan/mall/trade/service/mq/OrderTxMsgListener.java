@@ -2,8 +2,8 @@ package com.limyel.haoyuan.mall.trade.service.mq;
 
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.util.JSONUtil;
-import com.limyel.haoyuan.mall.trade.dto.order.OrderSubmitDTO;
-import com.limyel.haoyuan.mall.trade.entity.OrderEntity;
+import com.limyel.haoyuan.mall.common.trade.dto.order.OrderSubmitDTO;
+import com.limyel.haoyuan.mall.common.trade.entity.OrderEntity;
 import com.limyel.haoyuan.mall.trade.service.OrderService;
 import com.limyel.haoyuan.mallcloud.product.api.StockRecordFeignClient;
 import com.limyel.haoyuan.mallcloud.product.dto.StockRecotdExist;

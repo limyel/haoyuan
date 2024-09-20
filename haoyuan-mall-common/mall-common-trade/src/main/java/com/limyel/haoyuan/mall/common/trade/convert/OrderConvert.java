@@ -1,7 +1,7 @@
-package com.limyel.haoyuan.mall.trade.convert;
+package com.limyel.haoyuan.mall.common.trade.convert;
 
-import com.limyel.haoyuan.mall.trade.entity.OrderEntity;
-import com.limyel.haoyuan.mall.trade.vo.order.OrderListVO;
+import com.limyel.haoyuan.mall.common.trade.entity.OrderEntity;
+import com.limyel.haoyuan.mall.common.trade.vo.order.OrderListVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

@@ -1,8 +1,8 @@
 package com.limyel.haoyuan.mall.trade.service.mq;
 
-import com.limyel.haoyuan.mall.trade.constant.OrderStatusEnum;
-import com.limyel.haoyuan.mall.trade.entity.OrderEntity;
-import com.limyel.haoyuan.mall.trade.entity.OrderItemEntity;
+import com.limyel.haoyuan.mall.common.trade.constant.OrderStatusEnum;
+import com.limyel.haoyuan.mall.common.trade.entity.OrderEntity;
+import com.limyel.haoyuan.mall.common.trade.entity.OrderItemEntity;
 import com.limyel.haoyuan.mall.trade.service.OrderItemService;
 import com.limyel.haoyuan.mall.trade.service.OrderService;
 import com.limyel.haoyuan.mallcloud.product.api.SkuApi;

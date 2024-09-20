@@ -2,12 +2,12 @@ package com.limyel.haoyuan.mall.trade.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
-import com.limyel.haoyuan.mall.trade.convert.UserSpuConvert;
+import com.limyel.haoyuan.mall.common.trade.convert.UserSpuConvert;
+import com.limyel.haoyuan.mall.common.trade.dto.userspu.UseSpuDTO;
+import com.limyel.haoyuan.mall.common.trade.entity.OrderItemEntity;
+import com.limyel.haoyuan.mall.common.trade.entity.UserProductEntity;
+import com.limyel.haoyuan.mall.common.trade.vo.userspu.UserProductVO;
 import com.limyel.haoyuan.mall.trade.dao.UserSpuDao;
-import com.limyel.haoyuan.mall.trade.dto.userspu.UseSpuDTO;
-import com.limyel.haoyuan.mall.trade.entity.OrderItemEntity;
-import com.limyel.haoyuan.mall.trade.entity.UserProductEntity;
-import com.limyel.haoyuan.mall.trade.vo.userspu.UserProductVO;
 import com.limyel.haoyuan.mallcloud.common.security.util.SecurityUtil;
 import com.limyel.haoyuan.mallcloud.product.constant.SpuTypeEnum;
 import lombok.RequiredArgsConstructor;

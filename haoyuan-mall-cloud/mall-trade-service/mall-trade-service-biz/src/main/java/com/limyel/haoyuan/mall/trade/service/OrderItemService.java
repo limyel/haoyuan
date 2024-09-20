@@ -1,8 +1,8 @@
 package com.limyel.haoyuan.mall.trade.service;
 
+import com.limyel.haoyuan.mall.common.trade.dto.order.OrderItemDTO;
+import com.limyel.haoyuan.mall.common.trade.entity.OrderItemEntity;
 import com.limyel.haoyuan.mall.trade.dao.OrderItemDao;
-import com.limyel.haoyuan.mall.trade.dto.order.OrderItemDTO;
-import com.limyel.haoyuan.mall.trade.entity.OrderItemEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

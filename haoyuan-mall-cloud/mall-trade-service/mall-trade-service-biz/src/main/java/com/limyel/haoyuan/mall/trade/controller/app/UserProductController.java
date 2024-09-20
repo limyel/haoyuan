@@ -1,9 +1,9 @@
 package com.limyel.haoyuan.mall.trade.controller.app;
 
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.mall.trade.dto.userspu.UseSpuDTO;
+import com.limyel.haoyuan.mall.common.trade.dto.userspu.UseSpuDTO;
+import com.limyel.haoyuan.mall.common.trade.vo.userspu.UserProductVO;
 import com.limyel.haoyuan.mall.trade.service.UserProductService;
-import com.limyel.haoyuan.mall.trade.vo.userspu.UserProductVO;
 import com.limyel.haoyuan.mallcloud.common.security.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;

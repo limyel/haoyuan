@@ -7,23 +7,23 @@ import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.PageParam;
 import com.limyel.haoyuan.common.core.util.JSONUtil;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
+import com.limyel.haoyuan.mall.common.member.dto.user.api.PointBalanceChange;
+import com.limyel.haoyuan.mall.common.trade.constant.OrderRedisKey;
+import com.limyel.haoyuan.mall.common.trade.constant.OrderStatusEnum;
+import com.limyel.haoyuan.mall.common.trade.convert.OrderConvert;
+import com.limyel.haoyuan.mall.common.trade.dto.order.OrderConfirmDTO;
+import com.limyel.haoyuan.mall.common.trade.dto.order.OrderItemDTO;
+import com.limyel.haoyuan.mall.common.trade.dto.order.OrderPayDTO;
+import com.limyel.haoyuan.mall.common.trade.dto.order.OrderSubmitDTO;
+import com.limyel.haoyuan.mall.common.trade.entity.OrderEntity;
+import com.limyel.haoyuan.mall.common.trade.vo.order.OrderConfirmVO;
+import com.limyel.haoyuan.mall.common.trade.vo.order.OrderListVO;
 import com.limyel.haoyuan.mall.member.api.UserApi;
-import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
+import com.limyel.haoyuan.mall.trade.dao.OrderDao;
 import com.limyel.haoyuan.mallcloud.common.security.util.SecurityUtil;
 import com.limyel.haoyuan.mallcloud.product.api.SkuApi;
 import com.limyel.haoyuan.mallcloud.product.dto.SkuConfirm;
 import com.limyel.haoyuan.mallcloud.product.dto.StockDeduct;
-import com.limyel.haoyuan.mall.trade.constant.OrderRedisKey;
-import com.limyel.haoyuan.mall.trade.constant.OrderStatusEnum;
-import com.limyel.haoyuan.mall.trade.convert.OrderConvert;
-import com.limyel.haoyuan.mall.trade.dao.OrderDao;
-import com.limyel.haoyuan.mall.trade.dto.order.OrderConfirmDTO;
-import com.limyel.haoyuan.mall.trade.dto.order.OrderItemDTO;
-import com.limyel.haoyuan.mall.trade.dto.order.OrderPayDTO;
-import com.limyel.haoyuan.mall.trade.dto.order.OrderSubmitDTO;
-import com.limyel.haoyuan.mall.trade.entity.OrderEntity;
-import com.limyel.haoyuan.mall.trade.vo.order.OrderConfirmVO;
-import com.limyel.haoyuan.mall.trade.vo.order.OrderListVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendCallback;
@@ -313,11 +313,11 @@ public class OrderService {
 
         Assert.isTrue(OrderStatusEnum.UNPAID.getValue().equals(order.getStatus()), "订单不可支付，请检查订单状态");
 
-        PointBalanceRDTO pointBalanceRDTO = new PointBalanceRDTO();
-        pointBalanceRDTO.setUserId(SecurityUtil.getMemberUserId().get());
-        pointBalanceRDTO.setType(dto.getPaymentMethod());
-        pointBalanceRDTO.setTotal(order.getPaymentAmount());
-        if (!userApi.deductPointBalance(pointBalanceRDTO)) {
+        PointBalanceChange pointBalanceChange = new PointBalanceChange();
+        pointBalanceChange.setUserId(SecurityUtil.getMemberUserId().get());
+        pointBalanceChange.setType(dto.getPaymentMethod());
+        pointBalanceChange.setTotal(order.getPaymentAmount());
+        if (!userApi.deductPointBalance(pointBalanceChange)) {
             throw new ServiceException("支付失败");
         }
         order.setStatus(OrderStatusEnum.COMPLETE.getValue());
