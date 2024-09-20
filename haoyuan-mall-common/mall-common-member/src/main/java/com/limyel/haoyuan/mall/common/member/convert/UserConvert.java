@@ -1,10 +1,10 @@
-package com.limyel.haoyuan.mall.member.convert;
+package com.limyel.haoyuan.mall.common.member.convert;
 
-import com.limyel.haoyuan.mall.member.dto.user.UserDTO;
-import com.limyel.haoyuan.mall.member.dto.user.MemberUserSecurity;
-import com.limyel.haoyuan.mall.member.entity.UserEntity;
-import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;
-import com.limyel.haoyuan.mall.member.vo.user.UserPageVO;
+import com.limyel.haoyuan.mall.common.member.dto.user.UserDTO;
+import com.limyel.haoyuan.mall.common.member.dto.user.api.MemberUserSecurity;
+import com.limyel.haoyuan.mall.common.member.entity.UserEntity;
+import com.limyel.haoyuan.mall.common.member.vo.user.UserInfoVO;
+import com.limyel.haoyuan.mall.common.member.vo.user.UserPageVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

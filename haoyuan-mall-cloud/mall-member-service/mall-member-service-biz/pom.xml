@@ -21,7 +21,8 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-mybatis</artifactId>
+            <artifactId>mall-common-member</artifactId>
+            <version>0.0.0</version>
         </dependency>
 
         <dependency>

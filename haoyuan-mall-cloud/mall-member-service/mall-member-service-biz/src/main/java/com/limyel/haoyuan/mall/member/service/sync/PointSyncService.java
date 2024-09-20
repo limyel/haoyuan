@@ -2,7 +2,7 @@ package com.limyel.haoyuan.mall.member.service.sync;
 
 import com.limyel.haoyuan.common.core.constant.StatusEnum;
 import com.limyel.haoyuan.common.core.util.JSONUtil;
-import com.limyel.haoyuan.mall.member.entity.PayLogEntity;
+import com.limyel.haoyuan.mall.common.member.entity.PayLogEntity;
 import com.limyel.haoyuan.mall.member.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

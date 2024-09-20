@@ -1,8 +1,8 @@
-package com.limyel.haoyuan.mall.member.convert;
+package com.limyel.haoyuan.mall.common.member.convert;
 
-import com.limyel.haoyuan.mall.member.entity.PayLogEntity;
-import com.limyel.haoyuan.mall.member.vo.pointlog.PayLogListVO;
-import com.limyel.haoyuan.mall.member.vo.pointlog.PayLogPageVO;
+import com.limyel.haoyuan.mall.common.member.entity.PayLogEntity;
+import com.limyel.haoyuan.mall.common.member.vo.paylog.PayLogListVO;
+import com.limyel.haoyuan.mall.common.member.vo.paylog.PayLogPageVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

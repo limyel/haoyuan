@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.mall.member.dto.user;
+package com.limyel.haoyuan.mall.common.member.dto.user.api;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Range;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class PointBalanceRDTO {
+public class PointBalanceChange {
 
     @NotNull(message = "用户 ID 不能为空")
     private Long userId;

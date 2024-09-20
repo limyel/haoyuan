@@ -4,12 +4,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.mall.member.convert.LevelConvert;
+import com.limyel.haoyuan.mall.common.member.convert.LevelConvert;
+import com.limyel.haoyuan.mall.common.member.dto.level.LevelDTO;
+import com.limyel.haoyuan.mall.common.member.dto.level.LevelPageDTO;
+import com.limyel.haoyuan.mall.common.member.entity.LevelEntity;
+import com.limyel.haoyuan.mall.common.member.vo.level.LevelPageVO;
 import com.limyel.haoyuan.mall.member.dao.LevelDao;
-import com.limyel.haoyuan.mall.member.dto.level.LevelDTO;
-import com.limyel.haoyuan.mall.member.dto.level.LevelPageDTO;
-import com.limyel.haoyuan.mall.member.entity.LevelEntity;
-import com.limyel.haoyuan.mall.member.vo.level.LevelPageVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

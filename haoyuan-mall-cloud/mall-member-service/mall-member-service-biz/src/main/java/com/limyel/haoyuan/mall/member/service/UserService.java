@@ -7,17 +7,17 @@ import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.util.CryptUtil;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.mall.member.constant.PaymentMethodEnum;
-import com.limyel.haoyuan.mall.member.convert.UserConvert;
+import com.limyel.haoyuan.mall.common.member.constant.PaymentMethodEnum;
+import com.limyel.haoyuan.mall.common.member.convert.UserConvert;
+import com.limyel.haoyuan.mall.common.member.dto.user.UserDTO;
+import com.limyel.haoyuan.mall.common.member.dto.user.UserPageDTO;
+import com.limyel.haoyuan.mall.common.member.dto.user.api.MemberUserSecurity;
+import com.limyel.haoyuan.mall.common.member.dto.user.api.PointBalanceChange;
+import com.limyel.haoyuan.mall.common.member.entity.PayLogEntity;
+import com.limyel.haoyuan.mall.common.member.entity.UserEntity;
+import com.limyel.haoyuan.mall.common.member.vo.user.UserInfoVO;
+import com.limyel.haoyuan.mall.common.member.vo.user.UserPageVO;
 import com.limyel.haoyuan.mall.member.dao.UserDao;
-import com.limyel.haoyuan.mall.member.dto.user.MemberUserSecurity;
-import com.limyel.haoyuan.mall.member.entity.PayLogEntity;
-import com.limyel.haoyuan.mall.member.entity.UserEntity;
-import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
-import com.limyel.haoyuan.mall.member.dto.user.UserDTO;
-import com.limyel.haoyuan.mall.member.dto.user.UserPageDTO;
-import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;
-import com.limyel.haoyuan.mall.member.vo.user.UserPageVO;
 import com.limyel.haoyuan.mallcloud.common.security.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.redisson.api.RLock;
@@ -126,7 +126,7 @@ public class UserService {
      * @param dto
      * @return
      */
-    public Integer deductPointBalance(PointBalanceRDTO dto) {
+    public Integer deductPointBalance(PointBalanceChange dto) {
         // 更新用户积分、余额的分布式锁
         RLock lock = redissonClient.getLock("deductPointLock:" + dto.getUserId());
         int result = 0;

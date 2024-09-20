@@ -2,8 +2,8 @@ package com.limyel.haoyuan.mall.member.controller.rpc;
 
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.mall.member.dto.user.MemberUserSecurity;
-import com.limyel.haoyuan.mall.member.dto.user.PointBalanceRDTO;
+import com.limyel.haoyuan.mall.common.member.dto.user.api.MemberUserSecurity;
+import com.limyel.haoyuan.mall.common.member.dto.user.api.PointBalanceChange;
 import com.limyel.haoyuan.mall.member.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController("rpcUserController")
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class UserFeignClient {
+public class UserController {
 
     private final UserService userService;
 
     @ApiOperationLog(description = "用户支付")
     @PostMapping("/point-balance/deduct")
-    public R<Boolean> deductPointBalance(@Validated @RequestBody PointBalanceRDTO dto) {
+    public R<Boolean> deductPointBalance(@Validated @RequestBody PointBalanceChange dto) {
         Integer result = userService.deductPointBalance(dto);
         return R.ok(result == 1);
     }

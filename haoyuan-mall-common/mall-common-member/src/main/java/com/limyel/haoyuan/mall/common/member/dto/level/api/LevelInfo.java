@@ -1,9 +1,9 @@
-package com.limyel.haoyuan.mall.member.dto.level;
+package com.limyel.haoyuan.mall.common.member.dto.level.api;
 
 import lombok.Data;
 
 @Data
-public class LevelRDTO {
+public class LevelInfo {
 
     private Long id;
 
