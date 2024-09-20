@@ -16,6 +16,9 @@
         <module>haoyuan-mall-cloud</module>
         <module>haoyuan-mall</module>
         <module>haoyuan-mall-common</module>
+        <module>haoyuan-wheels</module>
+        <module>haoyuan-blog-cloud</module>
+        <module>haoyuan-blog-common</module>
     </modules>
 
     <properties>
@@ -43,14 +46,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-    </dependencies>
 
     <profiles>
         <profile>
