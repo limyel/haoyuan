@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.mall.sys.entity;
+package com.limyel.haoyuan.mall.common.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
@@ -7,18 +7,18 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("sys_role")
-public class RoleEntity extends BaseEntity {
+@TableName("sys_dept")
+public class DeptEntity extends BaseEntity {
 
     /**
-     * 角色名
+     * 上级 ID
+     */
+    private Long pid;
+
+    /**
+     * 部门名称
      */
     private String name;
-
-    /**
-     * 角色编码
-     */
-    private String code;
 
     /**
      * 显示顺序
@@ -26,13 +26,13 @@ public class RoleEntity extends BaseEntity {
     private Integer sort;
 
     /**
-     * 状态，0-禁用，1-正常
+     * 负责人
      */
-    private Integer status;
+    private Long leader;
 
     /**
-     * 备注
+     * 状态，0-停用 1-正常
      */
-    private String remark;
+    private Integer status;
 
 }

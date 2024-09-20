@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mall.sys.api;
 
 import com.limyel.haoyuan.common.cloud.config.FeignConfig;
-import com.limyel.haoyuan.mall.sys.dto.sysuser.SysUserSecurity;
+import com.limyel.haoyuan.mall.common.sys.dto.api.SysUserSecurity;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

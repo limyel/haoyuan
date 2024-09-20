@@ -1,8 +1,8 @@
 package com.limyel.haoyuan.mall.sys.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.limyel.haoyuan.mall.common.sys.entity.RoleMenuEntity;
 import com.limyel.haoyuan.mall.sys.dao.RoleMenuDao;
-import com.limyel.haoyuan.mall.sys.entity.RoleMenuEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

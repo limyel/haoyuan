@@ -1,8 +1,8 @@
 package com.limyel.haoyuan.mall.sys.service;
 
 import com.limyel.haoyuan.common.core.exception.ServiceException;
+import com.limyel.haoyuan.mall.common.sys.entity.SysUserEntity;
 import com.limyel.haoyuan.mall.sys.dao.SysUserDao;
-import com.limyel.haoyuan.mall.sys.entity.SysUserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

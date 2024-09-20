@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mall.sys.dao;
 
 import com.limyel.haoyuan.common.mybatis.dao.BaseDao;
-import com.limyel.haoyuan.mall.sys.entity.SysUserEntity;
+import com.limyel.haoyuan.mall.common.sys.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
