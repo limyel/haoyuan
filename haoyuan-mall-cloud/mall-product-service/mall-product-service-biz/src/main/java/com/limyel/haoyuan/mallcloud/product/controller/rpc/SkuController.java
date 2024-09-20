@@ -2,9 +2,9 @@ package com.limyel.haoyuan.mallcloud.product.controller.rpc;
 
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.mallcloud.product.dto.SkuConfirm;
-import com.limyel.haoyuan.mallcloud.product.dto.StockDeduct;
-import com.limyel.haoyuan.mallcloud.product.dto.StockReturn;
+import com.limyel.haoyuan.mall.common.product.dto.api.SkuConfirm;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockDeduct;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockReturn;
 import com.limyel.haoyuan.mallcloud.product.service.SkuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

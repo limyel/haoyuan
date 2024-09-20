@@ -1,15 +1,14 @@
 package com.limyel.haoyuan.mallcloud.product.controller.admin;
 
-import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.core.validator.group.Create;
 import com.limyel.haoyuan.common.core.validator.group.Update;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.mallcloud.product.dto.spu.SpuDTO;
-import com.limyel.haoyuan.mallcloud.product.dto.spu.SpuPageDTO;
+import com.limyel.haoyuan.mall.common.product.dto.spu.SpuDTO;
+import com.limyel.haoyuan.mall.common.product.dto.spu.SpuPageDTO;
+import com.limyel.haoyuan.mall.common.product.vo.spu.SpuPageVO;
 import com.limyel.haoyuan.mallcloud.product.service.SpuService;
-import com.limyel.haoyuan.mallcloud.product.vo.spu.SpuPageVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
@@ -27,7 +26,6 @@ import java.util.List;
 @RestController("adminSpuController")
 @RequestMapping("/spu")
 @RequiredArgsConstructor
-@SaCheckLogin
 public class SpuController {
 
     private final SpuService spuService;

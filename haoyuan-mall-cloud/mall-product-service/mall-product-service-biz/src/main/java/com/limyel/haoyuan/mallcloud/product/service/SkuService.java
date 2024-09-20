@@ -5,20 +5,20 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.util.JSONUtil;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
+import com.limyel.haoyuan.mall.common.member.dto.level.api.LevelInfo;
+import com.limyel.haoyuan.mall.common.product.constant.SpuRedisKey;
+import com.limyel.haoyuan.mall.common.product.convert.SkuConvert;
+import com.limyel.haoyuan.mall.common.product.dto.api.SkuConfirm;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockDeduct;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockReturn;
+import com.limyel.haoyuan.mall.common.product.dto.sku.SkuDTO;
+import com.limyel.haoyuan.mall.common.product.dto.sku.SkuPageDTO;
+import com.limyel.haoyuan.mall.common.product.dto.spu.SpuDTO;
+import com.limyel.haoyuan.mall.common.product.entity.SkuEntity;
+import com.limyel.haoyuan.mall.common.product.vo.sku.SkuListVO;
+import com.limyel.haoyuan.mall.common.product.vo.sku.SkuPageVO;
 import com.limyel.haoyuan.mall.member.api.LevelApi;
-import com.limyel.haoyuan.mall.member.dto.level.LevelRDTO;
-import com.limyel.haoyuan.mallcloud.product.constant.SpuRedisKey;
-import com.limyel.haoyuan.mallcloud.product.convert.SkuConvert;
 import com.limyel.haoyuan.mallcloud.product.dao.SkuDao;
-import com.limyel.haoyuan.mallcloud.product.dto.SkuConfirm;
-import com.limyel.haoyuan.mallcloud.product.dto.StockDeduct;
-import com.limyel.haoyuan.mallcloud.product.dto.StockReturn;
-import com.limyel.haoyuan.mallcloud.product.dto.sku.SkuDTO;
-import com.limyel.haoyuan.mallcloud.product.dto.sku.SkuPageDTO;
-import com.limyel.haoyuan.mallcloud.product.dto.spu.SpuDTO;
-import com.limyel.haoyuan.mallcloud.product.entity.SkuEntity;
-import com.limyel.haoyuan.mallcloud.product.vo.sku.SkuListVO;
-import com.limyel.haoyuan.mallcloud.product.vo.sku.SkuPageVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
@@ -81,7 +81,7 @@ public class SkuService {
                 .map(sku -> {
                     SkuPageVO result = SkuConvert.INSTANCE.toPageVO(sku);
                     result.setSpuName(spuService.getById(sku.getSpuId()).getName());
-                    LevelRDTO level = levelApi.getById(sku.getMemberLevelId());
+                    LevelInfo level = levelApi.getById(sku.getMemberLevelId());
                     result.setMemberLevel(level.getName());
                     return result;
                 })
@@ -121,7 +121,7 @@ public class SkuService {
         return skuList.stream()
                 .map(sku -> {
                     SkuListVO result = SkuConvert.INSTANCE.toListVO(sku);
-                    LevelRDTO level = levelApi.getById(sku.getMemberLevelId());
+                    LevelInfo level = levelApi.getById(sku.getMemberLevelId());
                     result.setMemberLevel(level.getName());
                     return result;
                 })

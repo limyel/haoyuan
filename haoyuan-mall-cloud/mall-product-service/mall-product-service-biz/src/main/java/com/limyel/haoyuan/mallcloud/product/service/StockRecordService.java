@@ -1,9 +1,9 @@
 package com.limyel.haoyuan.mallcloud.product.service;
 
-import com.limyel.haoyuan.mallcloud.product.convert.StockRecordConvert;
+import com.limyel.haoyuan.mall.common.product.convert.StockRecordConvert;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockRecotdExist;
+import com.limyel.haoyuan.mall.common.product.entity.StockRecordEntity;
 import com.limyel.haoyuan.mallcloud.product.dao.StockRecordDao;
-import com.limyel.haoyuan.mallcloud.product.dto.StockRecotdExist;
-import com.limyel.haoyuan.mallcloud.product.entity.StockRecordEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

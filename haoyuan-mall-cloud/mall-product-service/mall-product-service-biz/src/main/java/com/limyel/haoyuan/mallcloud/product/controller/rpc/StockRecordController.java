@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mallcloud.product.controller.rpc;
 
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.mallcloud.product.dto.StockRecotdExist;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockRecotdExist;
 import com.limyel.haoyuan.mallcloud.product.service.StockRecordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

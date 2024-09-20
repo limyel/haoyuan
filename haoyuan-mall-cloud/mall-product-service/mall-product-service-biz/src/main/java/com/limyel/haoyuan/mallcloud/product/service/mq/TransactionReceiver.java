@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mallcloud.product.service.mq;
 
-import com.limyel.haoyuan.mallcloud.product.dto.StockRecotdExist;
-import com.limyel.haoyuan.mallcloud.product.dto.StockReturn;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockRecotdExist;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockReturn;
 import com.limyel.haoyuan.mallcloud.product.service.SkuService;
 import com.limyel.haoyuan.mallcloud.product.service.StockRecordService;
 import lombok.RequiredArgsConstructor;

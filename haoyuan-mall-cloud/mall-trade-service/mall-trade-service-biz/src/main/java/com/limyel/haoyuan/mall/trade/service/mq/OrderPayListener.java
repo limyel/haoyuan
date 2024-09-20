@@ -1,12 +1,12 @@
 package com.limyel.haoyuan.mall.trade.service.mq;
 
+import com.limyel.haoyuan.mall.common.product.dto.api.StockReturn;
 import com.limyel.haoyuan.mall.common.trade.constant.OrderStatusEnum;
 import com.limyel.haoyuan.mall.common.trade.entity.OrderEntity;
 import com.limyel.haoyuan.mall.common.trade.entity.OrderItemEntity;
 import com.limyel.haoyuan.mall.trade.service.OrderItemService;
 import com.limyel.haoyuan.mall.trade.service.OrderService;
-import com.limyel.haoyuan.mallcloud.product.api.SkuApi;
-import com.limyel.haoyuan.mallcloud.product.dto.StockReturn;
+import com.limyel.haoyuan.mallcloud.product.api.SkuFeignClient;
 import lombok.RequiredArgsConstructor;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
@@ -24,7 +24,7 @@ public class OrderPayListener implements RocketMQListener<String> {
 
     private final OrderItemService orderItemService;
 
-    private final SkuApi skuApi;
+    private final SkuFeignClient skuFeignClient;
 
     @Override
     public void onMessage(String orderSn) {
@@ -42,7 +42,7 @@ public class OrderPayListener implements RocketMQListener<String> {
                     }).toList();
             StockReturn dto = new StockReturn();
             dto.setList(list);
-            skuApi.returnStock(dto);
+            skuFeignClient.returnStock(dto);
         }
     }
 }

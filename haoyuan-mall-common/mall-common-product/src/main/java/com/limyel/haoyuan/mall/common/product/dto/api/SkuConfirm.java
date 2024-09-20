@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.mallcloud.product.dto;
+package com.limyel.haoyuan.mall.common.product.dto.api;
 
 import lombok.Data;
 

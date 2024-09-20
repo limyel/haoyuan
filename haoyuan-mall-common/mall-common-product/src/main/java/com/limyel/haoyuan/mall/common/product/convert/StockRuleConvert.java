@@ -1,8 +1,8 @@
-package com.limyel.haoyuan.mallcloud.product.convert;
+package com.limyel.haoyuan.mall.common.product.convert;
 
-import com.limyel.haoyuan.mallcloud.product.dto.stockrule.StockRuleDTO;
-import com.limyel.haoyuan.mallcloud.product.entity.StockRuleEntity;
-import com.limyel.haoyuan.mallcloud.product.vo.stockrule.StockRulePageVO;
+import com.limyel.haoyuan.mall.common.product.dto.stockrule.StockRuleDTO;
+import com.limyel.haoyuan.mall.common.product.entity.StockRuleEntity;
+import com.limyel.haoyuan.mall.common.product.vo.stockrule.StockRulePageVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

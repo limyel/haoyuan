@@ -2,9 +2,9 @@ package com.limyel.haoyuan.mallcloud.product.controller.app;
 
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.mallcloud.product.dto.spu.SpuListDTO;
+import com.limyel.haoyuan.mall.common.product.dto.spu.SpuListDTO;
+import com.limyel.haoyuan.mall.common.product.vo.spu.SpuListVO;
 import com.limyel.haoyuan.mallcloud.product.service.SpuService;
-import com.limyel.haoyuan.mallcloud.product.vo.spu.SpuListVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

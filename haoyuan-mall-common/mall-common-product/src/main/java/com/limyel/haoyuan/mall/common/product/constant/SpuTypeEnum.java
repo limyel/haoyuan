@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.mallcloud.product.constant;
+package com.limyel.haoyuan.mall.common.product.constant;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

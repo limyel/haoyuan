@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mallcloud.product.api;
 
 import com.limyel.haoyuan.common.cloud.config.FeignConfig;
-import com.limyel.haoyuan.mallcloud.product.dto.StockRecotdExist;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockRecotdExist;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

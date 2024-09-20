@@ -1,9 +1,9 @@
 package com.limyel.haoyuan.mallcloud.product.api;
 
 import com.limyel.haoyuan.common.cloud.config.FeignConfig;
-import com.limyel.haoyuan.mallcloud.product.dto.SkuConfirm;
-import com.limyel.haoyuan.mallcloud.product.dto.StockDeduct;
-import com.limyel.haoyuan.mallcloud.product.dto.StockReturn;
+import com.limyel.haoyuan.mall.common.product.dto.api.SkuConfirm;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockDeduct;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockReturn;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @FeignClient(value = "mall-product", contextId = "sku", configuration = FeignConfig.class)
-public interface SkuApi {
+public interface SkuFeignClient {
 
     @GetMapping("/product/rpc/sku/get/by-id/{id}")
     SkuConfirm getById(@PathVariable("id") Long id);

@@ -8,6 +8,8 @@ import com.limyel.haoyuan.common.core.pojo.PageParam;
 import com.limyel.haoyuan.common.core.util.JSONUtil;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.mall.common.member.dto.user.api.PointBalanceChange;
+import com.limyel.haoyuan.mall.common.product.dto.api.SkuConfirm;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockDeduct;
 import com.limyel.haoyuan.mall.common.trade.constant.OrderRedisKey;
 import com.limyel.haoyuan.mall.common.trade.constant.OrderStatusEnum;
 import com.limyel.haoyuan.mall.common.trade.convert.OrderConvert;
@@ -21,9 +23,7 @@ import com.limyel.haoyuan.mall.common.trade.vo.order.OrderListVO;
 import com.limyel.haoyuan.mall.member.api.UserApi;
 import com.limyel.haoyuan.mall.trade.dao.OrderDao;
 import com.limyel.haoyuan.mallcloud.common.security.util.SecurityUtil;
-import com.limyel.haoyuan.mallcloud.product.api.SkuApi;
-import com.limyel.haoyuan.mallcloud.product.dto.SkuConfirm;
-import com.limyel.haoyuan.mallcloud.product.dto.StockDeduct;
+import com.limyel.haoyuan.mallcloud.product.api.SkuFeignClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendCallback;
@@ -53,7 +53,7 @@ public class OrderService {
 
     private final UserProductService userProductService;
 
-    private final SkuApi skuApi;
+    private final SkuFeignClient skuFeignClient;
 
     private final UserApi userApi;
 
@@ -119,7 +119,7 @@ public class OrderService {
 
         // 获取订单商品
         for (OrderConfirmDTO.CartItem item : dto.getList()) {
-            SkuConfirm sku = skuApi.getById(item.getSkuId());
+            SkuConfirm sku = skuFeignClient.getById(item.getSkuId());
             OrderItemDTO orderItem = new OrderItemDTO();
             orderItem.setSpuName(sku.getSpuName());
             orderItem.setSkuId(sku.getId());
@@ -171,7 +171,7 @@ public class OrderService {
         List<Long> skuIds = orderItems.stream()
                 .map(OrderItemDTO::getSkuId)
                 .toList();
-        List<SkuConfirm> spuList = skuApi.getByIds(skuIds);
+        List<SkuConfirm> spuList = skuFeignClient.getByIds(skuIds);
         for (OrderItemDTO orderItem : orderItems) {
             SkuConfirm spu = spuList.stream()
                     .filter(item -> item.getId().equals(orderItem.getSkuId()))
@@ -207,7 +207,7 @@ public class OrderService {
         StockDeduct deductDTO = new StockDeduct();
         deductDTO.setOrderSn(orderSn);
         deductDTO.setSkuList(deductSpuList);
-        skuApi.deductStock(deductDTO);
+        skuFeignClient.deductStock(deductDTO);
     }
 
     /**
@@ -235,7 +235,7 @@ public class OrderService {
         List<Long> skuIds = orderItems.stream()
                 .map(OrderItemDTO::getSkuId)
                 .toList();
-        List<SkuConfirm> spuList = skuApi.getByIds(skuIds);
+        List<SkuConfirm> spuList = skuFeignClient.getByIds(skuIds);
 
         List<StockDeduct.SkuDTO> deductSpuList = new ArrayList<>();
         Long totalAmount = 0L;
@@ -264,7 +264,7 @@ public class OrderService {
         StockDeduct deductDTO = new StockDeduct();
         deductDTO.setOrderSn(dto.getOrderSn());
         deductDTO.setSkuList(deductSpuList);
-        skuApi.deductStock(deductDTO);
+        skuFeignClient.deductStock(deductDTO);
 
         // 创建订单实例
         OrderEntity order = new OrderEntity();

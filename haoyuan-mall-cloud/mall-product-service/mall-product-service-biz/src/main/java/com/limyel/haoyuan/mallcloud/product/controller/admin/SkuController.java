@@ -1,15 +1,14 @@
 package com.limyel.haoyuan.mallcloud.product.controller.admin;
 
-import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.core.validator.group.Create;
 import com.limyel.haoyuan.common.core.validator.group.Update;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.mallcloud.product.dto.sku.SkuDTO;
-import com.limyel.haoyuan.mallcloud.product.dto.sku.SkuPageDTO;
+import com.limyel.haoyuan.mall.common.product.dto.sku.SkuDTO;
+import com.limyel.haoyuan.mall.common.product.dto.sku.SkuPageDTO;
+import com.limyel.haoyuan.mall.common.product.vo.sku.SkuPageVO;
 import com.limyel.haoyuan.mallcloud.product.service.SkuService;
-import com.limyel.haoyuan.mallcloud.product.vo.sku.SkuPageVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
@@ -27,7 +26,6 @@ import java.util.List;
 @RestController("adminSkuController")
 @RequestMapping("/sku")
 @RequiredArgsConstructor
-@SaCheckLogin
 public class SkuController {
 
     private final SkuService skuService;

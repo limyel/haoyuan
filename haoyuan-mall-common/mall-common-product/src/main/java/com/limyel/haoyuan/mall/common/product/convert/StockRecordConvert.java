@@ -1,7 +1,7 @@
-package com.limyel.haoyuan.mallcloud.product.convert;
+package com.limyel.haoyuan.mall.common.product.convert;
 
-import com.limyel.haoyuan.mallcloud.product.dto.StockRecotdExist;
-import com.limyel.haoyuan.mallcloud.product.entity.StockRecordEntity;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockRecotdExist;
+import com.limyel.haoyuan.mall.common.product.entity.StockRecordEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
