@@ -1,15 +1,14 @@
 package com.limyel.haoyuan.mall.member.service;
 
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.limyel.haoyuan.common.core.constant.StatusEnum;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
-import com.limyel.haoyuan.mall.member.constant.PaymentMethodEnum;
-import com.limyel.haoyuan.mall.member.convert.UserConvert;
+import com.limyel.haoyuan.mall.common.member.constant.PaymentMethodEnum;
+import com.limyel.haoyuan.mall.common.member.convert.UserConvert;
+import com.limyel.haoyuan.mall.common.member.entity.UserEntity;
+import com.limyel.haoyuan.mall.common.member.vo.user.UserInfoVO;
 import com.limyel.haoyuan.mall.member.dao.UserDao;
 import com.limyel.haoyuan.mall.member.dto.user.PointBalance;
 import com.limyel.haoyuan.mall.member.dto.user.UserCreate;
-import com.limyel.haoyuan.mall.member.entity.UserEntity;
-import com.limyel.haoyuan.mall.member.vo.user.UserInfoVO;
 import com.limyel.haoyuan.mall.security.entity.SysUserDetails;
 import com.limyel.haoyuan.mall.sys.api.SysUserApi;
 import lombok.RequiredArgsConstructor;
@@ -28,16 +27,7 @@ public class UserService {
     private final SysUserApi sysUserApi;
 
     public int create(UserCreate dto) {
-        userDao.validateUnique(null, UserEntity::getUserId, dto.getUserId(), "用户已存在");
-
-        UserEntity user = new UserEntity();
-        user.setUserId(dto.getUserId());
-        user.setPoint(0L);
-        user.setBalance(0L);
-        user.setLockedPoint(0L);
-        user.setStatus(StatusEnum.ENABLE.getValue());
-
-        return userDao.insert(user);
+        return 0;
     }
 
     public int delete(List<Long> ids) {

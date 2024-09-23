@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.blog.main.controller.admin;
 
-import com.limyel.haoyuan.blog.main.dto.setting.SettingDTO;
+import com.limyel.haoyuan.blog.common.main.dto.setting.SettingDTO;
 import com.limyel.haoyuan.blog.main.service.SettingService;
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;

@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.blog.sys.service;
 
-import com.limyel.haoyuan.blog.sys.dao.UserRoleDao;
-import com.limyel.haoyuan.blog.sys.domain.UserRoleEntity;
+import com.limyel.haoyuan.blog.common.sys.entity.SysUserRoleEntity;
+import com.limyel.haoyuan.blog.sys.dao.SysUserRoleDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserRoleService {
 
-    private final UserRoleDao userRoleDao;
+    private final SysUserRoleDao sysUserRoleDao;
 
-    public List<UserRoleEntity> getByUserId(Long userId) {
-        return userRoleDao.selectList(UserRoleEntity::getUserId, userId);
+    public List<SysUserRoleEntity> getByUserId(Long userId) {
+        return sysUserRoleDao.selectList(SysUserRoleEntity::getSysUserId, userId);
     }
 
 }

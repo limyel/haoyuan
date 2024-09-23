@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mall.product.api;
 
-import com.limyel.haoyuan.mall.product.dto.SkuConfirm;
-import com.limyel.haoyuan.mall.product.dto.StockDeduct;
+import com.limyel.haoyuan.mall.common.product.dto.api.SkuConfirm;
+import com.limyel.haoyuan.mall.common.product.dto.api.StockDeduct;
 
 import java.util.List;
 

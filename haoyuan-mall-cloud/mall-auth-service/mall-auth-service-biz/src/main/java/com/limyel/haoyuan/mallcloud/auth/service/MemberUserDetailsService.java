@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mallcloud.auth.service;
 
+import com.limyel.haoyuan.mall.common.member.dto.user.api.MemberUserSecurity;
 import com.limyel.haoyuan.mall.member.api.UserApi;
-import com.limyel.haoyuan.mall.member.dto.user.MemberUserSecurity;
 import com.limyel.haoyuan.mallcloud.auth.entity.MallUserDetails;
 import com.limyel.haoyuan.mallcloud.auth.entity.MemberUserDetails;
 import lombok.RequiredArgsConstructor;

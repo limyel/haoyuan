@@ -10,16 +10,20 @@
     </parent>
 
     <artifactId>mall-sys</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>mall-sys-biz</module>
-        <module>mall-sys-api</module>
-    </modules>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-common-sys</artifactId>
+            <version>0.0.0</version>
+        </dependency>
+    </dependencies>
 
 </project>

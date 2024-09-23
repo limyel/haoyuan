@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
-import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
+import com.limyel.haoyuan.common.mybatis.pojo.IBaseEntity;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.util.CollectionUtils;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public interface BaseDao<T extends BaseEntity> extends BaseMapper<T> {
+public interface BaseDao<T extends IBaseEntity> extends BaseMapper<T> {
 
     // 批量插入
     int insertBatchSomeColumn(@Param("list") List<T> batchList);

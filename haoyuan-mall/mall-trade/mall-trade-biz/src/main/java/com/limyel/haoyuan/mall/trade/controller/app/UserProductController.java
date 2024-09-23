@@ -1,9 +1,8 @@
 package com.limyel.haoyuan.mall.trade.controller.app;
 
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.mall.trade.dto.userspu.UseProductDTO;
+import com.limyel.haoyuan.mall.common.trade.vo.userspu.UserProductVO;
 import com.limyel.haoyuan.mall.trade.service.UserProductService;
-import com.limyel.haoyuan.mall.trade.vo.userspu.UserProductVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;

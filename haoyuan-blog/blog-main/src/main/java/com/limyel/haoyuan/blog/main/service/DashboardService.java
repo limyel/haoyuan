@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.blog.main.service;
 
-import com.limyel.haoyuan.blog.main.vo.dashboard.StatisticsVO;
+import com.limyel.haoyuan.blog.common.main.vo.dashboard.StatisticsVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,11 @@
 package com.limyel.haoyuan.blog.main.controller.admin;
 
-import com.limyel.haoyuan.blog.main.constant.MainErrorMsg;
-import com.limyel.haoyuan.blog.main.dto.tag.TagDTO;
-import com.limyel.haoyuan.blog.main.dto.tag.TagPageDTO;
+import com.limyel.haoyuan.blog.common.main.constant.MainErrorMsg;
+import com.limyel.haoyuan.blog.common.main.dto.tag.TagDTO;
+import com.limyel.haoyuan.blog.common.main.dto.tag.TagPageDTO;
+import com.limyel.haoyuan.blog.common.main.vo.tag.TagPageVO;
+import com.limyel.haoyuan.blog.common.main.vo.tag.TagSelectVO;
 import com.limyel.haoyuan.blog.main.service.TagService;
-import com.limyel.haoyuan.blog.main.vo.tag.TagPageVO;
-import com.limyel.haoyuan.blog.main.vo.tag.TagSelectVO;
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;

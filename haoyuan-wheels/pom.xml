@@ -12,8 +12,6 @@
     <artifactId>haoyuan-wheels</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>haoyuan-kv</module>
-        <module>haoyuan-mq</module>
         <module>haoyuan-ioc</module>
         <module>haoyuan-aop</module>
         <module>haoyuan-threadpool</module>

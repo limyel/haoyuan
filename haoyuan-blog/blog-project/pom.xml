@@ -20,22 +20,18 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
+            <artifactId>blog-common-project</artifactId>
+            <version>0.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
             <artifactId>blog-main</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>common-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>common-mybatis</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>common-knife4j</artifactId>
         </dependency>
 
         <dependency>

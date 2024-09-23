@@ -1,9 +1,9 @@
 package com.limyel.haoyuan.blog.project.controller.admin;
 
-import com.limyel.haoyuan.blog.project.dto.project.ProjectDTO;
-import com.limyel.haoyuan.blog.project.dto.project.ProjectPageDTO;
+import com.limyel.haoyuan.blog.common.project.dto.project.ProjectDTO;
+import com.limyel.haoyuan.blog.common.project.dto.project.ProjectPageDTO;
+import com.limyel.haoyuan.blog.common.project.vo.project.ProjectPageVO;
 import com.limyel.haoyuan.blog.project.service.ProjectService;
-import com.limyel.haoyuan.blog.project.vo.project.ProjectPageVO;
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.core.validator.group.Create;

@@ -2,25 +2,22 @@ package com.limyel.haoyuan.blog.project.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.limyel.haoyuan.blog.main.constant.SettingLabelEnum;
+import com.limyel.haoyuan.blog.common.main.constant.SettingLabelEnum;
+import com.limyel.haoyuan.blog.common.project.constant.ProjectErrorMsg;
+import com.limyel.haoyuan.blog.common.project.convert.ProjectConvert;
+import com.limyel.haoyuan.blog.common.project.dto.project.ProjectDTO;
+import com.limyel.haoyuan.blog.common.project.dto.project.ProjectPageDTO;
+import com.limyel.haoyuan.blog.common.project.entity.ProjectEntity;
+import com.limyel.haoyuan.blog.common.project.vo.project.ProjectListVO;
+import com.limyel.haoyuan.blog.common.project.vo.project.ProjectPageVO;
 import com.limyel.haoyuan.blog.main.service.SettingService;
-import com.limyel.haoyuan.blog.project.constant.ProjectErrorMsg;
-import com.limyel.haoyuan.blog.project.convert.ProjectConvert;
 import com.limyel.haoyuan.blog.project.dao.ProjectDao;
-import com.limyel.haoyuan.blog.project.dto.project.ProjectDTO;
-import com.limyel.haoyuan.blog.project.dto.project.ProjectPageDTO;
-import com.limyel.haoyuan.blog.project.entity.ProjectEntity;
-import com.limyel.haoyuan.blog.project.vo.project.ProjectListVO;
-import com.limyel.haoyuan.blog.project.vo.project.ProjectPageVO;
 import com.limyel.haoyuan.common.core.constant.StatusEnum;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.mall.member.dto.pointlog.PointChange;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.rocketmq.client.producer.SendCallback;
-import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -113,12 +110,12 @@ public class ProjectService {
 
     @Scheduled(cron = "0 59 23 * * ?")
     public void syncProject() {
-        List<ProjectListVO> projects = getList();
+        List<ProjectEntity> projects = projectDao.selectList();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "token " + settingService.getValue(SettingLabelEnum.GITHUB_TOKEN.getLabel(), true));
         HttpEntity<Object> request = new HttpEntity<>(headers);
 
-        for (ProjectListVO project : projects) {
+        for (ProjectEntity project : projects) {
             if (StatusEnum.ENABLE.getValue().equals(project.getStatus())) {
                 threadPoolExecutor.execute(() -> {
                     String since = LocalDateTime.now().minusDays(1L).format(DateTimeFormatter.ISO_DATE_TIME);
@@ -127,9 +124,9 @@ public class ProjectService {
                     log.info("获取项目 {} 的 commit，从 {} 开始共 {} 次。", project.getName(), since, forEntity.getBody().size());
                     int commitNum = 0;
                     for (Object s : forEntity.getBody()) {
-                        if (s instanceof Map<?,?> commit) {
+                        if (s instanceof Map<?, ?> commit) {
                             Object commitMap = commit.get("commit");
-                            if (commitMap instanceof Map<?,?> map) {
+                            if (commitMap instanceof Map<?, ?> map) {
                                 Object message = map.get("message");
                                 if (message instanceof String msg) {
                                     if (msg.startsWith("feat")) {
@@ -140,25 +137,25 @@ public class ProjectService {
                         }
                     }
 
-                    if (commitNum > 0) {
-                        PointChange change = new PointChange();
-                        change.setUserId(1L);
-                        change.setChangedPoint(commitNum * 10L);
-                        change.setType(StatusEnum.ENABLE.getValue());
-                        change.setReason(String.format("项目 %s 提交 %d 次 commit", project.getName(), commitNum));
-
-                        rocketMQTemplate.asyncSend("point-topic", change, new SendCallback() {
-                            @Override
-                            public void onSuccess(SendResult sendResult) {
-                                log.info("消息发送成功: {}", sendResult.getMsgId());
-                            }
-
-                            @Override
-                            public void onException(Throwable throwable) {
-                                throwable.printStackTrace();
-                            }
-                        });
-                    }
+//                    if (commitNum > 0) {
+//                        PointChange change = new PointChange();
+//                        change.setUserId(1L);
+//                        change.setChangedPoint(commitNum * 10L);
+//                        change.setType(StatusEnum.ENABLE.getValue());
+//                        change.setReason(String.format("项目 %s 提交 %d 次 commit", project.getName(), commitNum));
+//
+//                        rocketMQTemplate.asyncSend("point-topic", change, new SendCallback() {
+//                            @Override
+//                            public void onSuccess(SendResult sendResult) {
+//                                log.info("消息发送成功: {}", sendResult.getMsgId());
+//                            }
+//
+//                            @Override
+//                            public void onException(Throwable throwable) {
+//                                throwable.printStackTrace();
+//                            }
+//                        });
+//                    }
                 });
             }
         }

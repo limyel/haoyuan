@@ -39,6 +39,12 @@
             <groupId>com.limyel</groupId>
             <artifactId>common-mybatis</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>datastruct</artifactId>
+            <version>0.0.0</version>
+        </dependency>
     </dependencies>
 
 </project>

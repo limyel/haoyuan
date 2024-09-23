@@ -20,12 +20,13 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-core</artifactId>
+            <artifactId>blog-common-main</artifactId>
+            <version>0.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-mybatis</artifactId>
+            <artifactId>common-core</artifactId>
         </dependency>
 
         <dependency>

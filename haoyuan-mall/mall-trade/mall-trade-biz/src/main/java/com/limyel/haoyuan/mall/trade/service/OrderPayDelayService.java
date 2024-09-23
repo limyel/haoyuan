@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.mall.trade.service;
 
-import com.limyel.haoyuan.mall.trade.entity.OrderEntity;
+import com.limyel.haoyuan.mall.common.trade.entity.OrderEntity;
 import lombok.RequiredArgsConstructor;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
