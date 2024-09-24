@@ -124,7 +124,7 @@ public class SkuService {
      * @param dto
      */
     public void deductStock(StockDeduct dto) {
-        String orderToken = dto.getOrderToken();
+        String orderSn = dto.getOrderSn();
         for (StockDeduct.SkuDTO skuDTO : dto.getSkuList()) {
 //            SpuEntity spu = spuDao.selectById(spuDTO.getSpuId());
 //            if (spu.getStock() < spuDTO.getQuantity()) {
@@ -144,7 +144,7 @@ public class SkuService {
             );
             Assert.isTrue(deductResult == 1, "商品库存不足");
 
-            redisTemplate.opsForList().rightPush(SpuRedisKey.SPU_STOCK_DEDUCT_PREFIX + orderToken, JSONUtil.toJson(skuDTO));
+            redisTemplate.opsForList().rightPush(SpuRedisKey.SPU_STOCK_DEDUCT_PREFIX + orderSn, JSONUtil.toJson(skuDTO));
         }
     }
 

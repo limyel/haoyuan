@@ -2,17 +2,15 @@ package com.limyel.haoyuan.mall.trade.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
-import com.limyel.haoyuan.mall.product.constant.SpuTypeEnum;
-import com.limyel.haoyuan.mall.security.entity.SysUserDetails;
-import com.limyel.haoyuan.mall.trade.convert.UserSpuConvert;
+import com.limyel.haoyuan.mall.common.product.constant.SpuTypeEnum;
+import com.limyel.haoyuan.mall.common.trade.convert.UserSpuConvert;
+import com.limyel.haoyuan.mall.common.trade.dto.userspu.UseProductDTO;
+import com.limyel.haoyuan.mall.common.trade.entity.OrderItemEntity;
+import com.limyel.haoyuan.mall.common.trade.entity.UserProductEntity;
+import com.limyel.haoyuan.mall.common.trade.vo.userspu.UserProductVO;
 import com.limyel.haoyuan.mall.trade.dao.UserProductDao;
-import com.limyel.haoyuan.mall.trade.dto.userspu.UseProductDTO;
-import com.limyel.haoyuan.mall.trade.entity.OrderItemEntity;
-import com.limyel.haoyuan.mall.trade.entity.UserProductEntity;
-import com.limyel.haoyuan.mall.trade.vo.userspu.UserProductVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -65,10 +63,10 @@ public class UserProductService {
     }
 
     public List<UserProductVO> getList() {
-        SysUserDetails sysUser = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // todo
 
         List<UserProductEntity> list = userProductDao.selectList(new LambdaQueryWrapper<UserProductEntity>()
-                .eq(UserProductEntity::getUserId, sysUser.getId())
+                .eq(UserProductEntity::getUserId, null)
                 .and(wrapper -> wrapper.ge(UserProductEntity::getQuantity, 0).or().ge(UserProductEntity::getSubscribeTime, LocalDateTime.now()))
         );
         return list.stream()
@@ -77,8 +75,9 @@ public class UserProductService {
     }
 
     public void useProduct(UseProductDTO dto) {
-        SysUserDetails sysUser = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Long userId = sysUser.getId();
+        // todo
+
+        Long userId = null;
         LambdaQueryWrapper<UserProductEntity> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(UserProductEntity::getUserId, userId);
         wrapper.eq(UserProductEntity::getSkuId, dto.getSkuId());

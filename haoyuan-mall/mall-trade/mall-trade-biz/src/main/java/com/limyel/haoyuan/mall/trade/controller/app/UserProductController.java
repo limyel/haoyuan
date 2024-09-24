@@ -1,6 +1,7 @@
 package com.limyel.haoyuan.mall.trade.controller.app;
 
 import com.limyel.haoyuan.common.core.pojo.R;
+import com.limyel.haoyuan.mall.common.trade.dto.userspu.UseProductDTO;
 import com.limyel.haoyuan.mall.common.trade.vo.userspu.UserProductVO;
 import com.limyel.haoyuan.mall.trade.service.UserProductService;
 import lombok.RequiredArgsConstructor;

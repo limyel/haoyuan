@@ -1,8 +1,8 @@
 package com.limyel.haoyuan.mall.product.controller.app;
 
 import com.limyel.haoyuan.common.core.pojo.R;
+import com.limyel.haoyuan.mall.common.product.vo.sku.SkuListVO;
 import com.limyel.haoyuan.mall.product.service.SkuService;
-import com.limyel.haoyuan.mall.product.vo.sku.SkuListVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

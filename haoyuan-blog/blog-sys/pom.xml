@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>haoyuan-blog</artifactId>
-        <version>${haoyuan-blog.version}</version>
+        <version>${blog.version}</version>
     </parent>
 
     <artifactId>blog-sys</artifactId>
@@ -23,7 +23,6 @@
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>blog-common-sys</artifactId>
-            <version>0.0.0</version>
         </dependency>
 
         <dependency>

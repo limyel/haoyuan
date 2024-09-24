@@ -31,6 +31,7 @@
         <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
         <revision>0.0.0</revision>
         <mall.version>0.0.0</mall.version>
+        <blog.version>0.1.0</blog.version>
 
         <lombok.version>1.18.30</lombok.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>

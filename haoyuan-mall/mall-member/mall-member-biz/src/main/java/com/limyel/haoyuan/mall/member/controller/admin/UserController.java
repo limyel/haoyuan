@@ -2,8 +2,8 @@ package com.limyel.haoyuan.mall.member.controller.admin;
 
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.mall.member.dto.user.UpdateStatus;
-import com.limyel.haoyuan.mall.member.dto.user.UserUpdateDTO;
+import com.limyel.haoyuan.mall.common.member.dto.user.UpdateStatus;
+import com.limyel.haoyuan.mall.common.member.dto.user.UserUpdateDTO;
 import com.limyel.haoyuan.mall.member.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;

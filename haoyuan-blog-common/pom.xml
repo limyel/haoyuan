@@ -11,6 +11,7 @@
 
     <artifactId>haoyuan-blog-common</artifactId>
     <packaging>pom</packaging>
+    <version>${blog.version}</version>
     <modules>
         <module>blog-common-main</module>
         <module>blog-common-project</module>

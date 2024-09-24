@@ -3,9 +3,9 @@ package com.limyel.haoyuan.mall.common.trade.dto.userspu;
 import lombok.Data;
 
 @Data
-public class UseSpuDTO {
+public class UseProductDTO {
 
-    private Long spuId;
+    private Long skuId;
 
     private Integer quantity;
 

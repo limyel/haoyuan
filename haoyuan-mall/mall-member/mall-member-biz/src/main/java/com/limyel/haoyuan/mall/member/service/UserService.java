@@ -3,16 +3,10 @@ package com.limyel.haoyuan.mall.member.service;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.mall.common.member.constant.PaymentMethodEnum;
-import com.limyel.haoyuan.mall.common.member.convert.UserConvert;
+import com.limyel.haoyuan.mall.common.member.dto.user.api.PointBalanceChange;
 import com.limyel.haoyuan.mall.common.member.entity.UserEntity;
-import com.limyel.haoyuan.mall.common.member.vo.user.UserInfoVO;
 import com.limyel.haoyuan.mall.member.dao.UserDao;
-import com.limyel.haoyuan.mall.member.dto.user.PointBalance;
-import com.limyel.haoyuan.mall.member.dto.user.UserCreate;
-import com.limyel.haoyuan.mall.security.entity.SysUserDetails;
-import com.limyel.haoyuan.mall.sys.api.SysUserApi;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -23,12 +17,6 @@ import java.util.List;
 public class UserService {
 
     private final UserDao userDao;
-
-    private final SysUserApi sysUserApi;
-
-    public int create(UserCreate dto) {
-        return 0;
-    }
 
     public int delete(List<Long> ids) {
         return userDao.deleteBatchIds(ids);
@@ -54,24 +42,12 @@ public class UserService {
         return user;
     }
 
-    public UserInfoVO getCurrentUserInfo() {
-        SysUserDetails sysUser = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserEntity user = userDao.selectById(sysUser.getId());
-        if (user == null) {
-            throw new ServiceException("用户不存在");
-        }
-
-        UserInfoVO result = UserConvert.INSTANCE.toInfoVO(user);
-        result.setUsername(sysUser.getUsername());
-        return result;
-    }
-
     /**
      * todo 分布式锁
      * @param dto
      * @return
      */
-    public Integer deductPointBalance(PointBalance dto) {
+    public Integer deductPointBalance(PointBalanceChange dto) {
         Long userId = dto.getUserId();
         UserEntity user = userDao.selectById(userId);
         Long total = dto.getTotal();

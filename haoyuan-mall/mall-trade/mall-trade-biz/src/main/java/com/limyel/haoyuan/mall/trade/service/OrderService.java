@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.PageParam;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
+import com.limyel.haoyuan.mall.common.member.dto.user.api.PointBalanceChange;
 import com.limyel.haoyuan.mall.common.product.dto.api.SkuConfirm;
 import com.limyel.haoyuan.mall.common.product.dto.api.StockDeduct;
 import com.limyel.haoyuan.mall.common.trade.constant.OrderRedisKey;
@@ -20,7 +21,6 @@ import com.limyel.haoyuan.mall.common.trade.vo.order.OrderConfirmVO;
 import com.limyel.haoyuan.mall.common.trade.vo.order.OrderListVO;
 import com.limyel.haoyuan.mall.member.api.UserApi;
 import com.limyel.haoyuan.mall.product.api.SkuApi;
-import com.limyel.haoyuan.mall.security.entity.SysUserDetails;
 import com.limyel.haoyuan.mall.trade.dao.OrderDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,6 @@ import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -57,12 +56,12 @@ public class OrderService {
     private final RocketMQTemplate rocketMQTemplate;
 
     public PageData<OrderListVO> getList(PageParam pageParam) {
-        SysUserDetails sysUser = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // todo
 
         Page<OrderEntity> page = new Page<>(pageParam.getPageNum(), pageParam.getPageSize());
 
         LambdaQueryWrapper<OrderEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(OrderEntity::getUserId, sysUser.getId());
+        wrapper.eq(OrderEntity::getUserId, null);
 
         orderDao.selectPage(page, wrapper);
 
@@ -112,7 +111,9 @@ public class OrderService {
      * @return
      */
     public String submit(OrderSubmitDTO dto) {
-        SysUserDetails sysUser = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        dto.setOrderSn(UUID.randomUUID().toString().replace("-", ""));
+
+        // todo
 
         // 判断订单是否重复提交
         // todo 用 lua 脚本保证原子性
@@ -156,7 +157,7 @@ public class OrderService {
         // 校验库存并锁定库存？
         // 扣减库存
         StockDeduct deductDTO = new StockDeduct();
-        deductDTO.setOrderToken(orderToken);
+        deductDTO.setOrderSn(dto.getOrderSn());
         deductDTO.setSkuList(deductSpuList);
         skuApi.deduct(deductDTO);
 
@@ -168,7 +169,7 @@ public class OrderService {
         order.setTotalAmount(totalAmount);
         order.setTotalQuantity(totalQuantity);
         order.setPaymentAmount(totalAmount);
-        order.setUserId(sysUser.getId());
+        order.setUserId(null);
         orderDao.insert(order);
         orderItemService.create(order.getId(), dto.getOrderItems());
 
@@ -188,7 +189,7 @@ public class OrderService {
     }
 
     public void pay(OrderPayDTO dto) {
-        SysUserDetails sysUser = (SysUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // todo
 
         String orderSn = dto.getOrderSn();
         OrderEntity order = orderDao.selectOne(OrderEntity::getOrderSn, orderSn);
@@ -196,18 +197,19 @@ public class OrderService {
 
         Assert.isTrue(OrderStatusEnum.UNPAID.getValue().equals(order.getStatus()), "订单不可支付，请检查订单状态");
 
-        PointBalance pointBalance = new PointBalance();
-        pointBalance.setUserId(sysUser.getId());
+        PointBalanceChange pointBalance = new PointBalanceChange();
+        pointBalance.setUserId(null);
         pointBalance.setType(dto.getPaymentMethod());
         pointBalance.setTotal(order.getPaymentAmount());
-        if (!userApi.deductPointBalance(pointBalance)) {
-            throw new ServiceException("支付失败");
-        }
+        // todo
+//        if (!userApi.deductPointBalance(pointBalance)) {
+//            throw new ServiceException("支付失败");
+//        }
         order.setStatus(OrderStatusEnum.COMPLETE.getValue());
         orderDao.updateById(order);
 
         // todo
-        userProductService.createOrUpdate(sysUser.getId(), order.getId());
+        userProductService.createOrUpdate(null, order.getId());
     }
 
     public void cancel(String orderSn) {

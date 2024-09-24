@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mall.trade.controller.app;
 
 import com.limyel.haoyuan.common.core.pojo.R;
-import com.limyel.haoyuan.mall.common.trade.dto.userspu.UseSpuDTO;
+import com.limyel.haoyuan.mall.common.trade.dto.userspu.UseProductDTO;
 import com.limyel.haoyuan.mall.common.trade.vo.userspu.UserProductVO;
 import com.limyel.haoyuan.mall.trade.service.UserProductService;
 import com.limyel.haoyuan.mallcloud.common.security.util.SecurityUtil;
@@ -32,7 +32,7 @@ public class UserProductController {
 
     @PreAuthorize("@pms.memberAuthenticated()")
     @PostMapping("/use")
-    public R<?> useSpu(@Validated @RequestBody UseSpuDTO dto) {
+    public R<?> useSpu(@Validated @RequestBody UseProductDTO dto) {
         userProductService.useSpu(dto);
         return R.ok();
     }

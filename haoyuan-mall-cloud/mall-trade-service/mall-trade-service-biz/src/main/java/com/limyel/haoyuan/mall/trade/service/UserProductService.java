@@ -2,14 +2,14 @@ package com.limyel.haoyuan.mall.trade.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
+import com.limyel.haoyuan.mall.common.product.constant.SpuTypeEnum;
 import com.limyel.haoyuan.mall.common.trade.convert.UserSpuConvert;
-import com.limyel.haoyuan.mall.common.trade.dto.userspu.UseSpuDTO;
+import com.limyel.haoyuan.mall.common.trade.dto.userspu.UseProductDTO;
 import com.limyel.haoyuan.mall.common.trade.entity.OrderItemEntity;
 import com.limyel.haoyuan.mall.common.trade.entity.UserProductEntity;
 import com.limyel.haoyuan.mall.common.trade.vo.userspu.UserProductVO;
 import com.limyel.haoyuan.mall.trade.dao.UserSpuDao;
 import com.limyel.haoyuan.mallcloud.common.security.util.SecurityUtil;
-import com.limyel.haoyuan.mallcloud.product.constant.SpuTypeEnum;
 import lombok.RequiredArgsConstructor;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
@@ -90,11 +90,11 @@ public class UserProductService {
                 .toList();
     }
 
-    public void useSpu(UseSpuDTO dto) {
+    public void useSpu(UseProductDTO dto) {
         long userId = SecurityUtil.getMemberUserId().get();
         LambdaQueryWrapper<UserProductEntity> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(UserProductEntity::getUserId, userId);
-        wrapper.eq(UserProductEntity::getSkuId, dto.getSpuId());
+        wrapper.eq(UserProductEntity::getSkuId, dto.getSkuId());
         wrapper.eq(UserProductEntity::getType, SpuTypeEnum.ONCE.getValue());
 
         UserProductEntity userSpu = userSpuDao.selectOne(wrapper);

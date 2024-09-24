@@ -14,7 +14,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <revision>0.0.0</revision>
-        <haoyuan-blog.version>0.1.0</haoyuan-blog.version>
+        <blog.version>0.1.0</blog.version>
         <mall.version>0.0.0</mall.version>
 
         <spring-boot.version>2.7.18</spring-boot.version>
@@ -97,17 +97,32 @@
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>blog-sys</artifactId>
-                <version>${haoyuan-blog.version}</version>
+                <version>${blog.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>blog-main</artifactId>
-                <version>${haoyuan-blog.version}</version>
+                <version>${blog.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>blog-project</artifactId>
-                <version>${haoyuan-blog.version}</version>
+                <version>${blog.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>blog-common-main</artifactId>
+                <version>${blog.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>blog-common-project</artifactId>
+                <version>${blog.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>blog-common-sys</artifactId>
+                <version>${blog.version}</version>
             </dependency>
 
             <!-- mall-cloud -->
@@ -128,16 +143,6 @@
             </dependency>
 
             <!-- mall -->
-            <dependency>
-                <groupId>com.limyel</groupId>
-                <artifactId>mall-sys-biz</artifactId>
-                <version>${mall.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.limyel</groupId>
-                <artifactId>mall-sys-api</artifactId>
-                <version>${mall.version}</version>
-            </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-member-biz</artifactId>
@@ -175,7 +180,36 @@
                 <artifactId>mall-security</artifactId>
                 <version>${mall.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-common-member</artifactId>
+                <version>${mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-common-product</artifactId>
+                <version>${mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-common-promotion</artifactId>
+                <version>${mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-common-sys</artifactId>
+                <version>${mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-common-trade</artifactId>
+                <version>${mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>mall-security-starter</artifactId>
+                <version>${mall.version}</version>
+            </dependency>
 
             <!-- db -->
             <dependency>
