@@ -182,6 +182,11 @@
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
+                <artifactId>mall-common-auth</artifactId>
+                <version>${mall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
                 <artifactId>mall-common-member</artifactId>
                 <version>${mall.version}</version>
             </dependency>
