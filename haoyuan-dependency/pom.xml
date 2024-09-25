@@ -177,11 +177,6 @@
             <!-- mall-common -->
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>mall-security</artifactId>
-                <version>${mall.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.limyel</groupId>
                 <artifactId>mall-common-auth</artifactId>
                 <version>${mall.version}</version>
             </dependency>

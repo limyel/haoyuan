@@ -1,7 +1,8 @@
 package com.limyel.haoyuan.mallcloud.auth.entity;
 
 import com.limyel.haoyuan.common.core.constant.StatusEnum;
-import com.limyel.haoyuan.mall.common.sys.dto.api.SysUserSecurity;
+import com.limyel.haoyuan.mall.common.auth.dto.SysUserSecurity;
+import com.limyel.haoyuan.mall.common.auth.entity.MallUserDetails;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

@@ -1,8 +1,8 @@
 package com.limyel.haoyuan.mallcloud.auth.service;
 
-import com.limyel.haoyuan.mall.common.sys.dto.api.SysUserSecurity;
+import com.limyel.haoyuan.mall.common.auth.dto.SysUserSecurity;
+import com.limyel.haoyuan.mall.common.auth.entity.MallUserDetails;
 import com.limyel.haoyuan.mall.sys.api.SysUserFeignClient;
-import com.limyel.haoyuan.mallcloud.auth.entity.MallUserDetails;
 import com.limyel.haoyuan.mallcloud.auth.entity.SysUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;

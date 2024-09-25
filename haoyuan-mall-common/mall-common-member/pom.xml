@@ -23,6 +23,11 @@
             <groupId>com.limyel</groupId>
             <artifactId>common-mybatis</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-common-auth</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

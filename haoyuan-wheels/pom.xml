@@ -16,6 +16,7 @@
         <module>haoyuan-aop</module>
         <module>haoyuan-threadpool</module>
         <module>haoyuan-net</module>
+        <module>haoyuan-registration</module>
     </modules>
 
     <properties>

@@ -59,9 +59,11 @@ CREATE TABLE `sys_role` (
 
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role` (
+    `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `sys_user_id` bigint NOT NULL COMMENT '用户ID',
     `role_id` bigint NOT NULL COMMENT '角色ID',
-    PRIMARY KEY (`sys_user_id`, `role_id`) USING BTREE
+    PRIMARY KEY (`id`) USING BTREE,
+    UNIQUE KEY `sys_user_role` (`sys_user_id`, `role_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户角色关联表';
 
 
@@ -90,8 +92,78 @@ CREATE TABLE `sys_menu` (
 
 DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu` (
+    `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `role_id` bigint NOT NULL COMMENT '角色ID',
     `menu_id` bigint NOT NULL COMMENT '菜单ID',
-    PRIMARY KEY (`role_id`, `menu_id`) USING BTREE
+    PRIMARY KEY (`id`) USING BTREE,
+    UNIQUE KEY `role_menu` (`role_id`, `menu_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='角色菜单关联表';
+
+
+DROP TABLE IF EXISTS `sys_dept`;
+CREATE TABLE `sys_dept` (
+    `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `pid` bigint NOT NULL DEFAULT 0 COMMENT '上级 ID',
+    `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '部门名称',
+    `sort` int NOT NULL DEFAULT 0 COMMENT '显示顺序',
+    `leader` bigint NOT NULL DEFAULT 0 COMMENT '负责人',
+    `status` tinyint NOT NULL DEFAULT 0 COMMENT '状态，0-禁用，1-正常',
+    `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
+    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',
+    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='部门表';
+
+
+DROP TABLE IF EXISTS `sys_dict_data`;
+CREATE TABLE `sys_dict_data` (
+    `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `dict_type_id` bigint NOT NULL DEFAULT 0 COMMENT '字典类型 ID',
+    `dict_label` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '字典标签',
+    `dict_value` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '字典值',
+    `remark` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
+    `sort` int NOT NULL DEFAULT 0 COMMENT '显示顺序',
+    `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
+    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',
+    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='字典值表';
+
+
+DROP TABLE IF EXISTS `sys_dict_type`;
+CREATE TABLE `sys_dict_type` (
+    `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `dict_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '字典名称',
+    `dict_type` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '字典类型',
+    `remark` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
+    `sort` int NOT NULL DEFAULT 0 COMMENT '显示顺序',
+    `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
+    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',
+    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='字典类型表';
+
+
+DROP TABLE IF EXISTS `sys_params`;
+CREATE TABLE `sys_params` (
+    `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `param_label` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '参数标签',
+    `param_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '参数编码',
+    `param_value` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '参数值',
+    `type` tinyint NOT NULL DEFAULT 1 COMMENT '参数类型，0-系统参数 1-非系统参数',
+    `remark` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
+    `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
+    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',
+    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统参数表';
+
 

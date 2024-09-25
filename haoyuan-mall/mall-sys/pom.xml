@@ -10,7 +10,11 @@
     </parent>
 
     <artifactId>mall-sys</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+    <modules>
+        <module>mall-sys-biz</module>
+        <module>mall-sys-api</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -22,6 +26,11 @@
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>mall-common-sys</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-common-auth</artifactId>
         </dependency>
     </dependencies>
 

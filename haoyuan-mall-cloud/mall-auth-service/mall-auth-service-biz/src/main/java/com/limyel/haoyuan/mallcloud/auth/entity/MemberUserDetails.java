@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.mallcloud.auth.entity;
 
+import com.limyel.haoyuan.mall.common.auth.entity.MallUserDetails;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 

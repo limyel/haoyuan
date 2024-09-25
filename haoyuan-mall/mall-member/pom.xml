@@ -27,6 +27,11 @@
             <groupId>com.limyel</groupId>
             <artifactId>mall-common-member</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-common-auth</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

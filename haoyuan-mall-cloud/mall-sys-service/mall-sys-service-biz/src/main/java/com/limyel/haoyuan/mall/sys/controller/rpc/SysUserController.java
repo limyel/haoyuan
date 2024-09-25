@@ -1,8 +1,8 @@
 package com.limyel.haoyuan.mall.sys.controller.rpc;
 
 import com.limyel.haoyuan.common.core.pojo.R;
+import com.limyel.haoyuan.mall.common.auth.dto.SysUserSecurity;
 import com.limyel.haoyuan.mall.common.sys.convert.SysUserConvert;
-import com.limyel.haoyuan.mall.common.sys.dto.api.SysUserSecurity;
 import com.limyel.haoyuan.mall.common.sys.entity.SysUserEntity;
 import com.limyel.haoyuan.mall.sys.service.MenuService;
 import com.limyel.haoyuan.mall.sys.service.SysUserService;

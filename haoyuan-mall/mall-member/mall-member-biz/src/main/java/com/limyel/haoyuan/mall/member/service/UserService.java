@@ -42,6 +42,22 @@ public class UserService {
         return user;
     }
 
+    public UserEntity getByUsername(String username) {
+        UserEntity user = userDao.selectOne(UserEntity::getUsername, username);
+        if (user == null) {
+            throw new ServiceException("用户不存在");
+        }
+        return user;
+    }
+
+    public UserEntity getByMobild(String mobile) {
+        UserEntity user = userDao.selectOne(UserEntity::getMobile, mobile);
+        if (user == null) {
+            throw new ServiceException("用户不存在");
+        }
+        return user;
+    }
+
     /**
      * todo 分布式锁
      * @param dto

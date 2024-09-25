@@ -17,9 +17,8 @@ CREATE TABLE `member_user` (
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='会员用户表';
 
-INSERT INTO `member_user` (id, username, mobile, password, point, balance, blog_username, status) VALUES
-    (1, 'limyel', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 2000, 0, 'limyel', 1);
-INSERT INTO `member_user` (`id`, `username`, `mobile`, `password`, `point`, `balance`, `status`) VALUES
+INSERT INTO `member_user` (id, username, mobile, password, point, balance, status) VALUES
+    (1, 'limyel', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 2000, 0, 1),
     (2, 'liu_bei', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 8000, 3000, 1),
     (3, 'guan_yu', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),
     (4, 'zhang_fei', '13000000000', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 6000, 1500, 1),

@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.mall.common.member.convert;
 
+import com.limyel.haoyuan.mall.common.auth.dto.MemberUserSecurity;
 import com.limyel.haoyuan.mall.common.member.dto.user.UserDTO;
-import com.limyel.haoyuan.mall.common.member.dto.user.api.MemberUserSecurity;
 import com.limyel.haoyuan.mall.common.member.entity.UserEntity;
 import com.limyel.haoyuan.mall.common.member.vo.user.UserInfoVO;
 import com.limyel.haoyuan.mall.common.member.vo.user.UserPageVO;

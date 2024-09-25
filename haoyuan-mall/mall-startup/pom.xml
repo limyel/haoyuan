@@ -36,7 +36,14 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-security</artifactId>
+            <artifactId>mall-sys-biz</artifactId>
+            <version>0.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-auth</artifactId>
+            <version>0.0.0</version>
         </dependency>
 
         <dependency>

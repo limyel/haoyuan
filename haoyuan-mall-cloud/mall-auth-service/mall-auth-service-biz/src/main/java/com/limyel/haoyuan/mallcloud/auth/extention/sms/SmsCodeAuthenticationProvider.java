@@ -1,8 +1,8 @@
 package com.limyel.haoyuan.mallcloud.auth.extention.sms;
 
 import com.limyel.haoyuan.common.core.exception.ServiceException;
-import com.limyel.haoyuan.mallcloud.auth.entity.MallUserDetails;
-import com.limyel.haoyuan.mallcloud.auth.service.MallUserDetailsService;
+import com.limyel.haoyuan.mall.common.auth.entity.MallUserDetails;
+import com.limyel.haoyuan.mall.common.auth.service.MallUserDetailsService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationProvider;

@@ -31,11 +31,6 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-security</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
             <artifactId>common-redis</artifactId>
         </dependency>
     </dependencies>

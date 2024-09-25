@@ -11,7 +11,6 @@ import com.limyel.haoyuan.mall.common.member.constant.PaymentMethodEnum;
 import com.limyel.haoyuan.mall.common.member.convert.UserConvert;
 import com.limyel.haoyuan.mall.common.member.dto.user.UserDTO;
 import com.limyel.haoyuan.mall.common.member.dto.user.UserPageDTO;
-import com.limyel.haoyuan.mall.common.member.dto.user.api.MemberUserSecurity;
 import com.limyel.haoyuan.mall.common.member.dto.user.api.PointBalanceChange;
 import com.limyel.haoyuan.mall.common.member.entity.PayLogEntity;
 import com.limyel.haoyuan.mall.common.member.entity.UserEntity;

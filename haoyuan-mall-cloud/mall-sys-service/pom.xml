@@ -28,6 +28,11 @@
             <artifactId>mall-common-sys</artifactId>
             <version>0.0.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-common-auth</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
