@@ -43,15 +43,15 @@ rocketmq:
 
 haoyuan:
   knife4j:
-    title: "Blog 接口文档"
-    decription: "Blog 是一款简单的博客。"
+    title: "mall 接口文档"
+    decription: "mall 是一款简单的单体商城。"
     termsOfServiceurl: "https://limyel.com"
     username: "limyel"
     homeUrl: "https://limyel.com"
     email: "limyel@outlook.com"
     version: "0.0.0"
     groupName: "blog"
-    basePackage: "com.limyel.haoyuan.blog"
+    basePackage: "com.limyel.haoyuan.mall"
 
   security:
     loginUrl: "/login"
