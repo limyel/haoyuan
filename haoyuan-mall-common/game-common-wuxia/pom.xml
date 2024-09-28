@@ -5,46 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan</artifactId>
-        <version>${revision}</version>
+        <artifactId>haoyuan-mall-common</artifactId>
+        <version>0.0.0</version>
     </parent>
 
-    <artifactId>haoyuan-mall</artifactId>
-    <packaging>pom</packaging>
-    <version>${mall.version}</version>
-    <modules>
-        <module>mall-member</module>
-        <module>mall-sys</module>
-        <module>mall-product</module>
-        <module>mall-trade</module>
-        <module>mall-startup</module>
-        <module>mall-auth</module>
-    </modules>
+    <artifactId>game-common-wuxia</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <mall.version>0.0.0</mall.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
             <artifactId>common-mybatis</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>common-knife4j</artifactId>
-        </dependency>
-
     </dependencies>
 
 </project>

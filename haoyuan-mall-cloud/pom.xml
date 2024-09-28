@@ -20,6 +20,11 @@
         <module>mall-sys-service</module>
         <module>mall-gateway</module>
         <module>mall-auth-service</module>
+        <module>game-wuxia-service</module>
+        <module>game-skill-service</module>
+        <module>game-weapon-service</module>
+        <module>game-fight-service</module>
+        <module>game-store-service</module>
     </modules>
 
     <properties>
