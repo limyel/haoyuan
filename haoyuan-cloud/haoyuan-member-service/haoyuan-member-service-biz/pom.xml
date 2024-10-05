@@ -9,7 +9,7 @@
         <version>${mall.version}</version>
     </parent>
 
-    <artifactId>mall-member-service-biz</artifactId>
+    <artifactId>haoyuan-member-service-biz</artifactId>
     <packaging>jar</packaging>
 
     <properties>
@@ -32,7 +32,7 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-member-service-api</artifactId>
+            <artifactId>haoyuan-member-service-api</artifactId>
         </dependency>
 
         <dependency>
@@ -52,7 +52,7 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-auth-service-api</artifactId>
+            <artifactId>haoyuan-auth-service-api</artifactId>
             <version>0.0.0</version>
         </dependency>
 

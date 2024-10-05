@@ -5,12 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-sys-service</artifactId>
+        <artifactId>haoyuan-auth-service</artifactId>
         <version>${mall.version}</version>
     </parent>
 
-    <artifactId>mall-sys-service-biz</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>haoyuan-auth-service-api</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -21,28 +20,14 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-mybatis</artifactId>
+            <artifactId>haoyuan-member-service-api</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-sys-service-api</artifactId>
+            <artifactId>haoyuan-sys-service-api</artifactId>
             <version>0.0.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-mysql</artifactId>
-        </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

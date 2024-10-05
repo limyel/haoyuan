@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-sys-service</artifactId>
+        <artifactId>haoyuan-member-service</artifactId>
         <version>${mall.version}</version>
     </parent>
 
-    <artifactId>mall-sys-service-api</artifactId>
+    <artifactId>haoyuan-member-service-api</artifactId>
     <packaging>jar</packaging>
 
     <properties>
@@ -17,5 +17,13 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-common-member</artifactId>
+            <version>0.0.0</version>
+        </dependency>
+    </dependencies>
 
 </project>

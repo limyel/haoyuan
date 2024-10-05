@@ -12,8 +12,8 @@
     <artifactId>haoyuan-auth-service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>mall-auth-service-api</module>
-        <module>mall-auth-service-biz</module>
+        <module>haoyuan-auth-service-api</module>
+        <module>haoyuan-auth-service-biz</module>
     </modules>
 
     <properties>

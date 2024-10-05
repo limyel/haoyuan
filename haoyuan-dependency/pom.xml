@@ -128,7 +128,7 @@
             <!-- mall-cloud -->
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>mall-member-service-api</artifactId>
+                <artifactId>haoyuan-member-service-api</artifactId>
                 <version>${mall.version}</version>
             </dependency>
             <dependency>

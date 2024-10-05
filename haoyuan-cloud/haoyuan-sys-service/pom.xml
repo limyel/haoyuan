@@ -12,8 +12,8 @@
     <artifactId>haoyuan-sys-service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>mall-sys-service-biz</module>
-        <module>mall-sys-service-api</module>
+        <module>haoyuan-sys-service-biz</module>
+        <module>haoyuan-sys-service-api</module>
     </modules>
 
     <properties>

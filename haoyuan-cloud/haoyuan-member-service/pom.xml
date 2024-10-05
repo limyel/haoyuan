@@ -12,8 +12,8 @@
     <artifactId>haoyuan-member-service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>mall-member-service-api</module>
-        <module>mall-member-service-biz</module>
+        <module>haoyuan-member-service-api</module>
+        <module>haoyuan-member-service-biz</module>
     </modules>
 
     <properties>

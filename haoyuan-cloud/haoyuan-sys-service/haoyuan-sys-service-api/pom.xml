@@ -5,29 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-auth-service</artifactId>
+        <artifactId>haoyuan-sys-service</artifactId>
         <version>${mall.version}</version>
     </parent>
 
-    <artifactId>mall-auth-service-api</artifactId>
+    <artifactId>haoyuan-sys-service-api</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>mall-member-service-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>mall-sys-service-api</artifactId>
-            <version>0.0.0</version>
-        </dependency>
-    </dependencies>
 
 </project>

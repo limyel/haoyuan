@@ -9,7 +9,7 @@
         <version>${mall.version}</version>
     </parent>
 
-    <artifactId>mall-auth-service-biz</artifactId>
+    <artifactId>haoyuan-auth-service-biz</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -20,18 +20,18 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-auth-service-api</artifactId>
+            <artifactId>haoyuan-auth-service-api</artifactId>
             <version>0.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-member-service-api</artifactId>
+            <artifactId>haoyuan-member-service-api</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-sys-service-api</artifactId>
+            <artifactId>haoyuan-sys-service-api</artifactId>
             <version>0.0.0</version>
         </dependency>
 
