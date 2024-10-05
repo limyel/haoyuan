@@ -2,6 +2,7 @@ package com.limyel.haoyuan.mallcloud.member.controller.rpc;
 
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;
+import com.limyel.haoyuan.mall.common.auth.dto.MemberUserSecurity;
 import com.limyel.haoyuan.mall.common.member.dto.user.api.PointBalanceChange;
 import com.limyel.haoyuan.mallcloud.member.service.UserService;
 import lombok.RequiredArgsConstructor;

@@ -7,6 +7,7 @@ import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.util.CryptUtil;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
+import com.limyel.haoyuan.mall.common.auth.dto.MemberUserSecurity;
 import com.limyel.haoyuan.mall.common.member.constant.PaymentMethodEnum;
 import com.limyel.haoyuan.mall.common.member.convert.UserConvert;
 import com.limyel.haoyuan.mall.common.member.dto.user.UserDTO;

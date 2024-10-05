@@ -1,5 +1,6 @@
 package com.limyel.haoyuan.mallcloud.auth.service;
 
+import com.limyel.haoyuan.mall.common.auth.dto.MemberUserSecurity;
 import com.limyel.haoyuan.mall.common.auth.entity.MallUserDetails;
 import com.limyel.haoyuan.mall.common.auth.service.MallUserDetailsService;
 import com.limyel.haoyuan.mall.member.api.UserApi;
