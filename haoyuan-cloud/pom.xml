@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.limyel</groupId>
+        <artifactId>haoyuan</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>haoyuan-cloud</artifactId>
+    <packaging>pom</packaging>
+    <version>${mall.version}</version>
+    <modules>
+        <module>mall-trade-service</module>
+        <module>mall-product-service</module>
+        <module>mall-promotion-service</module>
+        <module>haoyuan-member-service</module>
+        <module>haoyuan-sys-service</module>
+        <module>haoyuan-gateway</module>
+        <module>haoyuan-auth-service</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-cloud</artifactId>
+            <version>0.0.0</version>
+        </dependency>
+    </dependencies>
+
+</project>
