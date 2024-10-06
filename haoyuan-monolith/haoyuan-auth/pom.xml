@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-common-auth</artifactId>
+            <artifactId>haoyuan-common-auth</artifactId>
         </dependency>
 
         <dependency>
@@ -30,7 +30,7 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-sys-api</artifactId>
+            <artifactId>haoyuan-sys-api</artifactId>
             <version>0.0.0</version>
         </dependency>
 

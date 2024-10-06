@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>mall-product</artifactId>
-        <version>${mall.version}</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>mall-product-api</artifactId>

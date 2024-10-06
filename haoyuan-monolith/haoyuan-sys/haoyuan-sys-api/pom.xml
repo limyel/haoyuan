@@ -9,20 +9,12 @@
         <version>0.0.0</version>
     </parent>
 
-    <artifactId>mall-sys-biz</artifactId>
+    <artifactId>haoyuan-sys-api</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>mall-sys-api</artifactId>
-            <version>0.0.0</version>
-        </dependency>
-    </dependencies>
 
 </project>

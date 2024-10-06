@@ -6,14 +6,14 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>haoyuan-monolith</artifactId>
-        <version>${mall.version}</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>haoyuan-sys</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>mall-sys-biz</module>
-        <module>mall-sys-api</module>
+        <module>haoyuan-sys-biz</module>
+        <module>haoyuan-sys-api</module>
     </modules>
 
     <properties>
@@ -25,12 +25,12 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-common-sys</artifactId>
+            <artifactId>haoyuan-common-sys</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-common-auth</artifactId>
+            <artifactId>haoyuan-common-auth</artifactId>
         </dependency>
     </dependencies>
 

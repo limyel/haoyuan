@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>haoyuan-cloud</artifactId>
-        <version>${mall.version}</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>haoyuan-sys-service</artifactId>
@@ -25,13 +25,13 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-common-sys</artifactId>
-            <version>0.0.0</version>
+            <artifactId>haoyuan-common-sys</artifactId>
+            <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-common-auth</artifactId>
+            <artifactId>haoyuan-common-auth</artifactId>
         </dependency>
     </dependencies>
 

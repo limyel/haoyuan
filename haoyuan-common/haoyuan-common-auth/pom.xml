@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-mall-common</artifactId>
+        <artifactId>haoyuan-common</artifactId>
         <version>0.0.0</version>
     </parent>
 
-    <artifactId>mall-common-auth</artifactId>
+    <artifactId>haoyuan-common-auth</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

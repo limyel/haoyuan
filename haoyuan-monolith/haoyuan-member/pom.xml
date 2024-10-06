@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>haoyuan-monolith</artifactId>
-        <version>${mall.version}</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>haoyuan-member</artifactId>
@@ -25,12 +25,12 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-common-member</artifactId>
+            <artifactId>haoyuan-common-member</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-common-auth</artifactId>
+            <artifactId>haoyuan-common-auth</artifactId>
         </dependency>
     </dependencies>
 

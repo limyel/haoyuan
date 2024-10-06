@@ -15,7 +15,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <revision>0.0.0</revision>
         <blog.version>0.1.0</blog.version>
-        <mall.version>0.0.0</mall.version>
 
         <spring-boot.version>2.7.18</spring-boot.version>
         <spring-cloud.version>2021.0.5</spring-cloud.version>
@@ -129,86 +128,86 @@
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>haoyuan-member-service-api</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-product-service-api</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-trade-service-api</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
 
             <!-- mall -->
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-member-biz</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-member-api</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-product-biz</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-product-api</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-trade-biz</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-trade-api</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
 
             <!-- mall-common -->
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>mall-common-auth</artifactId>
-                <version>${mall.version}</version>
+                <artifactId>haoyuan-common-auth</artifactId>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>mall-common-member</artifactId>
-                <version>${mall.version}</version>
+                <artifactId>haoyuan-common-member</artifactId>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-common-product</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-common-promotion</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
-                <artifactId>mall-common-sys</artifactId>
-                <version>${mall.version}</version>
+                <artifactId>haoyuan-common-sys</artifactId>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-common-trade</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-security-starter</artifactId>
-                <version>${mall.version}</version>
+                <version>${revision}</version>
             </dependency>
 
             <!-- db -->

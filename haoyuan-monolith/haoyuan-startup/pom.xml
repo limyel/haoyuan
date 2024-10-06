@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.limyel</groupId>
         <artifactId>haoyuan-monolith</artifactId>
-        <version>${mall.version}</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>haoyuan-startup</artifactId>
@@ -36,7 +36,7 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-sys-biz</artifactId>
+            <artifactId>haoyuan-sys-biz</artifactId>
             <version>0.0.0</version>
         </dependency>
 

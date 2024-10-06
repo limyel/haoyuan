@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-mall-common</artifactId>
-        <version>${mall.version}</version>
+        <artifactId>haoyuan-common</artifactId>
+        <version>${revision}</version>
     </parent>
 
-    <artifactId>mall-common-sys</artifactId>
+    <artifactId>haoyuan-common-sys</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -25,7 +25,7 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-common-auth</artifactId>
+            <artifactId>haoyuan-common-auth</artifactId>
         </dependency>
     </dependencies>
 

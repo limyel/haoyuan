@@ -5,16 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-sys</artifactId>
-        <version>0.0.0</version>
+        <artifactId>haoyuan-common</artifactId>
+        <version>${revision}</version>
     </parent>
 
-    <artifactId>mall-sys-api</artifactId>
+    <artifactId>mall-common-trade</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-mybatis</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

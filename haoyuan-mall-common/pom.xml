@@ -10,18 +10,11 @@
     </parent>
 
     <artifactId>haoyuan-mall-common</artifactId>
-    <version>${mall.version}</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <modules>
         <module>mall-security-starter</module>
-        <module>mall-common-member</module>
-        <module>mall-common-trade</module>
-        <module>mall-common-product</module>
-        <module>mall-common-sys</module>
-        <module>mall-common-promotion</module>
-        <module>mall-common-auth</module>
-        <module>game-common-wuxia</module>
     </modules>
 
     <properties>

@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-mall-common</artifactId>
-        <version>0.0.0</version>
+        <artifactId>haoyuan-sys</artifactId>
+        <version>${revision}</version>
     </parent>
 
-    <artifactId>game-common-wuxia</artifactId>
+    <artifactId>haoyuan-sys-biz</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -20,7 +20,8 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-mybatis</artifactId>
+            <artifactId>haoyuan-sys-api</artifactId>
+            <version>0.0.0</version>
         </dependency>
     </dependencies>
 

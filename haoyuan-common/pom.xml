@@ -21,6 +21,12 @@
         <module>common-cloud</module>
         <module>common-lock</module>
         <module>common-rocketmq</module>
+        <module>haoyuan-common-auth</module>
+        <module>haoyuan-common-member</module>
+        <module>haoyuan-common-sys</module>
+        <module>mall-common-product</module>
+        <module>mall-common-promotion</module>
+        <module>mall-common-trade</module>
     </modules>
 
     <properties>
