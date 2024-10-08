@@ -20,6 +20,8 @@
         <module>haoyuan-sys-service</module>
         <module>haoyuan-gateway</module>
         <module>haoyuan-auth-service</module>
+        <module>haoyuan-todo-service</module>
+        <module>haoyuan-cloud-resource-security</module>
     </modules>
 
     <properties>
@@ -37,7 +39,6 @@
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>common-cloud</artifactId>
-            <version>0.0.0</version>
         </dependency>
     </dependencies>
 

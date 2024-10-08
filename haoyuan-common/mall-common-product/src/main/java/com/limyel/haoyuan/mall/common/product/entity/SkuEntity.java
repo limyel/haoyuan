@@ -36,11 +36,6 @@ public class SkuEntity extends BaseEntity {
     private Integer lockedStock;
 
     /**
-     * 可购买的会员等级
-     */
-    private Long memberLevelId;
-
-    /**
      * 状态，0-下架 1-正常
      */
     private Integer status;

@@ -13,7 +13,7 @@ server:
 
 spring:
   application:
-    name: mall-auth
+    name: haoyuan-auth
   profiles:
     active: @profileActive@
   messages:
@@ -27,6 +27,10 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
       enabled: true
+
+springdoc:
+  api-docs:
+    enabled: true
 
 feign:
   client:
@@ -65,4 +69,4 @@ mybatis-plus:
     boolValue: TRUE
 
 logging:
-  config: classpath:logback-mall-auth.xml
+  config: classpath:logback-haoyuan-auth.xml

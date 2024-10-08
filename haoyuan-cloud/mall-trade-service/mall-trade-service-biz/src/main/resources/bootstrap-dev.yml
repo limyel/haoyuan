@@ -2,11 +2,11 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: http://192.168.69.73:8848
-        namespace: d0729479-74d8-4abf-81a6-d2e2b2045e8c
+        server-addr: http://127.0.0.1:8848
+        namespace: a69ca7ee-ae42-4cf5-be67-58499bfa98fe
       config:
-        server-addr: http://192.168.69.73:8848
-        namespace: d0729479-74d8-4abf-81a6-d2e2b2045e8c
+        server-addr: http://127.0.0.1:8848
+        namespace: a69ca7ee-ae42-4cf5-be67-58499bfa98fe
         file-extension: yaml
         prefix: mall-trade
         timeout: 5000 # 读取配置超时时间

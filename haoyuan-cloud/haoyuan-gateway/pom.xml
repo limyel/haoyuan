@@ -11,7 +11,7 @@
 
     <artifactId>haoyuan-gateway</artifactId>
     <packaging>jar</packaging>
-    <description>网关服务，网关只做黑名单拦截、插入 SaSameToken 等，不做具体的鉴权，由每个服务自己做具体的鉴权</description>
+    <description>网关服务</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -30,20 +30,14 @@
             <artifactId>common-redis</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.limyel</groupId>-->
-<!--            <artifactId>mall-auth-service-api</artifactId>-->
-<!--            <version>0.0.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-gateway-spring-boot-starter</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>common-mybatis</artifactId>
         </dependency>
 
         <!-- OAuth2 资源服务器-->

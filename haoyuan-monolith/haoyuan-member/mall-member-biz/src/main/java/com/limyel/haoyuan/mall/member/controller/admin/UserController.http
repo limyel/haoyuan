@@ -1,6 +1,6 @@
 ### 创建用户
 # @no-cookie-jar
-POST http://localhost:8030/mall-member/member/admin/user/create
+POST http://127.0.0.1:8030/mall-member/member/admin/user/create
 Content-Type: application/json
 token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6ImxpbXllbCIsImlhdCI6MTcyNDk0MDU0OCwiZXhwIjoxNzI1MzcyNTQ4fQ.d0D_m4g38lt6TLNS5iB4fTQGpXSNRNLlOCvEVZ6NxAuLDZo1n6ZFABWLKcwIhxEjZNmaV2caOkDj9KfBOAeaWA
 

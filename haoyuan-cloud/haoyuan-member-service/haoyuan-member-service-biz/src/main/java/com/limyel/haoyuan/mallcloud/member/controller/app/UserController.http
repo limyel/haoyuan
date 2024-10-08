@@ -1,5 +1,5 @@
 ###
 # @no-cookie-jar
-GET http://localhost:8010/mall-member/member/app/user/get/me
+GET http://127.0.0.1:8010/mall-member/member/app/user/get/me
 Content-Type: application/json
 satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350

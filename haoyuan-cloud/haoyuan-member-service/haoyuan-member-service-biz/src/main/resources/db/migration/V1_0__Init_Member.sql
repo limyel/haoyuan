@@ -54,24 +54,3 @@ CREATE TABLE `member_pay_log` (
     `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='积分日志表';
-
-
-DROP TABLE IF EXISTS `member_level`;
-CREATE TABLE `member_level` (
-    `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
-    `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '等级名称',
-    `point` bigint NOT NULL DEFAULT 0 COMMENT '需要的积分',
-    `sort` int NOT NULL DEFAULT 0 COMMENT '展示顺序',
-    `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
-    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',
-    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
-    PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='会员等级表';
-
-INSERT INTO `member_level` (id, name, point, sort) VALUES
-    (1, '青铜', 0, 1),
-    (2, '白银', 500, 2),
-    (3, '黄金', 1500, 3),
-    (4, '钻石', 3500, 4);

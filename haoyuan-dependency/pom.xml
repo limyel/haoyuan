@@ -28,7 +28,7 @@
         <lombok.version>1.18.30</lombok.version>
         <jjwt.version>0.11.5</jjwt.version>
         <satoken.version>1.38.0</satoken.version>
-        <knife4j.version>4.3.0</knife4j.version>
+        <knife4j.version>4.5.0</knife4j.version>
         <rocketmq.version>2.3.0</rocketmq.version>
         <jbcrypt.version>0.4</jbcrypt.version>
         <redisson.verson>3.27.2</redisson.verson>
@@ -63,6 +63,11 @@
             <!-- haoyuan-common -->
             <dependency>
                 <groupId>com.limyel</groupId>
+                <artifactId>common-cloud</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
                 <artifactId>common-core</artifactId>
                 <version>${revision}</version>
             </dependency>
@@ -79,11 +84,6 @@
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>common-jpa</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.limyel</groupId>
-                <artifactId>common-knife4j</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
@@ -138,6 +138,11 @@
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-trade-service-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-cloud-resource-security</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -207,6 +212,11 @@
             <dependency>
                 <groupId>com.limyel</groupId>
                 <artifactId>mall-security-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-common-todo</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -286,9 +296,15 @@
             <!-- 接口文档 -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
+                <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-gateway-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>

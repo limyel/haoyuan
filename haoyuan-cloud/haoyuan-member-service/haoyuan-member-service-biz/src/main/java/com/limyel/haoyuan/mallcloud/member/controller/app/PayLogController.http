@@ -1,4 +1,4 @@
 ###
 # @no-cookie-jar
-http://localhost:8010/mall-member/member/app/pay-log/get/list
+http://127.0.0.1:8010/mall-member/member/app/pay-log/get/list
 satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350

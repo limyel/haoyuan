@@ -12,6 +12,4 @@ public class SkuPageDTO extends PageParam {
 
     private String name;
 
-    private Long memberLevelId;
-
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(value = "mall-member", contextId = "user", path = "/member", configuration = FeignConfig.class)
+@FeignClient(value = "haoyuan-member", contextId = "user", path = "/member", configuration = FeignConfig.class)
 public interface UserApi {
 
     @GetMapping("/rpc/user/get/by-username/{username}")

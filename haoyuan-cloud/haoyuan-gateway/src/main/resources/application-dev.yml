@@ -25,24 +25,24 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: mall-sys
+        - id: haoyuan-sys
           order: 1
-          uri: lb://mall-sys # 路由的地址
+          uri: lb://haoyuan-sys # 路由的地址
           predicates:
-            - Path=/mall-sys/** # 路由匹配的路径
+            - Path=/haoyuan-sys/** # 路由匹配的路径
           filters:
             - StripPrefix=1 # 转发时去除前缀1层路径
-        - id: mall-auth
+        - id: haoyuan-auth
           order: 2
-          uri: lb://mall-auth
+          uri: lb://haoyuan-auth
           predicates:
-            - Path=/mall-auth/**
+            - Path=/haoyuan-auth/**
           filters:
             - StripPrefix=1
-        - id: mall-member
-          uri: lb://mall-member
+        - id: haoyuan-member
+          uri: lb://haoyuan-member
           predicates:
-            - Path=/mall-member/**
+            - Path=/haoyuan-member/**
           filters:
             - StripPrefix=1
         - id: mall-product
@@ -57,14 +57,19 @@ spring:
             - Path=/mall-trade/**
           filters:
             - StripPrefix=1
-        - id: mall-auth
-          uri: lb://mall-auth
-          predicates:
-            - Path=/mall-auth/**
-          filters:
-            - StripPrefix=1
+
   security:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: 'http://localhost:8060/auth/rsa/public-key'
+          jwk-set-uri: 'http://127.0.0.1:8060/auth/rsa/public-key'
+
+knife4j:
+  gateway:
+    enabled: true
+    tags-sorter: order
+    operations-sorter: order
+    strategy: discover
+    discover:
+      enabled: true
+      version: openapi3

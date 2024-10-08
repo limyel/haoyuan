@@ -16,10 +16,8 @@
         <module>common-mybatis</module>
         <module>common-redis</module>
         <module>common-jpa</module>
-        <module>common-knife4j</module>
         <module>common-security</module>
         <module>common-cloud</module>
-        <module>common-lock</module>
         <module>common-rocketmq</module>
         <module>haoyuan-common-auth</module>
         <module>haoyuan-common-member</module>
@@ -27,6 +25,7 @@
         <module>mall-common-product</module>
         <module>mall-common-promotion</module>
         <module>mall-common-trade</module>
+        <module>haoyuan-common-todo</module>
     </modules>
 
     <properties>
@@ -39,6 +38,11 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
     </dependencies>
 

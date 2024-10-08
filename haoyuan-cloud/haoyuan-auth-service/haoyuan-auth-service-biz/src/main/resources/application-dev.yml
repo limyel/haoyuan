@@ -2,7 +2,7 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://localhost:3306/mall-auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/mall-auth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 10
@@ -38,7 +38,7 @@ rocketmq:
 
 haoyuan:
   knife4j:
-    title: "Blog 接口文档"
+    title: "haoyuan-auth 接口文档"
     decription: "Blog 是一款简单的博客。"
     termsOfServiceurl: "https://limyel.com"
     username: "limyel"

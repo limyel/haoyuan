@@ -1,6 +1,6 @@
 ### 确认订单
 # @no-cookie-jar
-POST http://localhost:8010/mall-trade/trade/app/order/confirm
+POST http://127.0.0.1:8010/mall-trade/trade/app/order/confirm
 Content-Type: application/json
 satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
 
@@ -20,7 +20,7 @@ satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
 
 ### 提交订单
 # @no-cookie-jar
-POST http://localhost:8010/mall-trade/trade/app/order/submit
+POST http://127.0.0.1:8010/mall-trade/trade/app/order/submit
 Content-Type: application/json
 satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
 
@@ -30,7 +30,7 @@ satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
     {
       "spuId": 100,
       "spuName": "方天画戟",
-      "picUrl": "https://localhost:8080/pic",
+      "picUrl": "https://127.0.0.1:8080/pic",
       "price": 10,
       "quantity": 2,
       "type": 0
@@ -38,7 +38,7 @@ satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
     {
       "spuId": 101,
       "spuName": "赤兔马",
-      "picUrl": "https://localhost:8080/pic",
+      "picUrl": "https://127.0.0.1:8080/pic",
       "price": 8,
       "quantity": 3,
       "type": 0
@@ -50,7 +50,7 @@ satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
 
 ### 支付订单
 # @no-cookie-jar
-POST http://localhost:8010/mall-trade/trade/app/order/pay
+POST http://127.0.0.1:8010/mall-trade/trade/app/order/pay
 Content-Type: application/json
 satoken: 8e5aa39b-edb6-42cc-8fcb-2bb54ba50350
 

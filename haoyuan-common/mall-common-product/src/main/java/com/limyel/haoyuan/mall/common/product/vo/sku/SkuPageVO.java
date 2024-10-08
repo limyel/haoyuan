@@ -15,6 +15,4 @@ public class SkuPageVO {
 
     private Integer stock;
 
-    private String memberLevel;
-
 }

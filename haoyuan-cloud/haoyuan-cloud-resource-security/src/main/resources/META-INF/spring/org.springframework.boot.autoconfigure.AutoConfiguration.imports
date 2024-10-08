@@ -1,0 +1,2 @@
+com.limyel.haoyuan.cloud.security.config.ResourceServerConfig
+com.limyel.haoyuan.cloud.security.permission.PermissionService

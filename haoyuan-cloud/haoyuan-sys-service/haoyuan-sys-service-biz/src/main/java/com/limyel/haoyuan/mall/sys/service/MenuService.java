@@ -24,6 +24,9 @@ public class MenuService {
 
     public Set<String> getPermissions(Long sysUserId) {
         List<Long> roleIdList = sysUserRoleService.getRoleIdList(sysUserId);
+        if (roleIdList.isEmpty()) {
+            return Collections.emptySet();
+        }
 
         List<Long> menuIdList = roleMenuService.getMenuIdList(roleIdList);
 

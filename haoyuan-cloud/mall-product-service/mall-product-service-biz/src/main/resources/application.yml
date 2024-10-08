@@ -65,4 +65,4 @@ mybatis-plus:
     boolValue: TRUE
 
 logging:
-  config: classpath:logback-blog.xml
+  config: classpath:logback-mall-product.xml

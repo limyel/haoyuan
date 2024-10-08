@@ -1,5 +1,5 @@
 ###
-POST http://localhost:8888/blog/admin/tag/create
+POST http://127.0.0.1:8888/blog/admin/tag/create
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsaW15ZWwiLCJpc3MiOiJsaW15ZWwiLCJpYXQiOjE3MjM3OTM5NjQsImV4cCI6MTcyNDIyNTk2NH0.I1-mQ7jA5Lz4UZxyRyEETIwaWwD5ATs5ZP-I43IqlGMxqLH1BhtEZooO-suL2E3Q2zTrKHQWmfPVpe-XATTYqQ
 

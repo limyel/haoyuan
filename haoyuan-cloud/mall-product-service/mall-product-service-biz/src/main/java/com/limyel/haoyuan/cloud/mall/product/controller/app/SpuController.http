@@ -1,0 +1,4 @@
+### 商品列表
+# @no-cookie-jar
+GET http://127.0.0.1:8010/mall-product/product/app/spu/get/list
+Content-Type: application/json

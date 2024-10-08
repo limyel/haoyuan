@@ -20,7 +20,7 @@ CREATE TABLE `sys_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统用户表';
 
 INSERT INTO `sys_user` (id, dept_id, username, email, mobile, avatar, password, status, remark) VALUES
-    (1, null, 'admin', 'limyel@outlook.com', '13000000000', '', '$2a$10$AhVZZnoXZu3EVNBwdhJYOe61BAK6YFlA9pVzjg2RoqXk0AV7ZH1Iy', 1, '');
+    (1, null, 'admin', 'admin@limyel.com', '13000000000', '', '{noop}123456', 1, '');
 
 
 DROP TABLE IF EXISTS `sys_role`;

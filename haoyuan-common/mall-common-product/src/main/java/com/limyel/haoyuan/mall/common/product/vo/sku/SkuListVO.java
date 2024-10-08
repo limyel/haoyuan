@@ -11,6 +11,4 @@ public class SkuListVO {
 
     private Integer stock;
 
-    private String memberLevel;
-
 }
