@@ -73,3 +73,18 @@ knife4j:
     discover:
       enabled: true
       version: openapi3
+      service-config:
+        haoyuan-auth:
+          group-name: 认证授权服务
+        haoyuan-member:
+          group-name: 会员服务
+          context-path: /member
+        haoyuan-sys:
+          group-name: 后台管理服务
+          context-path: /sys
+        mall-product:
+          group-name: 商城商品服务
+          context-path: /product
+        mall-trade:
+          group-name: 商城交易服务
+          context-path: /trade
