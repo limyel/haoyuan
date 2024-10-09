@@ -8,8 +8,6 @@ import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.core.validator.group.Create;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,14 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController("adminPostController")
 @RequestMapping("/post")
-@Api(tags = "Admin 文章模块")
 @RequiredArgsConstructor
 public class PostController {
 
     private final PostService postService;
 
     @PostMapping("/create")
-    @ApiOperation("添加文章")
     @ApiOperationLog(description = "添加文章")
     public R<?> create(@Validated(Create.class) @RequestBody PostDTO dto) {
         postService.create(dto);
@@ -36,7 +32,6 @@ public class PostController {
     }
 
     @GetMapping("/delete/{id}")
-    @ApiOperation("删除文章")
     @ApiOperationLog(description = "删除文章")
     public R<?> delete(@PathVariable Long id) {
         postService.delete(id);
@@ -44,7 +39,6 @@ public class PostController {
     }
 
     @PostMapping("/update")
-    @ApiOperation("更新文章")
     @ApiOperationLog(description = "更新文章")
     public R<?> update(@Validated @RequestBody PostDTO dto) {
         postService.update(dto);
@@ -52,7 +46,6 @@ public class PostController {
     }
 
     @GetMapping("/get/by/{id}")
-    @ApiOperation("文章详情")
     @ApiOperationLog(description = "文章详情")
     public R<PostDTO> getById(@PathVariable Long id) {
         PostDTO result = postService.getById(id);
@@ -60,7 +53,6 @@ public class PostController {
     }
 
     @GetMapping("/get/page")
-    @ApiOperation("文章分页")
     @ApiOperationLog(description = "文章分页")
     public R<?> getPage(PostPageDTO dto) {
         PageData<PostPageVO> result = postService.getPage(dto);

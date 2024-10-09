@@ -15,7 +15,6 @@
         <module>haoyuan-blog</module>
         <module>haoyuan-cloud</module>
         <module>haoyuan-monolith</module>
-        <module>haoyuan-mall-common</module>
         <module>haoyuan-wheels</module>
         <module>haoyuan-blog-common</module>
         <module>haoyuan-datastruct</module>

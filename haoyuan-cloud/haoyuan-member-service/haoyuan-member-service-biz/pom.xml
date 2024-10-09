@@ -21,8 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-common-member</artifactId>
-            <version>${revision}</version>
+            <artifactId>common-mybatis</artifactId>
         </dependency>
 
         <dependency>
@@ -53,12 +52,6 @@
         <dependency>
             <groupId>com.limyel</groupId>
             <artifactId>haoyuan-auth-service-api</artifactId>
-            <version>0.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>mall-security-starter</artifactId>
             <version>0.0.0</version>
         </dependency>
 

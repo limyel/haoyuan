@@ -9,7 +9,6 @@ import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.core.validator.group.Create;
 import com.limyel.haoyuan.common.core.validator.group.Update;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +26,6 @@ public class ProjectController {
     private final ProjectService projectService;
 
     @PostMapping("/create")
-    @ApiOperation("添加项目")
     @ApiOperationLog(description = "添加项目")
     public R<?> create(@Validated(Create.class) @RequestBody ProjectDTO dto) {
         projectService.create(dto);
@@ -35,7 +33,6 @@ public class ProjectController {
     }
 
     @GetMapping("/delete/{id}")
-    @ApiOperation("删除项目")
     @ApiOperationLog(description = "删除项目")
     public R<?> delete(@PathVariable Long id) {
         projectService.delete(id);
@@ -43,7 +40,6 @@ public class ProjectController {
     }
 
     @PostMapping("/update")
-    @ApiOperation("更新文章")
     @ApiOperationLog(description = "更新文章")
     public R<?> update(@Validated(Update.class) @RequestBody ProjectDTO dto) {
         projectService.update(dto);
@@ -51,7 +47,6 @@ public class ProjectController {
     }
 
     @GetMapping("/get/by/{id}")
-    @ApiOperation("项目详情")
     @ApiOperationLog(description = "项目详情")
     public R<ProjectDTO> getById(@PathVariable Long id) {
         ProjectDTO result = projectService.getById(id);
@@ -59,7 +54,6 @@ public class ProjectController {
     }
 
     @GetMapping("/get/page")
-    @ApiOperation("文章分页")
     @ApiOperationLog(description = "文章分页")
     public R<?> getPage(ProjectPageDTO dto) {
         PageData<ProjectPageVO> result = projectService.getPage(dto);

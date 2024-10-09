@@ -1,9 +1,9 @@
 package com.limyel.haoyuan.cloud.auth.token;
 
+import com.limyel.haoyuan.cloud.auth.entity.MallUserDetails;
+import com.limyel.haoyuan.cloud.auth.entity.MemberUserDetails;
+import com.limyel.haoyuan.cloud.auth.entity.SysUserDetails;
 import com.limyel.haoyuan.common.core.util.JSONUtil;
-import com.limyel.haoyuan.mall.common.auth.entity.MallUserDetails;
-import com.limyel.haoyuan.mall.common.auth.entity.MemberUserDetails;
-import com.limyel.haoyuan.mall.common.auth.entity.SysUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;

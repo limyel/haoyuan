@@ -26,6 +26,11 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
+            <artifactId>common-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
             <artifactId>mall-product-service-api</artifactId>
         </dependency>
 
@@ -36,8 +41,12 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>mall-security-starter</artifactId>
-            <version>0.0.0</version>
+            <artifactId>haoyuan-cloud-resource-server</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>mall-product-service-api</artifactId>
         </dependency>
 
         <dependency>

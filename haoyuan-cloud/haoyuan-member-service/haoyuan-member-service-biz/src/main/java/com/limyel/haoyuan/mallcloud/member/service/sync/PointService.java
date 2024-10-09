@@ -1,8 +1,8 @@
 package com.limyel.haoyuan.mallcloud.member.service.sync;
 
 import com.limyel.haoyuan.common.core.constant.StatusEnum;
-import com.limyel.haoyuan.mall.common.member.entity.PayLogEntity;
-import com.limyel.haoyuan.mall.common.member.entity.UserEntity;
+import com.limyel.haoyuan.mallcloud.member.entity.PayLogEntity;
+import com.limyel.haoyuan.mallcloud.member.entity.UserEntity;
 import com.limyel.haoyuan.mallcloud.member.service.PayLogService;
 import com.limyel.haoyuan.mallcloud.member.service.UserService;
 import lombok.RequiredArgsConstructor;

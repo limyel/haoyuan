@@ -2,8 +2,6 @@ package com.limyel.haoyuan.blog.common.main.dto.post;
 
 import com.limyel.haoyuan.common.core.validator.group.Create;
 import com.limyel.haoyuan.common.core.validator.group.Update;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 
@@ -14,12 +12,10 @@ import javax.validation.constraints.Null;
 import java.util.List;
 
 @Data
-@ApiModel(value = "文章请求体")
 public class PostDTO {
 
     @NotNull(groups = Update.class, message = "ID 不能为空")
     @Null(groups = Create.class, message = "不能指定 ID")
-    @ApiModelProperty(value = "ID")
     private Long id;
 
     @NotBlank(message = "标题不能为空")

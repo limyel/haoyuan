@@ -25,13 +25,7 @@
     <dependencies>
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-common-sys</artifactId>
-            <version>${revision}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-cloud-resource-security</artifactId>
+            <artifactId>haoyuan-cloud-resource-server</artifactId>
         </dependency>
     </dependencies>
 

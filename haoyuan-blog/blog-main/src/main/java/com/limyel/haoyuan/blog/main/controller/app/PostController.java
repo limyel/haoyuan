@@ -8,8 +8,6 @@ import com.limyel.haoyuan.blog.main.service.PostService;
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,20 +19,17 @@ import java.util.List;
 @RestController("blogPostController")
 @RequestMapping("/post")
 @RequiredArgsConstructor
-@Api(tags = "文章模块")
 public class PostController {
 
     private final PostService postService;
 
     @GetMapping("/get/detail/{slug}")
-    @ApiOperation(value = "文章详情")
     public R<PostDetailVO> getBySlug(@PathVariable String slug) {
         PostDetailVO result = postService.getDetail(slug);
         return R.ok(result);
     }
 
     @GetMapping("/get/list")
-    @ApiOperation("文章列表")
     @ApiOperationLog(description = "文章列表")
     public R<PageData<PostListVO>> getList(PostListDTO dto) {
         PageData<PostListVO> result = postService.getList(dto);
@@ -42,7 +37,6 @@ public class PostController {
     }
 
     @GetMapping("/get/archive")
-    @ApiOperation("文章归档")
     @ApiOperationLog(description = "文章归档")
     public R<List<PostArchiveVO>> getArchive() {
         List<PostArchiveVO> result = postService.getArchive();
@@ -50,7 +44,6 @@ public class PostController {
     }
 
     @GetMapping("/get/today-num")
-    @ApiOperation("当天发布数量")
     @ApiOperationLog(description = "当天发布数量")
     public R<Long> getTodayNum() {
         Long result = postService.getTodayCount();

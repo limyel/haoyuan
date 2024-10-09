@@ -2,18 +2,18 @@ package com.limyel.haoyuan.cloud.mall.product.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.limyel.haoyuan.cloud.mall.product.convert.SpuConvert;
+import com.limyel.haoyuan.cloud.mall.product.dto.spu.SpuDTO;
+import com.limyel.haoyuan.cloud.mall.product.dto.spu.SpuListDTO;
+import com.limyel.haoyuan.cloud.mall.product.dto.spu.SpuPageDTO;
+import com.limyel.haoyuan.cloud.mall.product.entity.SpuEntity;
+import com.limyel.haoyuan.cloud.mall.product.vo.spu.SpuListVO;
+import com.limyel.haoyuan.cloud.mall.product.vo.spu.SpuPageVO;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.limyel.haoyuan.common.mybatis.query.LambdaQueryWrapperPlus;
-import com.limyel.haoyuan.mall.common.product.convert.SpuConvert;
-import com.limyel.haoyuan.mall.common.product.dto.api.SkuConfirm;
-import com.limyel.haoyuan.mall.common.product.dto.spu.SpuDTO;
-import com.limyel.haoyuan.mall.common.product.dto.spu.SpuListDTO;
-import com.limyel.haoyuan.mall.common.product.dto.spu.SpuPageDTO;
-import com.limyel.haoyuan.mall.common.product.entity.SpuEntity;
-import com.limyel.haoyuan.mall.common.product.vo.spu.SpuListVO;
-import com.limyel.haoyuan.mall.common.product.vo.spu.SpuPageVO;
 import com.limyel.haoyuan.cloud.mall.product.dao.SpuDao;
+import com.limyel.haoyuan.cloud.mall.product.dto.SkuConfirm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

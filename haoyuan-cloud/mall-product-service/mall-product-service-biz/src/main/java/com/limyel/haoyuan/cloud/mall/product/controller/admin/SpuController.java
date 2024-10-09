@@ -1,13 +1,13 @@
 package com.limyel.haoyuan.cloud.mall.product.controller.admin;
 
+import com.limyel.haoyuan.cloud.mall.product.dto.spu.SpuDTO;
+import com.limyel.haoyuan.cloud.mall.product.dto.spu.SpuPageDTO;
+import com.limyel.haoyuan.cloud.mall.product.vo.spu.SpuPageVO;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.core.validator.group.Create;
 import com.limyel.haoyuan.common.core.validator.group.Update;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.mall.common.product.dto.spu.SpuDTO;
-import com.limyel.haoyuan.mall.common.product.dto.spu.SpuPageDTO;
-import com.limyel.haoyuan.mall.common.product.vo.spu.SpuPageVO;
 import com.limyel.haoyuan.cloud.mall.product.service.SpuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;

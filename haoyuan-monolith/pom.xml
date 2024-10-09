@@ -12,12 +12,11 @@
     <artifactId>haoyuan-monolith</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>haoyuan-member</module>
-        <module>haoyuan-sys</module>
-        <module>mall-product</module>
-        <module>mall-trade</module>
+        <module>haoyuan-admin</module>
+        <module>bank-statistic</module>
+        <module>bank-business</module>
+        <module>bank-life</module>
         <module>haoyuan-startup</module>
-        <module>haoyuan-auth</module>
     </modules>
 
     <properties>

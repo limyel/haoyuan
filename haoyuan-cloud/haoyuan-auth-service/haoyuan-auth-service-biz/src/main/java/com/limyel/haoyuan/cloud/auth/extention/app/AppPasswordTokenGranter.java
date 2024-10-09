@@ -1,8 +1,7 @@
 package com.limyel.haoyuan.cloud.auth.extention.app;
 
+import com.limyel.haoyuan.cloud.auth.entity.UnLoginUser;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
-import com.limyel.haoyuan.mall.common.auth.entity.UnLoginUser;
-import com.limyel.haoyuan.mall.common.auth.extention.app.AppPasswordAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.ClientDetails;

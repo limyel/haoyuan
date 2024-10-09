@@ -1,10 +1,9 @@
 package com.limyel.haoyuan.cloud.auth.service;
 
-import com.limyel.haoyuan.mall.common.auth.dto.MemberUserSecurity;
-import com.limyel.haoyuan.mall.common.auth.entity.MallUserDetails;
-import com.limyel.haoyuan.mall.common.auth.entity.MemberUserDetails;
-import com.limyel.haoyuan.mall.common.auth.service.MallUserDetailsService;
-import com.limyel.haoyuan.mall.member.api.UserApi;
+import com.limyel.haoyuan.cloud.auth.entity.MallUserDetails;
+import com.limyel.haoyuan.cloud.auth.entity.MemberUserDetails;
+import com.limyel.haoyuan.cloud.member.api.UserFeignClient;
+import com.limyel.haoyuan.cloud.member.dto.MemberUserSecurity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,17 +11,17 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 @RequiredArgsConstructor
 public class MemberUserDetailsService implements MallUserDetailsService {
 
-    private final UserApi userApi;
+    private final UserFeignClient userFeignClient;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        MemberUserSecurity userInfo = userApi.getByUsername(username);
+        MemberUserSecurity userInfo = userFeignClient.getByUsername(username);
         return buildUserDetails(userInfo);
     }
 
     @Override
     public MallUserDetails loadUserByMobile(String mobile) {
-        MemberUserSecurity userInfo = userApi.getByMobile(mobile);
+        MemberUserSecurity userInfo = userFeignClient.getByMobile(mobile);
         return buildUserDetails(userInfo);
     }
 

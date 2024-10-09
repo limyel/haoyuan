@@ -1,12 +1,12 @@
 package com.limyel.haoyuan.cloud.mall.product.controller.admin;
 
+import com.limyel.haoyuan.cloud.mall.product.dto.stockrule.StockRuleDTO;
+import com.limyel.haoyuan.cloud.mall.product.dto.stockrule.StockRulePageDTO;
+import com.limyel.haoyuan.cloud.mall.product.vo.stockrule.StockRulePageVO;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.core.validator.group.Update;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.mall.common.product.dto.stockrule.StockRuleDTO;
-import com.limyel.haoyuan.mall.common.product.dto.stockrule.StockRulePageDTO;
-import com.limyel.haoyuan.mall.common.product.vo.stockrule.StockRulePageVO;
 import com.limyel.haoyuan.cloud.mall.product.service.StockRuleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;

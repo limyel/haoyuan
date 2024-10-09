@@ -1,9 +1,9 @@
 package com.limyel.haoyuan.cloud.auth.config;
 
-import com.limyel.haoyuan.mall.member.api.UserApi;
-import com.limyel.haoyuan.mall.sys.api.SysUserFeignClient;
 import com.limyel.haoyuan.cloud.auth.service.MemberUserDetailsService;
 import com.limyel.haoyuan.cloud.auth.service.SysUserDetailsService;
+import com.limyel.haoyuan.cloud.member.api.UserFeignClient;
+import com.limyel.haoyuan.cloud.sys.api.SysUserFeignClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,13 +14,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class UserManagerConfig {
 
-    private final UserApi userApi;
+    private final UserFeignClient userFeignClient;
 
     private final SysUserFeignClient sysUserFeignClient;
 
     @Bean
     public MemberUserDetailsService memberUserDetailsService() {
-        return new MemberUserDetailsService(userApi);
+        return new MemberUserDetailsService(userFeignClient);
     }
 
     @Bean

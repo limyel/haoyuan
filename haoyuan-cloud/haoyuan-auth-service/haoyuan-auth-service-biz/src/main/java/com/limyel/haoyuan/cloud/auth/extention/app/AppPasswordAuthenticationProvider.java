@@ -1,8 +1,7 @@
 package com.limyel.haoyuan.cloud.auth.extention.app;
 
+import com.limyel.haoyuan.cloud.auth.entity.UnLoginUser;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
-import com.limyel.haoyuan.mall.common.auth.entity.UnLoginUser;
-import com.limyel.haoyuan.mall.common.auth.extention.app.AppPasswordAuthenticationToken;
 import com.limyel.haoyuan.cloud.auth.service.MemberUserDetailsService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

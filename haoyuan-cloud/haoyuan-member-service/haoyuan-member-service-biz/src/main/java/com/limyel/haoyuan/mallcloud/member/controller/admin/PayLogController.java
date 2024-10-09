@@ -2,9 +2,9 @@ package com.limyel.haoyuan.mallcloud.member.controller.admin;
 
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.mybatis.pojo.PageData;
-import com.limyel.haoyuan.mall.common.member.dto.paylog.PayLogPageDTO;
-import com.limyel.haoyuan.mall.common.member.vo.paylog.PayLogPageVO;
+import com.limyel.haoyuan.mallcloud.member.dto.paylog.PayLogPageDTO;
 import com.limyel.haoyuan.mallcloud.member.service.PayLogService;
+import com.limyel.haoyuan.mallcloud.member.vo.paylog.PayLogPageVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

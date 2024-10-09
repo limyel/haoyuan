@@ -1,14 +1,14 @@
 package com.limyel.haoyuan.cloud.auth.controller;
 
+import com.limyel.haoyuan.cloud.auth.constant.GrantTypeEnum;
+import com.limyel.haoyuan.cloud.auth.dto.CheckTokenDTO;
+import com.limyel.haoyuan.cloud.auth.dto.LoginDTO;
+import com.limyel.haoyuan.cloud.auth.dto.RefreshDTO;
+import com.limyel.haoyuan.cloud.auth.entity.SysUserDetails;
 import com.limyel.haoyuan.cloud.auth.service.SysUserDetailsService;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.R;
 import com.limyel.haoyuan.common.core.util.JSONUtil;
-import com.limyel.haoyuan.mall.common.auth.constant.GrantTypeEnum;
-import com.limyel.haoyuan.mall.common.auth.dto.CheckTokenDTO;
-import com.limyel.haoyuan.mall.common.auth.dto.LoginDTO;
-import com.limyel.haoyuan.mall.common.auth.dto.RefreshDTO;
-import com.limyel.haoyuan.mall.common.auth.entity.SysUserDetails;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -62,8 +62,7 @@ public class AuthController {
     @Parameter(in = ParameterIn.HEADER, name = "clientId", description = "客户端 ID", required = true)
     @Parameter(in = ParameterIn.HEADER, name = "clientSecret", description = "客户端密钥", required = true)
     public R<OAuth2AccessToken> login(@Validated @RequestBody LoginDTO dto, HttpServletRequest request) throws HttpRequestMethodNotSupportedException {
-        Optional<GrantTypeEnum> grantTypeOptional = GrantTypeEnum.from(dto.getGrantType());
-        GrantTypeEnum grantType = grantTypeOptional.orElseThrow(() -> new ServiceException("不支持的认证类型"));
+        GrantTypeEnum grantType = GrantTypeEnum.from(dto.getGrantType());
         UsernamePasswordAuthenticationToken token = buildClientAuthentication(request);
 
         // 构建用户认证信息

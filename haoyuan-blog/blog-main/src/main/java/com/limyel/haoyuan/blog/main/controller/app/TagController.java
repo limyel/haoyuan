@@ -4,7 +4,6 @@ import com.limyel.haoyuan.blog.common.main.vo.tag.TagDetailVO;
 import com.limyel.haoyuan.blog.main.service.TagService;
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,6 @@ public class TagController {
     private final TagService tagService;
 
     @GetMapping("/get/all")
-    @ApiOperation("所有标签")
     @ApiOperationLog(description = "所有标签")
     public R<List<TagDetailVO>> all() {
         List<TagDetailVO> result = tagService.getAll();
