@@ -55,6 +55,11 @@
             <version>0.0.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-resource-server</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
