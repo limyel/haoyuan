@@ -1,6 +1,6 @@
-package com.limyel.haoyuan.cloud.security.permission;
+package com.limyel.haoyuan.common.resourceserver.permission;
 
-import com.limyel.haoyuan.cloud.security.util.SecurityUtil;
+import com.limyel.haoyuan.common.resourceserver.util.SecurityUtil;
 import com.limyel.haoyuan.common.core.util.JSONUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;

@@ -34,6 +34,11 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-mysql</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-resource-server</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

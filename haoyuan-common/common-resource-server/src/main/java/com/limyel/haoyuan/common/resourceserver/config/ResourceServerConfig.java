@@ -1,6 +1,6 @@
-package com.limyel.haoyuan.cloud.security.config;
+package com.limyel.haoyuan.common.resourceserver.config;
 
-import com.limyel.haoyuan.cloud.security.token.AdditionalClaimsAccessTokenConverter;
+import com.limyel.haoyuan.common.resourceserver.token.AdditionalClaimsAccessTokenConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

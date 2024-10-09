@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.cloud.security.util;
+package com.limyel.haoyuan.common.resourceserver.util;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

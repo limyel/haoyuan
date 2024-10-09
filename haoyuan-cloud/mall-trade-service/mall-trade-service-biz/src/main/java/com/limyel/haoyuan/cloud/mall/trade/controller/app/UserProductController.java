@@ -3,7 +3,7 @@ package com.limyel.haoyuan.cloud.mall.trade.controller.app;
 import com.limyel.haoyuan.cloud.mall.trade.dto.userspu.UseProductDTO;
 import com.limyel.haoyuan.cloud.mall.trade.service.UserProductService;
 import com.limyel.haoyuan.cloud.mall.trade.vo.userspu.UserProductVO;
-import com.limyel.haoyuan.cloud.security.util.SecurityUtil;
+import com.limyel.haoyuan.common.resourceserver.util.SecurityUtil;
 import com.limyel.haoyuan.common.core.pojo.R;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;

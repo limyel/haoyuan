@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.cloud.security.token;
+package com.limyel.haoyuan.common.resourceserver.token;
 
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;

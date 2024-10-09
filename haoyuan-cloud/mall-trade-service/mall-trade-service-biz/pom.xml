@@ -41,7 +41,7 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>haoyuan-cloud-resource-server</artifactId>
+            <artifactId>common-resource-server</artifactId>
         </dependency>
 
         <dependency>

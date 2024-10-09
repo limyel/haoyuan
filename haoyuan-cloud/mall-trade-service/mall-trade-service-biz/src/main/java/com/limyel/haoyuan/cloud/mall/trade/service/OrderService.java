@@ -15,7 +15,7 @@ import com.limyel.haoyuan.cloud.mall.trade.vo.order.OrderConfirmVO;
 import com.limyel.haoyuan.cloud.mall.trade.vo.order.OrderListVO;
 import com.limyel.haoyuan.cloud.member.api.UserFeignClient;
 import com.limyel.haoyuan.cloud.member.dto.PointBalanceChange;
-import com.limyel.haoyuan.cloud.security.util.SecurityUtil;
+import com.limyel.haoyuan.common.resourceserver.util.SecurityUtil;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.pojo.PageParam;
 import com.limyel.haoyuan.common.core.util.JSONUtil;

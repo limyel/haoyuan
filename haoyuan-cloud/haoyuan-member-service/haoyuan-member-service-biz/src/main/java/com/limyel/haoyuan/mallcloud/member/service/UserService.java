@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.cloud.member.dto.MemberUserSecurity;
 import com.limyel.haoyuan.cloud.member.dto.PointBalanceChange;
-import com.limyel.haoyuan.cloud.security.util.SecurityUtil;
+import com.limyel.haoyuan.common.resourceserver.util.SecurityUtil;
 import com.limyel.haoyuan.common.core.constant.StatusEnum;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
 import com.limyel.haoyuan.common.core.util.CryptUtil;

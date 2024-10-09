@@ -5,11 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-cloud</artifactId>
+        <artifactId>haoyuan-common</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>haoyuan-cloud-resource-server</artifactId>
+    <artifactId>common-resource-server</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -18,6 +19,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.limyel</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
+
         <!-- OAuth2 资源服务器-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
