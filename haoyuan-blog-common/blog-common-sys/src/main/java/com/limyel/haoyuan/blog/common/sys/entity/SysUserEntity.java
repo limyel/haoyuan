@@ -24,6 +24,11 @@ public class SysUserEntity extends BaseEntity {
     private String username;
 
     /**
+     * 姓名
+     */
+    private String realname;
+
+    /**
      * 邮箱
      */
     private String email;

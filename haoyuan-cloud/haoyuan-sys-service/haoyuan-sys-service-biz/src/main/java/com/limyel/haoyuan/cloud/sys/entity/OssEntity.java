@@ -11,6 +11,29 @@ import lombok.EqualsAndHashCode;
 @TableName("sys_oss")
 public class OssEntity extends BaseEntity {
 
+    /**
+     * 文件名
+     */
+    private String filename;
+
+    /**
+     * 原名
+     */
+    private String originalName;
+
+    /**
+     * 后缀名
+     */
+    private String suffix;
+
+    /**
+     * URL 地址
+     */
     private String url;
+
+    /**
+     * 服务商类型
+     */
+    private Integer serviceType;
 
 }
