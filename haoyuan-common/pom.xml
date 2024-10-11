@@ -19,6 +19,7 @@
         <module>common-security</module>
         <module>common-cloud</module>
         <module>common-rocketmq</module>
+        <module>common-resource-server</module>
     </modules>
 
     <properties>

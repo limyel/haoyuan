@@ -15,7 +15,7 @@ public class RoleMenuService {
 
     private final RoleMenuDao roleMenuDao;
 
-    List<Long> getMenuIdList(List<Long> roleIds) {
+    public List<Long> getMenuIdList(List<Long> roleIds) {
         List<RoleMenuEntity> list = roleMenuDao.selectList(new LambdaQueryWrapper<RoleMenuEntity>()
                 .in(RoleMenuEntity::getRoleId, roleIds));
         if (list.isEmpty()) {
@@ -24,6 +24,11 @@ public class RoleMenuService {
         return list.stream()
                 .map(RoleMenuEntity::getMenuId)
                 .toList();
+    }
+
+    public int deleteByRoleIds(List<Long> roleIds) {
+        return roleMenuDao.delete(new LambdaQueryWrapper<RoleMenuEntity>()
+                .in(RoleMenuEntity::getRoleId, roleIds));
     }
 
 }

@@ -36,22 +36,25 @@ CREATE TABLE `sys_role` (
     `code` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '角色编码',
     `sort` int NOT NULL DEFAULT 0 COMMENT '显示顺序',
     `status` tinyint NOT NULL DEFAULT 0 COMMENT '状态，0-正常，1-停用',
+    `type` int NOT NULL DEFAULT 1 COMMENT '角色类型，0-系统内置角色 1-用户自定义角色',
     `remark` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '备注',
     `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
-    PRIMARY KEY (`id`) USING BTREE
+    PRIMARY KEY (`id`) USING BTREE,
+    UNIQUE KEY `uk_name` (`name`),
+    UNIQUE KEY `uk_code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='角色表';
 
-INSERT INTO `sys_role` (id, name, code, sort) VALUES
-    (1, '管理员', 'admin', 0),
-    (2, '员工', 'employee', 1),
-    (3, '访客', 'guest', 2),
-    (4, '会员管理员', 'member_admin', 3),
-    (5, '商城管理员', 'mall_admin', 4),
-    (6, '待办管理员', 'todo_admin', 5);
+INSERT INTO `sys_role` (id, name, code, sort, type) VALUES
+    (1, '超级管理员', 'super_admin', 0, 0),
+    (2, '员工', 'employee', 1, 1),
+    (3, '访客', 'guest', 2, 1),
+    (4, '会员管理员', 'member_admin', 3, 1),
+    (5, '商城管理员', 'mall_admin', 4, 1),
+    (6, '待办管理员', 'todo_admin', 5, 1);
 
 
 DROP TABLE IF EXISTS `sys_user_role`;

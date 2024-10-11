@@ -31,6 +31,11 @@ public class RoleEntity extends BaseEntity {
     private Integer status;
 
     /**
+     * 角色类型，0-系统内置角色 1-用户自定义角色
+     */
+    private Integer type;
+
+    /**
      * 备注
      */
     private String remark;

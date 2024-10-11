@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName("todo_sub_task")
-public class SubTaskEntity extends BaseEntity {
+@TableName("todo_task_step")
+public class TaskStepEntity extends BaseEntity {
 
     /**
-     * 名称
+     * 步骤名称
      */
     private String name;
 

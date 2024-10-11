@@ -58,6 +58,10 @@ public class R<T> implements Serializable {
         return result;
     }
 
+    public static R<?> check(int rows) {
+        return rows > 0 ? R.ok() : R.failed();
+    }
+
     public static R<?> failed() {
         return new R<>(BasicErrorCode.FAILED);
     }

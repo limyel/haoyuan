@@ -26,4 +26,9 @@ public class SysUserRoleService {
                 .toList();
     }
 
+    public Long countByRoleId(Long roleId) {
+        return sysUserRoleDao.selectCount(new LambdaQueryWrapper<SysUserRoleEntity>()
+                .eq(SysUserRoleEntity::getRoleId, roleId));
+    }
+
 }

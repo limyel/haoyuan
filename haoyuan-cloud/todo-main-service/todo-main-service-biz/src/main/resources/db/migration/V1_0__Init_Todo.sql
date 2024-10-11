@@ -28,7 +28,7 @@ CREATE TABLE `todo_category` (
 DROP TABLE IF EXISTS `todo_task`;
 CREATE TABLE `todo_task` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
-    `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '名称',
+    `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '任务名称',
     `category_id` bigint NOT NULL DEFAULT 0 COMMENT '分类 ID',
     `deadline` datetime NOT NULL COMMENT '截止时间',
     `finish_time` datetime NOT NULL COMMENT '完成时间',
@@ -45,10 +45,10 @@ CREATE TABLE `todo_task` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务表';
 
 
-DROP TABLE IF EXISTS `todo_sub_task`;
-CREATE TABLE `todo_sub_task` (
+DROP TABLE IF EXISTS `todo_task_step`;
+CREATE TABLE `todo_task_step` (
     `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
-    `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '名称',
+    `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '步骤名称',
     `task_id` bigint NOT NULL COMMENT '任务 ID',
     `deadline` datetime NOT NULL COMMENT '截止时间',
     `finish_time` datetime NOT NULL COMMENT '完成时间',
@@ -59,4 +59,21 @@ CREATE TABLE `todo_sub_task` (
     `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='子任务表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务步骤表';
+
+
+DROP TABLE IF EXISTS `todo_task_snapshoot`;
+CREATE TABLE `todo_task_snapshoot` (
+    `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '任务名称',
+    `category_id` bigint NOT NULL DEFAULT 0 COMMENT '分类 ID',
+    `finish_time` datetime NOT NULL COMMENT '完成时间',
+    `point` bigint NOT NULL DEFAULT 0 COMMENT '奖励积分',
+    `actual_point` bigint NOT NULL DEFAULT 0 COMMENT '实际获得的积分',
+    `create_by` bigint NULL DEFAULT NULL COMMENT '创建者',
+    `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_by` bigint NULL DEFAULT NULL COMMENT '更新者',
+    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务快照表';

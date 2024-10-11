@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class TaskEntity extends BaseEntity {
 
     /**
-     * 名称
+     * 任务名称
      */
     private String name;
 
