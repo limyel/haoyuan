@@ -56,7 +56,10 @@ public class RoleService {
         roleDao.validateUnique(dto.getId(), RoleEntity::getName, dto.getName(), "角色名已存在");
         roleDao.validateUnique(dto.getId(), RoleEntity::getCode, dto.getCode(), "角色编码已存在");
 
+        int result = roleDao.updateById(role);
+        // todo 清除角色在线的用户
 
+        return result;
     }
 
     private void checkSystemRole(RoleEntity role) {

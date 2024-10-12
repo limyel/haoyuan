@@ -38,9 +38,7 @@ public class RoleController {
 
     @PostMapping("/update")
     public R<?> update(@Validated(Update.class) @RequestBody RoleDTO dto) {
-        roleService.checkSystemRole();
-
-        roleService.update(dto);
+        return R.check(roleService.update(dto));
     }
 
 
