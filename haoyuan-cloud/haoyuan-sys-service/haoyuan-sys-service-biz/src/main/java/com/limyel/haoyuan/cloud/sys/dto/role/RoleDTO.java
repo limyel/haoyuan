@@ -1,4 +1,4 @@
-package com.limyel.haoyuan.cloud.sys.dto;
+package com.limyel.haoyuan.cloud.sys.dto.role;
 
 import com.limyel.haoyuan.common.core.pojo.BaseDTO;
 import lombok.Data;

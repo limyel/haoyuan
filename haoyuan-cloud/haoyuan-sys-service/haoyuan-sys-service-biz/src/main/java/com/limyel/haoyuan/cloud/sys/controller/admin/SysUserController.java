@@ -30,12 +30,12 @@ public class SysUserController {
 
     }
 
-    @GetMapping("/get/page")
+    @GetMapping("/get-page")
     public void getPage() {
 
     }
 
-    @GetMapping("/get/by-id/{id}")
+    @GetMapping("/get/{id}")
     public void getById(@PathVariable("id") Long id) {
 
     }

@@ -1,16 +1,22 @@
 package com.limyel.haoyuan.cloud.sys.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.limyel.haoyuan.cloud.sys.constant.RoleTypeEnum;
 import com.limyel.haoyuan.cloud.sys.convert.RoleConvert;
 import com.limyel.haoyuan.cloud.sys.dao.RoleDao;
-import com.limyel.haoyuan.cloud.sys.dto.RoleDTO;
+import com.limyel.haoyuan.cloud.sys.dto.role.RoleDTO;
+import com.limyel.haoyuan.cloud.sys.dto.role.RolePageDTO;
 import com.limyel.haoyuan.cloud.sys.entity.RoleEntity;
+import com.limyel.haoyuan.cloud.sys.vo.role.RolePageVO;
 import com.limyel.haoyuan.common.core.exception.ServiceException;
+import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -60,6 +66,29 @@ public class RoleService {
         // todo 清除角色在线的用户
 
         return result;
+    }
+
+    public PageData<RolePageVO> getPage(RolePageDTO dto) {
+        Page<RoleEntity> page = new Page<>(dto.getPageNum(), dto.getPageSize());
+        LambdaQueryWrapper<RoleEntity> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(StringUtils.hasText(dto.getName()), RoleEntity::getName, dto.getName())
+                .like(StringUtils.hasText(dto.getCode()), RoleEntity::getCode, dto.getCode())
+                .eq(Objects.nonNull(dto.getStatus()), RoleEntity::getStatus, dto.getStatus());
+        roleDao.selectPage(page, queryWrapper);
+
+        List<RolePageVO> list = page.getRecords().stream()
+                .map(RoleConvert.INSTANCE::toPageVO)
+                .toList();
+        return new PageData<>(page, list);
+    }
+
+    public RoleDTO getById(Long id) {
+        RoleEntity role = roleDao.selectById(id);
+        if (Objects.isNull(role)) {
+            throw new ServiceException("不允许访问不存在的角色");
+        }
+
+        return RoleConvert.INSTANCE.toDTO(role);
     }
 
     private void checkSystemRole(RoleEntity role) {
