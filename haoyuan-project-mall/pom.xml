@@ -21,7 +21,6 @@
         <module>haoyuan-sys-service</module>
         <module>haoyuan-gateway</module>
         <module>haoyuan-auth-service</module>
-        <module>todo-main-service</module>
     </modules>
 
     <properties>
