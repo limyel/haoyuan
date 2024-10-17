@@ -13,11 +13,12 @@
         <module>haoyuan-dependency</module>
         <module>haoyuan-common</module>
         <module>haoyuan-blog</module>
-        <module>haoyuan-cloud</module>
-        <module>haoyuan-monolith</module>
+        <module>haoyuan-project-mall</module>
+        <module>haoyuan-project-bank</module>
         <module>haoyuan-wheels</module>
         <module>haoyuan-blog-common</module>
         <module>haoyuan-datastruct</module>
+        <module>haoyuan-project-todo</module>
     </modules>
 
     <properties>
