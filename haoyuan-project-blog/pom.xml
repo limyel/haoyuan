@@ -9,24 +9,20 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>haoyuan-project-mall</artifactId>
+    <artifactId>haoyuan-project-blog</artifactId>
     <packaging>pom</packaging>
-    <description>一个商城服务，基于 Spring 全家桶实现的微服务应用。</description>
-    <version>${revision}</version>
+    <version>${blog.version}</version>
+
     <modules>
-        <module>mall-trade-service</module>
-        <module>mall-product-service</module>
-        <module>mall-promotion-service</module>
-        <module>haoyuan-member-service</module>
-        <module>haoyuan-sys-service</module>
-        <module>haoyuan-gateway</module>
-        <module>haoyuan-auth-service</module>
-        <module>todo-main-service</module>
+        <module>blog-main</module>
+        <module>blog-sys</module>
+        <module>blog-startup</module>
+        <module>blog-account</module>
     </modules>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -38,7 +34,7 @@
 
         <dependency>
             <groupId>com.limyel</groupId>
-            <artifactId>common-cloud</artifactId>
+            <artifactId>common-mybatis</artifactId>
         </dependency>
     </dependencies>
 

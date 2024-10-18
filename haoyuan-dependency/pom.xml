@@ -108,26 +108,6 @@
                 <artifactId>blog-main</artifactId>
                 <version>${blog.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.limyel</groupId>
-                <artifactId>blog-project</artifactId>
-                <version>${blog.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.limyel</groupId>
-                <artifactId>blog-common-main</artifactId>
-                <version>${blog.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.limyel</groupId>
-                <artifactId>blog-common-project</artifactId>
-                <version>${blog.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.limyel</groupId>
-                <artifactId>blog-common-sys</artifactId>
-                <version>${blog.version}</version>
-            </dependency>
 
             <!-- mall-cloud -->
             <dependency>
