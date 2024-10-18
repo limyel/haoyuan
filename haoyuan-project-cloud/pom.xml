@@ -9,7 +9,7 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>haoyuan-project-mall</artifactId>
+    <artifactId>haoyuan-project-cloud</artifactId>
     <packaging>pom</packaging>
     <description>一个商城服务，基于 Spring 全家桶实现的微服务应用。</description>
     <version>${revision}</version>

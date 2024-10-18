@@ -13,7 +13,7 @@
         <module>haoyuan-dependency</module>
         <module>haoyuan-common</module>
         <module>haoyuan-project-blog</module>
-        <module>haoyuan-project-mall</module>
+        <module>haoyuan-project-cloud</module>
         <module>haoyuan-wheels</module>
         <module>haoyuan-datastruct</module>
     </modules>

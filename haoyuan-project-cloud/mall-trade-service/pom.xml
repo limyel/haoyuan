@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>haoyuan-project-mall</artifactId>
+        <artifactId>haoyuan-project-cloud</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>haoyuan-auth-service</artifactId>
+    <artifactId>mall-trade-service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>haoyuan-auth-service-api</module>
-        <module>haoyuan-auth-service-biz</module>
+        <module>mall-trade-service-biz</module>
+        <module>mall-trade-service-api</module>
     </modules>
 
     <properties>
