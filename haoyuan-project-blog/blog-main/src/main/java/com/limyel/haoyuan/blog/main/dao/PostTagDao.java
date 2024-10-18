@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.blog.main.dao;
 
-import com.limyel.haoyuan.blog.common.main.entity.PostTagEntity;
+import com.limyel.haoyuan.blog.main.entity.PostTagEntity;
 import com.limyel.haoyuan.common.mybatis.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

@@ -1,6 +1,6 @@
 package com.limyel.haoyuan.blog.main.controller.app;
 
-import com.limyel.haoyuan.blog.common.main.constant.SettingLabelEnum;
+import com.limyel.haoyuan.blog.main.constant.SettingLabelEnum;
 import com.limyel.haoyuan.blog.main.service.SettingService;
 import com.limyel.haoyuan.common.core.log.ApiOperationLog;
 import com.limyel.haoyuan.common.core.pojo.R;

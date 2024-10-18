@@ -1,7 +1,7 @@
 package com.limyel.haoyuan.blog.sys.service;
 
-import com.limyel.haoyuan.blog.common.sys.entity.SysUserRoleEntity;
 import com.limyel.haoyuan.blog.sys.dao.SysUserRoleDao;
+import com.limyel.haoyuan.blog.sys.entity.SysUserRoleEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
