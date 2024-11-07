@@ -5,20 +5,20 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.limyel</groupId>
-    <artifactId>blog-cloud</artifactId>
+    <artifactId>haoyuan</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
         <module>blog-article-service</module>
         <module>blog-date-service</module>
         <module>blog-comment-service</module>
-        <module>common</module>
-        <module>dependency</module>
-        <module>gateway-service</module>
-        <module>oauth-service</module>
+        <module>haoyuan-common</module>
+        <module>haoyuan-dependency</module>
+        <module>haoyuan-gateway-service</module>
+        <module>haoyuan-oauth-service</module>
         <module>blog-photo-service</module>
-        <module>blog-member-service</module>
-        <module>system-service</module>
+        <module>haoyuan-member-service</module>
+        <module>haoyuan-sys-service</module>
         <module>mall-product-service</module>
         <module>mall-promotion-service</module>
         <module>mall-trade-service</module>
@@ -30,5 +30,24 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <revision>0.0.1</revision>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>haoyuan-dependency</artifactId>
+                <version>${revision}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

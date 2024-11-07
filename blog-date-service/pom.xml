@@ -5,11 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>blog-cloud</artifactId>
-        <version>0.0.1</version>
+        <artifactId>haoyuan</artifactId>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>blog-date-service</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>blog-date-biz</module>
+        <module>blog-date-api</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
