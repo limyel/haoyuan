@@ -12,7 +12,7 @@
     <artifactId>haoyuan-member-service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>blog-member-biz</module>
+        <module>haoyuan-member-biz</module>
         <module>blog-member-api</module>
     </modules>
 
