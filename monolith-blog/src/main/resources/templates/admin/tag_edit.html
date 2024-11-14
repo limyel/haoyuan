@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <link rel="stylesheet" th:href="@{'/css/reset.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/main.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/header.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/tags.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/content.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/page.css'}"/>
+</head>
+<body>
+<div class="main flex flex-column">
+    <header th:replace="component/header"></header>
+    <div class="main-body flex flex-column">
+        <div>
+            <form action="/admin/tag/do-edit" method="post">
+                <input type="hidden" name="id" th:value="${tag.id}">
+
+                <div>
+                    <label for="name">标题</label>
+                    <input type="text" id="name" name="name" th:value="${tag.name}" required/>
+                </div>
+                <div>
+                    <label for="slug">Slug</label>
+                    <input type="text" id="slug" name="slug" th:value="${tag.slug}" required/>
+                </div>
+                <div>
+                    <label for="remark">备注</label>
+                    <input type="text" id="remark" name="remark" th:value="${tag.remark}"/>
+                </div>
+                <div>
+                    <button type="submit">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div th:replace="component/footer"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+.logo {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.nav-item {
+}
+.nav-item li a {
+    text-decoration: none;
+    color: #459098;
+}
+.nav-item li a:hover {
+    font-weight: 500;
+}
+.nav-item-active li a {
+    color: #459098;
+    border-bottom: #459098 2px solid;
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <link rel="stylesheet" th:href="@{'/css/reset.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/main.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/header.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/tags.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/content.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/page.css'}"/>
+</head>
+<body>
+<div class="main flex flex-column">
+    <header th:replace="component/header"></header>
+    <div class="main-body flex flex-column">
+
+    </div>
+    <div th:replace="component/footer"></div>
+</div>
+</body>
+</html>

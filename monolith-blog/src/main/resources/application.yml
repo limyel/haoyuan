@@ -1,0 +1,40 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 1000
+      min-spare: 30
+    remoteip:
+      remote-ip-header: x-forwarded-for
+      protocol-header: x-forwarded-proto
+      port-header: x-forwarded-port
+  port: 8000
+  servlet:
+    session:
+      cookie:
+        http-only: true
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: blog
+  profiles:
+    active: dev
+  messages:
+    encoding: UTF-8
+    basename: i18n/message
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  main:
+    allow-circular-references: true
+  jpa:
+    generate-ddl: false
+
+logging:
+  config: classpath:logback-blog.xml

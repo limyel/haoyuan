@@ -1,0 +1,140 @@
+body {
+    min-height: 100vh;
+    background-color: #eff1f5;
+    font-family: 'MiSans' !important;
+    font-weight: 300;
+}
+* {
+    box-sizing: border-box;
+    min-width: 0;
+    max-width: 100%;
+}
+
+@font-face {
+    font-family: 'MiSans';
+    src: url('../font/MiSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MiSans';
+    src: url('../font/MiSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MiSans';
+    src: url('../font/MiSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JetBrainsMono';
+    src: url('../font/JetBrainsMono-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'JetBrainsMono';
+    src: url('../font/JetBrainsMono-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'JetBrainsMono';
+    src: url('../font/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 0;
+    max-width: 100%;
+}
+.flex-row {
+    flex-direction: row;
+}
+.flex-column {
+    flex-direction: column;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.content-center {
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-1 {
+    margin-bottom: 15px !important;
+}
+.mb-2 {
+    margin-bottom: 30px !important;
+}
+.mt-1 {
+    margin-top: 15px !important;
+}
+.mt-2 {
+    margin-top: 30px !important;
+}
+.mr-1 {
+    margin-right: 15px !important;
+}
+.mr-2 {
+    margin-right: 30px !important;
+}
+.ml-1 {
+    margin-left: 15px !important;
+}
+
+.pb-1 {
+    padding-bottom: 15px !important;
+}
+.pt-1 {
+    padding-top: 15px !important;
+}
+.pr-1 {
+    padding-right: 15px !important;
+}
+.pl-1 {
+    padding-left: 15px !important;
+}
+
+.font-bold {
+    font-weight: bold !important;
+}
+.font-light {
+    font-weight: 300 !important;
+}
+
+.inline-block {
+    display: inline-block !important;
+}
+
+.main {
+    min-height: 100vh;
+    width: 46%;
+    margin-left: 27%;
+    margin-right: 27%;
+}
+.main-body {
+    flex: 1;
+}
+
+.footer {
+    margin: 30px 0;
+}
+
+a {
+    color: #459098;
+    text-decoration: none;
+}

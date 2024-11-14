@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <link rel="stylesheet" th:href="@{'/css/reset.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/main.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/header.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/tags.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/content.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/page.css'}"/>
+</head>
+<body>
+<div class="main flex flex-column">
+    <header th:replace="component/header"></header>
+    <div class="main-body flex flex-column">
+        <div>
+            <form action="/admin/article/do-edit" method="post">
+                <input type="hidden" name="id" th:value="${article.id}">
+
+                <div>
+                    <label for="title">标题</label>
+                    <input type="text" id="title" name="title" th:value="${article.title}" required/>
+                </div>
+                <div>
+                    <label for="slug">Slug</label>
+                    <input type="text" id="slug" name="slug" th:value="${article.slug}" required/>
+                </div>
+                <div>
+                    <label for="content">内容</label>
+                    <textarea id="content" name="content" th:text="${article.content}" required></textarea>
+                </div>
+                <div>
+                    <label>是否置顶：</label>
+                    <label><input type="radio" name="top" value="true">是</label>
+                    <label><input type="radio" name="top" value="false" checked>否</label>
+                </div>
+                <div>
+                    <label>状态：</label>
+                    <label><input type="radio" name="status" value="1" checked>发布</label>
+                    <label><input type="radio" name="status" value="0">草稿</label>
+                </div>
+                <div>
+                    <label for="tags">标签</label>
+                    <select id="tags" name="tags" multiple required>
+                        <option th:each="tag : ${tags}"
+                                th:attr="value=${tag.id}"
+                                th:selected="${ article.tags == null ? false : article.tags.contains(tag.id) }"
+                                th:text="${tag.name}"></option>
+                    </select>
+                </div>
+                <div>
+                    <button type="submit">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div th:replace="component/footer"></div>
+</div>
+</body>
+</html>

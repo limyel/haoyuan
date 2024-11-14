@@ -1,0 +1,17 @@
+.tags-item {
+    line-height: 1.5rem;
+}
+.tags-item a {
+    text-decoration: none;
+    color: #459098;
+}
+.tags-item a:hover {
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.tags-main {
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-style: italic;
+}

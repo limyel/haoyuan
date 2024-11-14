@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <link rel="stylesheet" th:href="@{'/css/reset.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/main.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/header.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/tags.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/content.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/page.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/article.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/markdown.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/github.min.css'}"/>
+</head>
+<body>
+<script th:src="@{'/js/highlight.min.js'}"></script>
+<script>hljs.highlightAll();</script>
+<div class="main flex flex-column">
+    <header th:replace="component/header"></header>
+    <div class="main-body flex flex-column">
+        <div class="article flex flex-column">
+            <h1 class="mb-1" th:text="${article.title}"></h1>
+            <div class="article-desc flex flex-row justify-between">
+                <div class="flex flex-row">
+                    <div class="mr-1" th:each="tag : ${article.tags}">
+                        <a th:href="${ '/?tag=' + tag.slug }" th:text="'#' + ${tag.name}"></a>
+                    </div>
+                </div>
+                <div>
+                    <div th:text="${ '发布于 ' + article.createTime}"></div>
+                </div>
+            </div>
+            <div class="mt-1 flex flex-column">
+                <div class="markdown-body" th:utext="${article.content}"></div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="component/footer"></div>
+</div>
+
+</body>
+</html>

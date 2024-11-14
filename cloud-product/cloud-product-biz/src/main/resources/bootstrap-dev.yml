@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://127.0.0.1:8848
+        namespace: 6281efc9-89ac-4ef6-90ec-e8cf25a24962
+      config:
+        server-addr: http://127.0.0.1:8848
+        namespace: 6281efc9-89ac-4ef6-90ec-e8cf25a24962
+        file-extension: yaml
+        prefix: product
+        timeout: 5000 # 读取配置超时时间
+        config-long-poll-timeout: 10000 # 长轮询超时时间
+        config-retry-time: 2000 # 轮训的重试时间
+        max-retry: 3 # 长轮询最大重试次数
+        # 扩展配置项
+        extension-configs:
+          - data-id: redis-config.yaml
+            group: EXT_GROUP
+            refresh: true
+          - data-id: rocketmq-config.yaml
+            group: EXT_GROUP
+            refresh: true

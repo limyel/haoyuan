@@ -1,0 +1,5 @@
+<div class="page flex flex-row justify-between" th:fragment="page">
+    <div class="page-button" th:each="year : ${yearList}">
+        <a th:href="${ articleObj.tag == null ? '?year=' + year : '?tag=' + articleObj.tag + '&year=' + year}" th:text="${year}"></a>
+    </div>
+</div>

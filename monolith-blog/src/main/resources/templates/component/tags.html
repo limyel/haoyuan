@@ -1,0 +1,8 @@
+<div class="tags" th:fragment="tags">
+    <div class="tags-main mb-1" th:if="${articleObj.tag != null}" th:text="${ '#' + articleObj.tag }"></div>
+    <div class="flex flex-row">
+        <div class="tags-item mr-1" th:each="tag : ${tagList}">
+            <a th:href="${ articleObj.year == null ? '?tag=' + tag.slug : '?tag=' + tag.slug + '&year=' + articleObj.year}" th:text="'#' + ${tag.name}"></a>
+        </div>
+    </div>
+</div>

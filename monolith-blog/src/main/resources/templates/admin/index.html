@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <link rel="stylesheet" th:href="@{'/css/reset.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/main.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/header.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/tags.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/content.css'}"/>
+    <link rel="stylesheet" th:href="@{'/css/page.css'}"/>
+</head>
+<body>
+<div class="main flex flex-column">
+    <header th:replace="component/header"></header>
+    <div class="main-body flex flex-column">
+        <div>
+            <a href="/admin/article">文章管理</a>
+        </div>
+        <hr/>
+        <div>
+            <a href="/admin/tag">标签管理</a>
+        </div>
+        <hr/>
+        <div>
+            <a href="/admin/countdays">数日子管理</a>
+        </div>
+        <hr/>
+        <div>
+            <a href="/admin/about">关于管理</a>
+        </div>
+        <hr/>
+        <div>
+            <a href="/admin/logout">退出</a>
+        </div>
+        <hr/>
+    </div>
+    <div th:replace="component/footer"></div>
+</div>
+</body>
+</html>

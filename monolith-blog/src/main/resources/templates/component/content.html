@@ -1,0 +1,10 @@
+<div class="content flex flex-column" th:fragment="content">
+    <div class="content-year mt-2 mb-2" th:text="${articleObj.year}"></div>
+    <div class="mb-1" th:each="item : ${articleObj.list}">
+        <div class="content-month mb-1" th:text="${item.month}"></div>
+        <div class="content-item flex flex-row" th:each="article : ${item.articles}">
+            <div class="mr-2" th:text="${article.createTime}"></div>
+            <div><a th:href="${ '/article/' + article.slug }" th:text="${article.title}"></a></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+# 当前工作流名称
+name: Deploy blog
+on:
+  push:
+    branches:
+      - master # 只在master上push触发部署
+    paths-ignore: # 下列文件的变更不触发部署，可以自行添加
+      - README.md
+      - LICENSE
+
+# 构建任务
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-24.04 # 使用ubuntu系统镜像运行自动化脚本
+
+    # 构建任务的步骤
+    steps:
+      # 切换分支
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: ssh deploy
+        uses: easingthemes/ssh-deploy@v5.0.3
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
+          TARGET: ${{ secrets.TARGET }}
+          SCRIPT_BEFORE: |
+            rm -rf ~/blog
+          SCRIPT_AFTER_REQUIRED: true
+          SCRIPT_AFTER: |
+            cd ~/blog
+            mvn clean compile package install -P pro --file pom.xml
+            rm /home/ubuntu/blog-app/blog.jar
+            cp ./linn-blog/target/linn-blog-0.0.1.jar /home/ubuntu/blog-app/blog.jar
+            cd /home/ubuntu/blog-app
+            ./service.sh restart

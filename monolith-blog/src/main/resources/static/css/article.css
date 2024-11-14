@@ -1,0 +1,11 @@
+.article h1 {
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+
+.article-desc {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}

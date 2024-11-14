@@ -5,23 +5,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.limyel</groupId>
-    <artifactId>haoyuan</artifactId>
+    <artifactId>linn</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
-        <module>blog-article-service</module>
-        <module>blog-date-service</module>
-        <module>blog-comment-service</module>
-        <module>haoyuan-common</module>
-        <module>haoyuan-dependency</module>
-        <module>haoyuan-gateway-service</module>
-        <module>haoyuan-oauth-service</module>
-        <module>blog-photo-service</module>
-        <module>haoyuan-member-service</module>
-        <module>haoyuan-sys-service</module>
-        <module>mall-product-service</module>
-        <module>mall-promotion-service</module>
-        <module>mall-trade-service</module>
+        <module>linn-common</module>
+        <module>linn-dependency</module>
+        <module>cloud-gateway</module>
+        <module>cloud-oauth</module>
+        <module>cloud-member</module>
+        <module>cloud-sys</module>
+        <module>cloud-product</module>
+        <module>cloud-promotion</module>
+        <module>cloud-trade</module>
+        <module>monolith-blog</module>
+        <module>linn-monkey</module>
     </modules>
 
     <properties>
@@ -31,23 +29,40 @@
         <revision>0.0.1</revision>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.limyel</groupId>
-                <artifactId>haoyuan-dependency</artifactId>
-                <version>${revision}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profileActive>dev</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profileActive>test</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>pro</id>
+            <properties>
+                <profileActive>pro</profileActive>
+            </properties>
+        </profile>
+    </profiles>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-    </dependencies>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 
 </project>
