@@ -8,6 +8,7 @@ import com.limyel.blog.model.entity.ArticleTagEntity;
 import com.limyel.blog.model.entity.TagEntity;
 import com.limyel.blog.model.vo.ArticleListVO;
 import com.limyel.blog.model.vo.ArticleVO;
+import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension;
 import com.vladsch.flexmark.ext.tables.TablesExtension;
 import com.vladsch.flexmark.html.HtmlRenderer;
@@ -144,7 +145,7 @@ public class ArticleService {
         return result;
     }
 
-    public Page<ArticleEntity> page(int pageNum, int pageSize) {
+    public PageData<ArticleEntity> page(int pageNum, int pageSize) {
         PageRequest pageable = PageRequest.of(pageNum, pageSize);
         return articleDao.findAll(pageable);
     }

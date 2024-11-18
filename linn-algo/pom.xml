@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.limyel</groupId>
-        <artifactId>cloud-sys</artifactId>
+        <artifactId>linn</artifactId>
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>haoyuan-sys-biz</artifactId>
+    <artifactId>linn-algo</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

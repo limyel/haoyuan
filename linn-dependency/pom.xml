@@ -71,6 +71,11 @@
                 <artifactId>common-cloud-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.limyel</groupId>
+                <artifactId>common-swagger-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
             <!-- db -->
             <dependency>

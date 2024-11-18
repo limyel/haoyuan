@@ -1,0 +1,84 @@
+spring:
+  data:
+    redis:
+      # Redis服务器地址
+      host: 127.0.0.1
+      # Redis服务器连接端口
+      port: 6379
+      # Redis服务器连接密码（默认为空）
+      # password:
+      # 连接超时时间
+      timeout: 10s
+      lettuce:
+        pool:
+          # 连接池最大连接数
+          max-active: 200
+          # 连接池最大阻塞等待时间（使用负值表示没有限制）
+          max-wait: -1ms
+          # 连接池中的最大空闲连接
+          max-idle: 10
+          # 连接池中的最小空闲连接
+          min-idle: 0
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: cloud-sys
+          order: 1
+          uri: lb://cloud-sys # 路由的地址
+          predicates:
+            - Path=/cloud-sys/** # 路由匹配的路径
+          filters:
+            - StripPrefix=1 # 转发时去除前缀1层路径
+        - id: cloud-oauth
+          order: 2
+          uri: lb://cloud-oauth
+          predicates:
+            - Path=/cloud-oauth/**
+          filters:
+            - StripPrefix=1
+        - id: cloud-member
+          uri: lb://cloud-member
+          predicates:
+            - Path=/cloud-member/**
+          filters:
+            - StripPrefix=1
+        - id: cloud-product
+          uri: lb://cloud-product
+          predicates:
+            - Path=/cloud-product/**
+          filters:
+            - StripPrefix=1
+        - id: cloud-trade
+          uri: lb://cloud-trade
+          predicates:
+            - Path=/cloud-trade/**
+          filters:
+            - StripPrefix=1
+
+knife4j:
+  gateway:
+    enabled: true
+    tags-sorter: order
+    operations-sorter: order
+    strategy: discover
+    discover:
+      enabled: true
+      version: openapi3
+      service-config:
+        cloud-oauth:
+          group-name: 认证授权服务
+        cloud-member:
+          group-name: 会员服务
+          context-path: /member
+        cloud-sys:
+          group-name: 后台管理服务
+          context-path: /sys
+        cloud-product:
+          group-name: 商城商品服务
+          context-path: /product
+        cloud-trade:
+          group-name: 商城交易服务
+          context-path: /trade

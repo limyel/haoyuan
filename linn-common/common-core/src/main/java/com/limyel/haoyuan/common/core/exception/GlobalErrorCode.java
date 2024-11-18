@@ -13,7 +13,7 @@ public enum GlobalErrorCode implements ErrorCode {
     INTERNAL_ERROR(500, "系统内部错误，请联系管理员")
     ;
 
-    private Integer code;
-    private String msg;
+    private final Integer code;
+    private final String msg;
 
 }

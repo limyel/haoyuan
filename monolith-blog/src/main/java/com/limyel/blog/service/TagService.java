@@ -6,6 +6,7 @@ import com.limyel.blog.model.dto.TagDTO;
 import com.limyel.blog.model.entity.ArticleTagEntity;
 import com.limyel.blog.model.entity.TagEntity;
 import com.limyel.blog.model.vo.TagListVO;
+import com.limyel.haoyuan.common.mybatis.pojo.PageData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -27,13 +28,13 @@ public class TagService {
     public void create(TagDTO dto) {
         TagEntity entity = new TagEntity();
         BeanUtils.copyProperties(dto, entity);
-        tagDao.save(entity);
+        tagDao.insert(entity);
     }
 
     public void update(TagDTO dto) {
         TagEntity entity = tagDao.findById(dto.getId()).orElseThrow(() -> new RuntimeException("标签不存在"));
         BeanUtils.copyProperties(dto, entity);
-        tagDao.save(entity);
+        tagDao.updateById(entity);
     }
 
     public TagDTO get(Long id) {
@@ -61,7 +62,7 @@ public class TagService {
         return result;
     }
 
-    public Page<TagEntity> page(int pageNum, int pageSize) {
+    public PageData<TagEntity> page(int pageNum, int pageSize) {
         PageRequest pageable = PageRequest.of(pageNum, pageSize);
         return tagDao.findAll(pageable);
     }

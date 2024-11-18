@@ -9,7 +9,7 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>haoyuan-sys-api</artifactId>
+    <artifactId>cloud-sys-api</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

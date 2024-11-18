@@ -2,8 +2,6 @@ package com.limyel.blog.service;
 
 import com.limyel.blog.dao.ArticleTagDao;
 import com.limyel.blog.model.entity.ArticleTagEntity;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,11 +14,9 @@ public class ArticleTagService {
 
     private final ArticleTagDao articleTagDao;
 
-    private final EntityManager entityManager;
-
     @Transactional
     public int create(Long articleId, List<Long> tagIds) {
-        return articleTagDao.saveAll(tagIds.stream().map(tagId -> {
+        return articleTagDao.insert(tagIds.stream().map(tagId -> {
             ArticleTagEntity articleTagEntity = new ArticleTagEntity();
             articleTagEntity.setArticleId(articleId);
             articleTagEntity.setTagId(tagId);

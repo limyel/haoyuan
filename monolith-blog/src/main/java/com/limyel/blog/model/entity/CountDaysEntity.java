@@ -1,7 +1,7 @@
 package com.limyel.blog.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -9,9 +9,8 @@ import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Entity
-@Table(name = "count_days")
-public class CountDaysEntity extends BaseEntity{
+@TableName("count_days")
+public class CountDaysEntity extends BaseEntity {
 
     private String name;
 

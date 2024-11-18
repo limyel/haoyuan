@@ -20,6 +20,7 @@
         <module>cloud-trade</module>
         <module>monolith-blog</module>
         <module>linn-monkey</module>
+        <module>linn-algo</module>
     </modules>
 
     <properties>

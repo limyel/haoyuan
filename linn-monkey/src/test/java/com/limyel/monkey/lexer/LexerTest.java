@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class LexerTest {
 
     private static final String input = """
-            =+(){},;
+            let five = 5;
             """;
 
     private String[] expectedTokenType = new String[]{TokenType.ASSIGN, TokenType.PLUS, TokenType.LPAREN, TokenType.RPAREN,

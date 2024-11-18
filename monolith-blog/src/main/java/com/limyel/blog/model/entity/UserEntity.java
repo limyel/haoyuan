@@ -1,14 +1,13 @@
 package com.limyel.blog.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.limyel.haoyuan.common.mybatis.pojo.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Entity
-@Table(name = "user")
+@TableName("user")
 public class UserEntity extends BaseEntity {
 
     private String username;

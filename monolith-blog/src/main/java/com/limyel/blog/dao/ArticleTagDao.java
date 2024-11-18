@@ -1,11 +1,13 @@
 package com.limyel.blog.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.limyel.blog.model.entity.ArticleTagEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-public interface ArticleTagDao {
+@Mapper
+public interface ArticleTagDao extends BaseMapper<ArticleTagEntity> {
 
     List<ArticleTagEntity> findByArticleId(Long articleId);
 

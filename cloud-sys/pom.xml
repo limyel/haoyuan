@@ -12,8 +12,8 @@
     <artifactId>cloud-sys</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>haoyuan-sys-biz</module>
-        <module>haoyuan-sys-api</module>
+        <module>cloud-sys-biz</module>
+        <module>cloud-sys-api</module>
     </modules>
 
     <properties>
